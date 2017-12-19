@@ -170,7 +170,7 @@ func _input(ie):
 # main loop
 func _fixed_process(delta):
 	if Input.is_action_pressed("char fire"):
-		playground.shoot(get_node("eco_yaw/camera").get_global_transform())
+		playground.shoot(get_node("eco_yaw/camera/shoot-point").get_global_transform())
 	
 	refresh_current_target()
 	

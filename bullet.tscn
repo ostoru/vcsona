@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://bullet.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://effects/halo.png" type="Texture" id=2]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -19,14 +19,14 @@ flags/colarray_is_srgb = true
 params/blend_mode = 0
 params/depth_draw = 1
 params/line_width = 0.0
-fixed_flags/use_alpha = false
+fixed_flags/use_alpha = true
 fixed_flags/use_color_array = false
 fixed_flags/use_point_size = false
 fixed_flags/discard_alpha = false
 fixed_flags/use_xy_normalmap = false
-params/diffuse = Color( 1, 1, 1, 1 )
-params/specular = Color( 0, 0, 0, 1 )
-params/emission = Color( 0, 0, 0, 1 )
+params/diffuse = Color( 0, 0, 0, 1 )
+params/specular = Color( 1, 0.317749, 0.0507812, 1 )
+params/emission = Color( 0.994324, 1, 0.273438, 1 )
 params/specular_exp = 40
 params/detail_mix = 1.0
 params/normal_depth = 1
@@ -47,7 +47,6 @@ textures/shade_param_tc = 0
 
 [node name="bullet" type="KinematicBody"]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 input/ray_pickable = true
 input/capture_on_drag = false
@@ -92,7 +91,7 @@ material = SubResource( 2 )
 amount = 128
 emitting = true
 visibility = AABB( -4, -4, -4, 8, 8, 8 )
-emission_extents = Vector3( 0.1, 0.1, 0.1 )
+emission_extents = Vector3( 0, 0, 0 )
 emission_base_velocity = Vector3( 0, 0, 0 )
 emission_points = Vector3Array(  )
 gravity_normal = Vector3( 0, 0, 0 )
@@ -107,8 +106,8 @@ vars/linear_accel = 0.0
 vars/radial_accel = 0.0
 vars/tan_accel = 0.0
 vars/damping = 0.0
-vars/initial_size = 1.0
-vars/final_size = 1.0
+vars/initial_size = 0.1
+vars/final_size = 0.1
 vars/initial_angle = 0.0
 vars/height_from_velocity = false
 vars/height = 1.0

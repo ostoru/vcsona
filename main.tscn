@@ -146,7 +146,7 @@ _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 [node name="camera" type="Camera" parent="playground/actor/eco_yaw"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.7, 1 )
 projection = 0
 fov = 60.0
 near = 0.1
@@ -169,7 +169,7 @@ type_mask = 15
 [node name="shoot-point" type="Spatial" parent="playground/actor/eco_yaw/camera"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -0.377026 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -1.37703 )
 
 [node name="weapon-pos" type="Spatial" parent="playground/actor/eco_yaw/camera"]
 

@@ -4,6 +4,8 @@
 
 extends RigidBody
 
+export var active = false
+
 var view_sensitivity = 0.25
 var yaw = 0
 var pitch = 0
@@ -22,14 +24,20 @@ var health = 100
 var stamina = 10000
 var ray_length = 10
 
-func _ready():
-	set_process_input(true)
+func _input_event(camera, event, click_pos, click_normal, shape_idx):
+	print(event)
+	if event.is_action("attack"):
+		active = true
+		action_start()
+	pass
 
-	# Capture mouse once game is started:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-	set_fixed_process(true)
-	get_node("Crosshair").set_text("+")
+func action_start():
+	if active:
+		get_node("Yaw/pitch/Camera").make_current()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		set_fixed_process(true)
+		set_process_input(true)
+		get_node("Crosshair").set_text("+")
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
@@ -51,7 +59,6 @@ func _input(event):
 	if Input.is_action_pressed("quit"):
 		quit()
 
-
 	if event.type == InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==1:
 		var camera = get_node("Yaw/pitch/Camera")
 		var from = camera.project_ray_origin(event.pos)
@@ -61,20 +68,19 @@ func _input(event):
 		var world = get_node("/root/World")
 		var bullet_impact = bullet_impact_scene.instance()
 
-		bullet_impact.get_node("RigidBody").set_transform(get_node("Yaw/pitch/Viewmodel/origin").get_global_transform())
-		bullet_impact.get_node("RigidBody").set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/pitch/Viewmodel/origin").get_global_transform().origin)
+		bullet_impact.set_transform(get_node("Yaw/pitch/Viewmodel/origin").get_global_transform())
+		bullet_impact.set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/pitch/Viewmodel/origin").get_global_transform().origin)
 		world.add_child(bullet_impact)
 
 func _fixed_process(delta):
 	get_node("FPS").set_text(str(OS.get_frames_per_second(), " FPS"))
 	get_node("Stamina").set_value(stamina)
+	
 	timer += 1
-
 	if timer >= 8:
-		timer = 0
-
-	if Input.is_action_pressed("attack") and timer == 0:
-		get_node("Sounds").play("rifle")
+		if Input.is_action_pressed("attack"):
+			get_node("Sounds").play("rifle")
+			timer = 0
 	
 	is_moving = false
 

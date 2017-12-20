@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="4" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
-	<ext_resource path="res://media/particles/flare.png" type="Texture" index="0"></ext_resource>
+<resource_file type="PackedScene" subresource_count="5" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
+	<ext_resource path="res://media/particles/flare.png" type="Texture" index="1"></ext_resource>
+	<ext_resource path="res://scenes/bullet_impact.gd" type="Script" index="0"></ext_resource>
 	<resource type="SphereShape" path="local://2">
 		<real name="radius"> 0.0398 </real>
 
@@ -32,7 +33,7 @@
 		<int name="params/glow"> 0 </int>
 		<real name="params/point_size"> 1 </real>
 		<transform name="uv_xform"> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
-		<resource name="textures/diffuse" external="0">  </resource>
+		<resource name="textures/diffuse" external="1">  </resource>
 		<int name="textures/diffuse_tc"> 0 </int>
 		<resource name="textures/detail"></resource>		<int name="textures/detail_tc"> 0 </int>
 		<resource name="textures/specular"></resource>		<int name="textures/specular_tc"> 0 </int>
@@ -53,11 +54,9 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="95">
-				<string> "Spatial" </string>
+			<string_array  len="96">
+				<string> "bullet" </string>
 				<string> "_import_transform" </string>
-				<string> "__meta__" </string>
-				<string> "RigidBody" </string>
 				<string> "input/ray_pickable" </string>
 				<string> "input/capture_on_drag" </string>
 				<string> "shape_count" </string>
@@ -82,6 +81,9 @@
 				<string> "velocity/angular" </string>
 				<string> "damp_override/linear" </string>
 				<string> "damp_override/angular" </string>
+				<string> "script/script" </string>
+				<string> "__meta__" </string>
+				<string> "RigidBody" </string>
 				<string> "Particles" </string>
 				<string> "layers" </string>
 				<string> "geometry/visible" </string>
@@ -151,19 +153,15 @@
 				<string> "_update_shape_index" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 4 </int>
+			<int> 3 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="216"> 				-1, -1, 0, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 3, 3, -1, 25, 1, 0, 4, 2, 5, 3, 6, 4, 7, 5, 8, 0, 9, 3, 10, 4, 11, 4, 12, 6, 13, 7, 14, 7, 15, 8, 16, 8, 17, 3, 18, 3, 19, 6, 20, 3, 21, 3, 22, 2, 23, 6, 24, 9, 25, 9, 26, 10, 27, 10, 0, 1, 0, 28, 28, -1, 63, 1, 0, 29, 4, 30, 2, 31, 11, 32, 4, 33, 2, 34, 8, 35, 8, 36, 8, 37, 3, 38, 3, 39, 3, 40, 3, 41, 3, 42, 6, 43, 12, 44, 13, 45, 2, 46, 14, 47, 15, 48, 9, 49, 16, 50, 9, 51, 3, 52, 8, 53, 17, 54, 18, 55, 19, 56, 18, 57, 8, 58, 8, 59, 18, 60, 8, 61, 8, 62, 17, 63, 8, 64, 8, 65, 3, 66, 7, 67, 8, 68, 8, 69, 8, 70, 8, 71, 8, 72, 8, 73, 8, 74, 8, 75, 8, 76, 8, 77, 8, 78, 8, 79, 8, 80, 8, 81, 8, 82, 6, 83, 8, 84, 20, 85, 7, 86, 21, 87, 7, 88, 22, 89, 7, 90, 22, 0, 1, 0, 91, 91, -1, 4, 1, 0, 92, 5, 93, 3, 94, 6, 0 </int_array>
+			<int_array  len="209"> 				-1, -1, 28, 0, -1, 27, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 0, 7, 2, 8, 3, 9, 3, 10, 5, 11, 6, 12, 6, 13, 7, 14, 7, 15, 2, 16, 2, 17, 3, 18, 1, 19, 2, 20, 1, 21, 5, 22, 8, 23, 8, 24, 9, 25, 9, 26, 10, 27, 11, 0, 0, 0, 29, 29, -1, 63, 1, 0, 30, 3, 31, 1, 32, 12, 33, 3, 34, 1, 35, 7, 36, 7, 37, 7, 38, 2, 39, 2, 40, 2, 41, 2, 42, 2, 43, 5, 44, 13, 45, 14, 46, 1, 47, 15, 48, 16, 49, 8, 50, 17, 51, 8, 52, 2, 53, 7, 54, 18, 55, 19, 56, 20, 57, 19, 58, 7, 59, 7, 60, 19, 61, 7, 62, 7, 63, 18, 64, 7, 65, 7, 66, 2, 67, 6, 68, 7, 69, 7, 70, 7, 71, 7, 72, 7, 73, 7, 74, 7, 75, 7, 76, 7, 77, 7, 78, 7, 79, 7, 80, 7, 81, 7, 82, 7, 83, 5, 84, 7, 85, 21, 86, 6, 87, 22, 88, 6, 89, 23, 90, 6, 91, 23, 0, 0, 0, 92, 92, -1, 4, 1, 0, 93, 4, 94, 2, 95, 5, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="23" shared="false">
+			<array  len="24" shared="false">
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_screen__" </string>
-					<string> "3D" </string>
-				</dictionary>
 				<bool> True </bool>
 				<bool> False </bool>
 				<int> 1 </int>
@@ -173,6 +171,11 @@
 				<real> 0 </real>
 				<vector3> 0, 0, 0 </vector3>
 				<real> -1 </real>
+				<resource  external="0">  </resource>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_screen__" </string>
+					<string> "3D" </string>
+				</dictionary>
 				<resource name=""></resource>				<resource  resource_type="Material" path="local://1">  </resource>
 				<int> 64 </int>
 				<aabb> -4, -4, -4, 8, 8, 8 </aabb>

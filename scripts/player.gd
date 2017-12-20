@@ -36,7 +36,7 @@ func _input(event):
 		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
 		pitch = max(min(pitch - event.relative_y * view_sensitivity, 85), -85)
 		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
-		get_node("Yaw/Camera").set_rotation(Vector3(deg2rad(pitch), 0, 0))
+		get_node("Yaw/pitch").set_rotation(Vector3(deg2rad(pitch), 0, 0))
 
 	# Toggle mouse capture:
 	if Input.is_action_pressed("toggle_mouse_capture"):
@@ -53,7 +53,7 @@ func _input(event):
 
 
 	if event.type == InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==1:
-		var camera = get_node("Yaw/Camera")
+		var camera = get_node("Yaw/pitch/Camera")
 		var from = camera.project_ray_origin(event.pos)
 		var to = from + camera.project_ray_normal(event.pos) * ray_length
 
@@ -61,8 +61,8 @@ func _input(event):
 		var world = get_node("/root/World")
 		var bullet_impact = bullet_impact_scene.instance()
 
-		bullet_impact.get_node("RigidBody").set_transform(get_node("Yaw/Camera/Viewmodel/origin").get_global_transform())
-		bullet_impact.get_node("RigidBody").set_linear_velocity(get_node("Yaw/Camera/Viewmodel/direction").get_global_transform().origin - get_node("Yaw/Camera/Viewmodel/origin").get_global_transform().origin)
+		bullet_impact.get_node("RigidBody").set_transform(get_node("Yaw/pitch/Viewmodel/origin").get_global_transform())
+		bullet_impact.get_node("RigidBody").set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/pitch/Viewmodel/origin").get_global_transform().origin)
 		world.add_child(bullet_impact)
 
 func _fixed_process(delta):

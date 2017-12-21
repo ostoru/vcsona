@@ -39,7 +39,7 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	print(event)
 	if event.is_action("attack"):
 		active = true
-		action_start()
+		get_node("../").start_actions()
 	pass
 
 func action_start():
@@ -51,10 +51,12 @@ func action_start():
 		get_node("Crosshair").show()
 
 func action_end():
+	get_node("Yaw/pitch/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)
 	set_process_input(false)
 	get_node("Crosshair").hide()
+	active = false
 	pass
 
 func _input(event):
@@ -76,6 +78,8 @@ func _input(event):
 	# Quit the game:
 	if Input.is_action_pressed("quit"):
 		quit()
+	elif Input.is_action_pressed("char reload"):
+		get_node("../").end_actions()
 
 #	if event.type == InputEvent.MOUSE_BUTTON and event.button_index==1 and timer <= 0:
 #		var camera = get_node("Yaw/pitch/Camera")

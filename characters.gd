@@ -9,6 +9,14 @@ func start_actions():
 	for a in chars:
 		a.action_start()
 func end_actions():
-	for a in chars:
-		a.action_end()
+	chars = []
+	for child in get_children():
+		child.set_pause_mode(PAUSE_MODE_STOP)
+		if child.is_in_group("destroy"): #destroys bullets and projectiles, does not affect destructable objects
+			child.queue_free()
+		if child.is_in_group("char"):
+			chars.append(child)
+			child.action_end()
+#		if a.action_end()
+		
 	get_node("../map cam").make_current()

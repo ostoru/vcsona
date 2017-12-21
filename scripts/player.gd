@@ -87,12 +87,13 @@ func _input(event):
 #		var to = from + camera.project_ray_normal(event.pos) * ray_length
 
 onready var bullet_impact_scene = preload("res://scenes/bullet_impact.xml")
-onready var world = get_node("/root/World")
+onready var world = get_node("../")
 
 func shoot():
 	var bullet_impact = bullet_impact_scene.instance()
 	bullet_impact.set_transform(get_node("Yaw/pitch/Viewmodel/origin").get_global_transform())
 	bullet_impact.set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/pitch/Viewmodel/origin").get_global_transform().origin)
+	bullet_impact.add_to_group("destroy")
 	world.add_child(bullet_impact)
 
 func _fixed_process(delta):
@@ -124,19 +125,19 @@ func _integrate_forces(state):
 	var aim = get_node("Yaw").get_global_transform().basis
 
 	var direction = Vector3()
-
-	if Input.is_action_pressed("move_forwards"):
-		direction -= aim[2]
-		is_moving = true
-	if Input.is_action_pressed("move_backwards"):
-		direction += aim[2]
-		is_moving = true
-	if Input.is_action_pressed("move_left"):
-		direction -= aim[0]
-		is_moving = true
-	if Input.is_action_pressed("move_right"):
-		direction += aim[0]
-		is_moving = true
+	if active:
+		if Input.is_action_pressed("move_forwards"):
+			direction -= aim[2]
+			is_moving = true
+		if Input.is_action_pressed("move_backwards"):
+			direction += aim[2]
+			is_moving = true
+		if Input.is_action_pressed("move_left"):
+			direction -= aim[0]
+			is_moving = true
+		if Input.is_action_pressed("move_right"):
+			direction += aim[0]
+			is_moving = true
 
 	direction = direction.normalized()
 	var ray = get_node("Ray")

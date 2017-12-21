@@ -5,6 +5,16 @@
 extends RigidBody
 
 export var active = false
+export var ally = false
+
+var stats = {
+	active = false,
+	ally = false,
+	hp_cur = 100,
+	hp_max = 100,
+	stm_max = 100,
+	stm_cur = 100
+	}
 
 var view_sensitivity = 0.25
 var yaw = 0
@@ -24,6 +34,7 @@ var health = 100
 var stamina = 10000
 var ray_length = 10
 
+#selects charater using mouse click
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	print(event)
 	if event.is_action("attack"):
@@ -37,7 +48,14 @@ func action_start():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		set_fixed_process(true)
 		set_process_input(true)
-		get_node("Crosshair").set_text("+")
+		get_node("Crosshair").show()
+
+func action_end():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	set_fixed_process(false)
+	set_process_input(false)
+	get_node("Crosshair").hide()
+	pass
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
@@ -59,28 +77,30 @@ func _input(event):
 	if Input.is_action_pressed("quit"):
 		quit()
 
-	if event.type == InputEvent.MOUSE_BUTTON and event.pressed and event.button_index==1:
-		var camera = get_node("Yaw/pitch/Camera")
-		var from = camera.project_ray_origin(event.pos)
-		var to = from + camera.project_ray_normal(event.pos) * ray_length
+#	if event.type == InputEvent.MOUSE_BUTTON and event.button_index==1 and timer <= 0:
+#		var camera = get_node("Yaw/pitch/Camera")
+#		var from = camera.project_ray_origin(event.pos)
+#		var to = from + camera.project_ray_normal(event.pos) * ray_length
 
-		var bullet_impact_scene = preload("res://scenes/bullet_impact.xml")
-		var world = get_node("/root/World")
-		var bullet_impact = bullet_impact_scene.instance()
+onready var bullet_impact_scene = preload("res://scenes/bullet_impact.xml")
+onready var world = get_node("/root/World")
 
-		bullet_impact.set_transform(get_node("Yaw/pitch/Viewmodel/origin").get_global_transform())
-		bullet_impact.set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/pitch/Viewmodel/origin").get_global_transform().origin)
-		world.add_child(bullet_impact)
+func shoot():
+	var bullet_impact = bullet_impact_scene.instance()
+	bullet_impact.set_transform(get_node("Yaw/pitch/Viewmodel/origin").get_global_transform())
+	bullet_impact.set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/pitch/Viewmodel/origin").get_global_transform().origin)
+	world.add_child(bullet_impact)
 
 func _fixed_process(delta):
 	get_node("FPS").set_text(str(OS.get_frames_per_second(), " FPS"))
 	get_node("Stamina").set_value(stamina)
 	
-	timer += 1
-	if timer >= 8:
+	timer -= 1
+	if timer <= 0:
 		if Input.is_action_pressed("attack"):
+			shoot()
 			get_node("Sounds").play("rifle")
-			timer = 0
+			timer = 8
 	
 	is_moving = false
 

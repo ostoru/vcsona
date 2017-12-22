@@ -34,15 +34,6 @@ var health = 100
 var stamina = 10000
 var ray_length = 10
 
-func _ready():
-	var a = get_node("Yaw/AIM/Armature")
-	var index = 0
-	var gun_scene = preload("res://scenes/bullet_impact.xml")
-#	while index < a.get_bone_count():
-#		var gun = gun_scene.instance()
-#		gun.set_transform(a.get_bone_global_pose(index))
-#		world.add_child(gun)
-#		index += 1
 #selects charater using mouse click
 func _mouse_enter():
 	get_node("icon/highlight").set_scale(Vector3(1,1,1) * 3)
@@ -63,7 +54,7 @@ func action_start():
 #	get_node("Body").get_shape().set_height(1.02)
 	get_node("icon").hide()
 	if active:
-		get_node("Yaw/pitch/Camera").make_current()
+		get_node("Yaw/AIM/Camera/BoneAttachment/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		set_fixed_process(true)
 		set_process_input(true)
@@ -87,8 +78,13 @@ func _input(event):
 		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
 		pitch = max(min(pitch - event.relative_y * view_sensitivity, 85), -85)
 		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
-		get_node("Yaw/pitch").set_rotation(Vector3(deg2rad(pitch), 0, 0))
-
+#		get_node("Yaw/pitch").set_rotation(Vector3(deg2rad(pitch), 0, 0))
+		if pitch < 0:
+			get_node("Yaw/AIM/AnimationPlayer").play("default")
+		elif pitch > 0:
+			get_node("Yaw/AIM/AnimationPlayer").play_backwards("default")
+			
+	
 	# Toggle mouse capture:
 	if Input.is_action_pressed("toggle_mouse_capture"):
 		if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
@@ -114,8 +110,8 @@ onready var world = get_node("../")
 
 func shoot():
 	var bullet_impact = bullet_impact_scene.instance()
-	bullet_impact.set_transform(get_node("Yaw/AIM/Armature/BoneAttachment/gun/origin").get_global_transform())
-	bullet_impact.set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/AIM/Armature/BoneAttachment/gun/origin").get_global_transform().origin)
+	bullet_impact.set_transform(get_node("Yaw/AIM/Bone/BoneAttachment/gun/gun/origin").get_global_transform())
+	bullet_impact.set_linear_velocity(get_node("Yaw/AIM/Bone/BoneAttachment/gun/gun/direction").get_global_transform().origin - get_node("Yaw/AIM/Bone/BoneAttachment/gun/gun/origin").get_global_transform().origin)
 	bullet_impact.add_to_group("destroy")
 	world.add_child(bullet_impact)
 

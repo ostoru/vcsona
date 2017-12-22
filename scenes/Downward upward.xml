@@ -1,22 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="18" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
-	<ext_resource path="res://scripts/player.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="3"></ext_resource>
-	<ext_resource path="res://fonts/roboto.fnt" type="BitmapFont" index="2"></ext_resource>
-	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="4"></ext_resource>
-	<ext_resource path="res://fonts/sprites/FSTART (by cyrus).png" type="Texture" index="7"></ext_resource>
-	<ext_resource path="res://fonts/sprites/MAP-T2 (by cyrus).png" type="Texture" index="6"></ext_resource>
-	<ext_resource path="res://scenes/gun.xml" type="PackedScene" index="1"></ext_resource>
-	<ext_resource path="res://fonts/sprites/MAP-T1 (by cyrus).png" type="Texture" index="5"></ext_resource>
-	<resource type="CapsuleShape" path="local://1">
-		<real name="radius"> 0.19 </real>
-		<real name="height"> 1.02 </real>
-
-	</resource>
-	<resource type="RayShape" path="local://2">
-		<real name="length"> 0.3 </real>
-
-	</resource>
+<resource_file type="PackedScene" subresource_count="77" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
 	<resource type="FixedMaterial" path="local://77">
 		<string name="resource/name"> "bababa" </string>
 		<bool name="flags/visible"> True </bool>
@@ -82,6 +65,371 @@
 			<string> "primitive" </string>
 			<int> 4 </int>
 		</dictionary>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://3">
+		<string name="resource/name"> "WGTS_rig" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://4">
+		<string name="resource/name"> "WGT-rig_torso" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://5">
+		<string name="resource/name"> "WGT-rig_chest" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://6">
+		<string name="resource/name"> "WGT-rig_hips" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://7">
+		<string name="resource/name"> "WGT-rig_neck" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://8">
+		<string name="resource/name"> "WGT-rig_head" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://9">
+		<string name="resource/name"> "WGT-rig_tweak_spine.004" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://10">
+		<string name="resource/name"> "WGT-rig_tweak_spine.005" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://11">
+		<string name="resource/name"> "WGT-rig_tweak_spine.002" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://12">
+		<string name="resource/name"> "WGT-rig_tweak_spine.003" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://13">
+		<string name="resource/name"> "WGT-rig_tweak_spine" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://14">
+		<string name="resource/name"> "WGT-rig_tweak_spine.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://15">
+		<string name="resource/name"> "WGT-rig_thigh_parent.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://16">
+		<string name="resource/name"> "WGT-rig_thigh_tweak.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://17">
+		<string name="resource/name"> "WGT-rig_thigh_tweak.L.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://18">
+		<string name="resource/name"> "WGT-rig_shin_tweak.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://19">
+		<string name="resource/name"> "WGT-rig_shin_tweak.L.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://20">
+		<string name="resource/name"> "WGT-rig_foot_tweak.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://21">
+		<string name="resource/name"> "WGT-rig_thigh_ik.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://22">
+		<string name="resource/name"> "WGT-rig_thigh_ik_target.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://23">
+		<string name="resource/name"> "WGT-rig_VIS_thigh_ik_pole.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://24">
+		<string name="resource/name"> "WGT-rig_thigh_fk.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://25">
+		<string name="resource/name"> "WGT-rig_shin_fk.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://26">
+		<string name="resource/name"> "WGT-rig_foot_fk.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://27">
+		<string name="resource/name"> "WGT-rig_foot_ik.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://28">
+		<string name="resource/name"> "WGT-rig_foot_heel_ik.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://29">
+		<string name="resource/name"> "WGT-rig_toe.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://30">
+		<string name="resource/name"> "WGT-rig_thigh_parent.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://31">
+		<string name="resource/name"> "WGT-rig_thigh_tweak.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://32">
+		<string name="resource/name"> "WGT-rig_thigh_tweak.R.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://33">
+		<string name="resource/name"> "WGT-rig_shin_tweak.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://34">
+		<string name="resource/name"> "WGT-rig_shin_tweak.R.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://35">
+		<string name="resource/name"> "WGT-rig_foot_tweak.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://36">
+		<string name="resource/name"> "WGT-rig_thigh_ik.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://37">
+		<string name="resource/name"> "WGT-rig_thigh_ik_target.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://38">
+		<string name="resource/name"> "WGT-rig_VIS_thigh_ik_pole.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://39">
+		<string name="resource/name"> "WGT-rig_thigh_fk.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://40">
+		<string name="resource/name"> "WGT-rig_shin_fk.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://41">
+		<string name="resource/name"> "WGT-rig_foot_fk.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://42">
+		<string name="resource/name"> "WGT-rig_foot_ik.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://43">
+		<string name="resource/name"> "WGT-rig_foot_heel_ik.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://44">
+		<string name="resource/name"> "WGT-rig_toe.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://45">
+		<string name="resource/name"> "WGT-rig_breast.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://46">
+		<string name="resource/name"> "WGT-rig_breast.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://47">
+		<string name="resource/name"> "WGT-rig_shoulder.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://48">
+		<string name="resource/name"> "WGT-rig_shoulder.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://49">
+		<string name="resource/name"> "WGT-rig_upper_arm_parent.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://50">
+		<string name="resource/name"> "WGT-rig_upper_arm_tweak.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://51">
+		<string name="resource/name"> "WGT-rig_upper_arm_tweak.L.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://52">
+		<string name="resource/name"> "WGT-rig_forearm_tweak.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://53">
+		<string name="resource/name"> "WGT-rig_forearm_tweak.L.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://54">
+		<string name="resource/name"> "WGT-rig_hand_tweak.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://55">
+		<string name="resource/name"> "WGT-rig_upper_arm_ik.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://56">
+		<string name="resource/name"> "WGT-rig_upper_arm_ik_target.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://57">
+		<string name="resource/name"> "WGT-rig_VIS_upper_arm_ik_pole.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://58">
+		<string name="resource/name"> "WGT-rig_upper_arm_fk.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://59">
+		<string name="resource/name"> "WGT-rig_forearm_fk.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://60">
+		<string name="resource/name"> "WGT-rig_hand_fk.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://61">
+		<string name="resource/name"> "WGT-rig_hand_ik.L" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://62">
+		<string name="resource/name"> "WGT-rig_upper_arm_parent.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://63">
+		<string name="resource/name"> "WGT-rig_upper_arm_tweak.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://64">
+		<string name="resource/name"> "WGT-rig_upper_arm_tweak.R.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://65">
+		<string name="resource/name"> "WGT-rig_forearm_tweak.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://66">
+		<string name="resource/name"> "WGT-rig_forearm_tweak.R.001" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://67">
+		<string name="resource/name"> "WGT-rig_hand_tweak.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://68">
+		<string name="resource/name"> "WGT-rig_upper_arm_ik.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://69">
+		<string name="resource/name"> "WGT-rig_upper_arm_ik_target.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://70">
+		<string name="resource/name"> "WGT-rig_VIS_upper_arm_ik_pole.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://71">
+		<string name="resource/name"> "WGT-rig_upper_arm_fk.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://72">
+		<string name="resource/name"> "WGT-rig_forearm_fk.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://73">
+		<string name="resource/name"> "WGT-rig_hand_fk.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://74">
+		<string name="resource/name"> "WGT-rig_hand_ik.R" </string>
+		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
+
+	</resource>
+	<resource type="Mesh" path="local://75">
+		<string name="resource/name"> "WGT-rig_root" </string>
 		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
 
 	</resource>
@@ -1342,67 +1690,6 @@
 		<real_array name="tracks/249/keys" len="12"> 			0, 1, -0.0341406, -0.0572696, -0.563848, 0.0109625, 0.319508, 0.715443, 0.621238, 1, 1, 1 </real_array>
 
 	</resource>
-	<resource type="StyleBoxFlat" path="local://4">
-		<real name="content_margin/left"> -1 </real>
-		<real name="content_margin/right"> -1 </real>
-		<real name="content_margin/top"> -1 </real>
-		<real name="content_margin/bottom"> -1 </real>
-		<color name="bg_color"> 0.348627, 0.518972, 0.874847, 0.501961 </color>
-		<color name="light_color"> 0.8, 0.8, 0.8, 1 </color>
-		<color name="dark_color"> 0.8, 0.8, 0.8, 1 </color>
-		<int name="border_size"> 0 </int>
-		<bool name="border_blend"> True </bool>
-		<bool name="draw_bg"> True </bool>
-
-	</resource>
-	<resource type="StyleBoxEmpty" path="local://5">
-		<real name="content_margin/left"> -1 </real>
-		<real name="content_margin/right"> -1 </real>
-		<real name="content_margin/top"> -1 </real>
-		<real name="content_margin/bottom"> -1 </real>
-
-	</resource>
-	<resource type="SampleLibrary" path="local://6">
-		<dictionary name="samples/jump" shared="false">
-			<string> "db" </string>
-			<real> 0 </real>
-			<string> "pitch" </string>
-			<real> 1 </real>
-			<string> "priority" </string>
-			<int> 0 </int>
-			<string> "sample" </string>
-			<resource  external="3">  </resource>
-		</dictionary>
-		<dictionary name="samples/rifle" shared="false">
-			<string> "db" </string>
-			<real> 0 </real>
-			<string> "pitch" </string>
-			<real> 1 </real>
-			<string> "priority" </string>
-			<int> 0 </int>
-			<string> "sample" </string>
-			<resource  external="4">  </resource>
-		</dictionary>
-
-	</resource>
-	<resource type="SpriteFrames" path="local://7">
-		<array name="animations" len="1" shared="false">
-			<dictionary  shared="false">
-				<string> "frames" </string>
-				<array  len="2" shared="false">
-					<resource  external="5">  </resource>
-					<resource  external="6">  </resource>
-				</array>
-				<string> "loop" </string>
-				<bool> True </bool>
-				<string> "name" </string>
-				<string> "default" </string>
-				<string> "speed" </string>
-				<real> 30 </real>
-			</dictionary>
-		</array>
-
-	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -1413,68 +1700,20 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="1257">
-				<string> "Player" </string>
-				<string> "_import_transform" </string>
-				<string> "input/ray_pickable" </string>
-				<string> "input/capture_on_drag" </string>
-				<string> "shape_count" </string>
-				<string> "shapes/0/shape" </string>
-				<string> "shapes/0/transform" </string>
-				<string> "shapes/0/trigger" </string>
-				<string> "shapes/1/shape" </string>
-				<string> "shapes/1/transform" </string>
-				<string> "shapes/1/trigger" </string>
-				<string> "collision/layers" </string>
-				<string> "collision/mask" </string>
-				<string> "mode" </string>
-				<string> "mass" </string>
-				<string> "friction" </string>
-				<string> "bounce" </string>
-				<string> "gravity_scale" </string>
-				<string> "custom_integrator" </string>
-				<string> "continuous_cd" </string>
-				<string> "contacts_reported" </string>
-				<string> "contact_monitor" </string>
-				<string> "sleeping" </string>
-				<string> "can_sleep" </string>
-				<string> "axis_lock" </string>
-				<string> "velocity/linear" </string>
-				<string> "velocity/angular" </string>
-				<string> "damp_override/linear" </string>
-				<string> "damp_override/angular" </string>
-				<string> "script/script" </string>
-				<string> "__meta__" </string>
-				<string> "active" </string>
-				<string> "ally" </string>
-				<string> "char" </string>
-				<string> "RigidBody" </string>
-				<string> "Body" </string>
-				<string> "transform/local" </string>
-				<string> "shape" </string>
-				<string> "trigger" </string>
-				<string> "_update_shape_index" </string>
-				<string> "CollisionShape" </string>
-				<string> "Leg" </string>
-				<string> "Ray" </string>
-				<string> "enabled" </string>
-				<string> "cast_to" </string>
-				<string> "layer_mask" </string>
-				<string> "type_mask" </string>
-				<string> "RayCast" </string>
-				<string> "Yaw" </string>
-				<string> "Spatial" </string>
+			<string_array  len="1207">
 				<string> "AIM" </string>
 				<string> "_import_path" </string>
+				<string> "_import_transform" </string>
+				<string> "Spatial" </string>
 				<string> "Camera" </string>
+				<string> "transform/local" </string>
 				<string> "bones/0/name" </string>
 				<string> "bones/0/parent" </string>
 				<string> "bones/0/rest" </string>
 				<string> "bones/0/enabled" </string>
 				<string> "bones/0/bound_childs" </string>
 				<string> "Skeleton" </string>
-				<string> "BoneAttachment" </string>
-				<string> "bone_name" </string>
+				<string> "Camera_Perspective10" </string>
 				<string> "projection" </string>
 				<string> "fov" </string>
 				<string> "near" </string>
@@ -1627,7 +1866,6 @@
 				<string> "bones/28/enabled" </string>
 				<string> "bones/28/bound_childs" </string>
 				<string> "rig" </string>
-				<string> "editor/display_folded" </string>
 				<string> "bones/29/name" </string>
 				<string> "bones/29/parent" </string>
 				<string> "bones/29/rest" </string>
@@ -2587,8 +2825,80 @@
 				<string> "mesh/skeleton" </string>
 				<string> "material/0" </string>
 				<string> "MeshInstance" </string>
+				<string> "WGTS_rig" </string>
+				<string> "WGT-rig_torso" </string>
+				<string> "WGT-rig_chest" </string>
+				<string> "WGT-rig_hips" </string>
+				<string> "WGT-rig_neck" </string>
+				<string> "WGT-rig_head" </string>
+				<string> "WGT-rig_tweak_spine_004" </string>
+				<string> "WGT-rig_tweak_spine_005" </string>
+				<string> "WGT-rig_tweak_spine_002" </string>
+				<string> "WGT-rig_tweak_spine_003" </string>
+				<string> "WGT-rig_tweak_spine" </string>
+				<string> "WGT-rig_tweak_spine_001" </string>
+				<string> "WGT-rig_thigh_parent_L" </string>
+				<string> "WGT-rig_thigh_tweak_L" </string>
+				<string> "WGT-rig_thigh_tweak_L_001" </string>
+				<string> "WGT-rig_shin_tweak_L" </string>
+				<string> "WGT-rig_shin_tweak_L_001" </string>
+				<string> "WGT-rig_foot_tweak_L" </string>
+				<string> "WGT-rig_thigh_ik_L" </string>
+				<string> "WGT-rig_thigh_ik_target_L" </string>
+				<string> "WGT-rig_VIS_thigh_ik_pole_L" </string>
+				<string> "WGT-rig_thigh_fk_L" </string>
+				<string> "WGT-rig_shin_fk_L" </string>
+				<string> "WGT-rig_foot_fk_L" </string>
+				<string> "WGT-rig_foot_ik_L" </string>
+				<string> "WGT-rig_foot_heel_ik_L" </string>
+				<string> "WGT-rig_toe_L" </string>
+				<string> "WGT-rig_thigh_parent_R" </string>
+				<string> "WGT-rig_thigh_tweak_R" </string>
+				<string> "WGT-rig_thigh_tweak_R_001" </string>
+				<string> "WGT-rig_shin_tweak_R" </string>
+				<string> "WGT-rig_shin_tweak_R_001" </string>
+				<string> "WGT-rig_foot_tweak_R" </string>
+				<string> "WGT-rig_thigh_ik_R" </string>
+				<string> "WGT-rig_thigh_ik_target_R" </string>
+				<string> "WGT-rig_VIS_thigh_ik_pole_R" </string>
+				<string> "WGT-rig_thigh_fk_R" </string>
+				<string> "WGT-rig_shin_fk_R" </string>
+				<string> "WGT-rig_foot_fk_R" </string>
+				<string> "WGT-rig_foot_ik_R" </string>
+				<string> "WGT-rig_foot_heel_ik_R" </string>
+				<string> "WGT-rig_toe_R" </string>
+				<string> "WGT-rig_breast_L" </string>
+				<string> "WGT-rig_breast_R" </string>
+				<string> "WGT-rig_shoulder_L" </string>
+				<string> "WGT-rig_shoulder_R" </string>
+				<string> "WGT-rig_upper_arm_parent_L" </string>
+				<string> "WGT-rig_upper_arm_tweak_L" </string>
+				<string> "WGT-rig_upper_arm_tweak_L_001" </string>
+				<string> "WGT-rig_forearm_tweak_L" </string>
+				<string> "WGT-rig_forearm_tweak_L_001" </string>
+				<string> "WGT-rig_hand_tweak_L" </string>
+				<string> "WGT-rig_upper_arm_ik_L" </string>
+				<string> "WGT-rig_upper_arm_ik_target_L" </string>
+				<string> "WGT-rig_VIS_upper_arm_ik_pole_L" </string>
+				<string> "WGT-rig_upper_arm_fk_L" </string>
+				<string> "WGT-rig_forearm_fk_L" </string>
+				<string> "WGT-rig_hand_fk_L" </string>
+				<string> "WGT-rig_hand_ik_L" </string>
+				<string> "WGT-rig_upper_arm_parent_R" </string>
+				<string> "WGT-rig_upper_arm_tweak_R" </string>
+				<string> "WGT-rig_upper_arm_tweak_R_001" </string>
+				<string> "WGT-rig_forearm_tweak_R" </string>
+				<string> "WGT-rig_forearm_tweak_R_001" </string>
+				<string> "WGT-rig_hand_tweak_R" </string>
+				<string> "WGT-rig_upper_arm_ik_R" </string>
+				<string> "WGT-rig_upper_arm_ik_target_R" </string>
+				<string> "WGT-rig_VIS_upper_arm_ik_pole_R" </string>
+				<string> "WGT-rig_upper_arm_fk_R" </string>
+				<string> "WGT-rig_forearm_fk_R" </string>
+				<string> "WGT-rig_hand_fk_R" </string>
+				<string> "WGT-rig_hand_ik_R" </string>
+				<string> "WGT-rig_root" </string>
 				<string> "Bone" </string>
-				<string> "gun" </string>
 				<string> "AnimationPlayer" </string>
 				<string> "playback/process_mode" </string>
 				<string> "playback/default_blend_time" </string>
@@ -2598,132 +2908,41 @@
 				<string> "playback/speed" </string>
 				<string> "blend_times" </string>
 				<string> "autoplay" </string>
-				<string> "FPS" </string>
-				<string> "visibility/visible" </string>
-				<string> "anchor/right" </string>
-				<string> "focus/ignore_mouse" </string>
-				<string> "focus/stop_mouse" </string>
-				<string> "size_flags/horizontal" </string>
-				<string> "size_flags/vertical" </string>
-				<string> "margin/left" </string>
-				<string> "margin/top" </string>
-				<string> "margin/right" </string>
-				<string> "margin/bottom" </string>
-				<string> "custom_fonts/font" </string>
-				<string> "align" </string>
-				<string> "valign" </string>
-				<string> "percent_visible" </string>
-				<string> "lines_skipped" </string>
-				<string> "max_lines_visible" </string>
-				<string> "Label" </string>
-				<string> "Direction" </string>
-				<string> "anchor/top" </string>
-				<string> "anchor/bottom" </string>
-				<string> "Health" </string>
-				<string> "anchor/left" </string>
-				<string> "Stamina" </string>
-				<string> "custom_styles/fg" </string>
-				<string> "custom_styles/bg" </string>
-				<string> "range/min" </string>
-				<string> "range/max" </string>
-				<string> "range/step" </string>
-				<string> "range/page" </string>
-				<string> "range/value" </string>
-				<string> "range/exp_edit" </string>
-				<string> "range/rounded" </string>
-				<string> "percent/visible" </string>
-				<string> "ProgressBar" </string>
-				<string> "Crosshair" </string>
-				<string> "text" </string>
-				<string> "Sounds" </string>
-				<string> "params/volume_db" </string>
-				<string> "params/pitch_scale" </string>
-				<string> "params/attenuation/min_distance" </string>
-				<string> "params/attenuation/max_distance" </string>
-				<string> "params/attenuation/distance_exp" </string>
-				<string> "params/emission_cone/degrees" </string>
-				<string> "params/emission_cone/attenuation_db" </string>
-				<string> "config/polyphony" </string>
-				<string> "config/samples" </string>
-				<string> "SpatialSamplePlayer" </string>
-				<string> "icon" </string>
-				<string> "centered" </string>
-				<string> "offset" </string>
-				<string> "flip_h" </string>
-				<string> "flip_v" </string>
-				<string> "modulate" </string>
-				<string> "opacity" </string>
-				<string> "pixel_size" </string>
-				<string> "axis" </string>
-				<string> "flags/transparent" </string>
-				<string> "flags/shaded" </string>
-				<string> "flags/double_sided" </string>
-				<string> "flags/on_top" </string>
-				<string> "flags/alpha_cut" </string>
-				<string> "frames" </string>
-				<string> "animation" </string>
-				<string> "AnimatedSprite3D" </string>
-				<string> "highlight" </string>
-				<string> "texture" </string>
-				<string> "vframes" </string>
-				<string> "hframes" </string>
-				<string> "frame" </string>
-				<string> "region" </string>
-				<string> "region_rect" </string>
-				<string> "Sprite3D" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 24 </int>
+			<int> 81 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="3213"> 				-1, -1, 34, 0, -1, 32, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 2, 8, 6, 9, 7, 10, 2, 11, 8, 12, 8, 13, 3, 14, 9, 15, 10, 16, 10, 17, 9, 18, 1, 19, 2, 20, 11, 21, 1, 22, 2, 23, 2, 24, 12, 25, 13, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 2, 32, 2, 1, 33, 0, 0, 40, 35, -1, 5, 1, 0, 36, 5, 37, 4, 38, 2, 39, 12, 0, 0, 0, 40, 41, -1, 5, 1, 0, 36, 7, 37, 6, 38, 2, 39, 8, 0, 0, 0, 47, 42, -1, 6, 1, 0, 36, 17, 43, 1, 44, 18, 45, 8, 46, 19, 0, 0, 0, 49, 48, -1, 1, 1, 0, 0, 4, 0, 49, 50, -1, 3, 51, 20, 1, 0, 36, 21, 0, 5, 0, 58, 52, -1, 8, 51, 22, 1, 23, 36, 24, 53, 25, 54, 26, 55, 0, 56, 1, 57, 27, 0, 6, 0, 59, 59, -1, 2, 1, 0, 60, 28, 0, 7, 0, 52, 52, -1, 12, 1, 0, 36, 29, 61, 12, 62, 30, 63, 31, 64, 32, 65, 8, 66, 2, 67, 33, 68, 34, 69, 10, 70, 10, 0, 5, 0, 58, 71, -1, 147, 51, 35, 1, 0, 53, 36, 54, 26, 55, 0, 56, 1, 57, 27, 72, 37, 73, 12, 74, 0, 75, 1, 76, 27, 77, 38, 78, 8, 79, 0, 80, 1, 81, 27, 82, 39, 83, 3, 84, 0, 85, 1, 86, 27, 87, 40, 88, 41, 89, 0, 90, 1, 91, 27, 92, 42, 93, 43, 94, 0, 95, 1, 96, 27, 97, 44, 98, 45, 99, 0, 100, 1, 101, 27, 102, 46, 103, 41, 104, 0, 105, 1, 106, 27, 107, 47, 108, 48, 109, 0, 110, 1, 111, 27, 112, 49, 113, 11, 114, 0, 115, 1, 116, 27, 117, 50, 118, 51, 119, 0, 120, 1, 121, 27, 122, 52, 123, 41, 124, 0, 125, 1, 126, 27, 127, 53, 128, 54, 129, 0, 130, 1, 131, 27, 132, 55, 133, 56, 134, 0, 135, 1, 136, 27, 137, 57, 138, 58, 139, 0, 140, 1, 141, 27, 142, 59, 143, 41, 144, 0, 145, 1, 146, 27, 147, 60, 148, 41, 149, 0, 150, 1, 151, 27, 152, 61, 153, 12, 154, 0, 155, 1, 156, 27, 157, 62, 158, 12, 159, 0, 160, 1, 161, 27, 162, 63, 163, 12, 164, 0, 165, 1, 166, 27, 167, 64, 168, 65, 169, 0, 170, 1, 171, 27, 172, 66, 173, 67, 174, 0, 175, 1, 176, 27, 177, 68, 178, 69, 179, 0, 180, 1, 181, 27, 182, 70, 183, 69, 184, 0, 185, 1, 186, 27, 187, 71, 188, 12, 189, 0, 190, 1, 191, 27, 192, 72, 193, 73, 194, 0, 195, 1, 196, 27, 197, 74, 198, 75, 199, 0, 200, 1, 201, 27, 202, 76, 203, 77, 204, 0, 205, 1, 206, 27, 207, 78, 208, 77, 209, 0, 210, 1, 211, 27, 0, 5, 0, 58, 212, -1, 1088, 51, 79, 213, 1, 1, 0, 53, 80, 54, 26, 55, 0, 56, 1, 57, 27, 72, 81, 73, 12, 74, 0, 75, 1, 76, 27, 77, 82, 78, 12, 79, 0, 80, 1, 81, 27, 82, 83, 83, 12, 84, 0, 85, 1, 86, 27, 87, 84, 88, 12, 89, 0, 90, 1, 91, 27, 92, 85, 93, 12, 94, 86, 95, 1, 96, 27, 97, 87, 98, 45, 99, 88, 100, 1, 101, 27, 102, 89, 103, 90, 104, 91, 105, 1, 106, 27, 107, 92, 108, 48, 109, 93, 110, 1, 111, 27, 112, 94, 113, 11, 114, 95, 115, 1, 116, 27, 117, 96, 118, 51, 119, 97, 120, 1, 121, 27, 122, 98, 123, 99, 124, 100, 125, 1, 126, 27, 127, 101, 128, 12, 129, 0, 130, 1, 131, 27, 132, 102, 133, 56, 134, 0, 135, 1, 136, 27, 137, 103, 138, 56, 139, 0, 140, 1, 141, 27, 142, 104, 143, 105, 144, 0, 145, 1, 146, 27, 147, 106, 148, 19, 149, 0, 150, 1, 151, 27, 152, 107, 153, 108, 154, 0, 155, 1, 156, 27, 157, 109, 158, 105, 159, 0, 160, 1, 161, 27, 162, 110, 163, 111, 164, 0, 165, 1, 166, 27, 167, 112, 168, 65, 169, 0, 170, 1, 171, 27, 172, 113, 173, 67, 174, 0, 175, 1, 176, 27, 177, 114, 178, 69, 179, 0, 180, 1, 181, 27, 182, 115, 183, 116, 184, 0, 185, 1, 186, 27, 187, 117, 188, 118, 189, 0, 190, 1, 191, 27, 192, 119, 193, 67, 194, 0, 195, 1, 196, 27, 197, 120, 198, 75, 199, 0, 200, 1, 201, 27, 202, 121, 203, 77, 204, 0, 205, 1, 206, 27, 207, 122, 208, 67, 209, 0, 210, 1, 211, 27, 214, 123, 215, 124, 216, 0, 217, 1, 218, 27, 219, 125, 220, 111, 221, 0, 222, 1, 223, 27, 224, 126, 225, 111, 226, 0, 227, 1, 228, 27, 229, 127, 230, 128, 231, 0, 232, 1, 233, 27, 234, 129, 235, 130, 236, 0, 237, 1, 238, 27, 239, 131, 240, 132, 241, 0, 242, 1, 243, 27, 244, 133, 245, 134, 246, 0, 247, 1, 248, 27, 249, 135, 250, 136, 251, 0, 252, 1, 253, 27, 254, 137, 255, 134, 256, 0, 257, 1, 258, 27, 259, 138, 260, 139, 261, 0, 262, 1, 263, 27, 264, 140, 265, 134, 266, 0, 267, 1, 268, 27, 269, 141, 270, 142, 271, 0, 272, 1, 273, 27, 274, 143, 275, 144, 276, 0, 277, 1, 278, 27, 279, 145, 280, 142, 281, 0, 282, 1, 283, 27, 284, 146, 285, 147, 286, 0, 287, 1, 288, 27, 289, 148, 290, 142, 291, 0, 292, 1, 293, 27, 294, 149, 295, 150, 296, 0, 297, 1, 298, 27, 299, 151, 300, 152, 301, 0, 302, 1, 303, 27, 304, 153, 305, 132, 306, 154, 307, 1, 308, 27, 309, 155, 310, 132, 311, 0, 312, 1, 313, 27, 314, 156, 315, 157, 316, 0, 317, 1, 318, 27, 319, 158, 320, 159, 321, 0, 322, 1, 323, 27, 324, 160, 325, 157, 326, 0, 327, 1, 328, 27, 329, 161, 330, 157, 331, 0, 332, 1, 333, 27, 334, 162, 335, 163, 336, 0, 337, 1, 338, 27, 339, 164, 340, 165, 341, 0, 342, 1, 343, 27, 344, 166, 345, 167, 346, 0, 347, 1, 348, 27, 349, 168, 350, 157, 351, 0, 352, 1, 353, 27, 354, 169, 355, 170, 356, 0, 357, 1, 358, 27, 359, 171, 360, 132, 361, 172, 362, 1, 363, 27, 364, 173, 365, 174, 366, 175, 367, 1, 368, 27, 369, 176, 370, 177, 371, 178, 372, 1, 373, 27, 374, 179, 375, 180, 376, 181, 377, 1, 378, 27, 379, 182, 380, 183, 381, 184, 382, 1, 383, 27, 384, 185, 385, 130, 386, 0, 387, 1, 388, 27, 389, 186, 390, 187, 391, 0, 392, 1, 393, 27, 394, 188, 395, 189, 396, 0, 397, 1, 398, 27, 399, 190, 400, 191, 401, 0, 402, 1, 403, 27, 404, 192, 405, 189, 406, 0, 407, 1, 408, 27, 409, 193, 410, 194, 411, 0, 412, 1, 413, 27, 414, 195, 415, 189, 416, 0, 417, 1, 418, 27, 419, 196, 420, 197, 421, 0, 422, 1, 423, 27, 424, 198, 425, 199, 426, 0, 427, 1, 428, 27, 429, 200, 430, 197, 431, 0, 432, 1, 433, 27, 434, 201, 435, 202, 436, 0, 437, 1, 438, 27, 439, 203, 440, 197, 441, 0, 442, 1, 443, 27, 444, 204, 445, 205, 446, 0, 447, 1, 448, 27, 449, 206, 450, 207, 451, 0, 452, 1, 453, 27, 454, 208, 455, 187, 456, 209, 457, 1, 458, 27, 459, 210, 460, 187, 461, 0, 462, 1, 463, 27, 464, 211, 465, 212, 466, 0, 467, 1, 468, 27, 469, 213, 470, 214, 471, 0, 472, 1, 473, 27, 474, 215, 475, 212, 476, 0, 477, 1, 478, 27, 479, 216, 480, 212, 481, 0, 482, 1, 483, 27, 484, 217, 485, 218, 486, 0, 487, 1, 488, 27, 489, 219, 490, 220, 491, 0, 492, 1, 493, 27, 494, 221, 495, 222, 496, 0, 497, 1, 498, 27, 499, 223, 500, 212, 501, 0, 502, 1, 503, 27, 504, 224, 505, 225, 506, 0, 507, 1, 508, 27, 509, 226, 510, 187, 511, 227, 512, 1, 513, 27, 514, 228, 515, 229, 516, 230, 517, 1, 518, 27, 519, 231, 520, 232, 521, 233, 522, 1, 523, 27, 524, 234, 525, 235, 526, 236, 527, 1, 528, 27, 529, 237, 530, 238, 531, 239, 532, 1, 533, 27, 534, 240, 535, 130, 536, 0, 537, 1, 538, 27, 539, 241, 540, 242, 541, 243, 542, 1, 543, 27, 544, 244, 545, 130, 546, 0, 547, 1, 548, 27, 549, 245, 550, 246, 551, 247, 552, 1, 553, 27, 554, 59, 555, 130, 556, 0, 557, 1, 558, 27, 559, 60, 560, 130, 561, 0, 562, 1, 563, 27, 564, 46, 565, 130, 566, 0, 567, 1, 568, 27, 569, 52, 570, 130, 571, 0, 572, 1, 573, 27, 574, 248, 575, 56, 576, 0, 577, 1, 578, 27, 579, 249, 580, 56, 581, 0, 582, 1, 583, 27, 584, 250, 585, 56, 586, 0, 587, 1, 588, 27, 589, 251, 590, 56, 591, 0, 592, 1, 593, 27, 594, 252, 595, 253, 596, 0, 597, 1, 598, 27, 599, 254, 600, 255, 601, 0, 602, 1, 603, 27, 604, 256, 605, 255, 606, 0, 607, 1, 608, 27, 609, 257, 610, 258, 611, 0, 612, 1, 613, 27, 614, 259, 615, 260, 616, 0, 617, 1, 618, 27, 619, 261, 620, 262, 621, 263, 622, 1, 623, 27, 624, 264, 625, 260, 626, 0, 627, 1, 628, 27, 629, 265, 630, 266, 631, 267, 632, 1, 633, 27, 634, 268, 635, 260, 636, 0, 637, 1, 638, 27, 639, 269, 640, 270, 641, 0, 642, 1, 643, 27, 644, 271, 645, 272, 646, 0, 647, 1, 648, 27, 649, 273, 650, 270, 651, 0, 652, 1, 653, 27, 654, 274, 655, 275, 656, 0, 657, 1, 658, 27, 659, 276, 660, 270, 661, 0, 662, 1, 663, 27, 664, 277, 665, 278, 666, 0, 667, 1, 668, 27, 669, 279, 670, 280, 671, 0, 672, 1, 673, 27, 674, 281, 675, 278, 676, 0, 677, 1, 678, 27, 679, 282, 680, 283, 681, 0, 682, 1, 683, 27, 684, 284, 685, 278, 686, 0, 687, 1, 688, 27, 689, 285, 690, 286, 691, 0, 692, 1, 693, 27, 694, 287, 695, 286, 696, 0, 697, 1, 698, 27, 699, 288, 700, 289, 701, 0, 702, 1, 703, 27, 704, 290, 705, 286, 706, 0, 707, 1, 708, 27, 709, 291, 710, 292, 711, 0, 712, 1, 713, 27, 714, 68, 715, 292, 716, 0, 717, 1, 718, 27, 719, 293, 720, 260, 721, 0, 722, 1, 723, 27, 724, 294, 725, 295, 726, 0, 727, 1, 728, 27, 729, 296, 730, 297, 731, 0, 732, 1, 733, 27, 734, 298, 735, 295, 736, 0, 737, 1, 738, 27, 739, 299, 740, 300, 741, 0, 742, 1, 743, 27, 744, 301, 745, 295, 746, 0, 747, 1, 748, 27, 749, 302, 750, 303, 751, 0, 752, 1, 753, 27, 754, 304, 755, 305, 756, 0, 757, 1, 758, 27, 759, 306, 760, 303, 761, 0, 762, 1, 763, 27, 764, 307, 765, 308, 766, 0, 767, 1, 768, 27, 769, 309, 770, 303, 771, 0, 772, 1, 773, 27, 774, 310, 775, 311, 776, 0, 777, 1, 778, 27, 779, 312, 780, 311, 781, 0, 782, 1, 783, 27, 784, 313, 785, 314, 786, 0, 787, 1, 788, 27, 789, 315, 790, 311, 791, 0, 792, 1, 793, 27, 794, 316, 795, 317, 796, 0, 797, 1, 798, 27, 799, 76, 800, 317, 801, 0, 802, 1, 803, 27, 804, 318, 805, 260, 806, 0, 807, 1, 808, 27, 809, 319, 810, 320, 811, 0, 812, 1, 813, 27, 814, 321, 815, 322, 816, 0, 817, 1, 818, 27, 819, 323, 820, 320, 821, 0, 822, 1, 823, 27, 824, 324, 825, 320, 826, 0, 827, 1, 828, 27, 829, 325, 830, 326, 831, 0, 832, 1, 833, 27, 834, 327, 835, 328, 836, 0, 837, 1, 838, 27, 839, 329, 840, 330, 841, 0, 842, 1, 843, 27, 844, 331, 845, 320, 846, 0, 847, 1, 848, 27, 849, 332, 850, 333, 851, 0, 852, 1, 853, 27, 854, 334, 855, 260, 856, 335, 857, 1, 858, 27, 859, 336, 860, 337, 861, 338, 862, 1, 863, 27, 864, 339, 865, 340, 866, 341, 867, 1, 868, 27, 869, 342, 870, 343, 871, 344, 872, 1, 873, 27, 874, 345, 875, 346, 876, 347, 877, 1, 878, 27, 879, 348, 880, 349, 881, 350, 882, 1, 883, 27, 884, 351, 885, 260, 886, 0, 887, 1, 888, 27, 889, 352, 890, 353, 891, 0, 892, 1, 893, 27, 894, 354, 895, 355, 896, 0, 897, 1, 898, 27, 899, 356, 900, 353, 901, 0, 902, 1, 903, 27, 904, 357, 905, 353, 906, 0, 907, 1, 908, 27, 909, 358, 910, 359, 911, 0, 912, 1, 913, 27, 914, 360, 915, 361, 916, 0, 917, 1, 918, 27, 919, 362, 920, 363, 921, 0, 922, 1, 923, 27, 924, 364, 925, 353, 926, 0, 927, 1, 928, 27, 929, 365, 930, 366, 931, 0, 932, 1, 933, 27, 934, 367, 935, 260, 936, 368, 937, 1, 938, 27, 939, 369, 940, 370, 941, 371, 942, 1, 943, 27, 944, 372, 945, 373, 946, 374, 947, 1, 948, 27, 949, 375, 950, 376, 951, 377, 952, 1, 953, 27, 954, 378, 955, 379, 956, 380, 957, 1, 958, 27, 959, 381, 960, 382, 961, 383, 962, 1, 963, 27, 964, 384, 965, 255, 966, 0, 967, 1, 968, 27, 969, 385, 970, 386, 971, 0, 972, 1, 973, 27, 974, 387, 975, 56, 976, 0, 977, 1, 978, 27, 979, 388, 980, 56, 981, 0, 982, 1, 983, 27, 984, 389, 985, 12, 986, 0, 987, 1, 988, 27, 989, 390, 990, 12, 991, 0, 992, 1, 993, 27, 994, 391, 995, 12, 996, 0, 997, 1, 998, 27, 999, 392, 1000, 12, 1001, 0, 1002, 1, 1003, 27, 1004, 393, 1005, 26, 1006, 0, 1007, 1, 1008, 27, 1009, 394, 1010, 395, 1011, 0, 1012, 1, 1013, 27, 1014, 396, 1015, 26, 1016, 0, 1017, 1, 1018, 27, 1019, 397, 1020, 398, 1021, 0, 1022, 1, 1023, 27, 1024, 399, 1025, 400, 1026, 0, 1027, 1, 1028, 27, 1029, 401, 1030, 26, 1031, 0, 1032, 1, 1033, 27, 1034, 402, 1035, 403, 1036, 0, 1037, 1, 1038, 27, 1039, 404, 1040, 26, 1041, 0, 1042, 1, 1043, 27, 1044, 405, 1045, 406, 1046, 0, 1047, 1, 1048, 27, 1049, 407, 1050, 408, 1051, 0, 1052, 1, 1053, 27, 1054, 409, 1055, 26, 1056, 0, 1057, 1, 1058, 27, 1059, 410, 1060, 411, 1061, 0, 1062, 1, 1063, 27, 1064, 412, 1065, 26, 1066, 0, 1067, 1, 1068, 27, 1069, 413, 1070, 414, 1071, 0, 1072, 1, 1073, 27, 1074, 415, 1075, 416, 1076, 0, 1077, 1, 1078, 27, 1079, 417, 1080, 418, 1081, 0, 1082, 1, 1083, 27, 1084, 419, 1085, 420, 1086, 0, 1087, 1, 1088, 27, 1089, 421, 1090, 422, 1091, 0, 1092, 1, 1093, 27, 1094, 423, 1095, 416, 1096, 0, 1097, 1, 1098, 27, 1099, 424, 1100, 425, 1101, 0, 1102, 1, 1103, 27, 1104, 426, 1105, 26, 1106, 0, 1107, 1, 1108, 27, 1109, 427, 1110, 428, 1111, 0, 1112, 1, 1113, 27, 1114, 429, 1115, 26, 1116, 0, 1117, 1, 1118, 27, 1119, 430, 1120, 431, 1121, 0, 1122, 1, 1123, 27, 1124, 432, 1125, 433, 1126, 0, 1127, 1, 1128, 27, 1129, 434, 1130, 435, 1131, 0, 1132, 1, 1133, 27, 1134, 436, 1135, 437, 1136, 0, 1137, 1, 1138, 27, 1139, 438, 1140, 439, 1141, 0, 1142, 1, 1143, 27, 1144, 440, 1145, 433, 1146, 0, 1147, 1, 1148, 27, 1149, 441, 1150, 442, 1151, 0, 1152, 1, 1153, 27, 0, 10, 0, 1172, 1154, -1, 19, 51, 443, 1, 0, 1155, 8, 1156, 1, 1157, 34, 1158, 8, 1159, 1, 1160, 10, 1161, 10, 1162, 10, 1163, 2, 1164, 2, 1165, 2, 1166, 2, 1167, 1, 1168, 12, 1169, 444, 1170, 445, 1171, 34, 0, 5, 0, 58, 1173, -1, 9, 51, 446, 213, 1, 1, 447, 36, 447, 53, 25, 54, 26, 55, 0, 56, 1, 57, 448, 0, 12, 0, 59, 59, -1, 3, 1, 0, 36, 449, 60, 25, 0, 13, 0, 2147483647, 1174, 450, 1, 36, 451, 0, 5, 0, 1175, 1175, -1, 9, 51, 452, 1176, 8, 1177, 10, 1178, 445, 1179, 453, 1180, 1, 1181, 9, 1182, 27, 1183, 28, 0, 0, 0, 1201, 1184, -1, 16, 1185, 2, 1186, 8, 1187, 1, 1188, 1, 1189, 3, 1190, 12, 1191, 454, 1192, 455, 1193, 456, 1194, 457, 1195, 458, 1196, 3, 1197, 8, 1198, 9, 1199, 12, 1200, 26, 0, 0, 0, 1201, 1202, -1, 18, 1185, 2, 1203, 3, 1186, 8, 1204, 8, 1187, 1, 1188, 1, 1189, 3, 1190, 12, 1191, 459, 1192, 460, 1193, 456, 1194, 461, 1195, 458, 1196, 3, 1197, 8, 1198, 9, 1199, 12, 1200, 26, 0, 0, 0, 1201, 1205, -1, 19, 1185, 2, 1206, 41, 1203, 3, 1186, 41, 1204, 8, 1187, 1, 1188, 1, 1189, 3, 1190, 12, 1191, 462, 1192, 463, 1193, 464, 1194, 456, 1195, 458, 1196, 3, 1197, 8, 1198, 9, 1199, 12, 1200, 26, 0, 0, 0, 1218, 1207, -1, 24, 1185, 2, 1206, 41, 1203, 8, 1186, 41, 1204, 8, 1187, 1, 1188, 1, 1189, 3, 1190, 12, 1191, 465, 1192, 466, 1193, 467, 1194, 468, 1208, 469, 1209, 470, 1195, 458, 1210, 10, 1211, 471, 1212, 10, 1213, 10, 1214, 10, 1215, 2, 1216, 2, 1217, 1, 0, 0, 0, 1201, 1219, -1, 19, 1206, 41, 1203, 41, 1186, 41, 1204, 41, 1187, 1, 1188, 1, 1189, 3, 1190, 12, 1191, 472, 1192, 473, 1193, 474, 1194, 475, 1195, 458, 1220, 476, 1196, 8, 1197, 8, 1198, 9, 1199, 12, 1200, 26, 0, 0, 0, 1231, 1221, -1, 10, 1, 0, 1222, 477, 1223, 9, 1224, 9, 1225, 32, 1226, 9, 1227, 478, 1228, 479, 1229, 8, 1230, 480, 0, 0, 0, 1248, 1232, -1, 31, 1, 0, 36, 481, 1155, 8, 1156, 1, 1157, 34, 1158, 8, 1159, 1, 1160, 10, 1161, 10, 1162, 10, 1163, 1, 1164, 2, 1165, 2, 1166, 2, 1167, 2, 1168, 12, 1233, 1, 1234, 482, 1235, 2, 1236, 2, 1237, 483, 1238, 9, 1239, 484, 1240, 3, 1241, 1, 1242, 2, 1243, 1, 1244, 2, 1245, 12, 1246, 485, 1247, 486, 0, 22, 0, 1256, 1249, -1, 35, 1, 0, 36, 487, 1155, 8, 1156, 1, 1157, 34, 1158, 8, 1159, 1, 1160, 10, 1161, 10, 1162, 10, 1163, 1, 1164, 2, 1165, 2, 1166, 2, 1167, 2, 1168, 12, 1233, 1, 1234, 482, 1235, 2, 1236, 2, 1237, 483, 1238, 9, 1239, 484, 1240, 3, 1241, 1, 1242, 2, 1243, 1, 1244, 2, 1245, 12, 1250, 488, 1251, 8, 1252, 8, 1253, 12, 1254, 2, 1255, 489, 0 </int_array>
+			<int_array  len="5781"> 				-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 11, 4, -1, 8, 1, 2, 2, 3, 5, 3, 6, 4, 7, 5, 8, 1, 9, 6, 10, 7, 0, 0, 0, 4, 12, -1, 13, 1, 8, 2, 9, 5, 9, 13, 10, 14, 11, 15, 12, 16, 13, 17, 14, 18, 15, 19, 16, 20, 17, 21, 18, 22, 18, 0, 0, 0, 11, 23, -1, 147, 1, 19, 2, 1, 6, 20, 7, 5, 8, 1, 9, 6, 10, 7, 24, 21, 25, 10, 26, 1, 27, 6, 28, 7, 29, 22, 30, 14, 31, 1, 32, 6, 33, 7, 34, 23, 35, 24, 36, 1, 37, 6, 38, 7, 39, 25, 40, 26, 41, 1, 42, 6, 43, 7, 44, 27, 45, 28, 46, 1, 47, 6, 48, 7, 49, 29, 50, 30, 51, 1, 52, 6, 53, 7, 54, 31, 55, 26, 56, 1, 57, 6, 58, 7, 59, 32, 60, 33, 61, 1, 62, 6, 63, 7, 64, 34, 65, 35, 66, 1, 67, 6, 68, 7, 69, 36, 70, 37, 71, 1, 72, 6, 73, 7, 74, 38, 75, 26, 76, 1, 77, 6, 78, 7, 79, 39, 80, 40, 81, 1, 82, 6, 83, 7, 84, 41, 85, 42, 86, 1, 87, 6, 88, 7, 89, 43, 90, 44, 91, 1, 92, 6, 93, 7, 94, 45, 95, 26, 96, 1, 97, 6, 98, 7, 99, 46, 100, 26, 101, 1, 102, 6, 103, 7, 104, 47, 105, 10, 106, 1, 107, 6, 108, 7, 109, 48, 110, 10, 111, 1, 112, 6, 113, 7, 114, 49, 115, 10, 116, 1, 117, 6, 118, 7, 119, 50, 120, 51, 121, 1, 122, 6, 123, 7, 124, 52, 125, 53, 126, 1, 127, 6, 128, 7, 129, 54, 130, 55, 131, 1, 132, 6, 133, 7, 134, 56, 135, 55, 136, 1, 137, 6, 138, 7, 139, 57, 140, 10, 141, 1, 142, 6, 143, 7, 144, 58, 145, 59, 146, 1, 147, 6, 148, 7, 149, 60, 150, 61, 151, 1, 152, 6, 153, 7, 154, 62, 155, 63, 156, 1, 157, 6, 158, 7, 159, 64, 160, 63, 161, 1, 162, 6, 163, 7, 0, 0, 0, 11, 164, -1, 1087, 1, 65, 2, 1, 6, 66, 7, 5, 8, 1, 9, 6, 10, 7, 24, 67, 25, 10, 26, 1, 27, 6, 28, 7, 29, 68, 30, 10, 31, 1, 32, 6, 33, 7, 34, 69, 35, 10, 36, 1, 37, 6, 38, 7, 39, 70, 40, 10, 41, 1, 42, 6, 43, 7, 44, 71, 45, 10, 46, 72, 47, 6, 48, 7, 49, 73, 50, 30, 51, 74, 52, 6, 53, 7, 54, 75, 55, 76, 56, 77, 57, 6, 58, 7, 59, 78, 60, 33, 61, 79, 62, 6, 63, 7, 64, 80, 65, 35, 66, 81, 67, 6, 68, 7, 69, 82, 70, 37, 71, 83, 72, 6, 73, 7, 74, 84, 75, 85, 76, 86, 77, 6, 78, 7, 79, 87, 80, 10, 81, 1, 82, 6, 83, 7, 84, 88, 85, 42, 86, 1, 87, 6, 88, 7, 89, 89, 90, 42, 91, 1, 92, 6, 93, 7, 94, 90, 95, 91, 96, 1, 97, 6, 98, 7, 99, 92, 100, 93, 101, 1, 102, 6, 103, 7, 104, 94, 105, 95, 106, 1, 107, 6, 108, 7, 109, 96, 110, 91, 111, 1, 112, 6, 113, 7, 114, 97, 115, 98, 116, 1, 117, 6, 118, 7, 119, 99, 120, 51, 121, 1, 122, 6, 123, 7, 124, 100, 125, 53, 126, 1, 127, 6, 128, 7, 129, 101, 130, 55, 131, 1, 132, 6, 133, 7, 134, 102, 135, 103, 136, 1, 137, 6, 138, 7, 139, 104, 140, 105, 141, 1, 142, 6, 143, 7, 144, 106, 145, 53, 146, 1, 147, 6, 148, 7, 149, 107, 150, 61, 151, 1, 152, 6, 153, 7, 154, 108, 155, 63, 156, 1, 157, 6, 158, 7, 159, 109, 160, 53, 161, 1, 162, 6, 163, 7, 165, 110, 166, 111, 167, 1, 168, 6, 169, 7, 170, 112, 171, 98, 172, 1, 173, 6, 174, 7, 175, 113, 176, 98, 177, 1, 178, 6, 179, 7, 180, 114, 181, 115, 182, 1, 183, 6, 184, 7, 185, 116, 186, 117, 187, 1, 188, 6, 189, 7, 190, 118, 191, 119, 192, 1, 193, 6, 194, 7, 195, 120, 196, 121, 197, 1, 198, 6, 199, 7, 200, 122, 201, 123, 202, 1, 203, 6, 204, 7, 205, 124, 206, 121, 207, 1, 208, 6, 209, 7, 210, 125, 211, 126, 212, 1, 213, 6, 214, 7, 215, 127, 216, 121, 217, 1, 218, 6, 219, 7, 220, 128, 221, 129, 222, 1, 223, 6, 224, 7, 225, 130, 226, 131, 227, 1, 228, 6, 229, 7, 230, 132, 231, 129, 232, 1, 233, 6, 234, 7, 235, 133, 236, 134, 237, 1, 238, 6, 239, 7, 240, 135, 241, 129, 242, 1, 243, 6, 244, 7, 245, 136, 246, 137, 247, 1, 248, 6, 249, 7, 250, 138, 251, 139, 252, 1, 253, 6, 254, 7, 255, 140, 256, 119, 257, 141, 258, 6, 259, 7, 260, 142, 261, 119, 262, 1, 263, 6, 264, 7, 265, 143, 266, 144, 267, 1, 268, 6, 269, 7, 270, 145, 271, 146, 272, 1, 273, 6, 274, 7, 275, 147, 276, 144, 277, 1, 278, 6, 279, 7, 280, 148, 281, 144, 282, 1, 283, 6, 284, 7, 285, 149, 286, 150, 287, 1, 288, 6, 289, 7, 290, 151, 291, 152, 292, 1, 293, 6, 294, 7, 295, 153, 296, 154, 297, 1, 298, 6, 299, 7, 300, 155, 301, 144, 302, 1, 303, 6, 304, 7, 305, 156, 306, 157, 307, 1, 308, 6, 309, 7, 310, 158, 311, 119, 312, 159, 313, 6, 314, 7, 315, 160, 316, 161, 317, 162, 318, 6, 319, 7, 320, 163, 321, 164, 322, 165, 323, 6, 324, 7, 325, 166, 326, 167, 327, 168, 328, 6, 329, 7, 330, 169, 331, 170, 332, 171, 333, 6, 334, 7, 335, 172, 336, 117, 337, 1, 338, 6, 339, 7, 340, 173, 341, 174, 342, 1, 343, 6, 344, 7, 345, 175, 346, 176, 347, 1, 348, 6, 349, 7, 350, 177, 351, 178, 352, 1, 353, 6, 354, 7, 355, 179, 356, 176, 357, 1, 358, 6, 359, 7, 360, 180, 361, 181, 362, 1, 363, 6, 364, 7, 365, 182, 366, 176, 367, 1, 368, 6, 369, 7, 370, 183, 371, 184, 372, 1, 373, 6, 374, 7, 375, 185, 376, 186, 377, 1, 378, 6, 379, 7, 380, 187, 381, 184, 382, 1, 383, 6, 384, 7, 385, 188, 386, 189, 387, 1, 388, 6, 389, 7, 390, 190, 391, 184, 392, 1, 393, 6, 394, 7, 395, 191, 396, 192, 397, 1, 398, 6, 399, 7, 400, 193, 401, 194, 402, 1, 403, 6, 404, 7, 405, 195, 406, 174, 407, 196, 408, 6, 409, 7, 410, 197, 411, 174, 412, 1, 413, 6, 414, 7, 415, 198, 416, 199, 417, 1, 418, 6, 419, 7, 420, 200, 421, 201, 422, 1, 423, 6, 424, 7, 425, 202, 426, 199, 427, 1, 428, 6, 429, 7, 430, 203, 431, 199, 432, 1, 433, 6, 434, 7, 435, 204, 436, 205, 437, 1, 438, 6, 439, 7, 440, 206, 441, 207, 442, 1, 443, 6, 444, 7, 445, 208, 446, 209, 447, 1, 448, 6, 449, 7, 450, 210, 451, 199, 452, 1, 453, 6, 454, 7, 455, 211, 456, 212, 457, 1, 458, 6, 459, 7, 460, 213, 461, 174, 462, 214, 463, 6, 464, 7, 465, 215, 466, 216, 467, 217, 468, 6, 469, 7, 470, 218, 471, 219, 472, 220, 473, 6, 474, 7, 475, 221, 476, 222, 477, 223, 478, 6, 479, 7, 480, 224, 481, 225, 482, 226, 483, 6, 484, 7, 485, 227, 486, 117, 487, 1, 488, 6, 489, 7, 490, 228, 491, 229, 492, 230, 493, 6, 494, 7, 495, 231, 496, 117, 497, 1, 498, 6, 499, 7, 500, 232, 501, 233, 502, 234, 503, 6, 504, 7, 505, 45, 506, 117, 507, 1, 508, 6, 509, 7, 510, 46, 511, 117, 512, 1, 513, 6, 514, 7, 515, 31, 516, 117, 517, 1, 518, 6, 519, 7, 520, 38, 521, 117, 522, 1, 523, 6, 524, 7, 525, 235, 526, 42, 527, 1, 528, 6, 529, 7, 530, 236, 531, 42, 532, 1, 533, 6, 534, 7, 535, 237, 536, 42, 537, 1, 538, 6, 539, 7, 540, 238, 541, 42, 542, 1, 543, 6, 544, 7, 545, 239, 546, 240, 547, 1, 548, 6, 549, 7, 550, 241, 551, 242, 552, 1, 553, 6, 554, 7, 555, 243, 556, 242, 557, 1, 558, 6, 559, 7, 560, 244, 561, 245, 562, 1, 563, 6, 564, 7, 565, 246, 566, 247, 567, 1, 568, 6, 569, 7, 570, 248, 571, 249, 572, 250, 573, 6, 574, 7, 575, 251, 576, 247, 577, 1, 578, 6, 579, 7, 580, 252, 581, 253, 582, 254, 583, 6, 584, 7, 585, 255, 586, 247, 587, 1, 588, 6, 589, 7, 590, 256, 591, 257, 592, 1, 593, 6, 594, 7, 595, 258, 596, 259, 597, 1, 598, 6, 599, 7, 600, 260, 601, 257, 602, 1, 603, 6, 604, 7, 605, 261, 606, 262, 607, 1, 608, 6, 609, 7, 610, 263, 611, 257, 612, 1, 613, 6, 614, 7, 615, 264, 616, 265, 617, 1, 618, 6, 619, 7, 620, 266, 621, 267, 622, 1, 623, 6, 624, 7, 625, 268, 626, 265, 627, 1, 628, 6, 629, 7, 630, 269, 631, 270, 632, 1, 633, 6, 634, 7, 635, 271, 636, 265, 637, 1, 638, 6, 639, 7, 640, 272, 641, 273, 642, 1, 643, 6, 644, 7, 645, 274, 646, 273, 647, 1, 648, 6, 649, 7, 650, 275, 651, 276, 652, 1, 653, 6, 654, 7, 655, 277, 656, 273, 657, 1, 658, 6, 659, 7, 660, 278, 661, 279, 662, 1, 663, 6, 664, 7, 665, 54, 666, 279, 667, 1, 668, 6, 669, 7, 670, 280, 671, 247, 672, 1, 673, 6, 674, 7, 675, 281, 676, 282, 677, 1, 678, 6, 679, 7, 680, 283, 681, 284, 682, 1, 683, 6, 684, 7, 685, 285, 686, 282, 687, 1, 688, 6, 689, 7, 690, 286, 691, 287, 692, 1, 693, 6, 694, 7, 695, 288, 696, 282, 697, 1, 698, 6, 699, 7, 700, 289, 701, 290, 702, 1, 703, 6, 704, 7, 705, 291, 706, 292, 707, 1, 708, 6, 709, 7, 710, 293, 711, 290, 712, 1, 713, 6, 714, 7, 715, 294, 716, 295, 717, 1, 718, 6, 719, 7, 720, 296, 721, 290, 722, 1, 723, 6, 724, 7, 725, 297, 726, 298, 727, 1, 728, 6, 729, 7, 730, 299, 731, 298, 732, 1, 733, 6, 734, 7, 735, 300, 736, 301, 737, 1, 738, 6, 739, 7, 740, 302, 741, 298, 742, 1, 743, 6, 744, 7, 745, 303, 746, 304, 747, 1, 748, 6, 749, 7, 750, 62, 751, 304, 752, 1, 753, 6, 754, 7, 755, 305, 756, 247, 757, 1, 758, 6, 759, 7, 760, 306, 761, 307, 762, 1, 763, 6, 764, 7, 765, 308, 766, 309, 767, 1, 768, 6, 769, 7, 770, 310, 771, 307, 772, 1, 773, 6, 774, 7, 775, 311, 776, 307, 777, 1, 778, 6, 779, 7, 780, 312, 781, 313, 782, 1, 783, 6, 784, 7, 785, 314, 786, 315, 787, 1, 788, 6, 789, 7, 790, 316, 791, 317, 792, 1, 793, 6, 794, 7, 795, 318, 796, 307, 797, 1, 798, 6, 799, 7, 800, 319, 801, 320, 802, 1, 803, 6, 804, 7, 805, 321, 806, 247, 807, 322, 808, 6, 809, 7, 810, 323, 811, 324, 812, 325, 813, 6, 814, 7, 815, 326, 816, 327, 817, 328, 818, 6, 819, 7, 820, 329, 821, 330, 822, 331, 823, 6, 824, 7, 825, 332, 826, 333, 827, 334, 828, 6, 829, 7, 830, 335, 831, 336, 832, 337, 833, 6, 834, 7, 835, 338, 836, 247, 837, 1, 838, 6, 839, 7, 840, 339, 841, 340, 842, 1, 843, 6, 844, 7, 845, 341, 846, 342, 847, 1, 848, 6, 849, 7, 850, 343, 851, 340, 852, 1, 853, 6, 854, 7, 855, 344, 856, 340, 857, 1, 858, 6, 859, 7, 860, 345, 861, 346, 862, 1, 863, 6, 864, 7, 865, 347, 866, 348, 867, 1, 868, 6, 869, 7, 870, 349, 871, 350, 872, 1, 873, 6, 874, 7, 875, 351, 876, 340, 877, 1, 878, 6, 879, 7, 880, 352, 881, 353, 882, 1, 883, 6, 884, 7, 885, 354, 886, 247, 887, 355, 888, 6, 889, 7, 890, 356, 891, 357, 892, 358, 893, 6, 894, 7, 895, 359, 896, 360, 897, 361, 898, 6, 899, 7, 900, 362, 901, 363, 902, 364, 903, 6, 904, 7, 905, 365, 906, 366, 907, 367, 908, 6, 909, 7, 910, 368, 911, 369, 912, 370, 913, 6, 914, 7, 915, 371, 916, 242, 917, 1, 918, 6, 919, 7, 920, 372, 921, 373, 922, 1, 923, 6, 924, 7, 925, 374, 926, 42, 927, 1, 928, 6, 929, 7, 930, 375, 931, 42, 932, 1, 933, 6, 934, 7, 935, 376, 936, 10, 937, 1, 938, 6, 939, 7, 940, 377, 941, 10, 942, 1, 943, 6, 944, 7, 945, 378, 946, 10, 947, 1, 948, 6, 949, 7, 950, 379, 951, 10, 952, 1, 953, 6, 954, 7, 955, 380, 956, 5, 957, 1, 958, 6, 959, 7, 960, 381, 961, 382, 962, 1, 963, 6, 964, 7, 965, 383, 966, 5, 967, 1, 968, 6, 969, 7, 970, 384, 971, 385, 972, 1, 973, 6, 974, 7, 975, 386, 976, 387, 977, 1, 978, 6, 979, 7, 980, 388, 981, 5, 982, 1, 983, 6, 984, 7, 985, 389, 986, 390, 987, 1, 988, 6, 989, 7, 990, 391, 991, 5, 992, 1, 993, 6, 994, 7, 995, 392, 996, 393, 997, 1, 998, 6, 999, 7, 1000, 394, 1001, 395, 1002, 1, 1003, 6, 1004, 7, 1005, 396, 1006, 5, 1007, 1, 1008, 6, 1009, 7, 1010, 397, 1011, 398, 1012, 1, 1013, 6, 1014, 7, 1015, 399, 1016, 5, 1017, 1, 1018, 6, 1019, 7, 1020, 400, 1021, 401, 1022, 1, 1023, 6, 1024, 7, 1025, 402, 1026, 403, 1027, 1, 1028, 6, 1029, 7, 1030, 404, 1031, 405, 1032, 1, 1033, 6, 1034, 7, 1035, 406, 1036, 407, 1037, 1, 1038, 6, 1039, 7, 1040, 408, 1041, 409, 1042, 1, 1043, 6, 1044, 7, 1045, 410, 1046, 403, 1047, 1, 1048, 6, 1049, 7, 1050, 411, 1051, 412, 1052, 1, 1053, 6, 1054, 7, 1055, 413, 1056, 5, 1057, 1, 1058, 6, 1059, 7, 1060, 414, 1061, 415, 1062, 1, 1063, 6, 1064, 7, 1065, 416, 1066, 5, 1067, 1, 1068, 6, 1069, 7, 1070, 417, 1071, 418, 1072, 1, 1073, 6, 1074, 7, 1075, 419, 1076, 420, 1077, 1, 1078, 6, 1079, 7, 1080, 421, 1081, 422, 1082, 1, 1083, 6, 1084, 7, 1085, 423, 1086, 424, 1087, 1, 1088, 6, 1089, 7, 1090, 425, 1091, 426, 1092, 1, 1093, 6, 1094, 7, 1095, 427, 1096, 420, 1097, 1, 1098, 6, 1099, 7, 1100, 428, 1101, 429, 1102, 1, 1103, 6, 1104, 7, 0, 4, 0, 1123, 1105, -1, 19, 1, 430, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 431, 1121, 432, 1122, 17, 0, 0, 0, 1123, 1124, -1, 18, 1, 433, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 434, 1121, 432, 0, 6, 0, 1123, 1125, -1, 18, 1, 435, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 436, 1121, 432, 0, 6, 0, 1123, 1126, -1, 18, 1, 437, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 438, 1121, 432, 0, 6, 0, 1123, 1127, -1, 18, 1, 439, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 440, 1121, 432, 0, 6, 0, 1123, 1128, -1, 18, 1, 441, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 442, 1121, 432, 0, 6, 0, 1123, 1129, -1, 18, 1, 443, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 444, 1121, 432, 0, 6, 0, 1123, 1130, -1, 18, 1, 445, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 446, 1121, 432, 0, 6, 0, 1123, 1131, -1, 18, 1, 447, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 448, 1121, 432, 0, 6, 0, 1123, 1132, -1, 18, 1, 449, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 450, 1121, 432, 0, 6, 0, 1123, 1133, -1, 18, 1, 451, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 452, 1121, 432, 0, 6, 0, 1123, 1134, -1, 18, 1, 453, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 454, 1121, 432, 0, 6, 0, 1123, 1135, -1, 18, 1, 455, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 456, 1121, 432, 0, 6, 0, 1123, 1136, -1, 18, 1, 457, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 458, 1121, 432, 0, 6, 0, 1123, 1137, -1, 18, 1, 459, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 460, 1121, 432, 0, 6, 0, 1123, 1138, -1, 18, 1, 461, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 462, 1121, 432, 0, 6, 0, 1123, 1139, -1, 18, 1, 463, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 464, 1121, 432, 0, 6, 0, 1123, 1140, -1, 18, 1, 465, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 466, 1121, 432, 0, 6, 0, 1123, 1141, -1, 18, 1, 467, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 468, 1121, 432, 0, 6, 0, 1123, 1142, -1, 18, 1, 469, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 470, 1121, 432, 0, 6, 0, 1123, 1143, -1, 18, 1, 471, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 472, 1121, 432, 0, 6, 0, 1123, 1144, -1, 18, 1, 473, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 474, 1121, 432, 0, 6, 0, 1123, 1145, -1, 18, 1, 475, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 476, 1121, 432, 0, 6, 0, 1123, 1146, -1, 18, 1, 477, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 478, 1121, 432, 0, 6, 0, 1123, 1147, -1, 18, 1, 479, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 480, 1121, 432, 0, 6, 0, 1123, 1148, -1, 18, 1, 481, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 482, 1121, 432, 0, 6, 0, 1123, 1149, -1, 18, 1, 483, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 484, 1121, 432, 0, 6, 0, 1123, 1150, -1, 18, 1, 485, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 486, 1121, 432, 0, 6, 0, 1123, 1151, -1, 18, 1, 487, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 488, 1121, 432, 0, 6, 0, 1123, 1152, -1, 18, 1, 489, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 490, 1121, 432, 0, 6, 0, 1123, 1153, -1, 18, 1, 491, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 492, 1121, 432, 0, 6, 0, 1123, 1154, -1, 18, 1, 493, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 494, 1121, 432, 0, 6, 0, 1123, 1155, -1, 18, 1, 495, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 496, 1121, 432, 0, 6, 0, 1123, 1156, -1, 18, 1, 497, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 498, 1121, 432, 0, 6, 0, 1123, 1157, -1, 18, 1, 499, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 500, 1121, 432, 0, 6, 0, 1123, 1158, -1, 18, 1, 501, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 502, 1121, 432, 0, 6, 0, 1123, 1159, -1, 18, 1, 503, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 504, 1121, 432, 0, 6, 0, 1123, 1160, -1, 18, 1, 505, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 506, 1121, 432, 0, 6, 0, 1123, 1161, -1, 18, 1, 507, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 508, 1121, 432, 0, 6, 0, 1123, 1162, -1, 18, 1, 509, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 510, 1121, 432, 0, 6, 0, 1123, 1163, -1, 18, 1, 511, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 512, 1121, 432, 0, 6, 0, 1123, 1164, -1, 18, 1, 513, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 514, 1121, 432, 0, 6, 0, 1123, 1165, -1, 18, 1, 515, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 516, 1121, 432, 0, 6, 0, 1123, 1166, -1, 18, 1, 517, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 518, 1121, 432, 0, 6, 0, 1123, 1167, -1, 18, 1, 519, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 520, 1121, 432, 0, 6, 0, 1123, 1168, -1, 18, 1, 521, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 522, 1121, 432, 0, 6, 0, 1123, 1169, -1, 18, 1, 523, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 524, 1121, 432, 0, 6, 0, 1123, 1170, -1, 18, 1, 525, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 526, 1121, 432, 0, 6, 0, 1123, 1171, -1, 18, 1, 527, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 528, 1121, 432, 0, 6, 0, 1123, 1172, -1, 18, 1, 529, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 530, 1121, 432, 0, 6, 0, 1123, 1173, -1, 18, 1, 531, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 532, 1121, 432, 0, 6, 0, 1123, 1174, -1, 18, 1, 533, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 534, 1121, 432, 0, 6, 0, 1123, 1175, -1, 18, 1, 535, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 536, 1121, 432, 0, 6, 0, 1123, 1176, -1, 18, 1, 537, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 538, 1121, 432, 0, 6, 0, 1123, 1177, -1, 18, 1, 539, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 540, 1121, 432, 0, 6, 0, 1123, 1178, -1, 18, 1, 541, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 542, 1121, 432, 0, 6, 0, 1123, 1179, -1, 18, 1, 543, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 544, 1121, 432, 0, 6, 0, 1123, 1180, -1, 18, 1, 545, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 546, 1121, 432, 0, 6, 0, 1123, 1181, -1, 18, 1, 547, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 548, 1121, 432, 0, 6, 0, 1123, 1182, -1, 18, 1, 549, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 550, 1121, 432, 0, 6, 0, 1123, 1183, -1, 18, 1, 551, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 552, 1121, 432, 0, 6, 0, 1123, 1184, -1, 18, 1, 553, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 554, 1121, 432, 0, 6, 0, 1123, 1185, -1, 18, 1, 555, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 556, 1121, 432, 0, 6, 0, 1123, 1186, -1, 18, 1, 557, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 558, 1121, 432, 0, 6, 0, 1123, 1187, -1, 18, 1, 559, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 560, 1121, 432, 0, 6, 0, 1123, 1188, -1, 18, 1, 561, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 562, 1121, 432, 0, 6, 0, 1123, 1189, -1, 18, 1, 563, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 564, 1121, 432, 0, 6, 0, 1123, 1190, -1, 18, 1, 565, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 566, 1121, 432, 0, 6, 0, 1123, 1191, -1, 18, 1, 567, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 568, 1121, 432, 0, 6, 0, 1123, 1192, -1, 18, 1, 569, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 570, 1121, 432, 0, 6, 0, 1123, 1193, -1, 18, 1, 571, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 572, 1121, 432, 0, 6, 0, 1123, 1194, -1, 18, 1, 573, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 574, 1121, 432, 0, 6, 0, 1123, 1195, -1, 18, 1, 575, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 576, 1121, 432, 0, 6, 0, 1123, 1196, -1, 18, 1, 577, 2, 1, 1106, 14, 1107, 6, 1108, 17, 1109, 14, 1110, 6, 1111, 18, 1112, 18, 1113, 18, 1114, 15, 1115, 15, 1116, 15, 1117, 15, 1118, 6, 1119, 10, 1120, 578, 1121, 432, 0, 0, 0, 11, 1197, -1, 8, 1, 579, 2, 580, 5, 580, 6, 4, 7, 5, 8, 1, 9, 6, 10, 7, 0, 0, 0, 1198, 1198, -1, 9, 1, 581, 1199, 14, 1200, 18, 1201, 432, 1202, 582, 1203, 6, 1204, 583, 1205, 7, 1206, 584, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="490" shared="false">
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
-				<bool> True </bool>
-				<bool> False </bool>
-				<int> 2 </int>
-				<resource  resource_type="Shape" path="local://1">  </resource>
-				<transform> 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.95, 0 </transform>
-				<resource  resource_type="Shape" path="local://2">  </resource>
-				<transform> 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.3, 0 </transform>
-				<int> 1 </int>
-				<real> 1 </real>
-				<real> 0 </real>
-				<int> 8 </int>
-				<int> 0 </int>
-				<vector3> 0, 0, 0 </vector3>
-				<real> -1 </real>
-				<resource  external="0">  </resource>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
-				</dictionary>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 </transform>
-				<vector3> 0, -0.3, 0 </vector3>
-				<int> 15 </int>
+			<array  len="585" shared="false">
 				<node_path> "." </node_path>
-				<transform> -0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0, 0 </transform>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<node_path> "Camera" </node_path>
 				<transform> -0.999504, -0.0101126, -0.0298281, -0.0298057, -0.00235996, 0.999553, -0.0101784, 0.999946, 0.00205738, -2.10016, 5.61031, -0.225692 </transform>
-				<transform> -0.995968, -0.045679, -0.0772027, -0.088915, 0.388799, 0.917022, -0.0118723, 0.920189, -0.391294, -2.10016, 5.61031, -0.225692 </transform>
 				<string> "Bone" </string>
 				<int> -1 </int>
+				<bool> True </bool>
 				<array  len="0" shared="false">
 				</array>
-				<string> "" </string>
-				<transform> 0.999007, -0.0197205, 0.0399259, 0.0399356, 0.000102133, -0.999202, 0.0197007, 0.999804, 0.00088951, -1.4177, -3.28064, 0.0394546 </transform>
-				<real> 65 </real>
+				<node_path> "Camera_Perspective10" </node_path>
+				<transform> 0.763971, 0.29261, -0.575089, 0.00598046, 0.888016, 0.459774, 0.645223, -0.354693, 0.676669, -14.3129, 21.2792, 15.2404 </transform>
+				<int> 0 </int>
+				<real> 25.312496 </real>
 				<real> 0.1 </real>
-				<real> 100 </real>
+				<real> 50000 </real>
+				<int> 1 </int>
+				<bool> False </bool>
 				<int> 1048575 </int>
-				<resource name=""></resource>				<node_path> "metarig" </node_path>
+				<resource name=""></resource>				<real> 0 </real>
+				<node_path> "metarig" </node_path>
 				<string> "spine" </string>
 				<string> "spine.001" </string>
 				<string> "spine.002" </string>
 				<string> "spine.003" </string>
+				<int> 2 </int>
 				<string> "spine.004" </string>
 				<int> 3 </int>
 				<string> "spine.005" </string>
@@ -2734,6 +2953,7 @@
 				<string> "upper_arm.L" </string>
 				<int> 7 </int>
 				<string> "forearm.L" </string>
+				<int> 8 </int>
 				<string> "hand.L" </string>
 				<int> 9 </int>
 				<string> "shoulder.R" </string>
@@ -2791,6 +3011,7 @@
 				<string> "MCH-pivot" </string>
 				<int> 14 </int>
 				<string> "tweak_spine.002" </string>
+				<int> 15 </int>
 				<string> "ORG-spine.002" </string>
 				<int> 16 </int>
 				<string> "MCH-spine.003" </string>
@@ -3130,52 +3351,158 @@
 				<node_path> "rig/Body_M_GeoRndr" </node_path>
 				<resource  resource_type="Mesh" path="local://78">  </resource>
 				<node_path> ".." </node_path>
+				<node_path> "WGTS_rig" </node_path>
+				<resource  resource_type="Mesh" path="local://3">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_torso" </node_path>
+				<resource  resource_type="Mesh" path="local://4">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_chest" </node_path>
+				<resource  resource_type="Mesh" path="local://5">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_hips" </node_path>
+				<resource  resource_type="Mesh" path="local://6">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_neck" </node_path>
+				<resource  resource_type="Mesh" path="local://7">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_head" </node_path>
+				<resource  resource_type="Mesh" path="local://8">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_tweak_spine_004" </node_path>
+				<resource  resource_type="Mesh" path="local://9">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_tweak_spine_005" </node_path>
+				<resource  resource_type="Mesh" path="local://10">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_tweak_spine_002" </node_path>
+				<resource  resource_type="Mesh" path="local://11">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_tweak_spine_003" </node_path>
+				<resource  resource_type="Mesh" path="local://12">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_tweak_spine" </node_path>
+				<resource  resource_type="Mesh" path="local://13">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_tweak_spine_001" </node_path>
+				<resource  resource_type="Mesh" path="local://14">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_parent_L" </node_path>
+				<resource  resource_type="Mesh" path="local://15">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_tweak_L" </node_path>
+				<resource  resource_type="Mesh" path="local://16">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_tweak_L_001" </node_path>
+				<resource  resource_type="Mesh" path="local://17">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_shin_tweak_L" </node_path>
+				<resource  resource_type="Mesh" path="local://18">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_shin_tweak_L_001" </node_path>
+				<resource  resource_type="Mesh" path="local://19">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_foot_tweak_L" </node_path>
+				<resource  resource_type="Mesh" path="local://20">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_ik_L" </node_path>
+				<resource  resource_type="Mesh" path="local://21">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_ik_target_L" </node_path>
+				<resource  resource_type="Mesh" path="local://22">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_VIS_thigh_ik_pole_L" </node_path>
+				<resource  resource_type="Mesh" path="local://23">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_fk_L" </node_path>
+				<resource  resource_type="Mesh" path="local://24">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_shin_fk_L" </node_path>
+				<resource  resource_type="Mesh" path="local://25">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_foot_fk_L" </node_path>
+				<resource  resource_type="Mesh" path="local://26">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_foot_ik_L" </node_path>
+				<resource  resource_type="Mesh" path="local://27">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_foot_heel_ik_L" </node_path>
+				<resource  resource_type="Mesh" path="local://28">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_toe_L" </node_path>
+				<resource  resource_type="Mesh" path="local://29">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_parent_R" </node_path>
+				<resource  resource_type="Mesh" path="local://30">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_tweak_R" </node_path>
+				<resource  resource_type="Mesh" path="local://31">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_tweak_R_001" </node_path>
+				<resource  resource_type="Mesh" path="local://32">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_shin_tweak_R" </node_path>
+				<resource  resource_type="Mesh" path="local://33">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_shin_tweak_R_001" </node_path>
+				<resource  resource_type="Mesh" path="local://34">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_foot_tweak_R" </node_path>
+				<resource  resource_type="Mesh" path="local://35">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_ik_R" </node_path>
+				<resource  resource_type="Mesh" path="local://36">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_ik_target_R" </node_path>
+				<resource  resource_type="Mesh" path="local://37">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_VIS_thigh_ik_pole_R" </node_path>
+				<resource  resource_type="Mesh" path="local://38">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_thigh_fk_R" </node_path>
+				<resource  resource_type="Mesh" path="local://39">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_shin_fk_R" </node_path>
+				<resource  resource_type="Mesh" path="local://40">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_foot_fk_R" </node_path>
+				<resource  resource_type="Mesh" path="local://41">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_foot_ik_R" </node_path>
+				<resource  resource_type="Mesh" path="local://42">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_foot_heel_ik_R" </node_path>
+				<resource  resource_type="Mesh" path="local://43">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_toe_R" </node_path>
+				<resource  resource_type="Mesh" path="local://44">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_breast_L" </node_path>
+				<resource  resource_type="Mesh" path="local://45">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_breast_R" </node_path>
+				<resource  resource_type="Mesh" path="local://46">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_shoulder_L" </node_path>
+				<resource  resource_type="Mesh" path="local://47">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_shoulder_R" </node_path>
+				<resource  resource_type="Mesh" path="local://48">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_parent_L" </node_path>
+				<resource  resource_type="Mesh" path="local://49">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_tweak_L" </node_path>
+				<resource  resource_type="Mesh" path="local://50">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_tweak_L_001" </node_path>
+				<resource  resource_type="Mesh" path="local://51">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_forearm_tweak_L" </node_path>
+				<resource  resource_type="Mesh" path="local://52">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_forearm_tweak_L_001" </node_path>
+				<resource  resource_type="Mesh" path="local://53">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_hand_tweak_L" </node_path>
+				<resource  resource_type="Mesh" path="local://54">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_ik_L" </node_path>
+				<resource  resource_type="Mesh" path="local://55">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_ik_target_L" </node_path>
+				<resource  resource_type="Mesh" path="local://56">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_VIS_upper_arm_ik_pole_L" </node_path>
+				<resource  resource_type="Mesh" path="local://57">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_fk_L" </node_path>
+				<resource  resource_type="Mesh" path="local://58">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_forearm_fk_L" </node_path>
+				<resource  resource_type="Mesh" path="local://59">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_hand_fk_L" </node_path>
+				<resource  resource_type="Mesh" path="local://60">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_hand_ik_L" </node_path>
+				<resource  resource_type="Mesh" path="local://61">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_parent_R" </node_path>
+				<resource  resource_type="Mesh" path="local://62">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_tweak_R" </node_path>
+				<resource  resource_type="Mesh" path="local://63">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_tweak_R_001" </node_path>
+				<resource  resource_type="Mesh" path="local://64">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_forearm_tweak_R" </node_path>
+				<resource  resource_type="Mesh" path="local://65">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_forearm_tweak_R_001" </node_path>
+				<resource  resource_type="Mesh" path="local://66">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_hand_tweak_R" </node_path>
+				<resource  resource_type="Mesh" path="local://67">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_ik_R" </node_path>
+				<resource  resource_type="Mesh" path="local://68">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_ik_target_R" </node_path>
+				<resource  resource_type="Mesh" path="local://69">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_VIS_upper_arm_ik_pole_R" </node_path>
+				<resource  resource_type="Mesh" path="local://70">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_upper_arm_fk_R" </node_path>
+				<resource  resource_type="Mesh" path="local://71">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_forearm_fk_R" </node_path>
+				<resource  resource_type="Mesh" path="local://72">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_hand_fk_R" </node_path>
+				<resource  resource_type="Mesh" path="local://73">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_hand_ik_R" </node_path>
+				<resource  resource_type="Mesh" path="local://74">  </resource>
+				<node_path> "WGTS_rig/WGT-rig_root" </node_path>
+				<resource  resource_type="Mesh" path="local://75">  </resource>
 				<node_path> "Bone" </node_path>
 				<transform> -0.999504, -0.0101126, -0.0298281, -0.0298057, -0.00235996, 0.999553, -0.0101784, 0.999946, 0.00205738, 2.16211, 5.5364, -0.225692 </transform>
-				<array  len="1" shared="false">
-					<node_path> "BoneAttachment" </node_path>
-				</array>
-				<transform> 0.998165, 0.0549083, -0.0255113, -0.00134639, -0.401123, -0.916023, -0.0605304, 0.914377, -0.400314, 0, 0, 0 </transform>
-				<resource  external="1">  </resource>
-				<transform> 3.48512, 1.20635e-08, -5.21541e-08, 1.54338e-07, 3.48512, 5.96046e-07, -1.86265e-08, -1.39698e-09, 3.48512, -0.20365, -3.87975, -2.83704 </transform>
 				<node_path> "AnimationPlayer" </node_path>
 				<resource  resource_type="Animation" path="local://76">  </resource>
-				<real> 1002 </real>
-				<real> 10 </real>
-				<real> 9 </real>
-				<real> 55 </real>
-				<resource  external="2">  </resource>
-				<real> 1003 </real>
-				<real> 0.911111 </real>
-				<real> 11 </real>
-				<real> 303 </real>
-				<real> 0.913889 </real>
-				<real> 35 </real>
-				<real> -74 </real>
-				<real> 39 </real>
-				<real> -345 </real>
-				<real> 6 </real>
-				<resource  resource_type="StyleBox" path="local://4">  </resource>
-				<resource  resource_type="StyleBox" path="local://5">  </resource>
-				<real> 10000 </real>
-				<real> 640 </real>
-				<real> 360 </real>
-				<real> -640 </real>
-				<real> -360 </real>
-				<string> "+" </string>
-				<real> -5 </real>
-				<real> 180 </real>
-				<real> -6 </real>
-				<resource  resource_type="SampleLibrary" path="local://6">  </resource>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 </transform>
-				<vector2> 0, 0 </vector2>
-				<color> 1, 1, 1, 1 </color>
-				<real> 0.01 </real>
-				<resource  resource_type="SpriteFrames" path="local://7">  </resource>
-				<string> "default" </string>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141898, 0, -0.0219557 </transform>
-				<resource  external="7">  </resource>
-				<rect2> 0, 0, 0, 0 </rect2>
+				<real> 1 </real>
+				<string> "" </string>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

@@ -34,6 +34,15 @@ var health = 100
 var stamina = 10000
 var ray_length = 10
 
+func _ready():
+	var a = get_node("Yaw/AIM/Armature")
+	var index = 0
+	var gun_scene = preload("res://scenes/bullet_impact.xml")
+	while index < a.get_bone_count():
+		var gun = gun_scene.instance()
+		gun.set_transform(a.get_bone_global_pose(index))
+		world.add_child(gun)
+		index += 1
 #selects charater using mouse click
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	print(event)
@@ -91,8 +100,8 @@ onready var world = get_node("../")
 
 func shoot():
 	var bullet_impact = bullet_impact_scene.instance()
-	bullet_impact.set_transform(get_node("Yaw/pitch/Viewmodel/origin").get_global_transform())
-	bullet_impact.set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/pitch/Viewmodel/origin").get_global_transform().origin)
+	bullet_impact.set_transform(get_node("Yaw/AIM/Armature/BoneAttachment/gun/origin").get_global_transform())
+	bullet_impact.set_linear_velocity(get_node("Yaw/pitch/Camera/direction").get_global_transform().origin - get_node("Yaw/AIM/Armature/BoneAttachment/gun/origin").get_global_transform().origin)
 	bullet_impact.add_to_group("destroy")
 	world.add_child(bullet_impact)
 

@@ -38,20 +38,30 @@ func _ready():
 	var a = get_node("Yaw/AIM/Armature")
 	var index = 0
 	var gun_scene = preload("res://scenes/bullet_impact.xml")
-	while index < a.get_bone_count():
-		var gun = gun_scene.instance()
-		gun.set_transform(a.get_bone_global_pose(index))
-		world.add_child(gun)
-		index += 1
+#	while index < a.get_bone_count():
+#		var gun = gun_scene.instance()
+#		gun.set_transform(a.get_bone_global_pose(index))
+#		world.add_child(gun)
+#		index += 1
 #selects charater using mouse click
+func _mouse_enter():
+	get_node("icon/highlight").set_scale(Vector3(1,1,1) * 3)
+	get_node("icon").play("default")
+func _mouse_exit():
+	get_node("icon/highlight").set_scale(Vector3(1,1,1))
+	get_node("icon").stop()
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
-	print(event)
+#	print(event)
 	if event.is_action("attack"):
 		active = true
 		get_node("../").start_actions()
 	pass
 
 func action_start():
+	get_node("Yaw/AIM").show()
+#	get_node("Body").get_shape().set_radius(0.19)
+#	get_node("Body").get_shape().set_height(1.02)
+	get_node("icon").hide()
 	if active:
 		get_node("Yaw/pitch/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -60,6 +70,10 @@ func action_start():
 		get_node("Crosshair").show()
 
 func action_end():
+	get_node("Yaw/AIM").hide()
+#	get_node("Body").get_shape().set_radius(0.5)
+#	get_node("Body").get_shape().set_height(0)
+	get_node("icon").show()
 	get_node("Yaw/pitch/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)

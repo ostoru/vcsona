@@ -5,9 +5,12 @@ func _ready():
 	for a in get_children():
 		if a.is_in_group("char"):
 			chars.append(a)
+
+
 func start_actions():
 	for a in chars:
 		a.action_start()
+
 func end_actions():
 	chars = []
 	for child in get_children():

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="11" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
-	<ext_resource path="res://fonts/roboto.fnt" type="BitmapFont" index="2"></ext_resource>
+<resource_file type="PackedScene" subresource_count="15" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
 	<ext_resource path="res://scripts/player.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="3"></ext_resource>
+	<ext_resource path="res://fonts/roboto.fnt" type="BitmapFont" index="2"></ext_resource>
 	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="4"></ext_resource>
 	<ext_resource path="res://scenes/AIM.xml" type="PackedScene" index="1"></ext_resource>
+	<ext_resource path="res://fonts/sprites/FSTART (by cyrus).png" type="Texture" index="7"></ext_resource>
+	<ext_resource path="res://fonts/sprites/MAP-T2 (by cyrus).png" type="Texture" index="6"></ext_resource>
+	<ext_resource path="res://fonts/sprites/MAP-T1 (by cyrus).png" type="Texture" index="5"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
-		<real name="radius"> 0.188536 </real>
-		<real name="height"> 1.016826 </real>
+		<real name="radius"> 0.19 </real>
+		<real name="height"> 1.02 </real>
 
 	</resource>
 	<resource type="RayShape" path="local://2">
@@ -57,6 +60,24 @@
 		</dictionary>
 
 	</resource>
+	<resource type="SpriteFrames" path="local://7">
+		<array name="animations" len="1" shared="false">
+			<dictionary  shared="false">
+				<string> "frames" </string>
+				<array  len="2" shared="false">
+					<resource  external="5">  </resource>
+					<resource  external="6">  </resource>
+				</array>
+				<string> "loop" </string>
+				<bool> True </bool>
+				<string> "name" </string>
+				<string> "default" </string>
+				<string> "speed" </string>
+				<real> 30 </real>
+			</dictionary>
+		</array>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -67,7 +88,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="113">
+			<string_array  len="152">
 				<string> "Player" </string>
 				<string> "_import_transform" </string>
 				<string> "input/ray_pickable" </string>
@@ -181,16 +202,55 @@
 				<string> "config/polyphony" </string>
 				<string> "config/samples" </string>
 				<string> "SpatialSamplePlayer" </string>
+				<string> "icon" </string>
+				<string> "layers" </string>
+				<string> "geometry/visible" </string>
+				<string> "geometry/material_override" </string>
+				<string> "geometry/cast_shadow" </string>
+				<string> "geometry/receive_shadows" </string>
+				<string> "geometry/range_begin" </string>
+				<string> "geometry/range_end" </string>
+				<string> "geometry/extra_cull_margin" </string>
+				<string> "geometry/billboard" </string>
+				<string> "geometry/billboard_y" </string>
+				<string> "geometry/depth_scale" </string>
+				<string> "geometry/visible_in_all_rooms" </string>
+				<string> "geometry/use_baked_light" </string>
+				<string> "geometry/baked_light_tex_id" </string>
+				<string> "centered" </string>
+				<string> "offset" </string>
+				<string> "flip_h" </string>
+				<string> "flip_v" </string>
+				<string> "modulate" </string>
+				<string> "opacity" </string>
+				<string> "pixel_size" </string>
+				<string> "axis" </string>
+				<string> "flags/transparent" </string>
+				<string> "flags/shaded" </string>
+				<string> "flags/double_sided" </string>
+				<string> "flags/on_top" </string>
+				<string> "flags/alpha_cut" </string>
+				<string> "frames" </string>
+				<string> "animation" </string>
+				<string> "AnimatedSprite3D" </string>
+				<string> "highlight" </string>
+				<string> "texture" </string>
+				<string> "vframes" </string>
+				<string> "hframes" </string>
+				<string> "frame" </string>
+				<string> "region" </string>
+				<string> "region_rect" </string>
+				<string> "Sprite3D" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 15 </int>
+			<int> 17 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="454"> 				-1, -1, 34, 0, -1, 32, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 2, 8, 6, 9, 7, 10, 2, 11, 8, 12, 8, 13, 3, 14, 9, 15, 10, 16, 10, 17, 9, 18, 1, 19, 2, 20, 11, 21, 1, 22, 2, 23, 2, 24, 12, 25, 13, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 2, 32, 2, 1, 33, 0, 0, 40, 35, -1, 5, 1, 0, 36, 5, 37, 4, 38, 2, 39, 12, 0, 0, 0, 40, 41, -1, 5, 1, 0, 36, 7, 37, 6, 38, 2, 39, 8, 0, 0, 0, 47, 42, -1, 6, 1, 0, 36, 17, 43, 1, 44, 18, 45, 8, 46, 19, 0, 0, 0, 49, 48, -1, 1, 1, 0, 0, 4, 0, 2147483647, 50, 20, 1, 36, 21, 0, 4, 0, 49, 51, -1, 3, 52, 1, 1, 0, 36, 22, 0, 6, 0, 53, 53, -1, 13, 52, 1, 1, 0, 36, 23, 54, 12, 55, 24, 56, 25, 57, 26, 58, 8, 59, 2, 60, 27, 61, 28, 62, 10, 63, 10, 0, 7, 0, 49, 64, -1, 2, 1, 0, 36, 29, 0, 0, 0, 82, 65, -1, 16, 66, 2, 67, 8, 68, 1, 69, 1, 70, 3, 71, 12, 72, 30, 73, 31, 74, 32, 75, 33, 76, 34, 77, 3, 78, 8, 79, 9, 80, 12, 81, 27, 0, 0, 0, 82, 83, -1, 18, 66, 2, 84, 3, 67, 8, 85, 8, 68, 1, 69, 1, 70, 3, 71, 12, 72, 35, 73, 36, 74, 32, 75, 37, 76, 34, 77, 3, 78, 8, 79, 9, 80, 12, 81, 27, 0, 0, 0, 82, 86, -1, 19, 66, 2, 87, 38, 84, 3, 67, 38, 85, 8, 68, 1, 69, 1, 70, 3, 71, 12, 72, 39, 73, 40, 74, 41, 75, 32, 76, 34, 77, 3, 78, 8, 79, 9, 80, 12, 81, 27, 0, 0, 0, 99, 88, -1, 24, 66, 2, 87, 38, 84, 8, 67, 38, 85, 8, 68, 1, 69, 1, 70, 3, 71, 12, 72, 42, 73, 43, 74, 44, 75, 45, 89, 46, 90, 47, 76, 34, 91, 10, 92, 48, 93, 10, 94, 10, 95, 10, 96, 2, 97, 2, 98, 1, 0, 0, 0, 82, 100, -1, 19, 87, 38, 84, 38, 67, 38, 85, 38, 68, 1, 69, 1, 70, 3, 71, 12, 72, 49, 73, 50, 74, 51, 75, 52, 76, 34, 101, 53, 77, 8, 78, 8, 79, 9, 80, 12, 81, 27, 0, 0, 0, 112, 102, -1, 10, 1, 0, 103, 54, 104, 9, 105, 9, 106, 55, 107, 9, 108, 56, 109, 57, 110, 8, 111, 58, 0 </int_array>
+			<int_array  len="600"> 				-1, -1, 34, 0, -1, 32, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 2, 8, 6, 9, 7, 10, 2, 11, 8, 12, 8, 13, 3, 14, 9, 15, 10, 16, 10, 17, 9, 18, 1, 19, 2, 20, 11, 21, 1, 22, 2, 23, 2, 24, 12, 25, 13, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 2, 32, 2, 1, 33, 0, 0, 40, 35, -1, 5, 1, 0, 36, 5, 37, 4, 38, 2, 39, 12, 0, 0, 0, 40, 41, -1, 5, 1, 0, 36, 7, 37, 6, 38, 2, 39, 8, 0, 0, 0, 47, 42, -1, 6, 1, 0, 36, 17, 43, 1, 44, 18, 45, 8, 46, 19, 0, 0, 0, 49, 48, -1, 1, 1, 0, 0, 4, 0, 2147483647, 50, 20, 1, 36, 21, 0, 4, 0, 49, 51, -1, 3, 52, 1, 1, 0, 36, 22, 0, 6, 0, 53, 53, -1, 13, 52, 1, 1, 0, 36, 23, 54, 12, 55, 24, 56, 25, 57, 26, 58, 8, 59, 2, 60, 27, 61, 28, 62, 10, 63, 10, 0, 7, 0, 49, 64, -1, 2, 1, 0, 36, 29, 0, 0, 0, 82, 65, -1, 16, 66, 2, 67, 8, 68, 1, 69, 1, 70, 3, 71, 12, 72, 30, 73, 31, 74, 32, 75, 33, 76, 34, 77, 3, 78, 8, 79, 9, 80, 12, 81, 27, 0, 0, 0, 82, 83, -1, 18, 66, 2, 84, 3, 67, 8, 85, 8, 68, 1, 69, 1, 70, 3, 71, 12, 72, 35, 73, 36, 74, 32, 75, 37, 76, 34, 77, 3, 78, 8, 79, 9, 80, 12, 81, 27, 0, 0, 0, 82, 86, -1, 19, 66, 2, 87, 38, 84, 3, 67, 38, 85, 8, 68, 1, 69, 1, 70, 3, 71, 12, 72, 39, 73, 40, 74, 41, 75, 32, 76, 34, 77, 3, 78, 8, 79, 9, 80, 12, 81, 27, 0, 0, 0, 99, 88, -1, 24, 66, 2, 87, 38, 84, 8, 67, 38, 85, 8, 68, 1, 69, 1, 70, 3, 71, 12, 72, 42, 73, 43, 74, 44, 75, 45, 89, 46, 90, 47, 76, 34, 91, 10, 92, 48, 93, 10, 94, 10, 95, 10, 96, 2, 97, 2, 98, 1, 0, 0, 0, 82, 100, -1, 19, 87, 38, 84, 38, 67, 38, 85, 38, 68, 1, 69, 1, 70, 3, 71, 12, 72, 49, 73, 50, 74, 51, 75, 52, 76, 34, 101, 53, 77, 8, 78, 8, 79, 9, 80, 12, 81, 27, 0, 0, 0, 112, 102, -1, 10, 1, 0, 103, 54, 104, 9, 105, 9, 106, 55, 107, 9, 108, 56, 109, 57, 110, 8, 111, 58, 0, 0, 0, 143, 113, -1, 31, 1, 0, 36, 59, 114, 8, 115, 1, 116, 28, 117, 8, 118, 1, 119, 10, 120, 10, 121, 10, 122, 1, 123, 2, 124, 2, 125, 2, 126, 2, 127, 12, 128, 1, 129, 60, 130, 2, 131, 2, 132, 61, 133, 9, 134, 62, 135, 3, 136, 1, 137, 2, 138, 1, 139, 2, 140, 12, 141, 63, 142, 64, 0, 15, 0, 151, 144, -1, 35, 1, 0, 36, 65, 114, 8, 115, 1, 116, 28, 117, 8, 118, 1, 119, 10, 120, 10, 121, 10, 122, 1, 123, 2, 124, 2, 125, 2, 126, 2, 127, 12, 128, 1, 129, 60, 130, 2, 131, 2, 132, 61, 133, 9, 134, 62, 135, 3, 136, 1, 137, 2, 138, 1, 139, 2, 140, 12, 145, 66, 146, 8, 147, 8, 148, 12, 149, 2, 150, 67, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="59" shared="false">
+			<array  len="68" shared="false">
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
 				<bool> False </bool>
@@ -252,6 +312,15 @@
 				<real> 180 </real>
 				<real> -6 </real>
 				<resource  resource_type="SampleLibrary" path="local://6">  </resource>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 </transform>
+				<vector2> 0, 0 </vector2>
+				<color> 1, 1, 1, 1 </color>
+				<real> 0.01 </real>
+				<resource  resource_type="SpriteFrames" path="local://7">  </resource>
+				<string> "default" </string>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141898, 0, -0.0219557 </transform>
+				<resource  external="7">  </resource>
+				<rect2> 0, 0, 0, 0 </rect2>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

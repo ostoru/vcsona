@@ -42,30 +42,27 @@ func _mouse_exit():
 	get_node("icon/highlight").set_scale(Vector3(1,1,1))
 	get_node("icon").stop()
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
-#	print(event)
 	if event.is_action("attack"):
 		active = true
 		get_node("../").start_actions()
 	pass
 
+# called by parent node
 func action_start():
 	get_node("Yaw/AIM").show()
-#	get_node("Body").get_shape().set_radius(0.19)
-#	get_node("Body").get_shape().set_height(1.02)
 	get_node("icon").hide()
 	if active:
-		get_node("Yaw/AIM/Camera/BoneAttachment/Camera").make_current()
+		get_node("Yaw/AIM/metarig/Skeleton/BoneAttachment/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		set_fixed_process(true)
 		set_process_input(true)
 		get_node("Crosshair").show()
 
+# called by parent node
 func action_end():
 	get_node("Yaw/AIM").hide()
-#	get_node("Body").get_shape().set_radius(0.5)
-#	get_node("Body").get_shape().set_height(0)
 	get_node("icon").show()
-	get_node("Yaw/pitch/Camera").clear_current()
+	get_node("Yaw/AIM/metarig/Skeleton/BoneAttachment/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)
 	set_process_input(false)
@@ -76,13 +73,17 @@ func action_end():
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
 		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
-		pitch = max(min(pitch - event.relative_y * view_sensitivity, 85), -85)
+		pitch = max(min(pitch - (-event.relative_y * view_sensitivity * .02), 100), 0)
 		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
 #		get_node("Yaw/pitch").set_rotation(Vector3(deg2rad(pitch), 0, 0))
-		if pitch < 0:
-			get_node("Yaw/AIM/AnimationPlayer").play("default")
-		elif pitch > 0:
-			get_node("Yaw/AIM/AnimationPlayer").play_backwards("default")
+		print(pitch)
+		
+		get_node("Yaw/AIM/AnimationPlayer").play("look")
+		var ani_pos = get_node("Yaw/AIM/AnimationPlayer").get_current_animation_pos()
+		var anylenght = get_node("Yaw/AIM/AnimationPlayer").get_current_animation_length()
+		get_node("Yaw/AIM/AnimationPlayer").advance((pitch))
+		get_node("Yaw/AIM/AnimationPlayer").stop()
+
 			
 	
 	# Toggle mouse capture:
@@ -100,18 +101,13 @@ func _input(event):
 	elif Input.is_action_pressed("char reload"):
 		get_node("../").end_actions()
 
-#	if event.type == InputEvent.MOUSE_BUTTON and event.button_index==1 and timer <= 0:
-#		var camera = get_node("Yaw/pitch/Camera")
-#		var from = camera.project_ray_origin(event.pos)
-#		var to = from + camera.project_ray_normal(event.pos) * ray_length
-
 onready var bullet_impact_scene = preload("res://scenes/bullet_impact.xml")
 onready var world = get_node("../")
 
 func shoot():
 	var bullet_impact = bullet_impact_scene.instance()
-	bullet_impact.set_transform(get_node("Yaw/AIM/Bone/BoneAttachment/gun/gun/origin").get_global_transform())
-	bullet_impact.set_linear_velocity(get_node("Yaw/AIM/Bone/BoneAttachment/gun/gun/direction").get_global_transform().origin - get_node("Yaw/AIM/Bone/BoneAttachment/gun/gun/origin").get_global_transform().origin)
+	bullet_impact.set_transform(get_node("Yaw/AIM/metarig/Skeleton/gun/gun/origin").get_global_transform())
+	bullet_impact.set_linear_velocity(get_node("Yaw/AIM/metarig/Skeleton/gun/gun/direction").get_global_transform().origin - get_node("Yaw/AIM/metarig/Skeleton/gun/gun/origin").get_global_transform().origin)
 	bullet_impact.add_to_group("destroy")
 	world.add_child(bullet_impact)
 
@@ -200,11 +196,11 @@ func _integrate_forces(state):
 
 		# Regenerate stamina:
 		stamina += 5
-
-		if Input.is_action_pressed("jump") and stamina > 150:
-			apply_impulse(Vector3(), normal * jump_speed * get_mass())
-			get_node("Sounds").play("jump")
-			stamina -= 150
+		if active:
+			if Input.is_action_pressed("jump") and stamina > 150:
+				apply_impulse(Vector3(), normal * jump_speed * get_mass())
+				get_node("Sounds").play("jump")
+				stamina -= 150
 
 	else:
 		apply_impulse(Vector3(), direction * air_accel * get_mass())

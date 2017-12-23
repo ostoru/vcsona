@@ -2,11 +2,11 @@
 <resource_file type="PackedScene" subresource_count="15" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
 	<ext_resource path="res://scripts/player.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://fonts/roboto.fnt" type="BitmapFont" index="2"></ext_resource>
-	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="4"></ext_resource>
+	<ext_resource path="res://fonts/sprites/MAP-T1 (by cyrus).png" type="Texture" index="5"></ext_resource>
 	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="3"></ext_resource>
 	<ext_resource path="res://fonts/sprites/FSTART (by cyrus).png" type="Texture" index="7"></ext_resource>
 	<ext_resource path="res://fonts/sprites/MAP-T2 (by cyrus).png" type="Texture" index="6"></ext_resource>
-	<ext_resource path="res://fonts/sprites/MAP-T1 (by cyrus).png" type="Texture" index="5"></ext_resource>
+	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="4"></ext_resource>
 	<ext_resource path="res://scenes/untitled3.xml" type="PackedScene" index="1"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 0.181871 </real>

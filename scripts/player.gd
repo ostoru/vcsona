@@ -158,7 +158,7 @@ func _integrate_forces(state):
 				ani_node.play("run")
 		else:
 			if ani_node.get_current_animation() != "jump":
-#				ani_node.play("jump")
+				ani_node.play("jump")
 				pass
 			
 

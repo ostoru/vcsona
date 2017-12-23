@@ -52,7 +52,7 @@ func action_start():
 	get_node("Yaw/AIM").show()
 	get_node("icon").hide()
 	if active:
-		get_node("Yaw/AIM/metarig/Skeleton/BoneAttachment/Camera").make_current()
+		get_node("Yaw/AIM/metarig/Skeleton/camera/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		set_fixed_process(true)
 		set_process_input(true)
@@ -62,7 +62,7 @@ func action_start():
 func action_end():
 	get_node("Yaw/AIM").hide()
 	get_node("icon").show()
-	get_node("Yaw/AIM/metarig/Skeleton/BoneAttachment/Camera").clear_current()
+	get_node("Yaw/AIM/metarig/Skeleton/camera/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)
 	set_process_input(false)
@@ -76,13 +76,10 @@ func _input(event):
 		pitch = max(min(pitch - (-event.relative_y * view_sensitivity * .02), 100), 0)
 		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
 #		get_node("Yaw/pitch").set_rotation(Vector3(deg2rad(pitch), 0, 0))
-		print(pitch)
 		
-		get_node("Yaw/AIM/AnimationPlayer").play("look")
-		var ani_pos = get_node("Yaw/AIM/AnimationPlayer").get_current_animation_pos()
-		var anylenght = get_node("Yaw/AIM/AnimationPlayer").get_current_animation_length()
-		get_node("Yaw/AIM/AnimationPlayer").advance((pitch))
-		get_node("Yaw/AIM/AnimationPlayer").stop()
+		ani_node.play("look")
+		ani_node.advance((pitch))
+		ani_node.stop()
 
 			
 	
@@ -101,15 +98,18 @@ func _input(event):
 	elif Input.is_action_pressed("char reload"):
 		get_node("../").end_actions()
 
-onready var bullet_impact_scene = preload("res://scenes/bullet_impact.xml")
+onready var bullet_inst_scene = preload("res://scenes/bullet_impact.xml")
 onready var world = get_node("../")
+onready var ani_node = get_node("Yaw/AIM/AnimationPlayer")
 
 func shoot():
-	var bullet_impact = bullet_impact_scene.instance()
-	bullet_impact.set_transform(get_node("Yaw/AIM/metarig/Skeleton/gun/gun/origin").get_global_transform())
-	bullet_impact.set_linear_velocity(get_node("Yaw/AIM/metarig/Skeleton/gun/gun/direction").get_global_transform().origin - get_node("Yaw/AIM/metarig/Skeleton/gun/gun/origin").get_global_transform().origin)
-	bullet_impact.add_to_group("destroy")
-	world.add_child(bullet_impact)
+	var bullet_inst = bullet_inst_scene.instance()
+	bullet_inst.set_transform(get_node("Yaw/AIM/metarig/Skeleton/gun/gun/origin").get_global_transform())
+	var origin = get_node("Yaw/AIM/metarig/Skeleton/gun/gun/direction").get_global_transform().origin
+	var direction = get_node("Yaw/AIM/metarig/Skeleton/gun/gun/origin").get_global_transform().origin
+	bullet_inst.set_linear_velocity((origin - direction).normalized() * 100)
+	bullet_inst.add_to_group("destroy")
+	world.add_child(bullet_inst)
 
 func _fixed_process(delta):
 	get_node("FPS").set_text(str(OS.get_frames_per_second(), " FPS"))
@@ -129,7 +129,7 @@ func _integrate_forces(state):
 	# Default walk speed:
 	walk_speed = 3.5
 	# Default jump height:
-	jump_speed = 3
+	jump_speed = 5
 
 	# Cap stamina:
 	if stamina >= 10000:
@@ -153,6 +153,15 @@ func _integrate_forces(state):
 		if Input.is_action_pressed("move_right"):
 			direction += aim[0]
 			is_moving = true
+		if direction != Vector3():
+			if ani_node.get_current_animation() != "run":
+				ani_node.play("run")
+		else:
+			if ani_node.get_current_animation() != "jump":
+#				ani_node.play("jump")
+				pass
+			
+
 
 	direction = direction.normalized()
 	var ray = get_node("Ray")
@@ -199,6 +208,7 @@ func _integrate_forces(state):
 		if active:
 			if Input.is_action_pressed("jump") and stamina > 150:
 				apply_impulse(Vector3(), normal * jump_speed * get_mass())
+				get_node("Yaw/AIM/AnimationPlayer").play("jump")
 				get_node("Sounds").play("jump")
 				stamina -= 150
 

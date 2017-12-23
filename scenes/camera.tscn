@@ -1,0 +1,24 @@
+[gd_scene format=1]
+
+[node name="camera" type="BoneAttachment"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -1, 9.29832e-06, 1.59872e-14, 9.2983e-06, 0.999997, -0.00231222, -2.14998e-08, -0.00231222, -0.999997, -0.396709, 0.236939, -1.73258 )
+bone_name = "camera"
+
+[node name="Camera" type="Camera" parent="."]
+
+_import_path = NodePath("metarig/Camera")
+_import_transform = Transform( 1, 9.29832e-06, -3.25841e-07, -9.29832e-06, 1, 5.56393e-08, 3.25841e-07, -5.56363e-08, 1, 2.27374e-13, 0, 0.3 )
+projection = 0
+fov = 90.0
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = false
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+
+

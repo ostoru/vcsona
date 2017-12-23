@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="11" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
 	<ext_resource path="res://scenes/gun.xml" type="PackedScene" index="0"></ext_resource>
+	<ext_resource path="res://scenes/camera.tscn" type="PackedScene" index="1"></ext_resource>
+	<ext_resource path="res://scenes/AnimationPlayer.tscn" type="PackedScene" index="2"></ext_resource>
 	<resource type="FixedMaterial" path="local://1">
-		<string name="resource/name"> "eyes" </string>
 		<bool name="flags/visible"> True </bool>
 		<bool name="flags/double_sided"> False </bool>
 		<bool name="flags/invert_faces"> False </bool>
@@ -40,7 +41,6 @@
 
 	</resource>
 	<resource type="FixedMaterial" path="local://2">
-		<string name="resource/name"> "eyelashes" </string>
 		<bool name="flags/visible"> True </bool>
 		<bool name="flags/double_sided"> False </bool>
 		<bool name="flags/invert_faces"> False </bool>
@@ -78,7 +78,6 @@
 
 	</resource>
 	<resource type="FixedMaterial" path="local://3">
-		<string name="resource/name"> "face" </string>
 		<bool name="flags/visible"> True </bool>
 		<bool name="flags/double_sided"> False </bool>
 		<bool name="flags/invert_faces"> False </bool>
@@ -116,7 +115,6 @@
 
 	</resource>
 	<resource type="FixedMaterial" path="local://4">
-		<string name="resource/name"> "hair" </string>
 		<bool name="flags/visible"> True </bool>
 		<bool name="flags/double_sided"> False </bool>
 		<bool name="flags/invert_faces"> False </bool>
@@ -154,7 +152,6 @@
 
 	</resource>
 	<resource type="FixedMaterial" path="local://5">
-		<string name="resource/name"> "skin" </string>
 		<bool name="flags/visible"> True </bool>
 		<bool name="flags/double_sided"> False </bool>
 		<bool name="flags/invert_faces"> False </bool>
@@ -192,7 +189,6 @@
 
 	</resource>
 	<resource type="FixedMaterial" path="local://6">
-		<string name="resource/name"> "dress" </string>
 		<bool name="flags/visible"> True </bool>
 		<bool name="flags/double_sided"> False </bool>
 		<bool name="flags/invert_faces"> False </bool>
@@ -230,7 +226,6 @@
 
 	</resource>
 	<resource type="Mesh" path="local://7">
-		<string name="resource/name"> "Mesh_0009" </string>
 		<dictionary name="surfaces/0" shared="false">
 			<string> "alphasort" </string>
 			<bool> False </bool>
@@ -384,565 +379,6 @@
 		<aabb name="custom_aabb/custom_aabb"> 0, 0, 0, 0, 0, 0 </aabb>
 
 	</resource>
-	<resource type="Animation" path="local://8">
-		<string name="resource/name"> "default" </string>
-		<real name="length"> 4.166667 </real>
-		<bool name="loop"> False </bool>
-		<real name="step"> 0.1 </real>
-		<string name="tracks/0/type"> "transform" </string>
-		<node_path name="tracks/0/path"> "metarig/Skeleton:hand.L" </node_path>
-		<int name="tracks/0/interp"> 1 </int>
-		<bool name="tracks/0/imported"> True </bool>
-		<real_array name="tracks/0/keys" len="12"> 			0, 1, 3.72529e-08, 5.12227e-09, 0, -5.58794e-09, 7.45058e-09, 2.91038e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/1/type"> "transform" </string>
-		<node_path name="tracks/1/path"> "metarig/Skeleton:f_index.01.L" </node_path>
-		<int name="tracks/1/interp"> 1 </int>
-		<bool name="tracks/1/imported"> True </bool>
-		<real_array name="tracks/1/keys" len="12"> 			0, 1, -3.72529e-09, 9.31323e-09, 5.96046e-08, -1.86265e-08, -4.47035e-08, 2.79397e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/2/type"> "transform" </string>
-		<node_path name="tracks/2/path"> "metarig/Skeleton:f_index.02.L" </node_path>
-		<int name="tracks/2/interp"> 1 </int>
-		<bool name="tracks/2/imported"> True </bool>
-		<real_array name="tracks/2/keys" len="12"> 			0, 1, -1.78115e-08, 4.31173e-08, 1.11759e-08, -3.49246e-09, -1.30385e-08, -1.41517e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/3/type"> "transform" </string>
-		<node_path name="tracks/3/path"> "metarig/Skeleton:f_index.03.L" </node_path>
-		<int name="tracks/3/interp"> 1 </int>
-		<bool name="tracks/3/imported"> True </bool>
-		<real_array name="tracks/3/keys" len="12"> 			0, 1, 3.52302e-08, -3.58559e-08, -1.30385e-08, -7.45058e-09, 1.72295e-08, 2.61935e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/4/type"> "transform" </string>
-		<node_path name="tracks/4/path"> "metarig/Skeleton:thumb.01.L" </node_path>
-		<int name="tracks/4/interp"> 1 </int>
-		<bool name="tracks/4/imported"> True </bool>
-		<real_array name="tracks/4/keys" len="12"> 			0, 1, -5.96046e-08, -1.86265e-09, 4.09782e-08, 2.98023e-08, -7.45058e-09, 3.72529e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/5/type"> "transform" </string>
-		<node_path name="tracks/5/path"> "metarig/Skeleton:thumb.02.L" </node_path>
-		<int name="tracks/5/interp"> 1 </int>
-		<bool name="tracks/5/imported"> True </bool>
-		<real_array name="tracks/5/keys" len="12"> 			0, 1, -3.0268e-08, -2.8871e-08, -7.45058e-09, -5.55112e-17, 7.45058e-09, -1.86265e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/6/type"> "transform" </string>
-		<node_path name="tracks/6/path"> "metarig/Skeleton:thumb.03.L" </node_path>
-		<int name="tracks/6/interp"> 1 </int>
-		<bool name="tracks/6/imported"> True </bool>
-		<real_array name="tracks/6/keys" len="12"> 			0, 1, 2.01399e-08, 2.79397e-09, 2.42144e-08, 2.23517e-08, 5.55112e-17, -1.86265e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/7/type"> "transform" </string>
-		<node_path name="tracks/7/path"> "metarig/Skeleton:f_middle.01.L" </node_path>
-		<int name="tracks/7/interp"> 1 </int>
-		<bool name="tracks/7/imported"> True </bool>
-		<real_array name="tracks/7/keys" len="12"> 			0, 1, -2.8871e-08, 8.3819e-08, 6.70552e-08, -2.6077e-08, -2.23517e-08, 3.25963e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/8/type"> "transform" </string>
-		<node_path name="tracks/8/path"> "metarig/Skeleton:f_middle.02.L" </node_path>
-		<int name="tracks/8/interp"> 1 </int>
-		<bool name="tracks/8/imported"> True </bool>
-		<real_array name="tracks/8/keys" len="12"> 			0, 1, 5.58794e-09, -7.33417e-08, -4.47035e-08, -1.86265e-08, 7.45058e-09, 8.61473e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/9/type"> "transform" </string>
-		<node_path name="tracks/9/path"> "metarig/Skeleton:f_middle.03.L" </node_path>
-		<int name="tracks/9/interp"> 1 </int>
-		<bool name="tracks/9/imported"> True </bool>
-		<real_array name="tracks/9/keys" len="12"> 			0, 1, 4.19095e-09, 1.73459e-08, -5.58794e-08, 1.67638e-08, -3.72529e-09, 8.61473e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/10/type"> "transform" </string>
-		<node_path name="tracks/10/path"> "metarig/Skeleton:f_ring.01.L" </node_path>
-		<int name="tracks/10/interp"> 1 </int>
-		<bool name="tracks/10/imported"> True </bool>
-		<real_array name="tracks/10/keys" len="12"> 			0, 1, -6.98492e-10, 9.31323e-09, -7.45058e-09, 1.49012e-08, -1.52656e-16, -4.65661e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/11/type"> "transform" </string>
-		<node_path name="tracks/11/path"> "metarig/Skeleton:f_ring.02.L" </node_path>
-		<int name="tracks/11/interp"> 1 </int>
-		<bool name="tracks/11/imported"> True </bool>
-		<real_array name="tracks/11/keys" len="12"> 			0, 1, -1.29803e-08, 1.04774e-08, 1.11759e-08, -4.60786e-18, -9.31323e-10, 2.56114e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/12/type"> "transform" </string>
-		<node_path name="tracks/12/path"> "metarig/Skeleton:f_ring.03.L" </node_path>
-		<int name="tracks/12/interp"> 1 </int>
-		<bool name="tracks/12/imported"> True </bool>
-		<real_array name="tracks/12/keys" len="12"> 			0, 1, 1.28057e-08, -3.00352e-08, -1.84402e-07, 5.96046e-08, -1.1241e-15, -1.67638e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/13/type"> "transform" </string>
-		<node_path name="tracks/13/path"> "metarig/Skeleton:f_pinky.01.L" </node_path>
-		<int name="tracks/13/interp"> 1 </int>
-		<bool name="tracks/13/imported"> True </bool>
-		<real_array name="tracks/13/keys" len="12"> 			0, 1, 1.95578e-08, 3.35276e-08, 1.19209e-07, -1.49012e-08, 2.77556e-17, 1.86265e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/14/type"> "transform" </string>
-		<node_path name="tracks/14/path"> "metarig/Skeleton:f_pinky.02.L" </node_path>
-		<int name="tracks/14/interp"> 1 </int>
-		<bool name="tracks/14/imported"> True </bool>
-		<real_array name="tracks/14/keys" len="12"> 			0, 1, 3.52738e-08, 8.3237e-08, -1.86265e-09, -7.45058e-09, -2.79397e-09, -1.26311e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/15/type"> "transform" </string>
-		<node_path name="tracks/15/path"> "metarig/Skeleton:f_pinky.03.L" </node_path>
-		<int name="tracks/15/interp"> 1 </int>
-		<bool name="tracks/15/imported"> True </bool>
-		<real_array name="tracks/15/keys" len="12"> 			0, 1, -2.51457e-08, -1.05938e-07, -3.72529e-08, 7.45058e-09, -7.45058e-09, 2.79397e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/16/type"> "transform" </string>
-		<node_path name="tracks/16/path"> "metarig/Skeleton:upper_arm.R" </node_path>
-		<int name="tracks/16/interp"> 1 </int>
-		<bool name="tracks/16/imported"> True </bool>
-		<real_array name="tracks/16/keys" len="12"> 			0, 1, -1.49012e-08, -2.23517e-08, -2.23517e-08, -7.45058e-09, -1.49012e-08, -1.49012e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/17/type"> "transform" </string>
-		<node_path name="tracks/17/path"> "metarig/Skeleton:forearm.R" </node_path>
-		<int name="tracks/17/interp"> 1 </int>
-		<bool name="tracks/17/imported"> True </bool>
-		<real_array name="tracks/17/keys" len="12"> 			0, 1, 4.47035e-08, -9.31323e-09, -1.49012e-08, -1.14492e-16, 7.45058e-09, -8.84756e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/18/type"> "transform" </string>
-		<node_path name="tracks/18/path"> "metarig/Skeleton:hand.R" </node_path>
-		<int name="tracks/18/interp"> 1 </int>
-		<bool name="tracks/18/imported"> True </bool>
-		<real_array name="tracks/18/keys" len="12"> 			0, 1, -3.72529e-08, 5.12227e-09, 0, -5.58794e-09, -7.45058e-09, -2.91038e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/19/type"> "transform" </string>
-		<node_path name="tracks/19/path"> "metarig/Skeleton:f_index.01.R" </node_path>
-		<int name="tracks/19/interp"> 1 </int>
-		<bool name="tracks/19/imported"> True </bool>
-		<real_array name="tracks/19/keys" len="12"> 			0, 1, 3.72529e-09, 9.31323e-09, 5.96046e-08, -1.86265e-08, 4.47035e-08, -2.79397e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/20/type"> "transform" </string>
-		<node_path name="tracks/20/path"> "metarig/Skeleton:Bone" </node_path>
-		<int name="tracks/20/interp"> 1 </int>
-		<bool name="tracks/20/imported"> True </bool>
-		<real_array name="tracks/20/keys" len="12"> 			0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 </real_array>
-		<string name="tracks/21/type"> "transform" </string>
-		<node_path name="tracks/21/path"> "metarig/Skeleton:f_index.02.R" </node_path>
-		<int name="tracks/21/interp"> 1 </int>
-		<bool name="tracks/21/imported"> True </bool>
-		<real_array name="tracks/21/keys" len="12"> 			0, 1, 1.78115e-08, 4.31173e-08, 1.11759e-08, -3.49246e-09, 1.30385e-08, 1.41517e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/22/type"> "transform" </string>
-		<node_path name="tracks/22/path"> "metarig/Skeleton:f_index.03.R" </node_path>
-		<int name="tracks/22/interp"> 1 </int>
-		<bool name="tracks/22/imported"> True </bool>
-		<real_array name="tracks/22/keys" len="12"> 			0, 1, -3.52302e-08, -3.58559e-08, -1.30385e-08, -7.45058e-09, -1.72295e-08, -2.61935e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/23/type"> "transform" </string>
-		<node_path name="tracks/23/path"> "metarig/Skeleton:thumb.01.R" </node_path>
-		<int name="tracks/23/interp"> 1 </int>
-		<bool name="tracks/23/imported"> True </bool>
-		<real_array name="tracks/23/keys" len="12"> 			0, 1, 5.96046e-08, -1.86265e-09, 4.09782e-08, 2.98023e-08, 7.45058e-09, -3.72529e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/24/type"> "transform" </string>
-		<node_path name="tracks/24/path"> "metarig/Skeleton:thumb.02.R" </node_path>
-		<int name="tracks/24/interp"> 1 </int>
-		<bool name="tracks/24/imported"> True </bool>
-		<real_array name="tracks/24/keys" len="12"> 			0, 1, 3.0268e-08, -2.8871e-08, -7.45058e-09, -5.55112e-17, -7.45058e-09, 1.86265e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/25/type"> "transform" </string>
-		<node_path name="tracks/25/path"> "metarig/Skeleton:thumb.03.R" </node_path>
-		<int name="tracks/25/interp"> 1 </int>
-		<bool name="tracks/25/imported"> True </bool>
-		<real_array name="tracks/25/keys" len="12"> 			0, 1, -2.01399e-08, 2.79397e-09, 2.42144e-08, 2.23517e-08, -5.55112e-17, 1.86265e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/26/type"> "transform" </string>
-		<node_path name="tracks/26/path"> "metarig/Skeleton:f_middle.01.R" </node_path>
-		<int name="tracks/26/interp"> 1 </int>
-		<bool name="tracks/26/imported"> True </bool>
-		<real_array name="tracks/26/keys" len="12"> 			0, 1, 2.8871e-08, 8.3819e-08, 6.70552e-08, -2.6077e-08, 2.23517e-08, -3.25963e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/27/type"> "transform" </string>
-		<node_path name="tracks/27/path"> "metarig/Skeleton:f_middle.02.R" </node_path>
-		<int name="tracks/27/interp"> 1 </int>
-		<bool name="tracks/27/imported"> True </bool>
-		<real_array name="tracks/27/keys" len="12"> 			0, 1, -5.58794e-09, -7.33417e-08, -4.47035e-08, -1.86265e-08, -7.45058e-09, -8.61473e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/28/type"> "transform" </string>
-		<node_path name="tracks/28/path"> "metarig/Skeleton:f_middle.03.R" </node_path>
-		<int name="tracks/28/interp"> 1 </int>
-		<bool name="tracks/28/imported"> True </bool>
-		<real_array name="tracks/28/keys" len="12"> 			0, 1, -4.19095e-09, 1.73459e-08, -5.58794e-08, 1.67638e-08, 3.72529e-09, -8.61473e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/29/type"> "transform" </string>
-		<node_path name="tracks/29/path"> "metarig/Skeleton:f_ring.01.R" </node_path>
-		<int name="tracks/29/interp"> 1 </int>
-		<bool name="tracks/29/imported"> True </bool>
-		<real_array name="tracks/29/keys" len="12"> 			0, 1, 6.98492e-10, 9.31323e-09, -7.45058e-09, 1.49012e-08, 1.52656e-16, 4.65661e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/30/type"> "transform" </string>
-		<node_path name="tracks/30/path"> "metarig/Skeleton:f_ring.02.R" </node_path>
-		<int name="tracks/30/interp"> 1 </int>
-		<bool name="tracks/30/imported"> True </bool>
-		<real_array name="tracks/30/keys" len="12"> 			0, 1, 1.29803e-08, 1.04774e-08, 1.11759e-08, -4.60786e-18, 9.31323e-10, -2.56114e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/31/type"> "transform" </string>
-		<node_path name="tracks/31/path"> "metarig/Skeleton:spine.002" </node_path>
-		<int name="tracks/31/interp"> 1 </int>
-		<bool name="tracks/31/imported"> True </bool>
-		<real_array name="tracks/31/keys" len="12"> 			0, 1, 0, 0, 0, -7.45058e-09, -1.69642e-13, -1.69407e-21, 1, 1, 1, 1 </real_array>
-		<string name="tracks/32/type"> "transform" </string>
-		<node_path name="tracks/32/path"> "metarig/Skeleton:f_ring.03.R" </node_path>
-		<int name="tracks/32/interp"> 1 </int>
-		<bool name="tracks/32/imported"> True </bool>
-		<real_array name="tracks/32/keys" len="12"> 			0, 1, -1.28057e-08, -3.00352e-08, -1.84402e-07, 5.96046e-08, 1.1241e-15, 1.67638e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/33/type"> "transform" </string>
-		<node_path name="tracks/33/path"> "metarig/Skeleton:f_pinky.01.R" </node_path>
-		<int name="tracks/33/interp"> 1 </int>
-		<bool name="tracks/33/imported"> True </bool>
-		<real_array name="tracks/33/keys" len="12"> 			0, 1, -1.95578e-08, 3.35276e-08, 1.19209e-07, -1.49012e-08, -2.77556e-17, -1.86265e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/34/type"> "transform" </string>
-		<node_path name="tracks/34/path"> "metarig/Skeleton:f_pinky.02.R" </node_path>
-		<int name="tracks/34/interp"> 1 </int>
-		<bool name="tracks/34/imported"> True </bool>
-		<real_array name="tracks/34/keys" len="12"> 			0, 1, -3.52738e-08, 8.3237e-08, -1.86265e-09, -7.45058e-09, 2.79397e-09, 1.26311e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/35/type"> "transform" </string>
-		<node_path name="tracks/35/path"> "metarig/Skeleton:f_pinky.03.R" </node_path>
-		<int name="tracks/35/interp"> 1 </int>
-		<bool name="tracks/35/imported"> True </bool>
-		<real_array name="tracks/35/keys" len="12"> 			0, 1, 2.51457e-08, -1.05938e-07, -3.72529e-08, 7.45058e-09, 7.45058e-09, -2.79397e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/36/type"> "transform" </string>
-		<node_path name="tracks/36/path"> "metarig/Skeleton:breast.L" </node_path>
-		<int name="tracks/36/interp"> 1 </int>
-		<bool name="tracks/36/imported"> True </bool>
-		<real_array name="tracks/36/keys" len="12"> 			0, 1, 1.76951e-08, -1.67638e-08, 1.86265e-09, -1.49012e-08, -1.67638e-08, -2.498e-16, 1, 1, 1, 1 </real_array>
-		<string name="tracks/37/type"> "transform" </string>
-		<node_path name="tracks/37/path"> "metarig/Skeleton:breast.R" </node_path>
-		<int name="tracks/37/interp"> 1 </int>
-		<bool name="tracks/37/imported"> True </bool>
-		<real_array name="tracks/37/keys" len="12"> 			0, 1, -1.76951e-08, -1.67638e-08, 1.86265e-09, -1.49012e-08, 1.67638e-08, 2.498e-16, 1, 1, 1, 1 </real_array>
-		<string name="tracks/38/type"> "transform" </string>
-		<node_path name="tracks/38/path"> "metarig/Skeleton:spine.005" </node_path>
-		<int name="tracks/38/interp"> 1 </int>
-		<bool name="tracks/38/imported"> True </bool>
-		<real_array name="tracks/38/keys" len="12"> 			0, 1, 0, 0, 0, 1.38133e-25, 5.11591e-13, -1.42109e-14, 1, 1, 1, 1 </real_array>
-		<string name="tracks/39/type"> "transform" </string>
-		<node_path name="tracks/39/path"> "metarig/Skeleton:thigh.L" </node_path>
-		<int name="tracks/39/interp"> 1 </int>
-		<bool name="tracks/39/imported"> True </bool>
-		<real_array name="tracks/39/keys" len="12"> 			0, 1, 1.86265e-09, -3.72529e-09, 7.45058e-09, -1.49012e-08, -2.77556e-17, 9.31323e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/40/type"> "transform" </string>
-		<node_path name="tracks/40/path"> "metarig/Skeleton:shin.L" </node_path>
-		<int name="tracks/40/interp"> 1 </int>
-		<bool name="tracks/40/imported"> True </bool>
-		<real_array name="tracks/40/keys" len="12"> 			0, 1, 1.86265e-09, 1.11759e-08, 0, -1.86265e-09, -3.72529e-09, 2.32831e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/41/type"> "transform" </string>
-		<node_path name="tracks/41/path"> "metarig/Skeleton:foot.L" </node_path>
-		<int name="tracks/41/interp"> 1 </int>
-		<bool name="tracks/41/imported"> True </bool>
-		<real_array name="tracks/41/keys" len="12"> 			0, 1, -5.12227e-09, -2.98023e-08, -1.19209e-07, -2.98023e-08, 4.65661e-10, 6.98492e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/42/type"> "transform" </string>
-		<node_path name="tracks/42/path"> "metarig/Skeleton:spine.003" </node_path>
-		<int name="tracks/42/interp"> 1 </int>
-		<bool name="tracks/42/imported"> True </bool>
-		<real_array name="tracks/42/keys" len="12"> 			0, 1, -1.66533e-16, 5.58794e-09, -1.49012e-08, 1.49012e-08, -3.46945e-15, 2.46747e-14, 1, 1, 1, 1 </real_array>
-		<string name="tracks/43/type"> "transform" </string>
-		<node_path name="tracks/43/path"> "metarig/Skeleton:toe.L" </node_path>
-		<int name="tracks/43/interp"> 1 </int>
-		<bool name="tracks/43/imported"> True </bool>
-		<real_array name="tracks/43/keys" len="12"> 			0, 1, 3.84171e-09, 3.12924e-07, 8.9407e-08, 1.49012e-08, 3.66708e-09, -2.32831e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/44/type"> "transform" </string>
-		<node_path name="tracks/44/path"> "metarig/Skeleton:thigh.R" </node_path>
-		<int name="tracks/44/interp"> 1 </int>
-		<bool name="tracks/44/imported"> True </bool>
-		<real_array name="tracks/44/keys" len="12"> 			0, 1, -4.65661e-10, 0, 0, 0, 0, -4.65661e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/45/type"> "transform" </string>
-		<node_path name="tracks/45/path"> "metarig/Skeleton:shin.R" </node_path>
-		<int name="tracks/45/interp"> 1 </int>
-		<bool name="tracks/45/imported"> True </bool>
-		<real_array name="tracks/45/keys" len="12"> 			0, 1, -3.72529e-09, 1.86265e-08, 5.96046e-08, -6.50522e-19, 5.58794e-09, -2.32831e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/46/type"> "transform" </string>
-		<node_path name="tracks/46/path"> "metarig/Skeleton:foot.R" </node_path>
-		<int name="tracks/46/interp"> 1 </int>
-		<bool name="tracks/46/imported"> True </bool>
-		<real_array name="tracks/46/keys" len="12"> 			0, 1, 2.32831e-09, 8.9407e-08, -2.68221e-07, -2.98023e-08, 1.62981e-09, 4.65661e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/47/type"> "transform" </string>
-		<node_path name="tracks/47/path"> "metarig/Skeleton:toe.R" </node_path>
-		<int name="tracks/47/interp"> 1 </int>
-		<bool name="tracks/47/imported"> True </bool>
-		<real_array name="tracks/47/keys" len="12"> 			0, 1, 4.65661e-10, 1.78814e-07, 1.2666e-07, -4.47035e-08, -1.16415e-09, -9.31323e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/48/type"> "transform" </string>
-		<node_path name="tracks/48/path"> "metarig/Skeleton:camera" </node_path>
-		<int name="tracks/48/interp"> 1 </int>
-		<bool name="tracks/48/imported"> True </bool>
-		<real_array name="tracks/48/keys" len="12"> 			0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 </real_array>
-		<string name="tracks/49/type"> "transform" </string>
-		<node_path name="tracks/49/path"> "metarig/Skeleton:gun" </node_path>
-		<int name="tracks/49/interp"> 1 </int>
-		<bool name="tracks/49/imported"> True </bool>
-		<real_array name="tracks/49/keys" len="12"> 			0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 </real_array>
-		<string name="tracks/50/type"> "transform" </string>
-		<node_path name="tracks/50/path"> "metarig/Skeleton:spine.004" </node_path>
-		<int name="tracks/50/interp"> 1 </int>
-		<bool name="tracks/50/imported"> True </bool>
-		<real_array name="tracks/50/keys" len="12"> 			0, 1, 1.77636e-15, 0, 4.47035e-08, -1.51461e-28, -7.10543e-15, 0, 1, 1, 1, 1 </real_array>
-		<string name="tracks/51/type"> "transform" </string>
-		<node_path name="tracks/51/path"> "metarig/Skeleton:spine.006" </node_path>
-		<int name="tracks/51/interp"> 1 </int>
-		<bool name="tracks/51/imported"> True </bool>
-		<real_array name="tracks/51/keys" len="12"> 			0, 1, -5.32907e-15, 5.58794e-09, -2.98023e-08, -2.60324e-29, -1.77636e-15, 6.66134e-15, 1, 1, 1, 1 </real_array>
-		<string name="tracks/52/type"> "transform" </string>
-		<node_path name="tracks/52/path"> "metarig/Skeleton:upper_arm.L" </node_path>
-		<int name="tracks/52/interp"> 1 </int>
-		<bool name="tracks/52/imported"> True </bool>
-		<real_array name="tracks/52/keys" len="12"> 			0, 1, 0, -2.98023e-08, -1.86265e-08, -7.45058e-09, 1.49012e-08, 1.49012e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/53/type"> "transform" </string>
-		<node_path name="tracks/53/path"> "metarig/Skeleton:forearm.L" </node_path>
-		<int name="tracks/53/interp"> 1 </int>
-		<bool name="tracks/53/imported"> True </bool>
-		<real_array name="tracks/53/keys" len="12"> 			0, 1, -4.47035e-08, -9.31323e-09, -1.49012e-08, -1.14492e-16, -7.45058e-09, 8.84756e-09, 1, 1, 1, 1 </real_array>
-
-	</resource>
-	<resource type="Animation" path="local://9">
-		<string name="resource/name"> "look" </string>
-		<real name="length"> 4.166667 </real>
-		<bool name="loop"> False </bool>
-		<real name="step"> 0.04 </real>
-		<string name="tracks/0/type"> "transform" </string>
-		<node_path name="tracks/0/path"> "metarig/Skeleton:hand.L" </node_path>
-		<int name="tracks/0/interp"> 1 </int>
-		<bool name="tracks/0/imported"> True </bool>
-		<real_array name="tracks/0/keys" len="36"> 			0, 1, 4.84288e-08, -3.91155e-08, 5.96046e-08, 0.0793698, 0.0512501, -0.00542863, 0.995512, 1, 1, 1, 2.08333, 1, 5.58794e-08, 0, 2.98023e-08, -0.0110358, 0.0569419, -0.0059042, 0.998299, 1, 1, 1, 4.16667, 1, 2.23517e-08, 1.35042e-08, 7.45058e-08, 0.0723606, 0.173052, -0.0118273, 0.98218, 1, 1, 1 </real_array>
-		<string name="tracks/1/type"> "transform" </string>
-		<node_path name="tracks/1/path"> "metarig/Skeleton:f_index.01.L" </node_path>
-		<int name="tracks/1/interp"> 1 </int>
-		<bool name="tracks/1/imported"> True </bool>
-		<real_array name="tracks/1/keys" len="24"> 			0, 1, -1.11759e-08, -2.42144e-08, 2.98023e-08, -1.49012e-08, 5.55112e-16, -1.49012e-08, 1, 1, 1, 1, 4.16667, 1, 3.91155e-08, 1.86265e-08, 6.70552e-08, -1.49012e-08, -2.98023e-08, 9.31322e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/2/type"> "transform" </string>
-		<node_path name="tracks/2/path"> "metarig/Skeleton:f_index.02.L" </node_path>
-		<int name="tracks/2/interp"> 1 </int>
-		<bool name="tracks/2/imported"> True </bool>
-		<real_array name="tracks/2/keys" len="24"> 			0, 1, -2.07219e-08, -8.29459e-10, 3.72529e-08, 4.42378e-09, -3.1665e-08, -1.63782e-08, 1, 1, 1, 1, 4.16667, 1, -8.6613e-08, 5.62504e-08, 3.72529e-08, -7.91624e-09, -3.72529e-08, 2.08638e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/3/type"> "transform" </string>
-		<node_path name="tracks/3/path"> "metarig/Skeleton:f_index.03.L" </node_path>
-		<int name="tracks/3/interp"> 1 </int>
-		<bool name="tracks/3/imported"> True </bool>
-		<real_array name="tracks/3/keys" len="24"> 			0, 1, 2.11148e-08, -5.70435e-08, -8.00937e-08, -1.49012e-08, 2.42144e-08, -1.16997e-08, 1, 1, 1, 1, 4.16667, 1, 4.15603e-08, -6.44941e-08, -7.07805e-08, 3.14107e-16, 2.28174e-08, 3.40515e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/4/type"> "transform" </string>
-		<node_path name="tracks/4/path"> "metarig/Skeleton:thumb.01.L" </node_path>
-		<int name="tracks/4/interp"> 1 </int>
-		<bool name="tracks/4/imported"> True </bool>
-		<real_array name="tracks/4/keys" len="24"> 			0, 1, -4.65661e-09, -1.86265e-09, 2.79397e-08, 1.49012e-08, 7.45058e-09, -7.45058e-09, 1, 1, 1, 1, 4.16667, 1, -3.67872e-08, 1.67638e-08, 8.00937e-08, 5.96047e-08, -7.45058e-09, 1.11759e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/5/type"> "transform" </string>
-		<node_path name="tracks/5/path"> "metarig/Skeleton:thumb.02.L" </node_path>
-		<int name="tracks/5/interp"> 1 </int>
-		<bool name="tracks/5/imported"> True </bool>
-		<real_array name="tracks/5/keys" len="24"> 			0, 1, 8.3819e-09, -1.86265e-08, -1.30385e-08, -1.49012e-08, 1.49012e-08, -3.72529e-09, 1, 1, 1, 1, 4.16667, 1, -1.72295e-08, 6.0536e-09, -1.49012e-08, 3.30872e-24, 1.49012e-08, 1.86265e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/6/type"> "transform" </string>
-		<node_path name="tracks/6/path"> "metarig/Skeleton:thumb.03.L" </node_path>
-		<int name="tracks/6/interp"> 1 </int>
-		<bool name="tracks/6/imported"> True </bool>
-		<real_array name="tracks/6/keys" len="24"> 			0, 1, -6.98492e-09, 2.23517e-08, 3.91155e-08, 7.45058e-09, -1.67638e-08, -2.8871e-08, 1, 1, 1, 1, 4.16667, 1, 4.30737e-09, -1.21072e-08, 3.72529e-08, 2.23517e-08, -2.98023e-08, -3.3062e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/7/type"> "transform" </string>
-		<node_path name="tracks/7/path"> "metarig/Skeleton:f_middle.01.L" </node_path>
-		<int name="tracks/7/interp"> 1 </int>
-		<bool name="tracks/7/imported"> True </bool>
-		<real_array name="tracks/7/keys" len="24"> 			0, 1, -3.81842e-08, 3.25963e-08, 5.21541e-08, 1.11759e-08, -1.49012e-08, -7.91624e-09, 1, 1, 1, 1, 4.16667, 1, 2.04891e-08, 6.0536e-08, 8.19564e-08, -7.65013e-16, -2.6077e-08, 4.65661e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/8/type"> "transform" </string>
-		<node_path name="tracks/8/path"> "metarig/Skeleton:f_middle.02.L" </node_path>
-		<int name="tracks/8/interp"> 1 </int>
-		<bool name="tracks/8/imported"> True </bool>
-		<real_array name="tracks/8/keys" len="24"> 			0, 1, -1.64146e-08, -2.44472e-08, -1.49012e-08, -3.72529e-09, -7.45058e-09, 7.79983e-09, 1, 1, 1, 1, 4.16667, 1, 3.52738e-08, -1.93249e-08, -2.98023e-08, -3.72529e-09, 7.45058e-09, -8.14907e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/9/type"> "transform" </string>
-		<node_path name="tracks/9/path"> "metarig/Skeleton:f_middle.03.L" </node_path>
-		<int name="tracks/9/interp"> 1 </int>
-		<bool name="tracks/9/imported"> True </bool>
-		<real_array name="tracks/9/keys" len="24"> 			0, 1, -3.25963e-09, 3.18978e-08, -9.12696e-08, 6.80879e-16, 1.86265e-08, 1.21072e-08, 1, 1, 1, 1, 4.16667, 1, -2.72412e-08, -5.00586e-09, -2.79397e-08, 5.40167e-08, -2.6077e-08, 2.6077e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/10/type"> "transform" </string>
-		<node_path name="tracks/10/path"> "metarig/Skeleton:f_ring.01.L" </node_path>
-		<int name="tracks/10/interp"> 1 </int>
-		<bool name="tracks/10/imported"> True </bool>
-		<real_array name="tracks/10/keys" len="24"> 			0, 1, 1.62981e-09, -2.04891e-08, -1.49012e-08, 1.38778e-17, 3.72529e-09, -2.28174e-08, 1, 1, 1, 1, 4.16667, 1, 5.09899e-08, 2.42144e-08, 7.45058e-09, 7.45058e-09, -2.42144e-08, -1.58325e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/11/type"> "transform" </string>
-		<node_path name="tracks/11/path"> "metarig/Skeleton:f_ring.02.L" </node_path>
-		<int name="tracks/11/interp"> 1 </int>
-		<bool name="tracks/11/imported"> True </bool>
-		<real_array name="tracks/11/keys" len="24"> 			0, 1, -1.05938e-08, 1.72295e-08, -1.11759e-08, -1.86265e-08, 1.30385e-08, 8.96398e-09, 1, 1, 1, 1, 4.16667, 1, 3.09083e-08, -7.03149e-08, 3.72529e-08, 1.11759e-08, -6.51926e-09, -1.38534e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/12/type"> "transform" </string>
-		<node_path name="tracks/12/path"> "metarig/Skeleton:f_ring.03.L" </node_path>
-		<int name="tracks/12/interp"> 1 </int>
-		<bool name="tracks/12/imported"> True </bool>
-		<real_array name="tracks/12/keys" len="24"> 			0, 1, 2.56114e-08, -4.02797e-08, -1.67638e-07, 6.70552e-08, -7.45058e-09, 2.04891e-08, 1, 1, 1, 1, 4.16667, 1, 1.46683e-08, 9.31323e-09, -1.39698e-07, 4.47035e-08, -2.98023e-08, 7.45058e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/13/type"> "transform" </string>
-		<node_path name="tracks/13/path"> "metarig/Skeleton:f_pinky.01.L" </node_path>
-		<int name="tracks/13/interp"> 1 </int>
-		<bool name="tracks/13/imported"> True </bool>
-		<real_array name="tracks/13/keys" len="24"> 			0, 1, 2.04891e-08, -3.1665e-08, 9.68575e-08, -4.44089e-16, -1.49012e-08, 1.67638e-08, 1, 1, 1, 1, 4.16667, 1, 6.0536e-08, 1.86265e-09, 1.11759e-07, 1.05879e-22, 2.51256e-23, 1.67638e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/14/type"> "transform" </string>
-		<node_path name="tracks/14/path"> "metarig/Skeleton:f_pinky.02.L" </node_path>
-		<int name="tracks/14/interp"> 1 </int>
-		<bool name="tracks/14/imported"> True </bool>
-		<real_array name="tracks/14/keys" len="24"> 			0, 1, 1.71713e-08, 8.41683e-08, -3.1665e-08, 1.30385e-08, 6.51926e-09, 1.68802e-09, 1, 1, 1, 1, 4.16667, 1, 2.1013e-08, 1.05938e-07, -5.40167e-08, 3.91156e-08, -2.32831e-08, 1.0943e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/15/type"> "transform" </string>
-		<node_path name="tracks/15/path"> "metarig/Skeleton:f_pinky.03.L" </node_path>
-		<int name="tracks/15/interp"> 1 </int>
-		<bool name="tracks/15/imported"> True </bool>
-		<real_array name="tracks/15/keys" len="24"> 			0, 1, -6.33299e-08, -1.23284e-07, -1.86265e-09, 1.49012e-08, 5.89805e-17, 9.31323e-09, 1, 1, 1, 1, 4.16667, 1, -4.70318e-08, -1.38883e-07, -5.58794e-09, 5.40167e-08, -4.47035e-08, -1.86264e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/16/type"> "transform" </string>
-		<node_path name="tracks/16/path"> "metarig/Skeleton:upper_arm.R" </node_path>
-		<int name="tracks/16/interp"> 1 </int>
-		<bool name="tracks/16/imported"> True </bool>
-		<real_array name="tracks/16/keys" len="60"> 			0, 1, -1.49012e-08, -2.23517e-08, -4.09782e-08, 0.0562105, 0.205601, 0.0620602, 0.975047, 1, 1, 1, 0.0416667, 1, 0, -2.23517e-08, -3.35276e-08, 0.0556321, 0.205813, 0.0622228, 0.975025, 1, 1, 1, 0.0833333, 1, -1.49012e-08, -1.49012e-08, -4.09782e-08, 0.0550538, 0.206024, 0.0623853, 0.975003, 1, 1, 1, 2.08333, 1, -1.49012e-08, -1.49012e-08, -2.23517e-08, 0.0272645, 0.216085, 0.070157, 0.973469, 1, 1, 1, 4.16667, 1, 1.49012e-08, -3.72529e-08, -4.47035e-08, 0.119603, 0.283362, -0.0291369, 0.951079, 1, 1, 1 </real_array>
-		<string name="tracks/17/type"> "transform" </string>
-		<node_path name="tracks/17/path"> "metarig/Skeleton:forearm.R" </node_path>
-		<int name="tracks/17/interp"> 1 </int>
-		<bool name="tracks/17/imported"> True </bool>
-		<real_array name="tracks/17/keys" len="36"> 			0, 1, 5.7742e-08, 7.45058e-09, -4.47035e-08, 0.392046, 0.451742, -0.0784268, 0.797545, 1, 1, 1, 2.20833, 1, 8.19564e-08, -2.42144e-08, -4.47035e-08, 0.49314, 0.54787, -0.0921008, 0.669455, 1, 1, 1, 4.16667, 1, 4.84288e-08, -3.72529e-09, -7.45058e-08, 0.545701, 0.540737, -0.163363, 0.618972, 1, 1, 1 </real_array>
-		<string name="tracks/18/type"> "transform" </string>
-		<node_path name="tracks/18/path"> "metarig/Skeleton:hand.R" </node_path>
-		<int name="tracks/18/interp"> 1 </int>
-		<bool name="tracks/18/imported"> True </bool>
-		<real_array name="tracks/18/keys" len="84"> 			0, 1, -3.1665e-08, 8.3819e-09, 5.96046e-08, 0.125006, 0.241031, -0.0120225, 0.962358, 1, 1, 1, 2.08333, 1, -2.98023e-08, 9.31323e-10, 2.98023e-08, 0.157466, 0.294437, -0.0137937, 0.942508, 1, 1, 1, 2.125, 1, -4.65661e-08, -4.65661e-10, 2.98023e-08, 0.157805, 0.294132, -0.0139647, 0.942544, 1, 1, 1, 2.16667, 1, -4.09782e-08, 6.51926e-09, 4.47035e-08, 0.158144, 0.293828, -0.0141357, 0.942579, 1, 1, 1, 2.20833, 1, -5.40167e-08, 5.12227e-09, 0, 0.158483, 0.293523, -0.0143067, 0.942615, 1, 1, 1, 2.25, 1, -4.84288e-08, 4.65661e-10, 4.47035e-08, 0.158822, 0.293218, -0.0144778, 0.94265, 1, 1, 1, 4.16667, 1, -3.91155e-08, 1.58325e-08, 5.96046e-08, 0.174376, 0.279112, -0.0223412, 0.944029, 1, 1, 1 </real_array>
-		<string name="tracks/19/type"> "transform" </string>
-		<node_path name="tracks/19/path"> "metarig/Skeleton:f_index.01.R" </node_path>
-		<int name="tracks/19/interp"> 1 </int>
-		<bool name="tracks/19/imported"> True </bool>
-		<real_array name="tracks/19/keys" len="24"> 			0, 1, 3.72529e-09, -1.35042e-08, 5.21541e-08, -3.72529e-09, 2.98023e-08, -1.86264e-08, 1, 1, 1, 1, 4.16667, 1, -1.86265e-09, -7.91624e-09, 5.21541e-08, -1.11759e-08, 1.49012e-08, -2.04891e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/20/type"> "transform" </string>
-		<node_path name="tracks/20/path"> "metarig/Skeleton:Bone" </node_path>
-		<int name="tracks/20/interp"> 1 </int>
-		<bool name="tracks/20/imported"> True </bool>
-		<real_array name="tracks/20/keys" len="24"> 			0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 4.16667, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 </real_array>
-		<string name="tracks/21/type"> "transform" </string>
-		<node_path name="tracks/21/path"> "metarig/Skeleton:f_index.02.R" </node_path>
-		<int name="tracks/21/interp"> 1 </int>
-		<bool name="tracks/21/imported"> True </bool>
-		<real_array name="tracks/21/keys" len="24"> 			0, 1, 2.08383e-08, 4.98185e-08, 2.23517e-08, -1.00117e-08, 3.1665e-08, -2.24827e-09, 1, 1, 1, 1, 4.16667, 1, 2.36323e-08, 2.67537e-08, 0, 9.31323e-09, 3.91156e-08, -2.08529e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/22/type"> "transform" </string>
-		<node_path name="tracks/22/path"> "metarig/Skeleton:f_index.03.R" </node_path>
-		<int name="tracks/22/interp"> 1 </int>
-		<bool name="tracks/22/imported"> True </bool>
-		<real_array name="tracks/22/keys" len="24"> 			0, 1, -3.03553e-08, -5.65778e-08, -6.51926e-08, 1.49012e-08, -1.3737e-08, -5.87897e-09, 1, 1, 1, 1, 4.16667, 1, -1.63127e-08, -6.56582e-08, -5.7742e-08, 1.49012e-08, -6.28643e-09, -4.83124e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/23/type"> "transform" </string>
-		<node_path name="tracks/23/path"> "metarig/Skeleton:thumb.01.R" </node_path>
-		<int name="tracks/23/interp"> 1 </int>
-		<bool name="tracks/23/imported"> True </bool>
-		<real_array name="tracks/23/keys" len="24"> 			0, 1, 1.16415e-08, -3.1665e-08, 5.96046e-08, 2.98023e-08, 1.11759e-08, -7.45058e-09, 1, 1, 1, 1, 4.16667, 1, 6.98492e-09, -2.23517e-08, 4.47035e-08, 5.96047e-08, 3.72529e-09, 0, 1, 1, 1, 1 </real_array>
-		<string name="tracks/24/type"> "transform" </string>
-		<node_path name="tracks/24/path"> "metarig/Skeleton:thumb.02.R" </node_path>
-		<int name="tracks/24/interp"> 1 </int>
-		<bool name="tracks/24/imported"> True </bool>
-		<real_array name="tracks/24/keys" len="24"> 			0, 1, 2.56114e-08, -1.67638e-08, -1.11759e-08, -3.72529e-08, -2.98023e-08, -7.45058e-09, 1, 1, 1, 1, 4.16667, 1, 2.42144e-08, -3.1665e-08, -2.04891e-08, -7.45058e-09, -3.72529e-08, -7.45058e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/25/type"> "transform" </string>
-		<node_path name="tracks/25/path"> "metarig/Skeleton:thumb.03.R" </node_path>
-		<int name="tracks/25/interp"> 1 </int>
-		<bool name="tracks/25/imported"> True </bool>
-		<real_array name="tracks/25/keys" len="24"> 			0, 1, -3.31784e-08, -1.30385e-08, 4.09782e-08, 2.98023e-08, -1.86264e-09, 1.53668e-08, 1, 1, 1, 1, 4.16667, 1, -1.90921e-08, 4.65661e-09, 3.53903e-08, 2.23517e-08, 3.72529e-09, -3.72529e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/26/type"> "transform" </string>
-		<node_path name="tracks/26/path"> "metarig/Skeleton:f_middle.01.R" </node_path>
-		<int name="tracks/26/interp"> 1 </int>
-		<bool name="tracks/26/imported"> True </bool>
-		<real_array name="tracks/26/keys" len="24"> 			0, 1, 2.70084e-08, 6.33299e-08, 7.45058e-08, -5.21541e-08, 1.49012e-08, -6.0536e-09, 1, 1, 1, 1, 4.16667, 1, 2.70084e-08, 3.81842e-08, 5.96046e-08, -1.49012e-08, -3.24393e-16, 1.62981e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/27/type"> "transform" </string>
-		<node_path name="tracks/27/path"> "metarig/Skeleton:f_middle.02.R" </node_path>
-		<int name="tracks/27/interp"> 1 </int>
-		<bool name="tracks/27/imported"> True </bool>
-		<real_array name="tracks/27/keys" len="24"> 			0, 1, -1.18744e-08, -1.86265e-09, -4.09782e-08, 1.49012e-08, -7.45058e-09, 2.67755e-09, 1, 1, 1, 1, 4.16667, 1, -2.03727e-08, 3.0268e-09, -3.72529e-08, 7.45058e-09, -3.72529e-09, -5.37839e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/28/type"> "transform" </string>
-		<node_path name="tracks/28/path"> "metarig/Skeleton:f_middle.03.R" </node_path>
-		<int name="tracks/28/interp"> 1 </int>
-		<bool name="tracks/28/imported"> True </bool>
-		<real_array name="tracks/28/keys" len="24"> 			0, 1, -1.86265e-09, 2.06055e-08, -6.51926e-08, 3.72529e-08, 7.45058e-09, -8.3819e-09, 1, 1, 1, 1, 4.16667, 1, 2.79397e-09, 2.21189e-09, -5.02914e-08, 2.04891e-08, -3.72529e-09, -2.11876e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/29/type"> "transform" </string>
-		<node_path name="tracks/29/path"> "metarig/Skeleton:f_ring.01.R" </node_path>
-		<int name="tracks/29/interp"> 1 </int>
-		<bool name="tracks/29/imported"> True </bool>
-		<real_array name="tracks/29/keys" len="24"> 			0, 1, -7.21775e-09, 3.72529e-09, 7.45058e-09, -7.45058e-09, -5.58793e-09, 2.79397e-09, 1, 1, 1, 1, 4.16667, 1, 1.16415e-09, -9.31323e-09, 1.49012e-08, 7.45058e-09, 1.49012e-08, 3.25963e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/30/type"> "transform" </string>
-		<node_path name="tracks/30/path"> "metarig/Skeleton:f_ring.02.R" </node_path>
-		<int name="tracks/30/interp"> 1 </int>
-		<bool name="tracks/30/imported"> True </bool>
-		<real_array name="tracks/30/keys" len="24"> 			0, 1, 1.78115e-08, -4.98258e-08, 1.86265e-08, -3.72529e-09, 4.65661e-10, 3.0268e-09, 1, 1, 1, 1, 4.16667, 1, 1.25146e-08, -4.4005e-08, 1.49012e-08, -3.72529e-08, 2.56114e-08, 1.61235e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/31/type"> "transform" </string>
-		<node_path name="tracks/31/path"> "metarig/Skeleton:spine.002" </node_path>
-		<int name="tracks/31/interp"> 1 </int>
-		<bool name="tracks/31/imported"> True </bool>
-		<real_array name="tracks/31/keys" len="60"> 			0, 1, 0, 0, 0, -0.149702, -1.28228e-08, -5.30566e-10, 0.988731, 1, 1, 1, 1.16667, 1, 0, 0, 0, -0.0667852, -0.0316746, 0.164527, 0.983599, 1, 1, 1, 2.08333, 1, 0, 0, 0, 5.84837e-09, -0.0557858, 0.289768, 0.95547, 1, 1, 1, 3.125, 1, 0, 0, 0, 0.167834, -0.131108, 0.294006, 0.931774, 1, 1, 1, 4.16667, 1, 0, 0, 0, 0.329892, -0.201917, 0.288125, 0.876005, 1, 1, 1 </real_array>
-		<string name="tracks/32/type"> "transform" </string>
-		<node_path name="tracks/32/path"> "metarig/Skeleton:f_ring.03.R" </node_path>
-		<int name="tracks/32/interp"> 1 </int>
-		<bool name="tracks/32/imported"> True </bool>
-		<real_array name="tracks/32/keys" len="24"> 			0, 1, -2.79397e-08, -5.58794e-09, -1.546e-07, 4.47035e-08, 1.1588e-15, 2.51457e-08, 1, 1, 1, 1, 4.16667, 1, -3.23635e-08, -3.49246e-09, -1.75089e-07, 5.21541e-08, 3.46945e-16, 9.31323e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/33/type"> "transform" </string>
-		<node_path name="tracks/33/path"> "metarig/Skeleton:f_pinky.01.R" </node_path>
-		<int name="tracks/33/interp"> 1 </int>
-		<bool name="tracks/33/imported"> True </bool>
-		<real_array name="tracks/33/keys" len="24"> 			0, 1, -3.44589e-08, -1.30385e-08, 1.2666e-07, -4.47035e-08, -2.23517e-08, -7.45058e-09, 1, 1, 1, 1, 4.16667, 1, -3.1665e-08, -2.04891e-08, 1.19209e-07, -4.47035e-08, -2.23517e-08, 3.72529e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/34/type"> "transform" </string>
-		<node_path name="tracks/34/path"> "metarig/Skeleton:f_pinky.02.R" </node_path>
-		<int name="tracks/34/interp"> 1 </int>
-		<bool name="tracks/34/imported"> True </bool>
-		<real_array name="tracks/34/keys" len="24"> 			0, 1, -3.73693e-08, 9.45292e-08, -2.98023e-08, 2.04891e-08, 1.86265e-09, 5.23869e-09, 1, 1, 1, 1, 4.16667, 1, -3.34112e-08, 9.34815e-08, -3.35276e-08, 3.53903e-08, 1.58325e-08, 4.36558e-09, 1, 1, 1, 1 </real_array>
-		<string name="tracks/35/type"> "transform" </string>
-		<node_path name="tracks/35/path"> "metarig/Skeleton:f_pinky.03.R" </node_path>
-		<int name="tracks/35/interp"> 1 </int>
-		<bool name="tracks/35/imported"> True </bool>
-		<real_array name="tracks/35/keys" len="24"> 			0, 1, 3.81842e-08, -1.24099e-07, -4.28408e-08, 2.6077e-08, 7.45058e-09, -7.45058e-09, 1, 1, 1, 1, 4.16667, 1, 3.91155e-08, -1.29803e-07, -3.72529e-08, 3.35276e-08, 1.49012e-08, 1.76951e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/36/type"> "transform" </string>
-		<node_path name="tracks/36/path"> "metarig/Skeleton:breast.L" </node_path>
-		<int name="tracks/36/interp"> 1 </int>
-		<bool name="tracks/36/imported"> True </bool>
-		<real_array name="tracks/36/keys" len="24"> 			0, 1, 1.40863e-08, -2.23517e-08, 1.6531e-08, -1.49012e-08, -3.21306e-08, -1.86265e-09, 1, 1, 1, 1, 4.16667, 1, 1.00117e-08, -1.30385e-08, 2.56114e-09, -1.1189e-16, -2.00234e-08, 2.23517e-08, 1, 1, 1, 1 </real_array>
-		<string name="tracks/37/type"> "transform" </string>
-		<node_path name="tracks/37/path"> "metarig/Skeleton:breast.R" </node_path>
-		<int name="tracks/37/interp"> 1 </int>
-		<bool name="tracks/37/imported"> True </bool>
-		<real_array name="tracks/37/keys" len="24"> 			0, 1, -1.40863e-08, -2.23517e-08, 1.6531e-08, -1.49012e-08, 3.11993e-08, 3.72529e-09, 1, 1, 1, 1, 4.16667, 1, -9.54606e-09, -3.72529e-09, 3.95812e-09, 6.80012e-16, 3.1665e-08, 0, 1, 1, 1, 1 </real_array>
-		<string name="tracks/38/type"> "transform" </string>
-		<node_path name="tracks/38/path"> "metarig/Skeleton:spine.005" </node_path>
-		<int name="tracks/38/interp"> 1 </int>
-		<bool name="tracks/38/imported"> True </bool>
-		<real_array name="tracks/38/keys" len="24"> 			0, 1, 0, 0, 0, 1.38133e-25, 5.11591e-13, -1.42109e-14, 1, 1, 1, 1, 4.16667, 1, 0, 0, 0, 1.38133e-25, 5.11591e-13, -1.42109e-14, 1, 1, 1, 1 </real_array>
-		<string name="tracks/39/type"> "transform" </string>
-		<node_path name="tracks/39/path"> "metarig/Skeleton:thigh.L" </node_path>
-		<int name="tracks/39/interp"> 1 </int>
-		<bool name="tracks/39/imported"> True </bool>
-		<real_array name="tracks/39/keys" len="24"> 			0, 1, 1.86265e-09, -3.72529e-09, 7.45058e-09, -1.49012e-08, -2.77556e-17, 9.31323e-10, 1, 1, 1, 1, 4.16667, 1, 1.86265e-09, -3.72529e-09, 7.45058e-09, -1.49012e-08, -2.77556e-17, 9.31323e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/40/type"> "transform" </string>
-		<node_path name="tracks/40/path"> "metarig/Skeleton:shin.L" </node_path>
-		<int name="tracks/40/interp"> 1 </int>
-		<bool name="tracks/40/imported"> True </bool>
-		<real_array name="tracks/40/keys" len="24"> 			0, 1, 1.86265e-09, 1.11759e-08, 0, -1.86265e-09, -3.72529e-09, 2.32831e-10, 1, 1, 1, 1, 4.16667, 1, 1.86265e-09, 1.11759e-08, 0, -1.86265e-09, -3.72529e-09, 2.32831e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/41/type"> "transform" </string>
-		<node_path name="tracks/41/path"> "metarig/Skeleton:foot.L" </node_path>
-		<int name="tracks/41/interp"> 1 </int>
-		<bool name="tracks/41/imported"> True </bool>
-		<real_array name="tracks/41/keys" len="24"> 			0, 1, -5.12227e-09, -2.98023e-08, -1.19209e-07, -2.98023e-08, 4.65661e-10, 6.98492e-10, 1, 1, 1, 1, 4.16667, 1, -5.12227e-09, -2.98023e-08, -1.19209e-07, -2.98023e-08, 4.65661e-10, 6.98492e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/42/type"> "transform" </string>
-		<node_path name="tracks/42/path"> "metarig/Skeleton:spine.003" </node_path>
-		<int name="tracks/42/interp"> 1 </int>
-		<bool name="tracks/42/imported"> True </bool>
-		<real_array name="tracks/42/keys" len="60"> 			0, 1, 3.33067e-16, 7.45058e-09, -1.49012e-08, -0.23506, -1.72877e-08, -2.12628e-09, 0.971981, 1, 1, 1, 1.66667, 1, 4.65661e-10, 7.45058e-09, -2.23517e-08, -0.0472242, -7.5239e-09, 6.79413e-09, 0.998884, 1, 1, 1, 2.08333, 1, -7.84175e-10, 9.31323e-09, -2.23517e-08, 2.23517e-08, 4.08626e-09, -3.38051e-08, 1, 1, 1, 1, 3.79167, 1, 1.86264e-09, 3.72529e-09, -1.49012e-08, 0.148193, -0.105538, -0.0490006, 0.982089, 1, 1, 1, 4.16667, 1, -2.79397e-09, 7.45058e-09, -1.49012e-08, 0.180014, -0.1282, -0.0595223, 0.973456, 1, 1, 1 </real_array>
-		<string name="tracks/43/type"> "transform" </string>
-		<node_path name="tracks/43/path"> "metarig/Skeleton:toe.L" </node_path>
-		<int name="tracks/43/interp"> 1 </int>
-		<bool name="tracks/43/imported"> True </bool>
-		<real_array name="tracks/43/keys" len="24"> 			0, 1, 3.84171e-09, 3.12924e-07, 8.9407e-08, 1.49012e-08, 3.66708e-09, -2.32831e-10, 1, 1, 1, 1, 4.16667, 1, 3.84171e-09, 3.12924e-07, 8.9407e-08, 1.49012e-08, 3.66708e-09, -2.32831e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/44/type"> "transform" </string>
-		<node_path name="tracks/44/path"> "metarig/Skeleton:thigh.R" </node_path>
-		<int name="tracks/44/interp"> 1 </int>
-		<bool name="tracks/44/imported"> True </bool>
-		<real_array name="tracks/44/keys" len="24"> 			0, 1, -4.65661e-10, 0, 0, 0, 0, -4.65661e-10, 1, 1, 1, 1, 4.16667, 1, -4.65661e-10, 0, 0, 0, 0, -4.65661e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/45/type"> "transform" </string>
-		<node_path name="tracks/45/path"> "metarig/Skeleton:shin.R" </node_path>
-		<int name="tracks/45/interp"> 1 </int>
-		<bool name="tracks/45/imported"> True </bool>
-		<real_array name="tracks/45/keys" len="24"> 			0, 1, -3.72529e-09, 1.86265e-08, 5.96046e-08, -6.50522e-19, 5.58794e-09, -2.32831e-10, 1, 1, 1, 1, 4.16667, 1, -3.72529e-09, 1.86265e-08, 5.96046e-08, -6.50522e-19, 5.58794e-09, -2.32831e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/46/type"> "transform" </string>
-		<node_path name="tracks/46/path"> "metarig/Skeleton:foot.R" </node_path>
-		<int name="tracks/46/interp"> 1 </int>
-		<bool name="tracks/46/imported"> True </bool>
-		<real_array name="tracks/46/keys" len="24"> 			0, 1, 2.32831e-09, 8.9407e-08, -2.68221e-07, -2.98023e-08, 1.62981e-09, 4.65661e-10, 1, 1, 1, 1, 4.16667, 1, 2.32831e-09, 8.9407e-08, -2.68221e-07, -2.98023e-08, 1.62981e-09, 4.65661e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/47/type"> "transform" </string>
-		<node_path name="tracks/47/path"> "metarig/Skeleton:toe.R" </node_path>
-		<int name="tracks/47/interp"> 1 </int>
-		<bool name="tracks/47/imported"> True </bool>
-		<real_array name="tracks/47/keys" len="24"> 			0, 1, 4.65661e-10, 1.78814e-07, 1.2666e-07, -4.47035e-08, -1.16415e-09, -9.31323e-10, 1, 1, 1, 1, 4.16667, 1, 4.65661e-10, 1.78814e-07, 1.2666e-07, -4.47035e-08, -1.16415e-09, -9.31323e-10, 1, 1, 1, 1 </real_array>
-		<string name="tracks/48/type"> "transform" </string>
-		<node_path name="tracks/48/path"> "metarig/Skeleton:camera" </node_path>
-		<int name="tracks/48/interp"> 1 </int>
-		<bool name="tracks/48/imported"> True </bool>
-		<real_array name="tracks/48/keys" len="132"> 			0, 1, 0.360859, -1.53311, -1.19385, 0.707107, -6.57491e-06, 0, 0.707107, 1, 1, 1, 0.5, 1, 0.369476, -1.20378, -0.874995, 0.568638, -5.28738e-06, -1.38206e-13, 0.822588, 1, 1, 1, 0.958333, 1, 0.377375, -0.901882, -0.582715, 0.413071, -3.84087e-06, -3.74504e-13, 0.910699, 1, 1, 1, 1.41667, 1, 0.385275, -0.599989, -0.290435, 0.242239, -2.25242e-06, 8.78826e-14, 0.970217, 1, 1, 1, 1.91667, 1, 0.393892, -0.27065, 0.0284165, 0.0578289, -5.37712e-07, 1.10319e-13, 0.998327, 1, 1, 1, 2.08333, 1, 0.396765, -0.160871, 0.1347, 0, 0, 0, 1, 1, 1, 1, 2.58333, 1, 0.388155, 0.380075, -0.370775, -0.17957, 1.6697e-06, -2.88913e-14, 0.983745, 1, 1, 1, 3.04167, 1, 0.380263, 0.875942, -0.834127, -0.351876, 3.27185e-06, -4.2509e-13, 0.936047, 1, 1, 1, 3.5, 1, 0.372372, 1.37181, -1.29748, -0.514758, 4.78639e-06, -3.97814e-13, 0.857336, 1, 1, 1, 4, 1, 0.363762, 1.91275, -1.80295, -0.665032, 6.18369e-06, -3.04458e-13, 0.746815, 1, 1, 1, 4.16667, 1, 0.360892, 2.09307, -1.97145, -0.707107, 6.57491e-06, 0, 0.707107, 1, 1, 1 </real_array>
-		<string name="tracks/49/type"> "transform" </string>
-		<node_path name="tracks/49/path"> "metarig/Skeleton:gun" </node_path>
-		<int name="tracks/49/interp"> 1 </int>
-		<bool name="tracks/49/imported"> True </bool>
-		<real_array name="tracks/49/keys" len="132"> 			0, 1, 0.141523, 0, -0.0747175, 0.707107, 7.85046e-17, -7.85046e-17, 0.707107, 1, 1, 1, 0.666667, 1, 0.142939, 0, -0.0508078, 0.56231, 8.53788e-17, -5.80576e-17, 0.826927, 1, 1, 1, 1.16667, 1, 0.144001, 0, -0.0328757, 0.402739, 7.49212e-17, -3.29653e-17, 0.915315, 1, 1, 1, 1.58333, 1, 0.144886, 0, -0.0179322, 0.233373, 4.8997e-17, -1.17593e-17, 0.972387, 1, 1, 1, 1.95833, 1, 0.145683, 0, -0.00448304, 0.0598923, 1.32511e-17, -7.95064e-19, 0.998205, 1, 1, 1, 2.08333, 1, 0.145948, 0, 0, -2.93874e-39, 1.32349e-23, 0, 1, 1, 1, 1, 2.45833, 1, 0.13958, 0, -0.0272384, -0.177153, -2.43849e-17, -4.38928e-18, 0.984183, 1, 1, 1, 2.875, 1, 0.132503, 0, -0.0575033, -0.355218, -1.65412e-17, -6.28567e-18, 0.934784, 1, 1, 1, 3.375, 1, 0.124012, 0, -0.0938212, -0.52694, 2.02839e-17, 1.2576e-17, 0.849903, 1, 1, 1, 4, 1, 0.113397, 0, -0.139219, -0.677057, 6.83941e-17, 6.29226e-17, 0.735931, 1, 1, 1, 4.16667, 1, 0.110567, 0, -0.151325, -0.707107, 7.85046e-17, 7.85046e-17, 0.707107, 1, 1, 1 </real_array>
-		<string name="tracks/50/type"> "transform" </string>
-		<node_path name="tracks/50/path"> "metarig/Skeleton:spine.004" </node_path>
-		<int name="tracks/50/interp"> 1 </int>
-		<bool name="tracks/50/imported"> True </bool>
-		<real_array name="tracks/50/keys" len="36"> 			0, 1, 5.32907e-15, -1.49012e-08, 5.96046e-08, 1.49012e-08, 3.55271e-15, 7.10543e-15, 1, 1, 1, 1, 2.08333, 1, -3.19847e-09, -1.49012e-08, 1.49012e-08, -1.49012e-08, -2.30853e-09, -2.2322e-08, 1, 1, 1, 1, 4.16667, 1, 3.7253e-09, -2.23517e-08, 1.49012e-08, 0.125344, -0.0650903, -0.0297585, 0.989529, 1, 1, 1 </real_array>
-		<string name="tracks/51/type"> "transform" </string>
-		<node_path name="tracks/51/path"> "metarig/Skeleton:spine.006" </node_path>
-		<int name="tracks/51/interp"> 1 </int>
-		<bool name="tracks/51/imported"> True </bool>
-		<real_array name="tracks/51/keys" len="36"> 			0, 1, -5.32907e-15, 1.49012e-08, -7.45058e-08, -7.45058e-09, -2.31611e-23, 3.10862e-15, 1, 1, 1, 1, 2.08333, 1, -3.86591e-09, -1.30385e-08, -5.21541e-08, 7.45058e-09, 4.02696e-10, -1.45454e-08, 1, 1, 1, 1, 4.16667, 1, -1.11759e-08, 2.23517e-08, -4.47035e-08, 0.0602834, -0.043651, -0.00923855, 0.997184, 1, 1, 1 </real_array>
-		<string name="tracks/52/type"> "transform" </string>
-		<node_path name="tracks/52/path"> "metarig/Skeleton:upper_arm.L" </node_path>
-		<int name="tracks/52/interp"> 1 </int>
-		<bool name="tracks/52/imported"> True </bool>
-		<real_array name="tracks/52/keys" len="60"> 			0, 1, 1.49012e-08, -2.23517e-08, -4.09782e-08, 0.707404, 0.289099, -0.145879, 0.628268, 1, 1, 1, 1.20833, 1, 1.49012e-08, -7.45058e-09, -1.11759e-08, 0.670501, 0.217285, -0.316711, 0.634752, 1, 1, 1, 2.08333, 1, 0, -1.49012e-08, -3.35276e-08, 0.628844, 0.160443, -0.433362, 0.625309, 1, 1, 1, 3.29167, 1, 0, -3.72529e-08, -3.35276e-08, 0.47693, 0.125868, -0.492024, 0.717362, 1, 1, 1, 4.16667, 1, 0, -5.21541e-08, -4.84288e-08, 0.356169, 0.0979924, -0.523408, 0.767845, 1, 1, 1 </real_array>
-		<string name="tracks/53/type"> "transform" </string>
-		<node_path name="tracks/53/path"> "metarig/Skeleton:forearm.L" </node_path>
-		<int name="tracks/53/interp"> 1 </int>
-		<bool name="tracks/53/imported"> True </bool>
-		<real_array name="tracks/53/keys" len="84"> 			0, 1, -5.7742e-08, -9.31323e-09, -8.9407e-08, 0.307798, 0.0363742, -0.00606531, 0.950737, 1, 1, 1, 1, 1, -8.9407e-08, 9.31323e-09, -5.96046e-08, 0.130855, -0.00377126, -0.0470574, 0.990277, 1, 1, 1, 2, 1, -6.14673e-08, -1.86265e-09, -8.9407e-08, -0.0513732, -0.0439002, -0.0864628, 0.993961, 1, 1, 1, 2.08333, 1, -7.63685e-08, -3.72529e-09, -8.9407e-08, -0.0661786, -0.0471082, -0.0895434, 0.992665, 1, 1, 1, 2.95833, 1, -6.70552e-08, 7.45058e-09, -4.47035e-08, 0.038952, 0.109908, -0.0940309, 0.988717, 1, 1, 1, 3.83333, 1, -5.7742e-08, 1.49012e-08, -7.45058e-08, 0.144111, 0.265079, -0.0951493, 0.948637, 1, 1, 1, 4.16667, 1, -6.89179e-08, 2.04891e-08, -5.96046e-08, 0.181832, 0.320249, -0.094676, 0.924886, 1, 1, 1 </real_array>
-		<string name="tracks/54/type"> "transform" </string>
-		<node_path name="tracks/54/path"> "metarig" </node_path>
-		<int name="tracks/54/interp"> 1 </int>
-		<bool name="tracks/54/imported"> True </bool>
-		<real_array name="tracks/54/keys" len="24"> 			0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 4.16667, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 </real_array>
-
-	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -953,12 +389,13 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="325">
-				<string> "untitled3" </string>
+			<string_array  len="313">
+				<string> "AIM" </string>
 				<string> "_import_path" </string>
 				<string> "_import_transform" </string>
 				<string> "Spatial" </string>
 				<string> "metarig" </string>
+				<string> "editor/display_folded" </string>
 				<string> "Skeleton" </string>
 				<string> "bones/0/name" </string>
 				<string> "bones/0/parent" </string>
@@ -1256,27 +693,14 @@
 				<string> "MeshInstance" </string>
 				<string> "gun" </string>
 				<string> "transform/local" </string>
-				<string> "BoneAttachment" </string>
-				<string> "bone_name" </string>
-				<string> "Camera" </string>
-				<string> "projection" </string>
-				<string> "fov" </string>
-				<string> "near" </string>
-				<string> "far" </string>
-				<string> "keep_aspect" </string>
-				<string> "current" </string>
-				<string> "visible_layers" </string>
-				<string> "environment" </string>
-				<string> "h_offset" </string>
-				<string> "v_offset" </string>
-				<string> "AnimationPlayer" </string>
+				<string> "camera" </string>
+				<string> "AnimationTreePlayer" </string>
 				<string> "playback/process_mode" </string>
-				<string> "playback/default_blend_time" </string>
-				<string> "root/root" </string>
-				<string> "anims/default" </string>
-				<string> "anims/look" </string>
-				<string> "playback/active" </string>
-				<string> "playback/speed" </string>
+				<string> "base_path" </string>
+				<string> "master_player" </string>
+				<string> "data" </string>
+				<string> "AnimationPlayer" </string>
+				<string> "next/run" </string>
 				<string> "blend_times" </string>
 				<string> "autoplay" </string>
 			</string_array>
@@ -1286,17 +710,17 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="708"> 				-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 3, 4, -1, 2, 1, 2, 2, 1, 0, 1, 0, 5, 5, -1, 272, 1, 3, 2, 1, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11, 9, 12, 10, 13, 11, 14, 7, 15, 8, 16, 12, 17, 13, 18, 14, 19, 7, 20, 8, 21, 15, 22, 16, 23, 17, 24, 7, 25, 8, 26, 18, 27, 19, 28, 20, 29, 7, 30, 8, 31, 21, 32, 16, 33, 22, 34, 7, 35, 8, 36, 23, 37, 24, 38, 25, 39, 7, 40, 8, 41, 26, 42, 27, 43, 28, 44, 7, 45, 8, 46, 29, 47, 30, 48, 31, 49, 7, 50, 8, 51, 32, 52, 33, 53, 34, 54, 7, 55, 8, 56, 35, 57, 36, 58, 37, 59, 7, 60, 8, 61, 38, 62, 30, 63, 39, 64, 7, 65, 8, 66, 40, 67, 41, 68, 42, 69, 7, 70, 8, 71, 43, 72, 44, 73, 45, 74, 7, 75, 8, 76, 46, 77, 30, 78, 47, 79, 7, 80, 8, 81, 48, 82, 49, 83, 50, 84, 7, 85, 8, 86, 51, 87, 52, 88, 53, 89, 7, 90, 8, 91, 54, 92, 30, 93, 55, 94, 7, 95, 8, 96, 56, 97, 57, 98, 58, 99, 7, 100, 8, 101, 59, 102, 60, 103, 61, 104, 7, 105, 8, 106, 62, 107, 30, 108, 63, 109, 7, 110, 8, 111, 64, 112, 65, 113, 66, 114, 7, 115, 8, 116, 67, 117, 68, 118, 69, 119, 7, 120, 8, 121, 70, 122, 16, 123, 71, 124, 7, 125, 8, 126, 72, 127, 73, 128, 74, 129, 7, 130, 8, 131, 75, 132, 76, 133, 77, 134, 7, 135, 8, 136, 78, 137, 79, 138, 80, 139, 7, 140, 8, 141, 81, 142, 82, 143, 83, 144, 7, 145, 8, 146, 84, 147, 85, 148, 86, 149, 7, 150, 8, 151, 87, 152, 79, 153, 88, 154, 7, 155, 8, 156, 89, 157, 90, 158, 91, 159, 7, 160, 8, 161, 92, 162, 93, 163, 94, 164, 7, 165, 8, 166, 95, 167, 79, 168, 96, 169, 7, 170, 8, 171, 97, 172, 98, 173, 99, 174, 7, 175, 8, 176, 100, 177, 101, 178, 102, 179, 7, 180, 8, 181, 103, 182, 79, 183, 104, 184, 7, 185, 8, 186, 105, 187, 106, 188, 107, 189, 7, 190, 8, 191, 108, 192, 109, 193, 110, 194, 7, 195, 8, 196, 111, 197, 79, 198, 112, 199, 7, 200, 8, 201, 113, 202, 114, 203, 115, 204, 7, 205, 8, 206, 116, 207, 117, 208, 118, 209, 7, 210, 8, 211, 119, 212, 16, 213, 120, 214, 7, 215, 8, 216, 121, 217, 16, 218, 122, 219, 7, 220, 8, 221, 123, 222, 10, 223, 124, 224, 7, 225, 8, 226, 125, 227, 126, 228, 127, 229, 7, 230, 8, 231, 128, 232, 129, 233, 130, 234, 7, 235, 8, 236, 131, 237, 132, 238, 133, 239, 7, 240, 8, 241, 134, 242, 135, 243, 136, 244, 7, 245, 8, 246, 137, 247, 126, 248, 138, 249, 7, 250, 8, 251, 139, 252, 140, 253, 141, 254, 7, 255, 8, 256, 142, 257, 143, 258, 144, 259, 7, 260, 8, 261, 145, 262, 146, 263, 147, 264, 7, 265, 8, 266, 148, 267, 10, 268, 149, 269, 7, 270, 8, 271, 150, 272, 10, 273, 151, 274, 7, 275, 8, 0, 2, 0, 299, 276, -1, 24, 1, 152, 2, 1, 277, 13, 278, 7, 279, 153, 280, 13, 281, 7, 282, 154, 283, 154, 284, 154, 285, 155, 286, 155, 287, 155, 288, 155, 289, 7, 290, 10, 291, 156, 292, 157, 293, 153, 294, 153, 295, 153, 296, 153, 297, 153, 298, 153, 0, 2, 0, 2147483647, 300, 158, 1, 301, 159, 0, 2, 0, 302, 302, -1, 3, 2, 1, 301, 160, 303, 148, 0, 5, 0, 304, 304, -1, 12, 1, 161, 2, 162, 305, 10, 306, 163, 307, 164, 308, 165, 309, 13, 310, 155, 311, 166, 312, 153, 313, 154, 314, 154, 0, 0, 0, 315, 315, -1, 10, 1, 167, 316, 13, 317, 154, 318, 157, 319, 168, 320, 169, 321, 7, 322, 170, 323, 8, 324, 171, 0 </int_array>
+			<int_array  len="676"> 				-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 3, 4, -1, 3, 1, 2, 5, 3, 2, 1, 0, 1, 0, 6, 6, -1, 272, 1, 4, 2, 1, 7, 5, 8, 6, 9, 7, 10, 3, 11, 8, 12, 9, 13, 10, 14, 11, 15, 3, 16, 8, 17, 12, 18, 13, 19, 14, 20, 3, 21, 8, 22, 15, 23, 16, 24, 17, 25, 3, 26, 8, 27, 18, 28, 19, 29, 20, 30, 3, 31, 8, 32, 21, 33, 16, 34, 22, 35, 3, 36, 8, 37, 23, 38, 24, 39, 25, 40, 3, 41, 8, 42, 26, 43, 27, 44, 28, 45, 3, 46, 8, 47, 29, 48, 30, 49, 31, 50, 3, 51, 8, 52, 32, 53, 33, 54, 34, 55, 3, 56, 8, 57, 35, 58, 36, 59, 37, 60, 3, 61, 8, 62, 38, 63, 30, 64, 39, 65, 3, 66, 8, 67, 40, 68, 41, 69, 42, 70, 3, 71, 8, 72, 43, 73, 44, 74, 45, 75, 3, 76, 8, 77, 46, 78, 30, 79, 47, 80, 3, 81, 8, 82, 48, 83, 49, 84, 50, 85, 3, 86, 8, 87, 51, 88, 52, 89, 53, 90, 3, 91, 8, 92, 54, 93, 30, 94, 55, 95, 3, 96, 8, 97, 56, 98, 57, 99, 58, 100, 3, 101, 8, 102, 59, 103, 60, 104, 61, 105, 3, 106, 8, 107, 62, 108, 30, 109, 63, 110, 3, 111, 8, 112, 64, 113, 65, 114, 66, 115, 3, 116, 8, 117, 67, 118, 68, 119, 69, 120, 3, 121, 8, 122, 70, 123, 16, 124, 71, 125, 3, 126, 8, 127, 72, 128, 73, 129, 74, 130, 3, 131, 8, 132, 75, 133, 76, 134, 77, 135, 3, 136, 8, 137, 78, 138, 79, 139, 80, 140, 3, 141, 8, 142, 81, 143, 82, 144, 83, 145, 3, 146, 8, 147, 84, 148, 85, 149, 86, 150, 3, 151, 8, 152, 87, 153, 79, 154, 88, 155, 3, 156, 8, 157, 89, 158, 90, 159, 91, 160, 3, 161, 8, 162, 92, 163, 93, 164, 94, 165, 3, 166, 8, 167, 95, 168, 79, 169, 96, 170, 3, 171, 8, 172, 97, 173, 98, 174, 99, 175, 3, 176, 8, 177, 100, 178, 101, 179, 102, 180, 3, 181, 8, 182, 103, 183, 79, 184, 104, 185, 3, 186, 8, 187, 105, 188, 106, 189, 107, 190, 3, 191, 8, 192, 108, 193, 109, 194, 110, 195, 3, 196, 8, 197, 111, 198, 79, 199, 112, 200, 3, 201, 8, 202, 113, 203, 114, 204, 115, 205, 3, 206, 8, 207, 116, 208, 117, 209, 118, 210, 3, 211, 8, 212, 119, 213, 16, 214, 120, 215, 3, 216, 8, 217, 121, 218, 16, 219, 122, 220, 3, 221, 8, 222, 123, 223, 10, 224, 124, 225, 3, 226, 8, 227, 125, 228, 126, 229, 127, 230, 3, 231, 8, 232, 128, 233, 129, 234, 130, 235, 3, 236, 8, 237, 131, 238, 132, 239, 133, 240, 3, 241, 8, 242, 134, 243, 135, 244, 136, 245, 3, 246, 8, 247, 137, 248, 126, 249, 138, 250, 3, 251, 8, 252, 139, 253, 140, 254, 141, 255, 3, 256, 8, 257, 142, 258, 143, 259, 144, 260, 3, 261, 8, 262, 145, 263, 146, 264, 147, 265, 3, 266, 8, 267, 148, 268, 10, 269, 149, 270, 3, 271, 150, 272, 151, 273, 10, 274, 152, 275, 3, 276, 153, 0, 2, 0, 300, 277, -1, 24, 1, 154, 2, 1, 278, 13, 279, 3, 280, 155, 281, 13, 282, 3, 283, 156, 284, 156, 285, 156, 286, 157, 287, 157, 288, 157, 289, 157, 290, 3, 291, 10, 292, 158, 293, 159, 294, 155, 295, 155, 296, 155, 297, 155, 298, 155, 299, 155, 0, 2, 0, 2147483647, 301, 160, 1, 302, 161, 0, 2, 0, 2147483647, 303, 162, 1, 302, 163, 0, 0, 0, 304, 304, -1, 4, 305, 13, 306, 159, 307, 164, 308, 165, 0, 0, 0, 2147483647, 309, 166, 3, 310, 167, 311, 168, 312, 169, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="172" shared="false">
+			<array  len="170" shared="false">
 				<node_path> "." </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<node_path> "metarig" </node_path>
+				<bool> True </bool>
 				<node_path> "metarig/Skeleton" </node_path>
 				<string> "Bone" </string>
 				<int> -1 </int>
 				<transform> -1, 9.29832e-06, -0, 9.29832e-06, 1, -0, -0, -0, -1, 0, 0, -0.7 </transform>
-				<bool> True </bool>
 				<array  len="0" shared="false">
 				</array>
 				<string> "spine.002" </string>
@@ -1440,26 +864,180 @@
 				<transform> -0.998831, -0.0187754, 0.0445517, 0.0482291, -0.451098, 0.89117, 0.00336513, 0.892277, 0.451476, 1.86265e-09, -5.21541e-08, -0.149477 </transform>
 				<string> "camera" </string>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.71933e-06, 0.4, 0.9 </transform>
+				<array  len="1" shared="false">
+					<node_path> "camera" </node_path>
+				</array>
 				<string> "gun" </string>
 				<transform> 1, 9.29832e-06, 0, -9.29832e-06, 1, 0, 0, 0, 1, 0, 0, -0.7 </transform>
+				<array  len="1" shared="false">
+					<node_path> "gun" </node_path>
+				</array>
 				<node_path> "metarig/Skeleton/Mesh_0009" </node_path>
 				<resource name=""></resource>				<real> 0 </real>
 				<bool> False </bool>
 				<resource  resource_type="Mesh" path="local://7">  </resource>
 				<node_path> ".." </node_path>
 				<resource  external="0">  </resource>
-				<transform> -1, 0, 0, 0, 0.0033313, 0.999995, 2.20598e-16, 0.999995, -0.0033313, -0.11068, 0, 0.15084 </transform>
-				<transform> -1, 9.29833e-06, 0, 4.30382e-08, 0.0046286, 0.999989, 9.29823e-06, 0.999989, -0.0046286, -0.360988, 2.48586, 0.364706 </transform>
-				<node_path> "metarig/Camera" </node_path>
-				<transform> 1, 9.29832e-06, -3.25841e-07, -9.29832e-06, 1, 5.56393e-08, 3.25841e-07, -5.56363e-08, 1, 2.27374e-13, 0, 0.3 </transform>
-				<real> 90 </real>
-				<real> 0.1 </real>
-				<real> 100 </real>
-				<int> 1048575 </int>
-				<node_path> "AnimationPlayer" </node_path>
-				<resource  resource_type="Animation" path="local://8">  </resource>
-				<resource  resource_type="Animation" path="local://9">  </resource>
-				<real> 1 </real>
+				<transform> -1, 0, 0, 0, 1, 0, 0, -0, -1, 0, 0, 0 </transform>
+				<resource  external="1">  </resource>
+				<transform> -1, 9.29832e-06, 0, 9.29832e-06, 1, 0, -0, -0, -1, -1.81899e-12, 0.4, -1.6 </transform>
+				<node_path> "../AnimationPlayer" </node_path>
+				<dictionary  shared="false">
+					<string> "active" </string>
+					<bool> False </bool>
+					<string> "connections" </string>
+					<array  len="9" shared="false">
+						<string> "anim" </string>
+						<string> "mix" </string>
+						<int> 0 </int>
+						<string> "anim 2" </string>
+						<string> "mix" </string>
+						<int> 1 </int>
+						<string> "mix" </string>
+						<string> "out" </string>
+						<int> 0 </int>
+					</array>
+					<string> "master" </string>
+					<node_path> "../AnimationPlayer" </node_path>
+					<string> "nodes" </string>
+					<array  len="4" shared="false">
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "mix" </string>
+							<string> "mix" </string>
+							<real> 1 </real>
+							<string> "pos" </string>
+							<vector2> 374, 40 </vector2>
+							<string> "type" </string>
+							<string> "mix" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="11" shared="false">
+								<node_path> "metarig/Skeleton:Bone" </node_path>
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+								<node_path> "metarig/Skeleton:spine.005" </node_path>
+							</array>
+							<string> "from" </string>
+							<string> "look" </string>
+							<string> "id" </string>
+							<string> "anim" </string>
+							<string> "pos" </string>
+							<vector2> 72, 42 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "out" </string>
+							<string> "pos" </string>
+							<vector2> 630, 66 </vector2>
+							<string> "type" </string>
+							<string> "output" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="46" shared="false">
+								<node_path> "metarig/Skeleton:Bone" </node_path>
+								<node_path> "metarig/Skeleton:forearm.R" </node_path>
+								<node_path> "metarig/Skeleton:f_ring.01.R" </node_path>
+								<node_path> "metarig/Skeleton:f_middle.02.R" </node_path>
+								<node_path> "metarig/Skeleton:f_index.01.R" </node_path>
+								<node_path> "metarig/Skeleton:hand.L" </node_path>
+								<node_path> "metarig/Skeleton:f_ring.02.R" </node_path>
+								<node_path> "metarig/Skeleton:f_middle.01.L" </node_path>
+								<node_path> "metarig/Skeleton:f_middle.03.R" </node_path>
+								<node_path> "metarig/Skeleton:f_index.02.R" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:forearm.L" </node_path>
+								<node_path> "metarig/Skeleton:f_ring.03.R" </node_path>
+								<node_path> "metarig/Skeleton:f_ring.01.L" </node_path>
+								<node_path> "metarig/Skeleton:f_middle.02.L" </node_path>
+								<node_path> "metarig/Skeleton:f_index.03.R" </node_path>
+								<node_path> "metarig/Skeleton:f_index.01.L" </node_path>
+								<node_path> "metarig/Skeleton:thumb.01.R" </node_path>
+								<node_path> "metarig/Skeleton:f_ring.02.L" </node_path>
+								<node_path> "metarig/Skeleton:f_pinky.01.R" </node_path>
+								<node_path> "metarig/Skeleton:f_middle.03.L" </node_path>
+								<node_path> "metarig/Skeleton:f_index.02.L" </node_path>
+								<node_path> "metarig/Skeleton:spine.002" </node_path>
+								<node_path> "metarig/Skeleton:thumb.02.R" </node_path>
+								<node_path> "metarig/Skeleton:f_ring.03.L" </node_path>
+								<node_path> "metarig/Skeleton:f_pinky.02.R" </node_path>
+								<node_path> "metarig/Skeleton:f_index.03.L" </node_path>
+								<node_path> "metarig/Skeleton:spine.003" </node_path>
+								<node_path> "metarig/Skeleton:thumb.03.R" </node_path>
+								<node_path> "metarig/Skeleton:thumb.01.L" </node_path>
+								<node_path> "metarig/Skeleton:f_pinky.03.R" </node_path>
+								<node_path> "metarig/Skeleton:f_pinky.01.L" </node_path>
+								<node_path> "metarig/Skeleton:breast.R" </node_path>
+								<node_path> "metarig/Skeleton:spine.004" </node_path>
+								<node_path> "metarig/Skeleton:camera" </node_path>
+								<node_path> "metarig" </node_path>
+								<node_path> "metarig/Skeleton:thumb.02.L" </node_path>
+								<node_path> "metarig/Skeleton:f_pinky.02.L" </node_path>
+								<node_path> "metarig/Skeleton:gun" </node_path>
+								<node_path> "metarig/Skeleton:hand.R" </node_path>
+								<node_path> "metarig/Skeleton:thumb.03.L" </node_path>
+								<node_path> "metarig/Skeleton:f_pinky.03.L" </node_path>
+								<node_path> "metarig/Skeleton:f_middle.01.R" </node_path>
+								<node_path> "metarig/Skeleton:breast.L" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.R" </node_path>
+								<node_path> "metarig/Skeleton:spine.006" </node_path>
+							</array>
+							<string> "from" </string>
+							<string> "run" </string>
+							<string> "id" </string>
+							<string> "anim 2" </string>
+							<string> "pos" </string>
+							<vector2> 78, 181 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+					</array>
+				</dictionary>
+				<resource  external="2">  </resource>
+				<string> "run" </string>
+				<array  len="30" shared="false">
+					<string> "jump" </string>
+					<string> "jump" </string>
+					<real> 0.5 </real>
+					<string> "jump" </string>
+					<string> "look" </string>
+					<real> 0.5 </real>
+					<string> "jump" </string>
+					<string> "run" </string>
+					<real> 0.5 </real>
+					<string> "look" </string>
+					<string> "default" </string>
+					<real> 100 </real>
+					<string> "look" </string>
+					<string> "jump" </string>
+					<real> 100 </real>
+					<string> "look" </string>
+					<string> "look" </string>
+					<real> 100 </real>
+					<string> "look" </string>
+					<string> "run" </string>
+					<real> 100 </real>
+					<string> "run" </string>
+					<string> "jump" </string>
+					<real> 0.5 </real>
+					<string> "run" </string>
+					<string> "look" </string>
+					<real> 0.5 </real>
+					<string> "run" </string>
+					<string> "run" </string>
+					<real> 0.5 </real>
+				</array>
 				<string> "default" </string>
 			</array>
 			<string> "version" </string>

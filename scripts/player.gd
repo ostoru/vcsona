@@ -98,16 +98,16 @@ func _input(event):
 	elif Input.is_action_pressed("char reload"):
 		get_node("../").end_actions()
 
-onready var bullet_inst_scene = preload("res://scenes/bullet_impact.xml")
+onready var bullet_inst_scene = preload("res://media/sprites/particles/bullet_impact.xml")
 onready var world = get_node("../")
 onready var ani_node = get_node("Yaw/AIM/AnimationPlayer")
 
 func shoot():
 	var bullet_inst = bullet_inst_scene.instance()
-	bullet_inst.set_transform(get_node("Yaw/AIM/metarig/Skeleton/gun/gun/origin").get_global_transform())
-	var origin = get_node("Yaw/AIM/metarig/Skeleton/gun/gun/direction").get_global_transform().origin
-	var direction = get_node("Yaw/AIM/metarig/Skeleton/gun/gun/origin").get_global_transform().origin
-	bullet_inst.set_linear_velocity((origin - direction).normalized() * 100)
+	var origin = get_node("Yaw/AIM/metarig/Skeleton/gun/origin").get_global_transform()
+	bullet_inst.set_transform(origin)
+	var direction = get_node("Yaw/AIM/metarig/Skeleton/gun/origin/direction").get_global_transform()
+	bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
 	bullet_inst.add_to_group("destroy")
 	world.add_child(bullet_inst)
 

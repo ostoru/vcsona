@@ -55,7 +55,7 @@ func action_start():
 	get_node("Yaw/metarig").show()
 	get_node("icon").hide()
 	if active:
-		get_node("Yaw/Camera").make_current()
+		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		set_fixed_process(true)
 		set_process_input(true)
@@ -65,7 +65,7 @@ func action_start():
 func action_end():
 	get_node("Yaw/metarig").hide()
 	get_node("icon").show()
-	get_node("Yaw/Camera").clear_current()
+	get_node("Yaw/metarig/Skeleton/gun/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)
 	set_process_input(false)
@@ -76,7 +76,7 @@ func action_end():
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
 		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
-		pitch = max(min(pitch - (-event.relative_y * view_sensitivity * .01), 1), 0)
+		pitch = max(min(pitch - (event.relative_y * view_sensitivity * .01), 1), 0)
 		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
 #		get_node("Yaw/Camera").set_rotation(Vector3(deg2rad(pitch), 0, 0))
 	
@@ -101,9 +101,9 @@ onready var ani_node = get_node("Yaw/AnimationPlayer")
 
 func shoot():
 	var bullet_inst = bullet_inst_scene.instance()
-	var origin = get_node("Yaw/gun/origin").get_global_transform()
+	var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
 	bullet_inst.set_transform(origin)
-	var direction = get_node("Yaw/gun/origin/direction").get_global_transform()
+	var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform()
 	bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
 	bullet_inst.add_to_group("destroy")
 	world.add_child(bullet_inst)
@@ -213,7 +213,7 @@ func _integrate_forces(state):
 		if active:
 			if Input.is_action_pressed("jump") and stamina > 150:
 				apply_impulse(Vector3(), normal * jump_speed * get_mass())
-				ani_node.play("jump")
+				ani_tree.animation_node_set_animation("anim",ani_node.get_animation("air -loop"))
 				get_node("Sounds").play("jump")
 				stamina -= 150
 

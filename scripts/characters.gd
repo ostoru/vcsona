@@ -5,7 +5,7 @@ func _ready():
 	for a in get_children():
 		if a.is_in_group("char"):
 			chars.append(a)
-
+	set_fixed_process(true)
 
 func start_actions():
 	for a in chars:
@@ -23,3 +23,6 @@ func end_actions():
 #		if a.action_end()
 		
 	get_node("../map cam").make_current()
+
+func _fixed_process(delta):
+	pass

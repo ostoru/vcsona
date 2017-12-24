@@ -18,7 +18,7 @@ var stats = {
 
 var view_sensitivity = 0.25
 var yaw = 0
-var pitch = 0
+var pitch = 1
 var is_moving = false
 
 const max_accel = 0.005
@@ -73,15 +73,9 @@ func action_end():
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
 		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
-		pitch = max(min(pitch - (-event.relative_y * view_sensitivity * .02), 100), 0)
+		pitch = max(min(pitch - (-event.relative_y * view_sensitivity * .01), 1), 0)
 		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
-#		get_node("Yaw/pitch").set_rotation(Vector3(deg2rad(pitch), 0, 0))
-		
-#		ani_node.play("look")
-		ani_node.advance((pitch))
-		ani_node.stop()
-
-			
+#		get_node("Yaw/Camera").set_rotation(Vector3(deg2rad(pitch), 0, 0))
 	
 	# Toggle mouse capture:
 	if Input.is_action_pressed("toggle_mouse_capture"):
@@ -130,15 +124,15 @@ func _integrate_forces(state):
 	walk_speed = 3.5
 	# Default jump height:
 	jump_speed = 5
-
+	
 	# Cap stamina:
 	if stamina >= 10000:
 		stamina = 10000
 	if stamina <= 0:
 		stamina = 0
-
+	
 	var aim = get_node("Yaw").get_global_transform().basis
-
+	
 	var direction = Vector3()
 	if active:
 		var anim_dir = Vector2()
@@ -169,9 +163,14 @@ func _integrate_forces(state):
 			ani_to_play = "mr -loop"
 		else:
 			ani_to_play = "mn -loop"
+#			ani_to_play = "look"
+		print (pitch)
 		if ani_to_play != ani_node.get_current_animation():
-			ani_node.play(ani_to_play)
-		
+#			ani_node.play(ani_to_play)
+			pass
+		var ani_tree = get_node("Yaw/AnimationTreePlayer")
+		ani_tree.timeseek_node_seek("seek",pitch)
+		ani_tree.animation_node_set_animation("anim",ani_node.get_animation(ani_to_play))
 	direction = direction.normalized()
 	var ray = get_node("Ray")
 	
@@ -180,7 +179,7 @@ func _integrate_forces(state):
 		walk_speed *= 1.4
 		jump_speed *= 1.2
 		stamina -= 15
-
+	
 	if ray.is_colliding():
 		var up = state.get_total_gravity().normalized()
 		var normal = ray.get_collision_normal()

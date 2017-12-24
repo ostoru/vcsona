@@ -52,7 +52,7 @@ func action_start():
 	get_node("Yaw/metarig").show()
 	get_node("icon").hide()
 	if active:
-#		get_node("Yaw/AIM/metarig/Skeleton/camera/Camera").make_current()
+		get_node("Yaw/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		set_fixed_process(true)
 		set_process_input(true)
@@ -62,7 +62,7 @@ func action_start():
 func action_end():
 	get_node("Yaw/metarig").hide()
 	get_node("icon").show()
-#	get_node("Yaw/metarig/metarig/Skeleton/camera/Camera").clear_current()
+	get_node("Yaw/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)
 	set_process_input(false)
@@ -77,7 +77,7 @@ func _input(event):
 		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
 #		get_node("Yaw/pitch").set_rotation(Vector3(deg2rad(pitch), 0, 0))
 		
-		ani_node.play("look")
+#		ani_node.play("look")
 		ani_node.advance((pitch))
 		ani_node.stop()
 
@@ -104,11 +104,11 @@ onready var ani_node = get_node("Yaw/AnimationPlayer")
 
 func shoot():
 	var bullet_inst = bullet_inst_scene.instance()
-#	var origin = get_node("Yaw/metarig/metarig/Skeleton/gun/origin").get_global_transform()
-#	bullet_inst.set_transform(origin)
-#	var direction = get_node("Yaw/AIM/metarig/Skeleton/gun/origin/direction").get_global_transform()
-#	bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
-#	bullet_inst.add_to_group("destroy")
+	var origin = get_node("Yaw/gun/origin").get_global_transform()
+	bullet_inst.set_transform(origin)
+	var direction = get_node("Yaw/gun/origin/direction").get_global_transform()
+	bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
+	bullet_inst.add_to_group("destroy")
 	world.add_child(bullet_inst)
 
 func _fixed_process(delta):
@@ -141,28 +141,37 @@ func _integrate_forces(state):
 
 	var direction = Vector3()
 	if active:
+		var anim_dir = Vector2()
 		if Input.is_action_pressed("move_forwards"):
-			direction -= aim[2]
+			direction += aim[2]
+			anim_dir = Vector2(0,1)
 			is_moving = true
 		if Input.is_action_pressed("move_backwards"):
-			direction += aim[2]
+			direction -= aim[2]
+			anim_dir = Vector2(0,-1)
 			is_moving = true
 		if Input.is_action_pressed("move_left"):
-			direction -= aim[0]
-			is_moving = true
-		if Input.is_action_pressed("move_right"):
+			anim_dir = Vector2(-1,0)
 			direction += aim[0]
 			is_moving = true
-		if direction != Vector3():
-			if ani_node.get_current_animation() != "ml":
-				ani_node.play("ml")
+		if Input.is_action_pressed("move_right"):
+			anim_dir = Vector2(1,0)
+			direction -= aim[0]
+			is_moving = true
+		var ani_to_play
+		if anim_dir == Vector2(0,1):
+			ani_to_play = "mf -loop"
+		elif anim_dir == Vector2(0,-1):
+			ani_to_play = "mb -loop"
+		elif anim_dir == Vector2(-1,0):
+			ani_to_play = "ml -loop"
+		elif anim_dir == Vector2(1,0):
+			ani_to_play = "mr -loop"
 		else:
-			if ani_node.get_current_animation() != "mr":
-				ani_node.play("mr")
-				pass
-			
-
-
+			ani_to_play = "mn -loop"
+		if ani_to_play != ani_node.get_current_animation():
+			ani_node.play(ani_to_play)
+		
 	direction = direction.normalized()
 	var ray = get_node("Ray")
 	
@@ -208,7 +217,7 @@ func _integrate_forces(state):
 		if active:
 			if Input.is_action_pressed("jump") and stamina > 150:
 				apply_impulse(Vector3(), normal * jump_speed * get_mass())
-				get_node("Yaw/AIM/AnimationPlayer").play("jump")
+				ani_node.play("jump")
 				get_node("Sounds").play("jump")
 				stamina -= 150
 

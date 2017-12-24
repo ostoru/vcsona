@@ -1,4 +1,4 @@
-extends BoneAttachment
+#extends BoneAttachment
 
 #generic gun.gd
 #to shoot spawn the bullet in origin and direct it to origin/direction

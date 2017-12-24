@@ -2,14 +2,16 @@
 
 [node name="camera" type="BoneAttachment"]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( -1, 9.29832e-06, 1.59872e-14, 9.2983e-06, 0.999997, -0.00231222, -2.14998e-08, -0.00231222, -0.999997, -0.396709, 0.236939, -1.73258 )
+transform/local = Transform( -1, -8.74222e-08, -7.72035e-14, 6.21725e-14, -2.5332e-07, -1, 8.74226e-08, -1, 2.5332e-07, 8.18376e-11, 1.73524, 0.0951273 )
 bone_name = "spine.006"
 
 [node name="Camera" type="Camera" parent="."]
 
 _import_path = NodePath("metarig/Camera")
 _import_transform = Transform( 1, 9.29832e-06, -3.25841e-07, -9.29832e-06, 1, 5.56393e-08, 3.25841e-07, -5.56363e-08, 1, 2.27374e-13, 0, 0.3 )
+transform/local = Transform( 0.999999, 8.74221e-08, -8.74219e-08, 8.74224e-08, -4.37114e-08, 0.999997, 8.74224e-08, -0.999997, -4.37113e-08, 0.520784, 1.1492, -0.17001 )
 projection = 0
 fov = 90.0
 near = 0.1

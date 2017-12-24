@@ -49,10 +49,10 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 
 # called by parent node
 func action_start():
-	get_node("Yaw/AIM").show()
+	get_node("Yaw/char").show()
 	get_node("icon").hide()
 	if active:
-		get_node("Yaw/AIM/metarig/Skeleton/camera/Camera").make_current()
+#		get_node("Yaw/AIM/metarig/Skeleton/camera/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		set_fixed_process(true)
 		set_process_input(true)
@@ -60,9 +60,9 @@ func action_start():
 
 # called by parent node
 func action_end():
-	get_node("Yaw/AIM").hide()
+	get_node("Yaw/char").hide()
 	get_node("icon").show()
-	get_node("Yaw/AIM/metarig/Skeleton/camera/Camera").clear_current()
+#	get_node("Yaw/char/metarig/Skeleton/camera/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)
 	set_process_input(false)
@@ -100,15 +100,15 @@ func _input(event):
 
 onready var bullet_inst_scene = preload("res://media/sprites/particles/bullet_impact.xml")
 onready var world = get_node("../")
-onready var ani_node = get_node("Yaw/AIM/AnimationPlayer")
+onready var ani_node = get_node("Yaw/char/AnimationPlayer")
 
 func shoot():
 	var bullet_inst = bullet_inst_scene.instance()
-	var origin = get_node("Yaw/AIM/metarig/Skeleton/gun/origin").get_global_transform()
-	bullet_inst.set_transform(origin)
-	var direction = get_node("Yaw/AIM/metarig/Skeleton/gun/origin/direction").get_global_transform()
-	bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
-	bullet_inst.add_to_group("destroy")
+#	var origin = get_node("Yaw/char/metarig/Skeleton/gun/origin").get_global_transform()
+#	bullet_inst.set_transform(origin)
+#	var direction = get_node("Yaw/AIM/metarig/Skeleton/gun/origin/direction").get_global_transform()
+#	bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
+#	bullet_inst.add_to_group("destroy")
 	world.add_child(bullet_inst)
 
 func _fixed_process(delta):
@@ -154,11 +154,11 @@ func _integrate_forces(state):
 			direction += aim[0]
 			is_moving = true
 		if direction != Vector3():
-			if ani_node.get_current_animation() != "run":
-				ani_node.play("run")
+			if ani_node.get_current_animation() != "ml":
+				ani_node.play("ml")
 		else:
-			if ani_node.get_current_animation() != "jump":
-				ani_node.play("jump")
+			if ani_node.get_current_animation() != "mr":
+				ani_node.play("mr")
 				pass
 			
 

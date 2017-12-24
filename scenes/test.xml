@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="8" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
+<resource_file type="PackedScene" subresource_count="30" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
 	<ext_resource path="res://scripts/main.gd" type="Script" index="0"></ext_resource>
+	<ext_resource path="res://scripts/player.gd" type="Script" index="4"></ext_resource>
+	<ext_resource path="res://media/models/persons/AnimationPlayer.tscn" type="PackedScene" index="7"></ext_resource>
+	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="11"></ext_resource>
 	<ext_resource path="res://scripts/environment.gd" type="Script" index="1"></ext_resource>
 	<ext_resource path="res://scripts/characters.gd" type="Script" index="2"></ext_resource>
-	<ext_resource path="res://media/models/world/tower_test/tower_test.scn" type="PackedScene" index="4"></ext_resource>
+	<ext_resource path="res://media/models/guns/stg44/stg44.gd" type="Script" index="5"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/MAP-T2 (by cyrus).png" type="Texture" index="13"></ext_resource>
+	<ext_resource path="res://media/models/guns/stg44/stg44.msh" type="Mesh" index="6"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/FSTART (by cyrus).png" type="Texture" index="14"></ext_resource>
+	<ext_resource path="res://media/sprites/fonts/roboto.fnt" type="BitmapFont" index="9"></ext_resource>
+	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="10"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/MAP-T1 (by cyrus).png" type="Texture" index="12"></ext_resource>
+	<ext_resource path="res://media/models/persons/Model_D0515029.xml" type="PackedScene" index="17"></ext_resource>
+	<ext_resource path="res://media/models/persons/Model_D0306003.xml" type="PackedScene" index="8"></ext_resource>
+	<ext_resource path="res://media/models/persons/Model_D0901D64.xml" type="PackedScene" index="19"></ext_resource>
+	<ext_resource path="res://media/models/world/test_level/test_level.xml" type="PackedScene" index="21"></ext_resource>
+	<ext_resource path="res://media/models/world/tower_test/tower_test.scn" type="PackedScene" index="20"></ext_resource>
+	<ext_resource path="res://media/models/persons/Model_D0407300B17.xml" type="PackedScene" index="16"></ext_resource>
+	<ext_resource path="res://media/models/persons/Model_D0306009.xml" type="PackedScene" index="15"></ext_resource>
+	<ext_resource path="res://media/models/persons/Model_D0901D40.xml" type="PackedScene" index="18"></ext_resource>
 	<ext_resource path="res://scenes/characters/character.xml" type="PackedScene" index="3"></ext_resource>
-	<ext_resource path="res://media/models/world/test_level/test_level.xml" type="PackedScene" index="5"></ext_resource>
 	<resource type="Environment" path="local://1">
 		<bool name="ambient_light/enabled"> True </bool>
 		<color name="ambient_light/color"> 0.2, 0.2, 0.2, 1 </color>
@@ -53,6 +69,76 @@
 		<resource name="script/script" external="1">  </resource>
 
 	</resource>
+	<resource type="CapsuleShape" path="local://8">
+		<real name="radius"> 0.181871 </real>
+		<real name="height"> 1.5 </real>
+
+	</resource>
+	<resource type="RayShape" path="local://2">
+		<real name="length"> 0.257297 </real>
+
+	</resource>
+	<resource type="StyleBoxFlat" path="local://4">
+		<real name="content_margin/left"> -1 </real>
+		<real name="content_margin/right"> -1 </real>
+		<real name="content_margin/top"> -1 </real>
+		<real name="content_margin/bottom"> -1 </real>
+		<color name="bg_color"> 0.348627, 0.518972, 0.874847, 0.501961 </color>
+		<color name="light_color"> 0.8, 0.8, 0.8, 1 </color>
+		<color name="dark_color"> 0.8, 0.8, 0.8, 1 </color>
+		<int name="border_size"> 0 </int>
+		<bool name="border_blend"> True </bool>
+		<bool name="draw_bg"> True </bool>
+
+	</resource>
+	<resource type="StyleBoxEmpty" path="local://5">
+		<real name="content_margin/left"> -1 </real>
+		<real name="content_margin/right"> -1 </real>
+		<real name="content_margin/top"> -1 </real>
+		<real name="content_margin/bottom"> -1 </real>
+
+	</resource>
+	<resource type="SampleLibrary" path="local://6">
+		<dictionary name="samples/jump" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "priority" </string>
+			<int> 0 </int>
+			<string> "sample" </string>
+			<resource  external="10">  </resource>
+		</dictionary>
+		<dictionary name="samples/rifle" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "priority" </string>
+			<int> 0 </int>
+			<string> "sample" </string>
+			<resource  external="11">  </resource>
+		</dictionary>
+
+	</resource>
+	<resource type="SpriteFrames" path="local://7">
+		<array name="animations" len="1" shared="false">
+			<dictionary  shared="false">
+				<string> "frames" </string>
+				<array  len="2" shared="false">
+					<resource  external="12">  </resource>
+					<resource  external="13">  </resource>
+				</array>
+				<string> "loop" </string>
+				<bool> True </bool>
+				<string> "name" </string>
+				<string> "default" </string>
+				<string> "speed" </string>
+				<real> 30 </real>
+			</dictionary>
+		</array>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -63,14 +149,13 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="47">
+			<string_array  len="204">
 				<string> "World" </string>
 				<string> "_import_transform" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
 				<string> "Spatial" </string>
 				<string> "Environment" </string>
-				<string> "visibility/visible" </string>
 				<string> "environment" </string>
 				<string> "WorldEnvironment" </string>
 				<string> "DirectionalLight" </string>
@@ -97,12 +182,54 @@
 				<string> "characters" </string>
 				<string> "player" </string>
 				<string> "player1" </string>
-				<string> "static" </string>
 				<string> "editor/display_folded" </string>
-				<string> "test level" </string>
-				<string> "map cam" </string>
+				<string> "input/ray_pickable" </string>
+				<string> "input/capture_on_drag" </string>
+				<string> "shape_count" </string>
+				<string> "shapes/0/shape" </string>
+				<string> "shapes/0/transform" </string>
+				<string> "shapes/0/trigger" </string>
+				<string> "shapes/1/shape" </string>
+				<string> "shapes/1/transform" </string>
+				<string> "shapes/1/trigger" </string>
+				<string> "collision/layers" </string>
+				<string> "collision/mask" </string>
+				<string> "mode" </string>
+				<string> "mass" </string>
+				<string> "friction" </string>
+				<string> "bounce" </string>
+				<string> "gravity_scale" </string>
+				<string> "custom_integrator" </string>
+				<string> "continuous_cd" </string>
+				<string> "contacts_reported" </string>
+				<string> "contact_monitor" </string>
+				<string> "sleeping" </string>
+				<string> "can_sleep" </string>
+				<string> "axis_lock" </string>
+				<string> "velocity/linear" </string>
+				<string> "velocity/angular" </string>
+				<string> "damp_override/linear" </string>
+				<string> "damp_override/angular" </string>
+				<string> "active" </string>
+				<string> "ally" </string>
+				<string> "char" </string>
+				<string> "RigidBody" </string>
+				<string> "Body" </string>
+				<string> "shape" </string>
+				<string> "trigger" </string>
+				<string> "_update_shape_index" </string>
+				<string> "CollisionShape" </string>
+				<string> "Leg" </string>
+				<string> "Ray" </string>
+				<string> "enabled" </string>
+				<string> "cast_to" </string>
+				<string> "layer_mask" </string>
+				<string> "type_mask" </string>
+				<string> "RayCast" </string>
+				<string> "Yaw" </string>
+				<string> "Camera" </string>
 				<string> "projection" </string>
-				<string> "size" </string>
+				<string> "fov" </string>
 				<string> "near" </string>
 				<string> "far" </string>
 				<string> "keep_aspect" </string>
@@ -110,28 +237,144 @@
 				<string> "visible_layers" </string>
 				<string> "h_offset" </string>
 				<string> "v_offset" </string>
-				<string> "Camera" </string>
+				<string> "gun" </string>
+				<string> "geometry/visible" </string>
+				<string> "geometry/material_override" </string>
+				<string> "geometry/cast_shadow" </string>
+				<string> "geometry/receive_shadows" </string>
+				<string> "geometry/range_begin" </string>
+				<string> "geometry/range_end" </string>
+				<string> "geometry/extra_cull_margin" </string>
+				<string> "geometry/billboard" </string>
+				<string> "geometry/billboard_y" </string>
+				<string> "geometry/depth_scale" </string>
+				<string> "geometry/visible_in_all_rooms" </string>
+				<string> "geometry/use_baked_light" </string>
+				<string> "geometry/baked_light_tex_id" </string>
+				<string> "mesh/mesh" </string>
+				<string> "mesh/skeleton" </string>
+				<string> "material/0" </string>
+				<string> "material/1" </string>
+				<string> "material/2" </string>
+				<string> "material/3" </string>
+				<string> "MeshInstance" </string>
+				<string> "origin" </string>
+				<string> "direction" </string>
+				<string> "balance" </string>
+				<string> "Position3D" </string>
+				<string> "pov" </string>
+				<string> "aim" </string>
+				<string> "AnimationPlayer" </string>
+				<string> "playback/default_blend_time" </string>
+				<string> "AnimationTreePlayer" </string>
+				<string> "playback/process_mode" </string>
+				<string> "base_path" </string>
+				<string> "master_player" </string>
+				<string> "data" </string>
+				<string> "metarig" </string>
+				<string> "FPS" </string>
+				<string> "visibility/visible" </string>
+				<string> "anchor/right" </string>
+				<string> "focus/ignore_mouse" </string>
+				<string> "focus/stop_mouse" </string>
+				<string> "size_flags/horizontal" </string>
+				<string> "size_flags/vertical" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
+				<string> "custom_fonts/font" </string>
+				<string> "align" </string>
+				<string> "valign" </string>
+				<string> "percent_visible" </string>
+				<string> "lines_skipped" </string>
+				<string> "max_lines_visible" </string>
+				<string> "Label" </string>
+				<string> "Direction" </string>
+				<string> "anchor/top" </string>
+				<string> "anchor/bottom" </string>
+				<string> "Health" </string>
+				<string> "anchor/left" </string>
+				<string> "Stamina" </string>
+				<string> "custom_styles/fg" </string>
+				<string> "custom_styles/bg" </string>
+				<string> "range/min" </string>
+				<string> "range/max" </string>
+				<string> "range/step" </string>
+				<string> "range/page" </string>
+				<string> "range/value" </string>
+				<string> "range/exp_edit" </string>
+				<string> "range/rounded" </string>
+				<string> "percent/visible" </string>
+				<string> "ProgressBar" </string>
+				<string> "Crosshair" </string>
+				<string> "text" </string>
+				<string> "Sounds" </string>
+				<string> "params/volume_db" </string>
+				<string> "params/pitch_scale" </string>
+				<string> "params/attenuation/min_distance" </string>
+				<string> "params/attenuation/max_distance" </string>
+				<string> "params/attenuation/distance_exp" </string>
+				<string> "params/emission_cone/degrees" </string>
+				<string> "params/emission_cone/attenuation_db" </string>
+				<string> "config/polyphony" </string>
+				<string> "config/samples" </string>
+				<string> "SpatialSamplePlayer" </string>
+				<string> "icon" </string>
+				<string> "centered" </string>
+				<string> "offset" </string>
+				<string> "flip_h" </string>
+				<string> "flip_v" </string>
+				<string> "modulate" </string>
+				<string> "opacity" </string>
+				<string> "pixel_size" </string>
+				<string> "axis" </string>
+				<string> "flags/transparent" </string>
+				<string> "flags/shaded" </string>
+				<string> "flags/double_sided" </string>
+				<string> "flags/on_top" </string>
+				<string> "flags/alpha_cut" </string>
+				<string> "frames" </string>
+				<string> "animation" </string>
+				<string> "AnimatedSprite3D" </string>
+				<string> "highlight" </string>
+				<string> "texture" </string>
+				<string> "vframes" </string>
+				<string> "hframes" </string>
+				<string> "frame" </string>
+				<string> "region" </string>
+				<string> "region_rect" </string>
+				<string> "Sprite3D" </string>
+				<string> "player2" </string>
+				<string> "player3" </string>
+				<string> "player4" </string>
+				<string> "player5" </string>
+				<string> "player6" </string>
+				<string> "static" </string>
+				<string> "test level" </string>
+				<string> "map cam" </string>
+				<string> "size" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 9 </int>
+			<int> 158 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="155"> 				-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 8, 5, -1, 3, 1, 0, 6, 3, 7, 4, 0, 0, 0, 9, 9, -1, 22, 1, 0, 10, 5, 6, 3, 11, 6, 12, 7, 13, 3, 14, 8, 15, 9, 16, 10, 17, 10, 18, 7, 19, 11, 20, 12, 21, 11, 22, 13, 23, 9, 24, 14, 25, 8, 26, 15, 27, 16, 28, 17, 29, 18, 0, 0, 0, 4, 30, -1, 2, 1, 0, 2, 19, 0, 3, 0, 2147483647, 31, 20, 1, 10, 21, 0, 3, 0, 2147483647, 32, 20, 1, 10, 22, 0, 0, 0, 2147483647, 33, 23, 1, 34, 7, 0, 6, 0, 2147483647, 35, 24, 1, 10, 25, 0, 0, 0, 46, 36, -1, 12, 1, 0, 10, 26, 37, 6, 38, 27, 39, 28, 40, 29, 41, 6, 42, 7, 43, 30, 7, 14, 44, 11, 45, 11, 0 </int_array>
+			<int_array  len="4690"> 				-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 7, 5, -1, 2, 1, 0, 6, 3, 0, 0, 0, 8, 8, -1, 21, 1, 0, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16, 10, 17, 6, 18, 11, 19, 12, 20, 11, 21, 13, 22, 9, 23, 14, 24, 8, 25, 15, 26, 16, 27, 17, 28, 18, 0, 0, 0, 4, 29, -1, 2, 1, 0, 2, 19, 0, 3, 0, 2147483647, 30, 20, 1, 9, 21, 0, 3, 0, 63, 31, -1, 34, 32, 6, 1, 0, 9, 22, 33, 6, 34, 7, 35, 23, 36, 24, 37, 25, 38, 7, 39, 26, 40, 27, 41, 7, 42, 5, 43, 5, 44, 23, 45, 28, 46, 11, 47, 11, 48, 9, 49, 6, 50, 7, 51, 29, 52, 6, 53, 7, 54, 7, 55, 8, 56, 30, 57, 30, 58, 31, 59, 31, 2, 32, 3, 33, 60, 7, 61, 7, 1, 62, 5, 0, 68, 64, -1, 5, 1, 0, 9, 25, 65, 24, 66, 7, 67, 8, 0, 5, 0, 68, 69, -1, 5, 1, 0, 9, 27, 65, 26, 66, 7, 67, 5, 0, 5, 0, 75, 70, -1, 6, 1, 0, 9, 34, 71, 6, 72, 35, 73, 5, 74, 36, 0, 5, 0, 4, 76, -1, 1, 1, 0, 0, 9, 0, 77, 77, -1, 12, 1, 0, 9, 37, 78, 8, 79, 38, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 9, 0, 4, 87, -1, 4, 32, 6, 1, 0, 9, 42, 2, 43, 0, 11, 0, 107, 87, -1, 22, 1, 0, 9, 44, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 7, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 101, 45, 102, 46, 103, 14, 104, 14, 105, 14, 106, 14, 0, 11, 0, 4, 108, -1, 3, 32, 6, 1, 0, 9, 47, 0, 13, 0, 4, 109, -1, 2, 1, 0, 9, 48, 0, 11, 0, 111, 110, -1, 2, 1, 0, 9, 49, 0, 15, 0, 77, 112, -1, 12, 1, 0, 9, 50, 78, 8, 79, 51, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 15, 0, 4, 109, -1, 2, 1, 0, 9, 52, 0, 11, 0, 111, 113, -1, 2, 1, 0, 9, 53, 0, 9, 0, 2147483647, 114, 54, 1, 115, 39, 0, 9, 0, 116, 116, -1, 4, 117, 5, 118, 46, 119, 55, 120, 56, 0, 9, 0, 2147483647, 121, 57, 0, 0, 5, 0, 139, 122, -1, 16, 123, 7, 124, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 58, 130, 51, 131, 59, 132, 60, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 5, 0, 139, 140, -1, 18, 123, 7, 141, 23, 124, 5, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 63, 130, 64, 131, 59, 132, 65, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 5, 0, 139, 143, -1, 19, 123, 7, 144, 15, 141, 23, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 66, 130, 67, 131, 68, 132, 59, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 5, 0, 156, 145, -1, 24, 123, 7, 144, 15, 141, 5, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 69, 130, 70, 131, 71, 132, 72, 146, 73, 147, 74, 133, 61, 148, 11, 149, 75, 150, 11, 151, 11, 152, 11, 153, 7, 154, 7, 155, 6, 0, 5, 0, 139, 157, -1, 20, 123, 7, 144, 15, 141, 15, 124, 15, 142, 15, 125, 6, 126, 6, 127, 23, 128, 8, 129, 76, 130, 77, 131, 78, 132, 79, 133, 61, 158, 80, 134, 5, 135, 5, 136, 9, 137, 8, 138, 62, 0, 5, 0, 169, 159, -1, 10, 1, 0, 160, 81, 161, 9, 162, 9, 163, 40, 164, 9, 165, 82, 166, 83, 167, 5, 168, 84, 0, 5, 0, 186, 170, -1, 32, 32, 6, 1, 0, 9, 85, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 184, 88, 185, 89, 0, 28, 0, 194, 187, -1, 35, 1, 0, 9, 90, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 188, 91, 189, 5, 190, 5, 191, 8, 192, 7, 193, 92, 0, 3, 0, 63, 195, -1, 34, 32, 6, 1, 0, 9, 93, 33, 6, 34, 7, 35, 23, 36, 24, 37, 25, 38, 7, 39, 26, 40, 27, 41, 7, 42, 5, 43, 5, 44, 23, 45, 28, 46, 11, 47, 11, 48, 9, 49, 6, 50, 7, 51, 29, 52, 6, 53, 7, 54, 7, 55, 8, 56, 30, 57, 30, 58, 31, 59, 31, 2, 32, 3, 33, 60, 7, 61, 7, 1, 62, 30, 0, 68, 64, -1, 5, 1, 0, 9, 25, 65, 24, 66, 7, 67, 8, 0, 30, 0, 68, 69, -1, 5, 1, 0, 9, 27, 65, 26, 66, 7, 67, 5, 0, 30, 0, 75, 70, -1, 6, 1, 0, 9, 34, 71, 6, 72, 35, 73, 5, 74, 36, 0, 30, 0, 4, 76, -1, 2, 32, 6, 1, 0, 0, 34, 0, 77, 77, -1, 12, 1, 0, 9, 37, 78, 8, 79, 38, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 34, 0, 4, 87, -1, 4, 32, 6, 1, 0, 9, 42, 2, 43, 0, 36, 0, 107, 87, -1, 22, 1, 0, 9, 44, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 7, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 101, 45, 102, 46, 103, 14, 104, 14, 105, 14, 106, 14, 0, 36, 0, 4, 108, -1, 3, 32, 6, 1, 0, 9, 47, 0, 38, 0, 4, 109, -1, 2, 1, 0, 9, 48, 0, 36, 0, 111, 110, -1, 2, 1, 0, 9, 49, 0, 40, 0, 77, 112, -1, 12, 1, 0, 9, 50, 78, 8, 79, 51, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 40, 0, 4, 109, -1, 2, 1, 0, 9, 52, 0, 36, 0, 111, 113, -1, 2, 1, 0, 9, 53, 0, 34, 0, 2147483647, 114, 54, 1, 115, 39, 0, 34, 0, 116, 116, -1, 4, 117, 5, 118, 46, 119, 55, 120, 94, 0, 34, 0, 2147483647, 121, 95, 0, 0, 30, 0, 139, 122, -1, 16, 123, 7, 124, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 58, 130, 51, 131, 59, 132, 60, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 30, 0, 139, 140, -1, 18, 123, 7, 141, 23, 124, 5, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 63, 130, 64, 131, 59, 132, 65, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 30, 0, 139, 143, -1, 19, 123, 7, 144, 15, 141, 23, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 66, 130, 67, 131, 68, 132, 59, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 30, 0, 156, 145, -1, 24, 123, 7, 144, 15, 141, 5, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 69, 130, 70, 131, 71, 132, 72, 146, 73, 147, 74, 133, 61, 148, 11, 149, 75, 150, 11, 151, 11, 152, 11, 153, 7, 154, 7, 155, 6, 0, 30, 0, 139, 157, -1, 20, 123, 7, 144, 15, 141, 15, 124, 15, 142, 15, 125, 6, 126, 6, 127, 23, 128, 8, 129, 76, 130, 77, 131, 78, 132, 79, 133, 61, 158, 80, 134, 5, 135, 5, 136, 9, 137, 8, 138, 62, 0, 30, 0, 169, 159, -1, 10, 1, 0, 160, 81, 161, 9, 162, 9, 163, 40, 164, 9, 165, 82, 166, 83, 167, 5, 168, 84, 0, 30, 0, 186, 170, -1, 32, 32, 6, 1, 0, 9, 85, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 184, 88, 185, 89, 0, 53, 0, 194, 187, -1, 35, 1, 0, 9, 90, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 188, 91, 189, 5, 190, 5, 191, 8, 192, 7, 193, 92, 0, 3, 0, 63, 196, -1, 34, 32, 6, 1, 0, 9, 96, 33, 6, 34, 7, 35, 23, 36, 24, 37, 25, 38, 7, 39, 26, 40, 27, 41, 7, 42, 5, 43, 5, 44, 23, 45, 28, 46, 11, 47, 11, 48, 9, 49, 6, 50, 7, 51, 29, 52, 6, 53, 7, 54, 7, 55, 8, 56, 30, 57, 30, 58, 31, 59, 31, 2, 32, 3, 33, 60, 7, 61, 7, 1, 62, 55, 0, 68, 64, -1, 5, 1, 0, 9, 25, 65, 24, 66, 7, 67, 8, 0, 55, 0, 68, 69, -1, 5, 1, 0, 9, 27, 65, 26, 66, 7, 67, 5, 0, 55, 0, 75, 70, -1, 6, 1, 0, 9, 34, 71, 6, 72, 35, 73, 5, 74, 36, 0, 55, 0, 4, 76, -1, 1, 1, 0, 0, 59, 0, 77, 77, -1, 12, 1, 0, 9, 37, 78, 8, 79, 38, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 59, 0, 4, 87, -1, 4, 32, 6, 1, 0, 9, 42, 2, 43, 0, 61, 0, 107, 87, -1, 22, 1, 0, 9, 44, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 7, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 101, 45, 102, 46, 103, 14, 104, 14, 105, 14, 106, 14, 0, 61, 0, 4, 108, -1, 3, 32, 6, 1, 0, 9, 47, 0, 63, 0, 4, 109, -1, 2, 1, 0, 9, 48, 0, 61, 0, 111, 110, -1, 2, 1, 0, 9, 49, 0, 65, 0, 77, 112, -1, 12, 1, 0, 9, 50, 78, 8, 79, 51, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 65, 0, 4, 109, -1, 2, 1, 0, 9, 52, 0, 61, 0, 111, 113, -1, 2, 1, 0, 9, 53, 0, 59, 0, 2147483647, 114, 54, 1, 115, 39, 0, 59, 0, 116, 116, -1, 4, 117, 5, 118, 46, 119, 55, 120, 97, 0, 59, 0, 2147483647, 121, 98, 0, 0, 55, 0, 139, 122, -1, 16, 123, 7, 124, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 58, 130, 51, 131, 59, 132, 60, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 55, 0, 139, 140, -1, 18, 123, 7, 141, 23, 124, 5, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 63, 130, 64, 131, 59, 132, 65, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 55, 0, 139, 143, -1, 19, 123, 7, 144, 15, 141, 23, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 66, 130, 67, 131, 68, 132, 59, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 55, 0, 156, 145, -1, 24, 123, 7, 144, 15, 141, 5, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 69, 130, 70, 131, 71, 132, 72, 146, 73, 147, 74, 133, 61, 148, 11, 149, 75, 150, 11, 151, 11, 152, 11, 153, 7, 154, 7, 155, 6, 0, 55, 0, 139, 157, -1, 20, 123, 7, 144, 15, 141, 15, 124, 15, 142, 15, 125, 6, 126, 6, 127, 23, 128, 8, 129, 76, 130, 77, 131, 78, 132, 79, 133, 61, 158, 80, 134, 5, 135, 5, 136, 9, 137, 8, 138, 62, 0, 55, 0, 169, 159, -1, 10, 1, 0, 160, 81, 161, 9, 162, 9, 163, 40, 164, 9, 165, 82, 166, 83, 167, 5, 168, 84, 0, 55, 0, 186, 170, -1, 32, 32, 6, 1, 0, 9, 85, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 184, 88, 185, 89, 0, 78, 0, 194, 187, -1, 35, 1, 0, 9, 90, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 188, 91, 189, 5, 190, 5, 191, 8, 192, 7, 193, 92, 0, 3, 0, 63, 197, -1, 34, 32, 6, 1, 0, 9, 99, 33, 6, 34, 7, 35, 23, 36, 24, 37, 25, 38, 7, 39, 26, 40, 27, 41, 7, 42, 5, 43, 5, 44, 23, 45, 28, 46, 11, 47, 11, 48, 9, 49, 6, 50, 7, 51, 29, 52, 6, 53, 7, 54, 7, 55, 8, 56, 30, 57, 30, 58, 31, 59, 31, 2, 32, 3, 33, 60, 7, 61, 7, 1, 62, 80, 0, 68, 64, -1, 5, 1, 0, 9, 25, 65, 24, 66, 7, 67, 8, 0, 80, 0, 68, 69, -1, 5, 1, 0, 9, 27, 65, 26, 66, 7, 67, 5, 0, 80, 0, 75, 70, -1, 6, 1, 0, 9, 34, 71, 6, 72, 35, 73, 5, 74, 36, 0, 80, 0, 4, 76, -1, 1, 1, 0, 0, 84, 0, 77, 77, -1, 12, 1, 0, 9, 37, 78, 8, 79, 38, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 84, 0, 4, 87, -1, 4, 32, 6, 1, 0, 9, 42, 2, 43, 0, 86, 0, 107, 87, -1, 22, 1, 0, 9, 44, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 7, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 101, 45, 102, 46, 103, 14, 104, 14, 105, 14, 106, 14, 0, 86, 0, 4, 108, -1, 3, 32, 6, 1, 0, 9, 47, 0, 88, 0, 4, 109, -1, 2, 1, 0, 9, 48, 0, 86, 0, 111, 110, -1, 2, 1, 0, 9, 49, 0, 90, 0, 77, 112, -1, 12, 1, 0, 9, 50, 78, 8, 79, 51, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 90, 0, 4, 109, -1, 2, 1, 0, 9, 52, 0, 86, 0, 111, 113, -1, 2, 1, 0, 9, 53, 0, 84, 0, 2147483647, 114, 54, 1, 115, 39, 0, 84, 0, 116, 116, -1, 4, 117, 5, 118, 46, 119, 55, 120, 100, 0, 84, 0, 2147483647, 121, 101, 0, 0, 80, 0, 139, 122, -1, 16, 123, 7, 124, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 58, 130, 51, 131, 59, 132, 60, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 80, 0, 139, 140, -1, 18, 123, 7, 141, 23, 124, 5, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 63, 130, 64, 131, 59, 132, 65, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 80, 0, 139, 143, -1, 19, 123, 7, 144, 15, 141, 23, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 66, 130, 67, 131, 68, 132, 59, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 80, 0, 156, 145, -1, 24, 123, 7, 144, 15, 141, 5, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 69, 130, 70, 131, 71, 132, 72, 146, 73, 147, 74, 133, 61, 148, 11, 149, 75, 150, 11, 151, 11, 152, 11, 153, 7, 154, 7, 155, 6, 0, 80, 0, 139, 157, -1, 20, 123, 7, 144, 15, 141, 15, 124, 15, 142, 15, 125, 6, 126, 6, 127, 23, 128, 8, 129, 76, 130, 77, 131, 78, 132, 79, 133, 61, 158, 80, 134, 5, 135, 5, 136, 9, 137, 8, 138, 62, 0, 80, 0, 169, 159, -1, 10, 1, 0, 160, 81, 161, 9, 162, 9, 163, 40, 164, 9, 165, 82, 166, 83, 167, 5, 168, 84, 0, 80, 0, 186, 170, -1, 32, 32, 6, 1, 0, 9, 85, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 184, 88, 185, 89, 0, 103, 0, 194, 187, -1, 35, 1, 0, 9, 90, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 188, 91, 189, 5, 190, 5, 191, 8, 192, 7, 193, 92, 0, 3, 0, 63, 198, -1, 34, 32, 6, 1, 0, 9, 102, 33, 6, 34, 7, 35, 23, 36, 24, 37, 25, 38, 7, 39, 26, 40, 27, 41, 7, 42, 5, 43, 5, 44, 23, 45, 28, 46, 11, 47, 11, 48, 9, 49, 6, 50, 7, 51, 29, 52, 6, 53, 7, 54, 7, 55, 8, 56, 30, 57, 30, 58, 31, 59, 31, 2, 32, 3, 33, 60, 7, 61, 7, 1, 62, 105, 0, 68, 64, -1, 5, 1, 0, 9, 25, 65, 24, 66, 7, 67, 8, 0, 105, 0, 68, 69, -1, 5, 1, 0, 9, 27, 65, 26, 66, 7, 67, 5, 0, 105, 0, 75, 70, -1, 6, 1, 0, 9, 34, 71, 6, 72, 35, 73, 5, 74, 36, 0, 105, 0, 4, 76, -1, 1, 1, 0, 0, 109, 0, 77, 77, -1, 12, 1, 0, 9, 37, 78, 8, 79, 38, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 109, 0, 4, 87, -1, 4, 32, 6, 1, 0, 9, 42, 2, 43, 0, 111, 0, 107, 87, -1, 22, 1, 0, 9, 44, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 7, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 101, 45, 102, 46, 103, 14, 104, 14, 105, 14, 106, 14, 0, 111, 0, 4, 108, -1, 3, 32, 6, 1, 0, 9, 47, 0, 113, 0, 4, 109, -1, 2, 1, 0, 9, 48, 0, 111, 0, 111, 110, -1, 2, 1, 0, 9, 49, 0, 115, 0, 77, 112, -1, 12, 1, 0, 9, 50, 78, 8, 79, 51, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 115, 0, 4, 109, -1, 2, 1, 0, 9, 52, 0, 111, 0, 111, 113, -1, 2, 1, 0, 9, 53, 0, 109, 0, 2147483647, 114, 54, 1, 115, 39, 0, 109, 0, 116, 116, -1, 4, 117, 5, 118, 46, 119, 55, 120, 103, 0, 109, 0, 2147483647, 121, 104, 0, 0, 105, 0, 139, 122, -1, 16, 123, 7, 124, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 58, 130, 51, 131, 59, 132, 60, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 105, 0, 139, 140, -1, 18, 123, 7, 141, 23, 124, 5, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 63, 130, 64, 131, 59, 132, 65, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 105, 0, 139, 143, -1, 19, 123, 7, 144, 15, 141, 23, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 66, 130, 67, 131, 68, 132, 59, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 105, 0, 156, 145, -1, 24, 123, 7, 144, 15, 141, 5, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 69, 130, 70, 131, 71, 132, 72, 146, 73, 147, 74, 133, 61, 148, 11, 149, 75, 150, 11, 151, 11, 152, 11, 153, 7, 154, 7, 155, 6, 0, 105, 0, 139, 157, -1, 20, 123, 7, 144, 15, 141, 15, 124, 15, 142, 15, 125, 6, 126, 6, 127, 23, 128, 8, 129, 76, 130, 77, 131, 78, 132, 79, 133, 61, 158, 80, 134, 5, 135, 5, 136, 9, 137, 8, 138, 62, 0, 105, 0, 169, 159, -1, 10, 1, 0, 160, 81, 161, 9, 162, 9, 163, 40, 164, 9, 165, 82, 166, 83, 167, 5, 168, 84, 0, 105, 0, 186, 170, -1, 32, 32, 6, 1, 0, 9, 85, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 184, 88, 185, 89, 0, 128, 0, 194, 187, -1, 35, 1, 0, 9, 90, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 188, 91, 189, 5, 190, 5, 191, 8, 192, 7, 193, 92, 0, 3, 0, 63, 199, -1, 33, 1, 0, 9, 105, 33, 6, 34, 7, 35, 23, 36, 24, 37, 25, 38, 7, 39, 26, 40, 27, 41, 7, 42, 5, 43, 5, 44, 23, 45, 28, 46, 11, 47, 11, 48, 9, 49, 6, 50, 7, 51, 29, 52, 6, 53, 7, 54, 7, 55, 8, 56, 30, 57, 30, 58, 31, 59, 31, 2, 32, 3, 33, 60, 7, 61, 7, 1, 62, 130, 0, 68, 64, -1, 5, 1, 0, 9, 25, 65, 24, 66, 7, 67, 8, 0, 130, 0, 68, 69, -1, 5, 1, 0, 9, 27, 65, 26, 66, 7, 67, 5, 0, 130, 0, 75, 70, -1, 6, 1, 0, 9, 34, 71, 6, 72, 35, 73, 5, 74, 36, 0, 130, 0, 4, 76, -1, 1, 1, 0, 0, 134, 0, 77, 77, -1, 12, 1, 0, 9, 37, 78, 8, 79, 38, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 134, 0, 4, 87, -1, 4, 32, 6, 1, 0, 9, 42, 2, 43, 0, 136, 0, 107, 87, -1, 22, 1, 0, 9, 44, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 7, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 101, 45, 102, 46, 103, 14, 104, 14, 105, 14, 106, 14, 0, 136, 0, 4, 108, -1, 3, 32, 6, 1, 0, 9, 47, 0, 138, 0, 4, 109, -1, 2, 1, 0, 9, 48, 0, 136, 0, 111, 110, -1, 2, 1, 0, 9, 49, 0, 140, 0, 77, 112, -1, 12, 1, 0, 9, 50, 78, 8, 79, 51, 80, 39, 81, 40, 82, 5, 83, 7, 84, 41, 6, 14, 85, 11, 86, 11, 0, 140, 0, 4, 109, -1, 2, 1, 0, 9, 52, 0, 136, 0, 111, 113, -1, 2, 1, 0, 9, 53, 0, 134, 0, 2147483647, 114, 54, 1, 115, 39, 0, 134, 0, 116, 116, -1, 4, 117, 5, 118, 46, 119, 55, 120, 106, 0, 134, 0, 2147483647, 121, 107, 0, 0, 130, 0, 139, 122, -1, 16, 123, 7, 124, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 58, 130, 51, 131, 59, 132, 60, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 130, 0, 139, 140, -1, 18, 123, 7, 141, 23, 124, 5, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 63, 130, 64, 131, 59, 132, 65, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 130, 0, 139, 143, -1, 19, 123, 7, 144, 15, 141, 23, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 66, 130, 67, 131, 68, 132, 59, 133, 61, 134, 23, 135, 5, 136, 9, 137, 8, 138, 62, 0, 130, 0, 156, 145, -1, 24, 123, 7, 144, 15, 141, 5, 124, 15, 142, 5, 125, 6, 126, 6, 127, 23, 128, 8, 129, 69, 130, 70, 131, 71, 132, 72, 146, 73, 147, 74, 133, 61, 148, 11, 149, 75, 150, 11, 151, 11, 152, 11, 153, 7, 154, 7, 155, 6, 0, 130, 0, 139, 157, -1, 20, 123, 7, 144, 15, 141, 15, 124, 15, 142, 15, 125, 6, 126, 6, 127, 23, 128, 8, 129, 76, 130, 77, 131, 78, 132, 79, 133, 61, 158, 80, 134, 5, 135, 5, 136, 9, 137, 8, 138, 62, 0, 130, 0, 169, 159, -1, 10, 1, 0, 160, 81, 161, 9, 162, 9, 163, 40, 164, 9, 165, 82, 166, 83, 167, 5, 168, 84, 0, 130, 0, 186, 170, -1, 32, 32, 6, 1, 0, 9, 85, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 184, 88, 185, 89, 0, 153, 0, 194, 187, -1, 35, 1, 0, 9, 90, 10, 5, 88, 6, 89, 14, 90, 5, 91, 6, 92, 11, 93, 11, 94, 11, 95, 6, 96, 7, 97, 7, 98, 7, 99, 7, 100, 8, 171, 6, 172, 86, 173, 7, 174, 7, 175, 10, 176, 9, 177, 87, 178, 23, 179, 6, 180, 7, 181, 6, 182, 7, 183, 8, 188, 91, 189, 5, 190, 5, 191, 8, 192, 7, 193, 92, 0, 0, 0, 2147483647, 200, 108, 1, 32, 6, 0, 155, 0, 2147483647, 201, 109, 1, 9, 110, 0, 0, 0, 77, 202, -1, 12, 1, 0, 9, 111, 78, 5, 203, 112, 80, 39, 81, 113, 82, 5, 83, 6, 84, 41, 6, 14, 85, 11, 86, 11, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="31" shared="false">
+			<array  len="114" shared="false">
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<resource  external="0">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
 				</dictionary>
-				<bool> False </bool>
 				<resource  resource_type="Environment" path="local://1">  </resource>
 				<transform> 0.81825, 0.306634, 0.486254, -0.081898, -0.775053, 0.626567, 0.568999, -0.552512, -0.609074, 15.6895, 10.8131, -13.9665 </transform>
 				<int> 1 </int>
 				<bool> True </bool>
+				<bool> False </bool>
 				<int> 0 </int>
 				<real> 1 </real>
 				<color> 1, 1, 1, 1 </color>
@@ -146,14 +389,706 @@
 				<resource  external="3">  </resource>
 				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 7.54486, 17.0941, -1.5576 </transform>
 				<transform> -0.0313105, 0, -0.99951, 0, 1, -2.22045e-16, 0.99951, 0, -0.0313105, 7.54486, 17.0941, -4.1128 </transform>
+				<int> 2 </int>
+				<resource  resource_type="Shape" path="local://8">  </resource>
+				<transform> 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.917307, 0 </transform>
+				<resource  resource_type="Shape" path="local://2">  </resource>
+				<transform> 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.171098, 0 </transform>
+				<real> 6.122449 </real>
+				<int> 8 </int>
+				<vector3> 0, 0, 0 </vector3>
+				<real> -1 </real>
 				<resource  external="4">  </resource>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_screen__" </string>
+					<string> "Script" </string>
+				</dictionary>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0390044, 0 </transform>
+				<vector3> 0, -0.3, 0 </vector3>
+				<int> 15 </int>
+				<transform> -1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -0.75288, 1.23718, -1.51233 </transform>
+				<real> 52.03125 </real>
+				<real> 0.1 </real>
+				<real> 100 </real>
+				<int> 1048575 </int>
+				<transform> -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.19595, 0.450405 </transform>
 				<resource  external="5">  </resource>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00036975, -0.033788, 0.0312539 </transform>
+				<resource  external="6">  </resource>
+				<node_path> ".." </node_path>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.057532, -0.633161 </transform>
+				<transform> 1, -0, 0, 0, 1, -0, 0, 0, 1, 0, 0, -1 </transform>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.121126, -0.151517 </transform>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.459661 </transform>
+				<real> 10 </real>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000 </transform>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120085, -0.592012 </transform>
+				<resource  external="7">  </resource>
+				<node_path> "../AnimationPlayer" </node_path>
+				<dictionary  shared="false">
+					<string> "active" </string>
+					<bool> True </bool>
+					<string> "connections" </string>
+					<array  len="15" shared="false">
+						<string> "look" </string>
+						<string> "seek" </string>
+						<int> 0 </int>
+						<string> "look blend" </string>
+						<string> "out" </string>
+						<int> 0 </int>
+						<string> "seek 2" </string>
+						<string> "look blend" </string>
+						<int> 0 </int>
+						<string> "seek" </string>
+						<string> "look blend" </string>
+						<int> 1 </int>
+						<string> "anim" </string>
+						<string> "seek 2" </string>
+						<int> 0 </int>
+					</array>
+					<string> "master" </string>
+					<node_path> "../AnimationPlayer" </node_path>
+					<string> "nodes" </string>
+					<array  len="6" shared="false">
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek" </string>
+							<string> "pos" </string>
+							<vector2> 206, 143 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "mf -loop" </string>
+							<string> "id" </string>
+							<string> "anim" </string>
+							<string> "pos" </string>
+							<vector2> 25, 45 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "out" </string>
+							<string> "pos" </string>
+							<vector2> 497, 104 </vector2>
+							<string> "type" </string>
+							<string> "output" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "look" </string>
+							<string> "id" </string>
+							<string> "look" </string>
+							<string> "pos" </string>
+							<vector2> 84, 182 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "blend" </string>
+							<real> 1 </real>
+							<string> "filter" </string>
+							<array  len="12" shared="false">
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+							</array>
+							<string> "id" </string>
+							<string> "look blend" </string>
+							<string> "pos" </string>
+							<vector2> 342, 105 </vector2>
+							<string> "type" </string>
+							<string> "blend2" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek 2" </string>
+							<string> "pos" </string>
+							<vector2> 216, 35 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+					</array>
+				</dictionary>
+				<resource  external="8">  </resource>
+				<real> 1002 </real>
+				<real> 9 </real>
+				<real> 55 </real>
+				<resource  external="9">  </resource>
+				<int> -1 </int>
+				<real> 1003 </real>
+				<real> 0.911111 </real>
+				<real> 11 </real>
+				<real> 303 </real>
+				<real> 0.913889 </real>
+				<real> 35 </real>
+				<real> -74 </real>
+				<real> 39 </real>
+				<real> -345 </real>
+				<real> 6 </real>
+				<resource  resource_type="StyleBox" path="local://4">  </resource>
+				<resource  resource_type="StyleBox" path="local://5">  </resource>
+				<real> 10000 </real>
+				<real> 640 </real>
+				<real> 360 </real>
+				<real> -640 </real>
+				<real> -360 </real>
+				<string> "+" </string>
+				<real> -5 </real>
+				<real> 180 </real>
+				<real> -6 </real>
+				<resource  resource_type="SampleLibrary" path="local://6">  </resource>
+				<transform> 1, -0, 0, 0, 1, -0, 0, 0, 1, 0, 100, 0 </transform>
+				<vector2> 0, 0 </vector2>
+				<real> 0.01 </real>
+				<resource  resource_type="SpriteFrames" path="local://7">  </resource>
+				<string> "default" </string>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141898, 0, -0.0219557 </transform>
+				<resource  external="14">  </resource>
+				<rect2> 0, 0, 0, 0 </rect2>
+				<transform> -0.0313105, 0, -0.99951, 0, 1, -2.22045e-16, 0.99951, 0, -0.0313105, 7.54486, 17.0941, -6.37858 </transform>
+				<dictionary  shared="false">
+					<string> "active" </string>
+					<bool> True </bool>
+					<string> "connections" </string>
+					<array  len="15" shared="false">
+						<string> "look" </string>
+						<string> "seek" </string>
+						<int> 0 </int>
+						<string> "look blend" </string>
+						<string> "out" </string>
+						<int> 0 </int>
+						<string> "seek 2" </string>
+						<string> "look blend" </string>
+						<int> 0 </int>
+						<string> "seek" </string>
+						<string> "look blend" </string>
+						<int> 1 </int>
+						<string> "anim" </string>
+						<string> "seek 2" </string>
+						<int> 0 </int>
+					</array>
+					<string> "master" </string>
+					<node_path> "../AnimationPlayer" </node_path>
+					<string> "nodes" </string>
+					<array  len="6" shared="false">
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek" </string>
+							<string> "pos" </string>
+							<vector2> 206, 143 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "mf -loop" </string>
+							<string> "id" </string>
+							<string> "anim" </string>
+							<string> "pos" </string>
+							<vector2> 25, 45 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "out" </string>
+							<string> "pos" </string>
+							<vector2> 497, 104 </vector2>
+							<string> "type" </string>
+							<string> "output" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "look" </string>
+							<string> "id" </string>
+							<string> "look" </string>
+							<string> "pos" </string>
+							<vector2> 84, 182 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "blend" </string>
+							<real> 1 </real>
+							<string> "filter" </string>
+							<array  len="12" shared="false">
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+							</array>
+							<string> "id" </string>
+							<string> "look blend" </string>
+							<string> "pos" </string>
+							<vector2> 342, 105 </vector2>
+							<string> "type" </string>
+							<string> "blend2" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek 2" </string>
+							<string> "pos" </string>
+							<vector2> 216, 35 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+					</array>
+				</dictionary>
+				<resource  external="15">  </resource>
+				<transform> -0.0313105, 0, -0.99951, 0, 1, -2.22045e-16, 0.99951, 0, -0.0313105, 7.54486, 17.0941, -8.16719 </transform>
+				<dictionary  shared="false">
+					<string> "active" </string>
+					<bool> True </bool>
+					<string> "connections" </string>
+					<array  len="15" shared="false">
+						<string> "look" </string>
+						<string> "seek" </string>
+						<int> 0 </int>
+						<string> "look blend" </string>
+						<string> "out" </string>
+						<int> 0 </int>
+						<string> "seek 2" </string>
+						<string> "look blend" </string>
+						<int> 0 </int>
+						<string> "seek" </string>
+						<string> "look blend" </string>
+						<int> 1 </int>
+						<string> "anim" </string>
+						<string> "seek 2" </string>
+						<int> 0 </int>
+					</array>
+					<string> "master" </string>
+					<node_path> "../AnimationPlayer" </node_path>
+					<string> "nodes" </string>
+					<array  len="6" shared="false">
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek" </string>
+							<string> "pos" </string>
+							<vector2> 206, 143 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "mf -loop" </string>
+							<string> "id" </string>
+							<string> "anim" </string>
+							<string> "pos" </string>
+							<vector2> 25, 45 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "out" </string>
+							<string> "pos" </string>
+							<vector2> 497, 104 </vector2>
+							<string> "type" </string>
+							<string> "output" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "look" </string>
+							<string> "id" </string>
+							<string> "look" </string>
+							<string> "pos" </string>
+							<vector2> 84, 182 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "blend" </string>
+							<real> 1 </real>
+							<string> "filter" </string>
+							<array  len="12" shared="false">
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+							</array>
+							<string> "id" </string>
+							<string> "look blend" </string>
+							<string> "pos" </string>
+							<vector2> 342, 105 </vector2>
+							<string> "type" </string>
+							<string> "blend2" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek 2" </string>
+							<string> "pos" </string>
+							<vector2> 216, 35 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+					</array>
+				</dictionary>
+				<resource  external="16">  </resource>
+				<transform> -0.0313105, 0, -0.99951, 0, 1, -2.22045e-16, 0.99951, 0, -0.0313105, 7.54486, 17.0941, -9.80011 </transform>
+				<dictionary  shared="false">
+					<string> "active" </string>
+					<bool> True </bool>
+					<string> "connections" </string>
+					<array  len="15" shared="false">
+						<string> "look" </string>
+						<string> "seek" </string>
+						<int> 0 </int>
+						<string> "look blend" </string>
+						<string> "out" </string>
+						<int> 0 </int>
+						<string> "seek 2" </string>
+						<string> "look blend" </string>
+						<int> 0 </int>
+						<string> "seek" </string>
+						<string> "look blend" </string>
+						<int> 1 </int>
+						<string> "anim" </string>
+						<string> "seek 2" </string>
+						<int> 0 </int>
+					</array>
+					<string> "master" </string>
+					<node_path> "../AnimationPlayer" </node_path>
+					<string> "nodes" </string>
+					<array  len="6" shared="false">
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek" </string>
+							<string> "pos" </string>
+							<vector2> 206, 143 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "mf -loop" </string>
+							<string> "id" </string>
+							<string> "anim" </string>
+							<string> "pos" </string>
+							<vector2> 25, 45 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "out" </string>
+							<string> "pos" </string>
+							<vector2> 497, 104 </vector2>
+							<string> "type" </string>
+							<string> "output" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "look" </string>
+							<string> "id" </string>
+							<string> "look" </string>
+							<string> "pos" </string>
+							<vector2> 84, 182 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "blend" </string>
+							<real> 1 </real>
+							<string> "filter" </string>
+							<array  len="12" shared="false">
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+							</array>
+							<string> "id" </string>
+							<string> "look blend" </string>
+							<string> "pos" </string>
+							<vector2> 342, 105 </vector2>
+							<string> "type" </string>
+							<string> "blend2" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek 2" </string>
+							<string> "pos" </string>
+							<vector2> 216, 35 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+					</array>
+				</dictionary>
+				<resource  external="17">  </resource>
+				<transform> -0.0313105, 0, -0.99951, 0, 1, -2.22045e-16, 0.99951, 0, -0.0313105, 7.54486, 17.0941, -11.3201 </transform>
+				<dictionary  shared="false">
+					<string> "active" </string>
+					<bool> True </bool>
+					<string> "connections" </string>
+					<array  len="15" shared="false">
+						<string> "look" </string>
+						<string> "seek" </string>
+						<int> 0 </int>
+						<string> "look blend" </string>
+						<string> "out" </string>
+						<int> 0 </int>
+						<string> "seek 2" </string>
+						<string> "look blend" </string>
+						<int> 0 </int>
+						<string> "seek" </string>
+						<string> "look blend" </string>
+						<int> 1 </int>
+						<string> "anim" </string>
+						<string> "seek 2" </string>
+						<int> 0 </int>
+					</array>
+					<string> "master" </string>
+					<node_path> "../AnimationPlayer" </node_path>
+					<string> "nodes" </string>
+					<array  len="6" shared="false">
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek" </string>
+							<string> "pos" </string>
+							<vector2> 206, 143 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "mf -loop" </string>
+							<string> "id" </string>
+							<string> "anim" </string>
+							<string> "pos" </string>
+							<vector2> 25, 45 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "out" </string>
+							<string> "pos" </string>
+							<vector2> 497, 104 </vector2>
+							<string> "type" </string>
+							<string> "output" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "look" </string>
+							<string> "id" </string>
+							<string> "look" </string>
+							<string> "pos" </string>
+							<vector2> 84, 182 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "blend" </string>
+							<real> 1 </real>
+							<string> "filter" </string>
+							<array  len="12" shared="false">
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+							</array>
+							<string> "id" </string>
+							<string> "look blend" </string>
+							<string> "pos" </string>
+							<vector2> 342, 105 </vector2>
+							<string> "type" </string>
+							<string> "blend2" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek 2" </string>
+							<string> "pos" </string>
+							<vector2> 216, 35 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+					</array>
+				</dictionary>
+				<resource  external="18">  </resource>
+				<transform> -0.0313105, 0, -0.99951, 0, 1, -2.22045e-16, 0.99951, 0, -0.0313105, 7.54486, 17.0941, -12.5928 </transform>
+				<dictionary  shared="false">
+					<string> "active" </string>
+					<bool> True </bool>
+					<string> "connections" </string>
+					<array  len="15" shared="false">
+						<string> "look" </string>
+						<string> "seek" </string>
+						<int> 0 </int>
+						<string> "look blend" </string>
+						<string> "out" </string>
+						<int> 0 </int>
+						<string> "seek 2" </string>
+						<string> "look blend" </string>
+						<int> 0 </int>
+						<string> "seek" </string>
+						<string> "look blend" </string>
+						<int> 1 </int>
+						<string> "anim" </string>
+						<string> "seek 2" </string>
+						<int> 0 </int>
+					</array>
+					<string> "master" </string>
+					<node_path> "../AnimationPlayer" </node_path>
+					<string> "nodes" </string>
+					<array  len="6" shared="false">
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek" </string>
+							<string> "pos" </string>
+							<vector2> 206, 143 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "mf -loop" </string>
+							<string> "id" </string>
+							<string> "anim" </string>
+							<string> "pos" </string>
+							<vector2> 25, 45 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "out" </string>
+							<string> "pos" </string>
+							<vector2> 497, 104 </vector2>
+							<string> "type" </string>
+							<string> "output" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "look" </string>
+							<string> "id" </string>
+							<string> "look" </string>
+							<string> "pos" </string>
+							<vector2> 84, 182 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "blend" </string>
+							<real> 1 </real>
+							<string> "filter" </string>
+							<array  len="12" shared="false">
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+							</array>
+							<string> "id" </string>
+							<string> "look blend" </string>
+							<string> "pos" </string>
+							<vector2> 342, 105 </vector2>
+							<string> "type" </string>
+							<string> "blend2" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek 2" </string>
+							<string> "pos" </string>
+							<vector2> 216, 35 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+					</array>
+				</dictionary>
+				<resource  external="19">  </resource>
+				<resource  external="20">  </resource>
+				<resource  external="21">  </resource>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.42109, 0 </transform>
 				<transform> 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.1946, 183.629, -2.57233 </transform>
 				<real> 38.093597 </real>
-				<real> 0.1 </real>
 				<real> 200 </real>
-				<int> 1048575 </int>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

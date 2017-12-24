@@ -18,7 +18,7 @@ var stats = {
 
 var view_sensitivity = 0.25
 var yaw = 0
-var pitch = 1
+var pitch = 0
 var is_moving = false
 
 const max_accel = 0.005
@@ -48,7 +48,10 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	pass
 
 # called by parent node
+onready var ani_tree = get_node("Yaw/AnimationTreePlayer")
 func action_start():
+	pitch = .5
+	ani_tree.animation_node_set_animation("anim",ani_node.get_animation("mn -loop"))
 	get_node("Yaw/metarig").show()
 	get_node("icon").hide()
 	if active:
@@ -134,6 +137,7 @@ func _integrate_forces(state):
 	var aim = get_node("Yaw").get_global_transform().basis
 	
 	var direction = Vector3()
+	var ani_to_play = "mn -loop"
 	if active:
 		var anim_dir = Vector2()
 		if Input.is_action_pressed("move_forwards"):
@@ -152,7 +156,6 @@ func _integrate_forces(state):
 			anim_dir = Vector2(1,0)
 			direction -= aim[0]
 			is_moving = true
-		var ani_to_play
 		if anim_dir == Vector2(0,1):
 			ani_to_play = "mf -loop"
 		elif anim_dir == Vector2(0,-1):
@@ -161,16 +164,10 @@ func _integrate_forces(state):
 			ani_to_play = "ml -loop"
 		elif anim_dir == Vector2(1,0):
 			ani_to_play = "mr -loop"
-		else:
-			ani_to_play = "mn -loop"
-#			ani_to_play = "look"
-		print (pitch)
-		if ani_to_play != ani_node.get_current_animation():
-#			ani_node.play(ani_to_play)
-			pass
-		var ani_tree = get_node("Yaw/AnimationTreePlayer")
-		ani_tree.timeseek_node_seek("seek",pitch)
-		ani_tree.animation_node_set_animation("anim",ani_node.get_animation(ani_to_play))
+#		else:
+#			ani_to_play = "mn -loop"
+	ani_tree.timeseek_node_seek("seek",pitch)
+	ani_tree.animation_node_set_animation("anim",ani_node.get_animation(ani_to_play))
 	direction = direction.normalized()
 	var ray = get_node("Ray")
 	

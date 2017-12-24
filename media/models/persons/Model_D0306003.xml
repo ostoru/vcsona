@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="19" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
+<resource_file type="PackedScene" subresource_count="20" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
+	<resource type="FixedMaterial" path="local://19">
+		<bool name="flags/visible"> True </bool>
+		<bool name="flags/double_sided"> False </bool>
+		<bool name="flags/invert_faces"> False </bool>
+		<bool name="flags/unshaded"> False </bool>
+		<bool name="flags/on_top"> False </bool>
+		<bool name="flags/lightmap_on_uv2"> True </bool>
+		<bool name="flags/colarray_is_srgb"> True </bool>
+		<int name="params/blend_mode"> 0 </int>
+		<int name="params/depth_draw"> 1 </int>
+		<real name="params/line_width"> 0 </real>
+		<bool name="fixed_flags/use_alpha"> False </bool>
+		<bool name="fixed_flags/use_color_array"> False </bool>
+		<bool name="fixed_flags/use_point_size"> False </bool>
+		<bool name="fixed_flags/discard_alpha"> False </bool>
+		<bool name="fixed_flags/use_xy_normalmap"> False </bool>
+		<color name="params/diffuse"> 1, 1, 1, 1 </color>
+		<color name="params/specular"> 0, 0, 0, 1 </color>
+		<color name="params/emission"> 0, 0, 0, 1 </color>
+		<int name="params/specular_exp"> 40 </int>
+		<real name="params/detail_mix"> 1 </real>
+		<int name="params/normal_depth"> 1 </int>
+		<int name="params/shader"> 0 </int>
+		<real name="params/shader_param"> 0.5 </real>
+		<int name="params/glow"> 0 </int>
+		<real name="params/point_size"> 1 </real>
+		<transform name="uv_xform"> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
+		<resource name="textures/diffuse"></resource>		<int name="textures/diffuse_tc"> 0 </int>
+		<resource name="textures/detail"></resource>		<int name="textures/detail_tc"> 0 </int>
+		<resource name="textures/specular"></resource>		<int name="textures/specular_tc"> 0 </int>
+		<resource name="textures/emission"></resource>		<int name="textures/emission_tc"> 0 </int>
+		<resource name="textures/specular_exp"></resource>		<int name="textures/specular_exp_tc"> 0 </int>
+		<resource name="textures/glow"></resource>		<int name="textures/glow_tc"> 0 </int>
+		<resource name="textures/normal"></resource>		<int name="textures/normal_tc"> 0 </int>
+		<resource name="textures/shade_param"></resource>		<int name="textures/shade_param_tc"> 0 </int>
+
+	</resource>
 	<resource type="FixedMaterial" path="local://1">
 		<string name="resource/name"> "camo" </string>
 		<bool name="flags/visible"> True </bool>
@@ -1280,9 +1317,9 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="391"> 				-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 1, 0, 0, 0, 5, 5, -1, 147, 1, 2, 2, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11, 9, 12, 10, 13, 11, 14, 7, 15, 8, 16, 12, 17, 13, 18, 14, 19, 7, 20, 8, 21, 15, 22, 16, 23, 17, 24, 7, 25, 8, 26, 18, 27, 19, 28, 20, 29, 7, 30, 8, 31, 21, 32, 22, 33, 23, 34, 7, 35, 8, 36, 24, 37, 25, 38, 26, 39, 7, 40, 8, 41, 27, 42, 19, 43, 28, 44, 7, 45, 8, 46, 29, 47, 30, 48, 31, 49, 7, 50, 8, 51, 32, 52, 33, 53, 34, 54, 7, 55, 8, 56, 35, 57, 36, 58, 37, 59, 7, 60, 8, 61, 38, 62, 19, 63, 39, 64, 7, 65, 8, 66, 40, 67, 41, 68, 42, 69, 7, 70, 8, 71, 43, 72, 44, 73, 45, 74, 7, 75, 8, 76, 46, 77, 47, 78, 48, 79, 7, 80, 8, 81, 49, 82, 19, 83, 50, 84, 7, 85, 8, 86, 51, 87, 19, 88, 52, 89, 7, 90, 8, 91, 53, 92, 10, 93, 54, 94, 7, 95, 8, 96, 55, 97, 10, 98, 56, 99, 7, 100, 8, 101, 57, 102, 10, 103, 58, 104, 7, 105, 8, 106, 59, 107, 60, 108, 61, 109, 7, 110, 8, 111, 62, 112, 63, 113, 64, 114, 7, 115, 8, 116, 65, 117, 66, 118, 67, 119, 7, 120, 8, 121, 68, 122, 66, 123, 69, 124, 7, 125, 8, 126, 70, 127, 10, 128, 71, 129, 7, 130, 8, 131, 72, 132, 73, 133, 74, 134, 7, 135, 8, 136, 75, 137, 76, 138, 77, 139, 7, 140, 8, 141, 78, 142, 79, 143, 80, 144, 7, 145, 8, 146, 81, 147, 79, 148, 82, 149, 7, 150, 8, 0, 1, 0, 185, 151, -1, 35, 1, 83, 2, 3, 152, 13, 153, 7, 154, 84, 155, 13, 156, 7, 157, 85, 158, 85, 159, 85, 160, 86, 161, 86, 162, 86, 163, 86, 164, 7, 165, 10, 166, 87, 167, 88, 168, 84, 169, 84, 170, 84, 171, 84, 172, 84, 173, 84, 174, 84, 175, 84, 176, 84, 177, 84, 178, 84, 179, 84, 180, 84, 181, 84, 182, 84, 183, 84, 184, 84, 0 </int_array>
+			<int_array  len="391"> 				-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 1, 0, 0, 0, 5, 5, -1, 147, 1, 2, 2, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11, 9, 12, 10, 13, 11, 14, 7, 15, 8, 16, 12, 17, 13, 18, 14, 19, 7, 20, 8, 21, 15, 22, 16, 23, 17, 24, 7, 25, 8, 26, 18, 27, 19, 28, 20, 29, 7, 30, 8, 31, 21, 32, 22, 33, 23, 34, 7, 35, 8, 36, 24, 37, 25, 38, 26, 39, 7, 40, 8, 41, 27, 42, 19, 43, 28, 44, 7, 45, 8, 46, 29, 47, 30, 48, 31, 49, 7, 50, 8, 51, 32, 52, 33, 53, 34, 54, 7, 55, 8, 56, 35, 57, 36, 58, 37, 59, 7, 60, 8, 61, 38, 62, 19, 63, 39, 64, 7, 65, 8, 66, 40, 67, 41, 68, 42, 69, 7, 70, 8, 71, 43, 72, 44, 73, 45, 74, 7, 75, 8, 76, 46, 77, 47, 78, 48, 79, 7, 80, 8, 81, 49, 82, 19, 83, 50, 84, 7, 85, 8, 86, 51, 87, 19, 88, 52, 89, 7, 90, 8, 91, 53, 92, 10, 93, 54, 94, 7, 95, 8, 96, 55, 97, 10, 98, 56, 99, 7, 100, 8, 101, 57, 102, 10, 103, 58, 104, 7, 105, 8, 106, 59, 107, 60, 108, 61, 109, 7, 110, 8, 111, 62, 112, 63, 113, 64, 114, 7, 115, 8, 116, 65, 117, 66, 118, 67, 119, 7, 120, 8, 121, 68, 122, 66, 123, 69, 124, 7, 125, 8, 126, 70, 127, 10, 128, 71, 129, 7, 130, 8, 131, 72, 132, 73, 133, 74, 134, 7, 135, 8, 136, 75, 137, 76, 138, 77, 139, 7, 140, 8, 141, 78, 142, 79, 143, 80, 144, 7, 145, 8, 146, 81, 147, 79, 148, 82, 149, 7, 150, 8, 0, 1, 0, 185, 151, -1, 35, 1, 83, 2, 3, 152, 13, 153, 7, 154, 84, 155, 13, 156, 7, 157, 85, 158, 85, 159, 85, 160, 86, 161, 86, 162, 86, 163, 86, 164, 7, 165, 10, 166, 87, 167, 88, 168, 89, 169, 89, 170, 89, 171, 89, 172, 89, 173, 89, 174, 89, 175, 89, 176, 89, 177, 89, 178, 89, 179, 89, 180, 89, 181, 89, 182, 89, 183, 89, 184, 89, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="89" shared="false">
+			<array  len="90" shared="false">
 				<node_path> "metarig" </node_path>
 				<transform> 0.68104, 0, 0, 0, 0.68104, 0, 0, 0, 0.68104, 0, 0, 0 </transform>
 				<node_path> "metarig/Skeleton" </node_path>
@@ -1368,11 +1405,12 @@
 				<string> "heel.02.R" </string>
 				<transform> 0.106101, 5.04364e-08, 0.994355, 0.78109, 0.618831, -0.0833449, -0.615338, 0.785524, 0.0656586, 0.0409148, 0.106073, -0.0357322 </transform>
 				<node_path> "metarig/Skeleton/miki.003" </node_path>
-				<resource name=""></resource>				<real> 0 </real>
+				<resource  resource_type="Material" path="local://19">  </resource>
+				<real> 0 </real>
 				<bool> False </bool>
 				<resource  resource_type="Mesh" path="local://18">  </resource>
 				<node_path> ".." </node_path>
-			</array>
+				<resource name=""></resource>			</array>
 			<string> "version" </string>
 			<int> 2 </int>
 		</dictionary>

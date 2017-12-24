@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="3" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
-	<ext_resource path="res://media/models/persons/AnimationPlayer.tscn" type="PackedScene" index="0"></ext_resource>
+<resource_file type="PackedScene" subresource_count="2" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
 	<resource type="Mesh" path="local://1">
 		<string name="resource/name"> "objrdmobj00" </string>
 		<dictionary name="surfaces/0" shared="false">
@@ -37,12 +36,11 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="171">
-				<string> "char" </string>
+			<string_array  len="169">
+				<string> "metarig" </string>
 				<string> "_import_path" </string>
 				<string> "_import_transform" </string>
 				<string> "Spatial" </string>
-				<string> "metarig" </string>
 				<string> "Skeleton" </string>
 				<string> "bones/0/name" </string>
 				<string> "bones/0/parent" </string>
@@ -208,20 +206,18 @@
 				<string> "mesh/skeleton" </string>
 				<string> "material/0" </string>
 				<string> "MeshInstance" </string>
-				<string> "AnimationPlayer" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 5 </int>
+			<int> 3 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="375"> 				-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 3, 4, -1, 2, 1, 2, 2, 1, 0, 1, 0, 5, 5, -1, 147, 1, 3, 2, 1, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11, 9, 12, 10, 13, 11, 14, 7, 15, 8, 16, 12, 17, 13, 18, 14, 19, 7, 20, 8, 21, 15, 22, 16, 23, 17, 24, 7, 25, 8, 26, 18, 27, 19, 28, 20, 29, 7, 30, 8, 31, 21, 32, 22, 33, 23, 34, 7, 35, 8, 36, 24, 37, 25, 38, 26, 39, 7, 40, 8, 41, 27, 42, 19, 43, 28, 44, 7, 45, 8, 46, 29, 47, 30, 48, 31, 49, 7, 50, 8, 51, 32, 52, 33, 53, 34, 54, 7, 55, 8, 56, 35, 57, 36, 58, 37, 59, 7, 60, 8, 61, 38, 62, 19, 63, 39, 64, 7, 65, 8, 66, 40, 67, 41, 68, 42, 69, 7, 70, 8, 71, 43, 72, 44, 73, 45, 74, 7, 75, 8, 76, 46, 77, 47, 78, 48, 79, 7, 80, 8, 81, 49, 82, 19, 83, 50, 84, 7, 85, 8, 86, 51, 87, 19, 88, 52, 89, 7, 90, 8, 91, 53, 92, 10, 93, 54, 94, 7, 95, 8, 96, 55, 97, 10, 98, 56, 99, 7, 100, 8, 101, 57, 102, 10, 103, 58, 104, 7, 105, 8, 106, 59, 107, 60, 108, 61, 109, 7, 110, 8, 111, 62, 112, 63, 113, 64, 114, 7, 115, 8, 116, 65, 117, 66, 118, 67, 119, 7, 120, 8, 121, 68, 122, 66, 123, 69, 124, 7, 125, 8, 126, 70, 127, 10, 128, 71, 129, 7, 130, 8, 131, 72, 132, 73, 133, 74, 134, 7, 135, 8, 136, 75, 137, 76, 138, 77, 139, 7, 140, 8, 141, 78, 142, 79, 143, 80, 144, 7, 145, 8, 146, 81, 147, 79, 148, 82, 149, 7, 150, 8, 0, 2, 0, 169, 151, -1, 19, 1, 83, 2, 1, 152, 13, 153, 7, 154, 84, 155, 13, 156, 7, 157, 85, 158, 85, 159, 85, 160, 86, 161, 86, 162, 86, 163, 86, 164, 7, 165, 10, 166, 87, 167, 88, 168, 84, 0, 0, 0, 2147483647, 170, 89, 0, 0 </int_array>
+			<int_array  len="357"> 				-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 4, 4, -1, 147, 1, 2, 2, 1, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11, 9, 12, 10, 13, 6, 14, 7, 15, 11, 16, 12, 17, 13, 18, 6, 19, 7, 20, 14, 21, 15, 22, 16, 23, 6, 24, 7, 25, 17, 26, 18, 27, 19, 28, 6, 29, 7, 30, 20, 31, 21, 32, 22, 33, 6, 34, 7, 35, 23, 36, 24, 37, 25, 38, 6, 39, 7, 40, 26, 41, 18, 42, 27, 43, 6, 44, 7, 45, 28, 46, 29, 47, 30, 48, 6, 49, 7, 50, 31, 51, 32, 52, 33, 53, 6, 54, 7, 55, 34, 56, 35, 57, 36, 58, 6, 59, 7, 60, 37, 61, 18, 62, 38, 63, 6, 64, 7, 65, 39, 66, 40, 67, 41, 68, 6, 69, 7, 70, 42, 71, 43, 72, 44, 73, 6, 74, 7, 75, 45, 76, 46, 77, 47, 78, 6, 79, 7, 80, 48, 81, 18, 82, 49, 83, 6, 84, 7, 85, 50, 86, 18, 87, 51, 88, 6, 89, 7, 90, 52, 91, 9, 92, 53, 93, 6, 94, 7, 95, 54, 96, 9, 97, 55, 98, 6, 99, 7, 100, 56, 101, 9, 102, 57, 103, 6, 104, 7, 105, 58, 106, 59, 107, 60, 108, 6, 109, 7, 110, 61, 111, 62, 112, 63, 113, 6, 114, 7, 115, 64, 116, 65, 117, 66, 118, 6, 119, 7, 120, 67, 121, 65, 122, 68, 123, 6, 124, 7, 125, 69, 126, 9, 127, 70, 128, 6, 129, 7, 130, 71, 131, 72, 132, 73, 133, 6, 134, 7, 135, 74, 136, 75, 137, 76, 138, 6, 139, 7, 140, 77, 141, 78, 142, 79, 143, 6, 144, 7, 145, 80, 146, 78, 147, 81, 148, 6, 149, 7, 0, 1, 0, 168, 150, -1, 19, 1, 82, 2, 1, 151, 12, 152, 6, 153, 83, 154, 12, 155, 6, 156, 84, 157, 84, 158, 84, 159, 85, 160, 85, 161, 85, 162, 85, 163, 6, 164, 9, 165, 86, 166, 87, 167, 83, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="90" shared="false">
-				<node_path> "." </node_path>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
+			<array  len="88" shared="false">
 				<node_path> "metarig" </node_path>
+				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<node_path> "metarig/Skeleton" </node_path>
 				<string> "spine" </string>
 				<int> -1 </int>
@@ -308,7 +304,6 @@
 				<bool> False </bool>
 				<resource  resource_type="Mesh" path="local://1">  </resource>
 				<node_path> ".." </node_path>
-				<resource  external="0">  </resource>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

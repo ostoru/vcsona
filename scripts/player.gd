@@ -36,16 +36,20 @@ var ray_length = 10
 
 #selects charater using mouse click
 func _mouse_enter():
-	get_node("icon/highlight").set_scale(Vector3(1,1,1) * 3)
-	get_node("icon").play("default")
+	if ally:
+		get_node("icon/highlight").set_scale(Vector3(1,1,1) * 3)
+		get_node("icon").play("default")
 func _mouse_exit():
 	get_node("icon/highlight").set_scale(Vector3(1,1,1))
 	get_node("icon").stop()
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	if event.is_action("attack"):
-		active = true
-		get_node("../").start_actions()
-	pass
+		if ally:
+			active = true
+			get_node("Sounds").play("jump")
+			get_node("../").start_actions()
+		else:
+			get_node("Sounds").play("fire")
 
 # called by parent node
 onready var ani_tree = get_node("Yaw/AnimationTreePlayer")
@@ -57,9 +61,12 @@ func action_start():
 	if active:
 		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		set_fixed_process(true)
+		set_mode(RigidBody.MODE_CHARACTER)
 		set_process_input(true)
 		get_node("Crosshair").show()
+	else:
+		set_mode(RigidBody.MODE_STATIC)
+	set_fixed_process(true)
 
 # called by parent node
 func action_end():
@@ -67,6 +74,7 @@ func action_end():
 	get_node("icon").show()
 	get_node("Yaw/metarig/Skeleton/gun/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	set_mode(RigidBody.MODE_STATIC)
 	set_fixed_process(false)
 	set_process_input(false)
 	get_node("Crosshair").hide()
@@ -109,16 +117,27 @@ func shoot():
 	world.add_child(bullet_inst)
 
 func _fixed_process(delta):
-	get_node("FPS").set_text(str(OS.get_frames_per_second(), " FPS"))
-	get_node("Stamina").set_value(stamina)
-	
-	timer -= 1
-	if timer <= 0:
-		if Input.is_action_pressed("attack"):
-			shoot()
-			get_node("Sounds").play("rifle")
-			timer = 8
-	
+	if active:
+		timer -= 1
+		if timer <= 0:
+			if Input.is_action_pressed("attack"):
+				shoot()
+				get_node("Sounds").play("rifle")
+				timer = 8
+	else:
+		var yaw = get_node("Yaw")
+		var look = (target.get_node("Body").get_global_transform().origin)
+		look.y = self.get_translation().y
+		look_at(look,Vector3(0,1,0))
+		rotate_y(deg2rad(182))
+		print(deg2rad(182))
+		var a = get_node("Body").get_global_transform().origin
+		var b = target.get_node("Body").get_global_transform().origin
+		a = Vector2(1,a.y).normalized()
+		b = Vector2(get_translation().distance_to(target.get_translation()),b.y).normalized()
+		pitch = -(a.angle_to(b)/2) + .5
+#		print (pitch,a.y,b.y)
+		ani_tree.timeseek_node_seek("seek",pitch)
 	is_moving = false
 
 
@@ -227,7 +246,13 @@ func _exit_scene():
 
 # Functions
 # =========
-
+var value = 1
+var target = self
+func new_action(node):
+	if node != self:
+		target = node
+		shoot()
+	
 # Quits the game:
 func quit():
 	get_tree().quit()

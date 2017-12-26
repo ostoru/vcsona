@@ -5,5 +5,8 @@
 extends Spatial
 
 func _ready():
-#	set_process_input(true)
+	set_process_input(true)
+func _input(event):
+	if event.is_action("ui_cancel"):
+		get_tree().quit()
 	pass

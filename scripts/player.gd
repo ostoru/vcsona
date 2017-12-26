@@ -34,6 +34,7 @@ var health = 100
 var stamina = 10000
 var ray_length = 10
 
+onready var models = get_node("Yaw/metarig/Skeleton").get_children()
 #selects charater using mouse click
 func _mouse_enter():
 	if ally:
@@ -57,15 +58,33 @@ func action_start():
 	pitch = .5
 	ani_tree.animation_node_set_animation("anim",ani_node.get_animation("mn -loop"))
 	get_node("Yaw/metarig").show()
+	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	get_node("icon").hide()
 	if active:
+		if ally:
+			for a in models:
+				if a extends MeshInstance:
+					a.set_material_override(load("res://media/textures/other/active_ally.tres"))
+		else:
+			for a in models:
+				if a extends MeshInstance:
+					a.set_material_override(load("res://media/textures/other/active_enemy.tres"))
 		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		set_mode(RigidBody.MODE_CHARACTER)
 		set_process_input(true)
 		get_node("Crosshair").show()
 	else:
-		set_mode(RigidBody.MODE_STATIC)
+		if ally:
+			for a in models:
+				if a extends MeshInstance:
+					a.set_material_override(load("res://media/textures/other/passive_ally.tres"))
+		else:
+			for a in models:
+				if a extends MeshInstance:
+					a.set_material_override(load("res://media/textures/other/passive_enemy.tres"))
+#		set_mode(RigidBody.MODE_STATIC)
+		pass
 	set_fixed_process(true)
 
 # called by parent node
@@ -97,9 +116,6 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			view_sensitivity = 0.25
 
-	# Quit the game:
-	if Input.is_action_pressed("quit"):
-		quit()
 	elif Input.is_action_pressed("char reload"):
 		get_node("../").end_actions()
 
@@ -127,16 +143,15 @@ func _fixed_process(delta):
 	else:
 		var yaw = get_node("Yaw")
 		var look = (target.get_node("Body").get_global_transform().origin)
+		get_node("Yaw/metarig/Skeleton/gun/origin").look_at(look,Vector3(0,1,0))
 		look.y = self.get_translation().y
-		look_at(look,Vector3(0,1,0))
+		yaw.look_at(look,Vector3(0,1,0))
 		rotate_y(deg2rad(182))
-		print(deg2rad(182))
 		var a = get_node("Body").get_global_transform().origin
 		var b = target.get_node("Body").get_global_transform().origin
-		a = Vector2(1,a.y).normalized()
-		b = Vector2(get_translation().distance_to(target.get_translation()),b.y).normalized()
-		pitch = -(a.angle_to(b)/2) + .5
-#		print (pitch,a.y,b.y)
+		a = Vector2(0,a.y)
+		b = Vector2(0,b.y) / get_translation().distance_to(target.get_translation())
+		pitch = (a.angle_to(b)/2) + .5
 		ani_tree.timeseek_node_seek("seek",pitch)
 	is_moving = false
 
@@ -252,7 +267,4 @@ func new_action(node):
 	if node != self:
 		target = node
 		shoot()
-	
-# Quits the game:
-func quit():
-	get_tree().quit()
+

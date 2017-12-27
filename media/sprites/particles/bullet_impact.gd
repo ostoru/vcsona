@@ -9,7 +9,8 @@ func _fixed_process(delta):
 	else:
 		var cbodies = get_colliding_bodies()
 		if cbodies != []:
-			for a in cbodies:
-				print("hit ", a)
-				queue_free()
+			for body in cbodies:
+				if body.is_in_group("char"):
+					body.stats.hp_cur -= 1
+			queue_free()
 	pass

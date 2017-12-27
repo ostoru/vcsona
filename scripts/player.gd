@@ -5,6 +5,7 @@
 extends RigidBody
 
 export var active = false
+var passive_ready = true
 export var ally = false
 
 var stats = {
@@ -35,6 +36,9 @@ var stamina = 10000
 var ray_length = 10
 
 onready var models = get_node("Yaw/metarig/Skeleton").get_children()
+func _ready():
+	get_node("gui").hide()
+	get_node("Yaw/metarig/Skeleton").rotate_y(deg2rad(180))
 #selects charater using mouse click
 func _mouse_enter():
 	if ally:
@@ -56,48 +60,40 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 onready var ani_tree = get_node("Yaw/AnimationTreePlayer")
 func action_start():
 	pitch = .5
-	ani_tree.animation_node_set_animation("anim",ani_node.get_animation("mn -loop"))
+	ani_tree.timeseek_node_seek("seek",.5)
+	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
 	get_node("Yaw/metarig").show()
-	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	get_node("icon").hide()
-	if active:
-		if ally:
-			for a in models:
-				if a extends MeshInstance:
-					a.set_material_override(load("res://media/textures/other/active_ally.tres"))
-		else:
-			for a in models:
-				if a extends MeshInstance:
-					a.set_material_override(load("res://media/textures/other/active_enemy.tres"))
-		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		set_mode(RigidBody.MODE_CHARACTER)
-		set_process_input(true)
-		get_node("Crosshair").show()
-	else:
-		if ally:
-			for a in models:
-				if a extends MeshInstance:
-					a.set_material_override(load("res://media/textures/other/passive_ally.tres"))
-		else:
-			for a in models:
-				if a extends MeshInstance:
-					a.set_material_override(load("res://media/textures/other/passive_enemy.tres"))
-#		set_mode(RigidBody.MODE_STATIC)
-		pass
+	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	set_fixed_process(true)
+	if active:
+		for a in models:
+			if a extends MeshInstance:
+				a.set_material_override(load("res://media/textures/other/active_ally.tres"))
+		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
+		set_process_input(true)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_node("gui").show()
+	if ally:
+		for a in models:
+			if a extends MeshInstance:
+				a.set_material_override(load("res://media/textures/other/passive_ally.tres"))
+	else:
+		for a in models:
+			if a extends MeshInstance:
+				a.set_material_override(load("res://media/textures/other/passive_enemy.tres"))
+		pass
 
 # called by parent node
 func action_end():
+	active = false
 	get_node("Yaw/metarig").hide()
 	get_node("icon").show()
 	get_node("Yaw/metarig/Skeleton/gun/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	set_mode(RigidBody.MODE_STATIC)
 	set_fixed_process(false)
 	set_process_input(false)
-	get_node("Crosshair").hide()
-	active = false
+	get_node("gui").hide()
 	pass
 
 func _input(event):
@@ -124,37 +120,47 @@ onready var world = get_node("../")
 onready var ani_node = get_node("Yaw/AnimationPlayer")
 
 func shoot():
-	var bullet_inst = bullet_inst_scene.instance()
-	var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
-	bullet_inst.set_transform(origin)
-	var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform()
-	bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
-	bullet_inst.add_to_group("destroy")
-	world.add_child(bullet_inst)
+	if cooldown_shoot <= 0: #normally i wouldn't put this here, but is going to be called from so many places i might as well
+		var bullet_inst = bullet_inst_scene.instance()
+		var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
+		bullet_inst.set_transform(origin)
+		var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform()
+		bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
+		bullet_inst.add_to_group("destroy")
+		world.add_child(bullet_inst)
+		cooldown_shoot = 2 #todo change this value for weapon rate of fire
 
 func _fixed_process(delta):
+	update_gui()
+	cooldown_shoot -= 1
+	
 	if active:
-		timer -= 1
-		if timer <= 0:
-			if Input.is_action_pressed("attack"):
-				shoot()
-				get_node("Sounds").play("rifle")
-				timer = 8
-	else:
-		var yaw = get_node("Yaw")
-		var look = (target.get_node("Body").get_global_transform().origin)
-		get_node("Yaw/metarig/Skeleton/gun/origin").look_at(look,Vector3(0,1,0))
-		look.y = self.get_translation().y
-		yaw.look_at(look,Vector3(0,1,0))
-		rotate_y(deg2rad(182))
-		var a = get_node("Body").get_global_transform().origin
-		var b = target.get_node("Body").get_global_transform().origin
-		a = Vector2(0,a.y)
-		b = Vector2(0,b.y) / get_translation().distance_to(target.get_translation())
-		pitch = (a.angle_to(b)/2) + .5
-		ani_tree.timeseek_node_seek("seek",pitch)
+		if Input.is_action_pressed("attack"):
+			shoot()
+			get_node("Sounds").play("rifle")
+	else: #passive characters
+		passive_look_at_target()
+		if remaining_action > 0:
+			passive_ready = false
+			passive_action()
+			remaining_action -= .1
+		else:
+			end_passive_action()
 	is_moving = false
 
+func passive_look_at_target():
+	var yaw = get_node("Yaw")
+	var look = (target.get_node("Body").get_global_transform().origin)
+	look.y = self.get_translation().y
+	yaw.look_at(look,Vector3(0,1,0))
+#	rotate_y(deg2rad(182))
+	var a = get_node("Body").get_global_transform().origin
+	var b = target.get_node("Body").get_global_transform().origin
+	a = Vector2(0,a.y)
+	b = Vector2(0,b.y) / get_translation().distance_to(target.get_translation())
+	get_node("Yaw/metarig/Skeleton/gun/origin").look_at(target.get_node("Body").get_global_transform().origin,Vector3(0,1,0))
+	pitch = (a.angle_to(b)/2) + .5
+	ani_tree.timeseek_node_seek("seek",pitch)
 
 func _integrate_forces(state):
 	# Default walk speed:
@@ -175,20 +181,20 @@ func _integrate_forces(state):
 	if active:
 		var anim_dir = Vector2()
 		if Input.is_action_pressed("move_forwards"):
-			direction += aim[2]
+			direction -= aim[2]
 			anim_dir = Vector2(0,1)
 			is_moving = true
 		if Input.is_action_pressed("move_backwards"):
-			direction -= aim[2]
+			direction += aim[2]
 			anim_dir = Vector2(0,-1)
 			is_moving = true
 		if Input.is_action_pressed("move_left"):
+			direction -= aim[0]
 			anim_dir = Vector2(-1,0)
-			direction += aim[0]
 			is_moving = true
 		if Input.is_action_pressed("move_right"):
+			direction += aim[0]
 			anim_dir = Vector2(1,0)
-			direction -= aim[0]
 			is_moving = true
 		if anim_dir == Vector2(0,1):
 			ani_to_play = "mf -loop"
@@ -201,7 +207,7 @@ func _integrate_forces(state):
 #		else:
 #			ani_to_play = "mn -loop"
 	ani_tree.timeseek_node_seek("seek",pitch)
-	ani_tree.animation_node_set_animation("anim",ani_node.get_animation(ani_to_play))
+	ani_tree.animation_node_set_animation("move",ani_node.get_animation(ani_to_play))
 	direction = direction.normalized()
 	var ray = get_node("Ray")
 	
@@ -247,7 +253,7 @@ func _integrate_forces(state):
 		if active:
 			if Input.is_action_pressed("jump") and stamina > 150:
 				apply_impulse(Vector3(), normal * jump_speed * get_mass())
-				ani_tree.animation_node_set_animation("anim",ani_node.get_animation("air -loop"))
+				ani_tree.animation_node_set_animation("move",ani_node.get_animation("air -loop"))
 				get_node("Sounds").play("jump")
 				stamina -= 150
 
@@ -263,8 +269,40 @@ func _exit_scene():
 # =========
 var value = 1
 var target = self
-func new_action(node):
+func new_passive_action(node):
 	if node != self:
+		for a in models:
+				if a extends MeshInstance:
+					a.set_material_override(load("res://media/textures/other/active_enemy.tres"))
+		passive_ready = false
 		target = node
-		shoot()
+		remaining_action = 5
+		return -1
+	else:
+		passive_ready = true
+		return 0
 
+var remaining_action = 5
+var cooldown_shoot = 20
+func passive_action():
+	if target != self:
+		if cooldown_shoot > 0:
+			cooldown_shoot -= 1
+		else: 
+			shoot()
+			cooldown_shoot = 20
+func end_passive_action():
+	if passive_ready == false:
+		for a in models:
+			if a extends MeshInstance:
+					a.set_material_override(load("res://media/textures/other/passive_enemy.tres"))
+		passive_ready = true
+		get_node("../").passive_ready = 1
+	remaining_action = 0
+
+func update_gui():
+	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))
+	get_node("gui/Health").set_text(str(stats.hp_cur))
+	get_node("gui/Stamina").set_val(stats.stm_cur)
+	get_node("gui/Stamina").set_max(stats.stm_max)
+	pass

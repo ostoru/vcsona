@@ -29,22 +29,27 @@ const DEFAULT_ACTION_COOLDOWN = 3
 var action_cooldown = DEFAULT_ACTION_COOLDOWN
 func _fixed_process(delta):
 	if action_cooldown <= 0:
-		update_one_character()
+		if passive_ready > 0:
+			update_one_passive_character()
+			passive_ready -= 1
 		action_cooldown = DEFAULT_ACTION_COOLDOWN
 	else:
 		action_cooldown -= 1
 
+var passive_ready = 1
 var char_index = 0
 var target_index = 0
-func update_one_character():
-	if char_index < chars.size():
-		if !chars[char_index].active: #detects if the character is used
-			if target_index < chars.size():
-				chars[char_index].new_action(chars[target_index])
-				target_index += 1
-			else:
-				target_index = 0
+func update_one_passive_character():
+	if char_index < chars.size(): #selects one of our characters from the deployed list
+		if !chars[char_index].active: #detects if the character is being used by the player
+			if chars[char_index].passive_ready: #detects if the character is already executing passive actions
+				if target_index < chars.size(): #selects a target from the deployed list
+					chars[char_index].new_passive_action(chars[target_index])
+					target_index += 1
+				else:
+					target_index = 0
 		char_index += 1
 	else:
 		char_index = 0
+	print("passive",passive_ready)
 	pass

@@ -52,13 +52,13 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 		if ally:
 			active = true
 			get_node("Sounds").play("jump")
-			get_node("../").start_actions()
+			get_node("../").start_actions(self)
 		else:
 			get_node("Sounds").play("fire")
 
 # called by parent node
 onready var ani_tree = get_node("Yaw/AnimationTreePlayer")
-func action_start():
+func action_start(active_node):
 	pitch = .5
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
@@ -66,6 +66,7 @@ func action_start():
 	get_node("icon").hide()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	set_fixed_process(true)
+	target = active_node
 	if active:
 		for a in models:
 			if a extends MeshInstance:
@@ -82,7 +83,6 @@ func action_start():
 		for a in models:
 			if a extends MeshInstance:
 				a.set_material_override(load("res://media/textures/other/passive_enemy.tres"))
-		pass
 
 # called by parent node
 func action_end():
@@ -121,14 +121,18 @@ onready var ani_node = get_node("Yaw/AnimationPlayer")
 
 func shoot():
 	if cooldown_shoot <= 0: #normally i wouldn't put this here, but is going to be called from so many places i might as well
+		get_node("Sounds").play("rifle")
 		var bullet_inst = bullet_inst_scene.instance()
 		var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
 		bullet_inst.set_transform(origin)
-		var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform()
+		var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
 		bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
 		bullet_inst.add_to_group("destroy")
 		world.add_child(bullet_inst)
-		cooldown_shoot = 2 #todo change this value for weapon rate of fire
+		if active:
+			cooldown_shoot = 5 #todo change this value for weapon rate of fire
+		else:
+			cooldown_shoot = 10
 
 func _fixed_process(delta):
 	update_gui()
@@ -137,13 +141,11 @@ func _fixed_process(delta):
 	if active:
 		if Input.is_action_pressed("attack"):
 			shoot()
-			get_node("Sounds").play("rifle")
 	else: #passive characters
 		passive_look_at_target()
-		if remaining_action > 0:
+		if remaining_passive_action > 0:
 			passive_ready = false
 			passive_action()
-			remaining_action -= .1
 		else:
 			end_passive_action()
 	is_moving = false
@@ -276,29 +278,29 @@ func new_passive_action(node):
 					a.set_material_override(load("res://media/textures/other/active_enemy.tres"))
 		passive_ready = false
 		target = node
-		remaining_action = 5
+		remaining_passive_action = 5
 		return -1
 	else:
 		passive_ready = true
 		return 0
 
-var remaining_action = 5
+var remaining_passive_action = 5
 var cooldown_shoot = 20
+
 func passive_action():
+	remaining_passive_action -= .1
 	if target != self:
-		if cooldown_shoot > 0:
-			cooldown_shoot -= 1
-		else: 
+		if cooldown_shoot <= 0:
 			shoot()
-			cooldown_shoot = 20
+
 func end_passive_action():
 	if passive_ready == false:
 		for a in models:
 			if a extends MeshInstance:
 					a.set_material_override(load("res://media/textures/other/passive_enemy.tres"))
 		passive_ready = true
-		get_node("../").passive_ready = 1
-	remaining_action = 0
+		get_node("../").passive_ready += 1
+	remaining_passive_action = 0
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))

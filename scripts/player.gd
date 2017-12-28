@@ -35,8 +35,12 @@ var health = 100
 var stamina = 10000
 var ray_length = 10
 
-onready var models = get_node("Yaw/metarig/Skeleton").get_children()
+var models = []
 func _ready():
+	for child in get_node("Yaw/metarig/Skeleton").get_children():
+		if child extends MeshInstance:
+			models.append(child)
+	
 	get_node("gui").hide()
 	get_node("Yaw/metarig/Skeleton").rotate_y(deg2rad(180))
 #selects charater using mouse click
@@ -68,21 +72,11 @@ func action_start(active_node):
 	set_fixed_process(true)
 	target = active_node
 	if active:
-		for a in models:
-			if a extends MeshInstance:
-				a.set_material_override(load("res://media/textures/other/active_ally.tres"))
 		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
 		set_process_input(true)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		get_node("gui").show()
-	if ally:
-		for a in models:
-			if a extends MeshInstance:
-				a.set_material_override(load("res://media/textures/other/passive_ally.tres"))
-	else:
-		for a in models:
-			if a extends MeshInstance:
-				a.set_material_override(load("res://media/textures/other/passive_enemy.tres"))
+	update_materials()
 
 # called by parent node
 func action_end():
@@ -94,7 +88,7 @@ func action_end():
 	set_fixed_process(false)
 	set_process_input(false)
 	get_node("gui").hide()
-	pass
+	update_materials()
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
@@ -115,7 +109,7 @@ func _input(event):
 	elif Input.is_action_pressed("char reload"):
 		get_node("../").end_actions()
 
-onready var bullet_inst_scene = preload("res://media/sprites/particles/bullet_impact.xml")
+onready var bullet_inst_scene = preload("res://media/sprites/particles/bullet_instance.xml")
 onready var world = get_node("../")
 onready var ani_node = get_node("Yaw/AnimationPlayer")
 
@@ -272,39 +266,52 @@ func _exit_scene():
 var value = 1
 var target = self
 func new_passive_action(node):
+	print("new_passive_action")
 	if node != self:
-		for a in models:
-				if a extends MeshInstance:
-					a.set_material_override(load("res://media/textures/other/active_enemy.tres"))
 		passive_ready = false
 		target = node
 		remaining_passive_action = 5
-		return -1
+		return 1
 	else:
 		passive_ready = true
 		return 0
+	update_materials()
 
 var remaining_passive_action = 5
 var cooldown_shoot = 20
 
 func passive_action():
+	print("passive_action")
 	remaining_passive_action -= .1
 	if target != self:
 		if cooldown_shoot <= 0:
 			shoot()
 
 func end_passive_action():
+	print("end_passive_action")
 	if passive_ready == false:
-		for a in models:
-			if a extends MeshInstance:
-					a.set_material_override(load("res://media/textures/other/passive_enemy.tres"))
 		passive_ready = true
 		get_node("../").passive_ready += 1
 	remaining_passive_action = 0
+	update_materials()
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))
 	get_node("gui/Health").set_text(str(stats.hp_cur))
 	get_node("gui/Stamina").set_val(stats.stm_cur)
 	get_node("gui/Stamina").set_max(stats.stm_max)
+	pass
+
+func update_materials():
+	var mat_override = load("res://media/textures/other/passive_enemy.tres")
+	if active or !passive_ready:
+		if ally:
+			mat_override = load("res://media/textures/other/active_ally.tres")
+		else:
+			mat_override = load("res://media/textures/other/active_enemy.tres")
+	else:
+		if ally:
+			mat_override = load("res://media/textures/other/passive_ally.tres")
+	for mesh in models:
+			mesh.set_material_override(mat_override)
 	pass

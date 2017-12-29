@@ -1,6 +1,7 @@
 extends Spatial
 var chars = []
 var ally_chars = []
+var ally_down = []
 var enemy_chars = []
 const MAP_MODE = 0
 const ACTION_MODE = 2
@@ -11,63 +12,90 @@ func _ready():
 	update_children_list()
 
 func start_actions(target_node):
+	update_children_list()
 	play_mode = ACTION_MODE
 	for a in chars:
-		a.action_start(target_node,get_node("player"))
+		print(ally_chars)
+		a.action_start(target_node,aquire_target(ally_chars))
 
 var next_turn_ai = false
-func end_actions():
+var cooldown = 20
+func end_actions(node):
+	cooldown = 20
 	play_mode = MAP_MODE
 	chars = []
-	for child in get_children():
-		child.set_pause_mode(PAUSE_MODE_STOP)
-		if child.is_in_group("destroy"): #destroys bullets and projectiles, does not affect destructable objects
-			child.queue_free()
-		if child.is_in_group("char"):
-			chars.append(child)
-			child.action_end()
-			if child.active:
-				next_turn_ai = child.ai_mode
-	get_node("../map_cam").make_current()
+	next_turn_ai = node.ally
+	update_children_list()
+	for char in chars:
+		char.action_end()
+	get_node("../map_cam").make_current() #must be done after char.action_end()
 
 const DEFAULT_ACTION_COOLDOWN = 30
 var action_cooldown = DEFAULT_ACTION_COOLDOWN
 var passive_ready = 1
 func _fixed_process(delta):
 	if play_mode == MAP_MODE:
-		if next_turn_ai:
-			start_actions(enemy_chars[0])
+		if cooldown <= 0:
+			if next_turn_ai:
+				update_children_list()
+				start_actions(aquire_target(enemy_chars))
+		else:
+			cooldown -= 1
 	elif play_mode == ACTION_MODE:
 		if action_cooldown <= 0:
 			if passive_ready > 0:
 				passive_ready -= 1
-			update_one_passive_character()
+			update_passive_characters()
 			action_cooldown = DEFAULT_ACTION_COOLDOWN
 		else:
 			action_cooldown -= 1
 
-var char_index = 0
-var target_index = 0
-func update_one_passive_character():
-	if char_index < chars.size(): #selects one of our characters from the deployed list
-		if !chars[char_index].active: #detects if the character is being used by the player
-			if chars[char_index].passive_ready: #detects if the character is already executing passive actions
-				if target_index < chars.size(): #selects a target from the deployed list
-					chars[char_index].start_passive_action(chars[target_index])
-					target_index += 1
-				else:
-					target_index = 0
-		char_index += 1
+var enemy_index = 0
+var ally_index = 0
+var enemy_target_index = 0
+var ally_target_index = 0
+func update_passive_characters():
+	if ally_index < ally_chars.size():
+		if check_passive_readyness(ally_chars[ally_index]):
+			var target = aquire_target(enemy_chars)
+			ally_chars[ally_index].start_passive_action(target)
+			pass
+		ally_index += 1
 	else:
-		char_index = 0
+		ally_index = 0
+	if enemy_index < enemy_chars.size():
+		if check_passive_readyness(enemy_chars[enemy_index]):
+			var target = aquire_target(ally_chars)
+			enemy_chars[enemy_index].start_passive_action(target)
+			pass
+		enemy_index += 1
+	else:
+		enemy_index = 0
+		pass
+func check_passive_readyness(node):
+	if !node.active:
+		if node.passive_ready:
+			return true
+func aquire_target(target_list):
+	var index = 0
+	for a in target_list:
+		return a #todo, make this shit more comlicated, and include shitload of possible simple actions
 
 func update_children_list():
 	chars = []
+	ally_chars = []
+	enemy_chars = []
 	for child in get_children():
 		if child.is_in_group("char"):
 			chars.append(child)
 			if child.ally:
-				ally_chars.append(child)
+				if child.stats.hp_cur <= 0:
+					ally_down.append(child.stats)
+					child.queue_free()
+				else:
+					ally_chars.append(child)
+				
 			else:
 				enemy_chars.append(child)
-	print(ally_chars,enemy_chars)
+		elif child.is_in_group("destroy"):
+			child.queue_free()

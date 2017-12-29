@@ -9,7 +9,7 @@ export var ally = false
 var ai_mode = false
 var target = self
 var passive_ready = true
-var action_timer = 1000
+var action_timer = 100
 
 onready var world = get_node("../")
 onready var navmesh = get_node("../../Navigation")
@@ -57,7 +57,7 @@ func _ready():
 #select charater using mouse clicks
 func _mouse_enter():
 	if ally:
-		get_node("icon/highlight").set_scale(Vector3(1,1,1) * 3)
+		get_node("icon/highlight").set_scale(Vector3(1,1,1) * 1.5)
 		get_node("icon").play("default")
 func _mouse_exit():
 	get_node("icon/highlight").set_scale(Vector3(1,1,1))
@@ -67,7 +67,10 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 		if ally:
 			active = true
 			get_node("Sounds").play("jump")
-			get_node("../").start_actions(self)
+			if stats.hp_cur >= 0:
+				get_node("../").start_actions(self)
+			else:
+				queue_free()
 		else:
 			get_node("Sounds").play("fire")
 
@@ -79,6 +82,7 @@ func action_start(active_node,current_target):
 	get_node("Yaw/metarig").show()
 	get_node("icon").hide()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
+	action_timer = 100
 	get_node("gui/enemy_health").set_max(action_timer)
 	set_fixed_process(true)
 	if active_node == self:
@@ -87,24 +91,33 @@ func action_start(active_node,current_target):
 	else:
 		target = active_node
 	if active:
+		if ally:
+			set_process_input(true)
+		else:
+			ai_mode = true
+			start_active_action()
 		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
-		set_process_input(true)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		get_node("gui").show()
 	update_materials()
 
 # called by parent node
 func action_end():
+	pitch = .5
+	ani_tree.timeseek_node_seek("seek",.5)
+	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
 	active = false
+	ai_mode = false
 	get_node("Yaw/metarig").hide()
 	get_node("icon").show()
+	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	get_node("Yaw/metarig/Skeleton/gun/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)
 	set_process_input(false)
 	get_node("gui").hide()
-	update_materials()
-	action_timer = 1000
+	if stats.hp_cur <= 0:
+		queue_free()
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
@@ -123,7 +136,7 @@ func _input(event):
 			view_sensitivity = 0.25
 
 	elif Input.is_action_pressed("char reload"):
-		get_node("../").end_actions()
+		get_node("../").end_actions(self)
 
 
 
@@ -134,21 +147,26 @@ func shoot():
 		var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
 		bullet_inst.set_transform(origin)
 		var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
-#		bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
 		bullet_inst.add_to_group("destroy")
 		world.add_child(bullet_inst)
 		if active:
 			cooldown_shoot = 5 #todo change this value for weapon rate of fire
 		else:
-			cooldown_shoot = 10
+			cooldown_shoot = 10 #todo change this value for weapon rate of fire
 
 func _fixed_process(delta):
 	update_gui()
 	cooldown_shoot -= 1
 	
 	if active:
-		if Input.is_action_pressed("attack"):
-			shoot()
+		action_timer -= 1
+		if action_timer <= 0:
+			get_node("../").end_actions(self) 
+		if ally:
+			if Input.is_action_pressed("attack"):
+				shoot()
+		else:
+			pass
 	else: #passive characters
 		passive_look_at_target()
 		if remaining_passive_action > 0:
@@ -159,9 +177,6 @@ func _fixed_process(delta):
 	is_moving = false
 
 func _integrate_forces(state):
-	action_timer -= 1
-	if action_timer <= 0:
-		get_node("../").end_actions() 
 	# Default walk speed:
 	walk_speed = 3.5
 	# Default jump height:
@@ -185,6 +200,7 @@ func _integrate_forces(state):
 				direction = path[0] - get_global_transform().origin
 			if direction < direction.normalized():
 				path.remove(0)
+			translate(direction.normalized())
 		else:
 			if Input.is_action_pressed("move_forwards"):
 				direction -= aim[2]
@@ -211,9 +227,8 @@ func _integrate_forces(state):
 		ani_to_play = "ml -loop"
 	elif anim_dir == Vector2(1,0):
 		ani_to_play = "mr -loop"
-		
-#		else:
-#			ani_to_play = "mn -loop"
+	else:
+		ani_to_play = "mn -loop"
 	ani_tree.timeseek_node_seek("seek",pitch)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation(ani_to_play))
 	direction = direction.normalized()
@@ -320,9 +335,9 @@ func end_passive_action():
 	update_materials()
 
 var path = []
-func start_active_action(node):
-	path = navmesh.get_simple_path(get_global_transform().origin, target.get_global_transform().origin,true)
-	print (path)
+func start_active_action():
+	path = navmesh.get_simple_path(get_global_transform().origin, target.get_global_transform().origin,false)
+	print(path)
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))

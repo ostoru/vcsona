@@ -120,7 +120,7 @@ func shoot():
 		var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
 		bullet_inst.set_transform(origin)
 		var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
-		bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
+#		bullet_inst.set_linear_velocity((direction.origin - origin.origin).normalized() * 50)
 		bullet_inst.add_to_group("destroy")
 		world.add_child(bullet_inst)
 		if active:
@@ -266,7 +266,6 @@ func _exit_scene():
 var value = 1
 var target = self
 func new_passive_action(node):
-	print("new_passive_action")
 	if node != self:
 		passive_ready = false
 		target = node
@@ -281,14 +280,12 @@ var remaining_passive_action = 5
 var cooldown_shoot = 20
 
 func passive_action():
-	print("passive_action")
 	remaining_passive_action -= .1
 	if target != self:
 		if cooldown_shoot <= 0:
 			shoot()
 
 func end_passive_action():
-	print("end_passive_action")
 	if passive_ready == false:
 		passive_ready = true
 		get_node("../").passive_ready += 1

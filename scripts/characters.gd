@@ -29,9 +29,7 @@ const DEFAULT_ACTION_COOLDOWN = 30
 var action_cooldown = DEFAULT_ACTION_COOLDOWN
 var passive_ready = 1
 func _fixed_process(delta):
-#	print("action_cooldown ",action_cooldown)
 	if action_cooldown <= 0:
-#		print("passive_ready ",passive_ready)
 		if passive_ready > 0:
 			passive_ready -= 1
 		update_one_passive_character()

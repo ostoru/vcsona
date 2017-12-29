@@ -15,7 +15,6 @@ func start_actions(target_node):
 	update_children_list()
 	play_mode = ACTION_MODE
 	for a in chars:
-		print(ally_chars)
 		a.action_start(target_node,aquire_target(ally_chars))
 
 var next_turn_ai = false

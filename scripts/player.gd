@@ -197,10 +197,11 @@ func _integrate_forces(state):
 	if active:
 		if ai_mode:
 			if path.size() > 0:
-				direction = path[0] - get_global_transform().origin
+				direction = path[0] - get_node("Body").get_global_transform().origin
 			if direction < direction.normalized():
 				path.remove(0)
 			translate(direction.normalized())
+#			print("ai_mode",direction)
 		else:
 			if Input.is_action_pressed("move_forwards"):
 				direction -= aim[2]
@@ -334,10 +335,19 @@ func end_passive_action():
 	remaining_passive_action = 0
 	update_materials()
 
-var path = []
+var path
 func start_active_action():
-	path = navmesh.get_simple_path(get_global_transform().origin, target.get_global_transform().origin,false)
-	print(path)
+	if typeof(path) == TYPE_VECTOR2_ARRAY:
+		print("has path to ",target)
+	else:
+		path = navmesh.get_simple_path(get_node("Body").get_global_transform().origin, target.get_node("Body").get_global_transform().origin,false)
+		for a in path:
+			var b = load ("res://media/sprites/particles/bullet_impact.xml").instance()
+			b.lifetime = 100
+#			b.set_flag(FLAG_ONTOP,true)
+			b.set_translation(a)
+			get_node("../").add_child(b)
+		print(path[0])
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))

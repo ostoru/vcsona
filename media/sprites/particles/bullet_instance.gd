@@ -12,7 +12,6 @@ func _fixed_process(delta):
 		move(difference * delta * 50)
 		if is_colliding():
 			var body = get_collider()
-			print(body)
 			if body.is_in_group("char"):
 				body.stats.hp_cur -= 3
 			self_destruct()

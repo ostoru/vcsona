@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="17" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
+	<ext_resource path="res://media/sprites/fonts/roboto.fnt" type="BitmapFont" index="4"></ext_resource>
 	<ext_resource path="res://scripts/player.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="5"></ext_resource>
-	<ext_resource path="res://media/models/persons/Model_D0901D40.xml" type="PackedScene" index="1"></ext_resource>
-	<ext_resource path="res://media/sprites/gui_icons/MAP-T1 (by cyrus).png" type="Texture" index="7"></ext_resource>
 	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="6"></ext_resource>
-	<ext_resource path="res://media/sprites/gui_icons/MAP-T2 (by cyrus).png" type="Texture" index="8"></ext_resource>
 	<ext_resource path="res://media/models/persons/AnimationPlayer.tscn" type="PackedScene" index="3"></ext_resource>
 	<ext_resource path="res://media/sprites/gui_icons/FSTART (by cyrus).png" type="Texture" index="9"></ext_resource>
 	<ext_resource path="res://media/models/guns/stg44/stg44.xml" type="PackedScene" index="2"></ext_resource>
-	<ext_resource path="res://media/sprites/fonts/roboto.fnt" type="BitmapFont" index="4"></ext_resource>
+	<ext_resource path="res://media/models/persons/Model_D0901D40.xml" type="PackedScene" index="1"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/MAP-T2 (by cyrus).png" type="Texture" index="8"></ext_resource>
+	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="5"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/MAP-T1 (by cyrus).png" type="Texture" index="7"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 0.181871 </real>
 		<real name="height"> 1.5 </real>
@@ -91,7 +91,7 @@
 				<node_path> "Yaw/metarig" </node_path>
 			</array>
 			<string> "names" </string>
-			<string_array  len="161">
+			<string_array  len="162">
 				<string> "char" </string>
 				<string> "_import_transform" </string>
 				<string> "input/ray_pickable" </string>
@@ -203,6 +203,7 @@
 				<string> "ProgressBar" </string>
 				<string> "Crosshair" </string>
 				<string> "text" </string>
+				<string> "enemy_health" </string>
 				<string> "Sounds" </string>
 				<string> "params/volume_db" </string>
 				<string> "params/pitch_scale" </string>
@@ -255,14 +256,14 @@
 				<string> "Sprite3D" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 19 </int>
+			<int> 20 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="598"> 				-1, -1, 33, 0, -1, 32, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 2, 8, 6, 9, 7, 10, 2, 11, 8, 12, 8, 13, 3, 14, 9, 15, 10, 16, 10, 17, 11, 18, 1, 19, 2, 20, 12, 21, 1, 22, 2, 23, 2, 24, 13, 25, 14, 26, 14, 27, 15, 28, 15, 29, 16, 30, 17, 31, 2, 32, 2, 1, 0, 0, 0, 39, 34, -1, 5, 1, 0, 35, 5, 36, 4, 37, 2, 38, 13, 0, 0, 0, 39, 40, -1, 5, 1, 0, 35, 7, 36, 6, 37, 2, 38, 8, 0, 0, 0, 46, 41, -1, 5, 1, 0, 42, 1, 43, 18, 44, 8, 45, 19, 0, 0, 0, 48, 47, -1, 2, 1, 0, 35, 20, 0, 4, 0, 49, 49, -1, 4, 50, 8, 51, 21, 52, 22, 53, 23, 0, 4, 0, 2147483647, 54, 24, 1, 55, 1, 0, 6, -1, 2147483647, 56, -1, 1, 57, 25, 0, 7, 0, 2147483647, 59, 26, 2, 35, 27, 60, 28, 0, 8, 0, 61, 61, -1, 12, 1, 0, 35, 29, 62, 13, 63, 30, 64, 31, 65, 32, 66, 8, 67, 2, 68, 33, 69, 34, 70, 10, 71, 10, 0, 4, 0, 2147483647, 72, 35, 1, 73, 36, 0, 0, 0, 85, 74, -1, 10, 75, 8, 76, 8, 77, 2, 78, 1, 79, 3, 80, 3, 81, 10, 82, 10, 83, 10, 84, 10, 0, 11, 0, 93, 86, -1, 15, 75, 8, 77, 1, 78, 1, 79, 3, 80, 13, 81, 37, 82, 38, 83, 39, 84, 40, 87, 41, 88, 3, 89, 8, 90, 11, 91, 13, 92, 42, 0, 11, 0, 93, 94, -1, 18, 95, 43, 96, 3, 75, 43, 76, 8, 77, 1, 78, 1, 79, 3, 80, 13, 81, 44, 82, 45, 83, 46, 84, 47, 87, 41, 88, 3, 89, 8, 90, 11, 91, 13, 92, 42, 0, 11, 0, 108, 97, -1, 23, 95, 43, 96, 8, 75, 43, 76, 8, 77, 1, 78, 1, 79, 3, 80, 13, 81, 48, 82, 49, 83, 50, 84, 51, 98, 52, 99, 53, 87, 41, 100, 10, 101, 54, 102, 10, 103, 10, 104, 10, 105, 2, 106, 2, 107, 1, 0, 11, 0, 93, 109, -1, 19, 95, 43, 96, 43, 75, 43, 76, 43, 77, 1, 78, 1, 79, 3, 80, 13, 81, 55, 82, 56, 83, 57, 84, 58, 87, 41, 110, 59, 88, 8, 89, 8, 90, 11, 91, 13, 92, 42, 0, 0, 0, 121, 111, -1, 10, 1, 0, 112, 60, 113, 11, 114, 11, 115, 32, 116, 11, 117, 61, 118, 62, 119, 8, 120, 63, 0, 0, 0, 152, 122, -1, 32, 55, 1, 1, 0, 35, 64, 123, 8, 124, 1, 125, 34, 126, 8, 127, 1, 128, 10, 129, 10, 130, 10, 131, 1, 132, 2, 133, 2, 134, 2, 135, 2, 136, 13, 137, 1, 138, 65, 139, 2, 140, 2, 141, 66, 142, 11, 143, 67, 144, 3, 145, 1, 146, 2, 147, 1, 148, 2, 149, 13, 150, 68, 151, 69, 0, 17, 0, 160, 153, -1, 35, 1, 0, 35, 70, 123, 8, 124, 1, 125, 34, 126, 8, 127, 1, 128, 10, 129, 10, 130, 10, 131, 1, 132, 2, 133, 2, 134, 2, 135, 2, 136, 13, 137, 1, 138, 65, 139, 2, 140, 2, 141, 66, 142, 11, 143, 67, 144, 3, 145, 1, 146, 2, 147, 1, 148, 2, 149, 13, 154, 71, 155, 8, 156, 8, 157, 13, 158, 2, 159, 72, 0 </int_array>
+			<int_array  len="635"> 				-1, -1, 33, 0, -1, 32, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 2, 8, 6, 9, 7, 10, 2, 11, 8, 12, 8, 13, 3, 14, 9, 15, 10, 16, 10, 17, 11, 18, 1, 19, 2, 20, 12, 21, 1, 22, 2, 23, 2, 24, 13, 25, 14, 26, 14, 27, 15, 28, 15, 29, 16, 30, 17, 31, 2, 32, 2, 1, 0, 0, 0, 39, 34, -1, 5, 1, 0, 35, 5, 36, 4, 37, 2, 38, 13, 0, 0, 0, 39, 40, -1, 5, 1, 0, 35, 7, 36, 6, 37, 2, 38, 8, 0, 0, 0, 46, 41, -1, 5, 1, 0, 42, 1, 43, 18, 44, 8, 45, 19, 0, 0, 0, 48, 47, -1, 2, 1, 0, 35, 20, 0, 4, 0, 49, 49, -1, 4, 50, 8, 51, 21, 52, 22, 53, 23, 0, 4, 0, 2147483647, 54, 24, 1, 55, 1, 0, 6, -1, 2147483647, 56, -1, 1, 57, 25, 0, 7, 0, 2147483647, 59, 26, 2, 35, 27, 60, 28, 0, 8, 0, 61, 61, -1, 12, 1, 0, 35, 29, 62, 13, 63, 30, 64, 31, 65, 32, 66, 8, 67, 2, 68, 33, 69, 34, 70, 10, 71, 10, 0, 4, 0, 2147483647, 72, 35, 1, 73, 36, 0, 0, 0, 85, 74, -1, 10, 75, 8, 76, 8, 77, 2, 78, 1, 79, 3, 80, 3, 81, 10, 82, 10, 83, 10, 84, 10, 0, 11, 0, 93, 86, -1, 15, 75, 8, 77, 1, 78, 1, 79, 3, 80, 13, 81, 37, 82, 38, 83, 39, 84, 40, 87, 41, 88, 3, 89, 8, 90, 11, 91, 13, 92, 42, 0, 11, 0, 93, 94, -1, 18, 95, 43, 96, 3, 75, 43, 76, 8, 77, 1, 78, 1, 79, 3, 80, 13, 81, 44, 82, 45, 83, 46, 84, 47, 87, 41, 88, 3, 89, 8, 90, 11, 91, 13, 92, 42, 0, 11, 0, 108, 97, -1, 23, 95, 43, 96, 8, 75, 43, 76, 8, 77, 1, 78, 1, 79, 3, 80, 13, 81, 48, 82, 49, 83, 50, 84, 51, 98, 52, 99, 53, 87, 41, 100, 10, 101, 54, 102, 10, 103, 10, 104, 10, 105, 2, 106, 2, 107, 1, 0, 11, 0, 93, 109, -1, 19, 95, 43, 96, 43, 75, 43, 76, 43, 77, 1, 78, 1, 79, 3, 80, 13, 81, 55, 82, 56, 83, 57, 84, 58, 87, 41, 110, 59, 88, 8, 89, 8, 90, 11, 91, 13, 92, 42, 0, 11, 0, 108, 111, -1, 16, 77, 2, 78, 1, 79, 3, 80, 13, 81, 10, 82, 10, 83, 60, 84, 61, 100, 10, 101, 32, 102, 11, 103, 10, 104, 11, 105, 2, 106, 2, 107, 1, 0, 0, 0, 122, 112, -1, 10, 1, 0, 113, 62, 114, 11, 115, 11, 116, 32, 117, 11, 118, 63, 119, 64, 120, 8, 121, 65, 0, 0, 0, 153, 123, -1, 31, 1, 0, 35, 66, 124, 8, 125, 1, 126, 34, 127, 8, 128, 1, 129, 10, 130, 10, 131, 10, 132, 1, 133, 2, 134, 2, 135, 2, 136, 2, 137, 13, 138, 1, 139, 67, 140, 2, 141, 2, 142, 68, 143, 11, 144, 69, 145, 3, 146, 1, 147, 2, 148, 1, 149, 2, 150, 13, 151, 70, 152, 71, 0, 18, 0, 161, 154, -1, 35, 1, 0, 35, 72, 124, 8, 125, 1, 126, 34, 127, 8, 128, 1, 129, 10, 130, 10, 131, 10, 132, 1, 133, 2, 134, 2, 135, 2, 136, 2, 137, 13, 138, 1, 139, 67, 140, 2, 141, 2, 142, 68, 143, 11, 144, 69, 145, 3, 146, 1, 147, 2, 148, 1, 149, 2, 150, 13, 155, 73, 156, 8, 157, 8, 158, 13, 159, 2, 160, 74, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="73" shared="false">
+			<array  len="75" shared="false">
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
 				<bool> False </bool>
@@ -300,15 +301,15 @@
 						<string> "look blend" </string>
 						<string> "out" </string>
 						<int> 0 </int>
+						<string> "move" </string>
+						<string> "seek 2" </string>
+						<int> 0 </int>
 						<string> "seek 2" </string>
 						<string> "look blend" </string>
 						<int> 0 </int>
 						<string> "seek" </string>
 						<string> "look blend" </string>
 						<int> 1 </int>
-						<string> "move" </string>
-						<string> "seek 2" </string>
-						<int> 0 </int>
 					</array>
 					<string> "master" </string>
 					<node_path> "../AnimationPlayer" </node_path>
@@ -344,29 +345,12 @@
 							<string> "output" </string>
 						</dictionary>
 						<dictionary  shared="false">
-							<string> "blend" </string>
-							<real> 1 </real>
-							<string> "filter" </string>
-							<array  len="12" shared="false">
-								<node_path> "metarig/Skeleton:shin.L" </node_path>
-								<node_path> "metarig/Skeleton:thigh.R" </node_path>
-								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
-								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
-								<node_path> "metarig/Skeleton:thigh.L" </node_path>
-								<node_path> "metarig/Skeleton:foot.R" </node_path>
-								<node_path> "metarig/Skeleton:toe.R" </node_path>
-								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
-								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
-								<node_path> "metarig/Skeleton:shin.R" </node_path>
-								<node_path> "metarig/Skeleton:toe.L" </node_path>
-								<node_path> "metarig/Skeleton:foot.L" </node_path>
-							</array>
 							<string> "id" </string>
-							<string> "look blend" </string>
+							<string> "seek 2" </string>
 							<string> "pos" </string>
-							<vector2> 342, 105 </vector2>
+							<vector2> 216, 35 </vector2>
 							<string> "type" </string>
-							<string> "blend2" </string>
+							<string> "timeseek" </string>
 						</dictionary>
 						<dictionary  shared="false">
 							<string> "filter" </string>
@@ -382,12 +366,29 @@
 							<string> "animation" </string>
 						</dictionary>
 						<dictionary  shared="false">
+							<string> "blend" </string>
+							<real> 1 </real>
+							<string> "filter" </string>
+							<array  len="12" shared="false">
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+							</array>
 							<string> "id" </string>
-							<string> "seek 2" </string>
+							<string> "look blend" </string>
 							<string> "pos" </string>
-							<vector2> 216, 35 </vector2>
+							<vector2> 342, 105 </vector2>
 							<string> "type" </string>
-							<string> "timeseek" </string>
+							<string> "blend2" </string>
 						</dictionary>
 					</array>
 				</dictionary>
@@ -428,6 +429,8 @@
 				<real> -640 </real>
 				<real> -360 </real>
 				<string> "+" </string>
+				<real> 1280 </real>
+				<real> 16 </real>
 				<real> -5 </real>
 				<real> 180 </real>
 				<real> -6 </real>

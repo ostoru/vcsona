@@ -5,8 +5,17 @@
 extends RigidBody
 
 export var active = false
-var passive_ready = true
 export var ally = false
+var ai_mode = false
+var target = self
+var passive_ready = true
+var action_timer = 1000
+
+onready var world = get_node("../")
+onready var navmesh = get_node("../../Navigation")
+onready var bullet_inst_scene = preload("res://media/sprites/particles/bullet_instance.xml")
+onready var ani_tree = get_node("Yaw/AnimationTreePlayer")
+onready var ani_node = get_node("Yaw/AnimationPlayer")
 
 var stats = {
 	active = false,
@@ -19,13 +28,11 @@ var stats = {
 
 var view_sensitivity = 0.25
 var yaw = 0
-var pitch = 0
+var pitch = 0.5
 var is_moving = false
 
 const max_accel = 0.005
 const air_accel = 0.02
-
-var timer = 0
 
 # Walking speed and jumping height are defined later.
 var walk_speed
@@ -40,10 +47,14 @@ func _ready():
 	for child in get_node("Yaw/metarig/Skeleton").get_children():
 		if child extends MeshInstance:
 			models.append(child)
-	
-	get_node("gui").hide()
+	if ally:
+		get_node("icon/highlight").set_modulate(Color("#93efff")) #blue
+	else:
+		get_node("icon/highlight").set_modulate(Color("ff7070")) #red
 	get_node("Yaw/metarig/Skeleton").rotate_y(deg2rad(180))
-#selects charater using mouse click
+	get_node("gui").hide()
+
+#select charater using mouse clicks
 func _mouse_enter():
 	if ally:
 		get_node("icon/highlight").set_scale(Vector3(1,1,1) * 3)
@@ -61,16 +72,20 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 			get_node("Sounds").play("fire")
 
 # called by parent node
-onready var ani_tree = get_node("Yaw/AnimationTreePlayer")
-func action_start(active_node):
+func action_start(active_node,current_target):
 	pitch = .5
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
 	get_node("Yaw/metarig").show()
 	get_node("icon").hide()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
+	get_node("gui/enemy_health").set_max(action_timer)
 	set_fixed_process(true)
-	target = active_node
+	if active_node == self:
+		active = true
+		target = current_target
+	else:
+		target = active_node
 	if active:
 		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
 		set_process_input(true)
@@ -89,6 +104,7 @@ func action_end():
 	set_process_input(false)
 	get_node("gui").hide()
 	update_materials()
+	action_timer = 1000
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
@@ -109,9 +125,7 @@ func _input(event):
 	elif Input.is_action_pressed("char reload"):
 		get_node("../").end_actions()
 
-onready var bullet_inst_scene = preload("res://media/sprites/particles/bullet_instance.xml")
-onready var world = get_node("../")
-onready var ani_node = get_node("Yaw/AnimationPlayer")
+
 
 func shoot():
 	if cooldown_shoot <= 0: #normally i wouldn't put this here, but is going to be called from so many places i might as well
@@ -144,21 +158,10 @@ func _fixed_process(delta):
 			end_passive_action()
 	is_moving = false
 
-func passive_look_at_target():
-	var yaw = get_node("Yaw")
-	var look = (target.get_node("Body").get_global_transform().origin)
-	look.y = self.get_translation().y
-	yaw.look_at(look,Vector3(0,1,0))
-#	rotate_y(deg2rad(182))
-	var a = get_node("Body").get_global_transform().origin
-	var b = target.get_node("Body").get_global_transform().origin
-	a = Vector2(0,a.y)
-	b = Vector2(0,b.y) / get_translation().distance_to(target.get_translation())
-	get_node("Yaw/metarig/Skeleton/gun/origin").look_at(target.get_node("Body").get_global_transform().origin,Vector3(0,1,0))
-	pitch = (a.angle_to(b)/2) + .5
-	ani_tree.timeseek_node_seek("seek",pitch)
-
 func _integrate_forces(state):
+	action_timer -= 1
+	if action_timer <= 0:
+		get_node("../").end_actions() 
 	# Default walk speed:
 	walk_speed = 3.5
 	# Default jump height:
@@ -174,32 +177,41 @@ func _integrate_forces(state):
 	
 	var direction = Vector3()
 	var ani_to_play = "mn -loop"
+	var anim_dir = Vector2()
+	
 	if active:
-		var anim_dir = Vector2()
-		if Input.is_action_pressed("move_forwards"):
-			direction -= aim[2]
-			anim_dir = Vector2(0,1)
-			is_moving = true
-		if Input.is_action_pressed("move_backwards"):
-			direction += aim[2]
-			anim_dir = Vector2(0,-1)
-			is_moving = true
-		if Input.is_action_pressed("move_left"):
-			direction -= aim[0]
-			anim_dir = Vector2(-1,0)
-			is_moving = true
-		if Input.is_action_pressed("move_right"):
-			direction += aim[0]
-			anim_dir = Vector2(1,0)
-			is_moving = true
-		if anim_dir == Vector2(0,1):
-			ani_to_play = "mf -loop"
-		elif anim_dir == Vector2(0,-1):
-			ani_to_play = "mb -loop"
-		elif anim_dir == Vector2(-1,0):
-			ani_to_play = "ml -loop"
-		elif anim_dir == Vector2(1,0):
-			ani_to_play = "mr -loop"
+		if ai_mode:
+			if path.size() > 0:
+				direction = path[0] - get_global_transform().origin
+			if direction < direction.normalized():
+				path.remove(0)
+		else:
+			if Input.is_action_pressed("move_forwards"):
+				direction -= aim[2]
+				anim_dir = Vector2(0,1)
+				is_moving = true
+			if Input.is_action_pressed("move_backwards"):
+				direction += aim[2]
+				anim_dir = Vector2(0,-1)
+				is_moving = true
+			if Input.is_action_pressed("move_left"):
+				direction -= aim[0]
+				anim_dir = Vector2(-1,0)
+				is_moving = true
+			if Input.is_action_pressed("move_right"):
+				direction += aim[0]
+				anim_dir = Vector2(1,0)
+				is_moving = true
+	
+	if anim_dir == Vector2(0,1):
+		ani_to_play = "mf -loop"
+	elif anim_dir == Vector2(0,-1):
+		ani_to_play = "mb -loop"
+	elif anim_dir == Vector2(-1,0):
+		ani_to_play = "ml -loop"
+	elif anim_dir == Vector2(1,0):
+		ani_to_play = "mr -loop"
+		
 #		else:
 #			ani_to_play = "mn -loop"
 	ani_tree.timeseek_node_seek("seek",pitch)
@@ -264,8 +276,8 @@ func _exit_scene():
 # Functions
 # =========
 var value = 1
-var target = self
-func new_passive_action(node):
+
+func start_passive_action(node):
 	if node != self:
 		passive_ready = false
 		target = node
@@ -279,11 +291,26 @@ func new_passive_action(node):
 var remaining_passive_action = 5
 var cooldown_shoot = 20
 
+func passive_look_at_target():
+	var yaw = get_node("Yaw")
+	var look = (target.get_node("Body").get_global_transform().origin)
+	look.y = self.get_translation().y
+	yaw.look_at(look,Vector3(0,1,0))
+#	rotate_y(deg2rad(182))
+	var a = get_node("Body").get_global_transform().origin
+	var b = target.get_node("Body").get_global_transform().origin
+	a = Vector2(0,a.y)
+	b = Vector2(0,b.y) / get_translation().distance_to(target.get_translation())
+	get_node("Yaw/metarig/Skeleton/gun/origin").look_at(target.get_node("Body").get_global_transform().origin,Vector3(0,1,0))
+	pitch = (a.angle_to(b)/2) + .5
+	ani_tree.timeseek_node_seek("seek",pitch)
+
 func passive_action():
 	remaining_passive_action -= .1
 	if target != self:
 		if cooldown_shoot <= 0:
 			shoot()
+	update_materials()
 
 func end_passive_action():
 	if passive_ready == false:
@@ -292,11 +319,17 @@ func end_passive_action():
 	remaining_passive_action = 0
 	update_materials()
 
+var path = []
+func start_active_action(node):
+	path = navmesh.get_simple_path(get_global_transform().origin, target.get_global_transform().origin,true)
+	print (path)
+
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))
 	get_node("gui/Health").set_text(str(stats.hp_cur))
 	get_node("gui/Stamina").set_val(stats.stm_cur)
 	get_node("gui/Stamina").set_max(stats.stm_max)
+	get_node("gui/enemy_health").set_val(action_timer)
 	pass
 
 func update_materials():

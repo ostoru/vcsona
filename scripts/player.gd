@@ -337,17 +337,17 @@ func end_passive_action():
 
 var path
 func start_active_action():
-	if typeof(path) == TYPE_VECTOR2_ARRAY:
+	if typeof(path) == TYPE_VECTOR3_ARRAY:
 		print("has path to ",target)
 	else:
 		path = navmesh.get_simple_path(get_node("Body").get_global_transform().origin, target.get_node("Body").get_global_transform().origin,false)
-		for a in path:
-			var b = load ("res://media/sprites/particles/bullet_impact.xml").instance()
-			b.lifetime = 100
-#			b.set_flag(FLAG_ONTOP,true)
-			b.set_translation(a)
-			get_node("../").add_child(b)
-		print(path[0])
+	for a in path:
+		var visual_path = preload ("res://media/sprites/particles/bullet_impact.xml").instance()
+		visual_path.lifetime = 100
+#		b.set_flag(FLAG_ONTOP,true)
+		visual_path.set_translation(a)
+		get_node("../").add_child(visual_path)
+	print(path[0])
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))

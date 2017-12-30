@@ -9,7 +9,8 @@ export var ally = false
 var ai_mode = false
 var target = self
 var passive_ready = true
-var action_timer = 100
+const DEFF_ACTION_TIMER = 200
+var action_timer = DEFF_ACTION_TIMER
 
 onready var world = get_node("../")
 onready var navmesh = get_node("../../Navigation")
@@ -82,7 +83,7 @@ func action_start(active_node,current_target):
 	get_node("Yaw/metarig").show()
 	get_node("icon").hide()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
-	action_timer = 100
+	action_timer = DEFF_ACTION_TIMER
 	get_node("gui/enemy_health").set_max(action_timer)
 	set_fixed_process(true)
 	if active_node == self:

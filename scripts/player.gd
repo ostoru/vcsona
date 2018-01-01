@@ -167,6 +167,7 @@ func _fixed_process(delta):
 			if Input.is_action_pressed("attack"):
 				shoot()
 		else:
+			passive_look_at_target()
 			pass
 	else: #passive characters
 		passive_look_at_target()
@@ -199,12 +200,10 @@ func _integrate_forces(state):
 		if ai_mode:
 			if path.size() > 0:
 				direction = path[0] - get_global_transform().origin
-#				direction = path[0] - get_node("Body").get_global_transform().origin
-				is_moving = true
-			if direction < direction.normalized():
-				path.remove(0)
-#			translate(direction.normalized())
-#			print("ai_mode",direction)
+				if direction.abs() < direction.normalized().abs():
+					path.remove(0)
+				else:
+					is_moving = true
 		else:
 			if Input.is_action_pressed("move_forwards"):
 				direction -= aim[2]
@@ -344,11 +343,10 @@ func start_active_action():
 	while typeof(path) != TYPE_VECTOR3_ARRAY:
 		path = navmesh.get_simple_path(get_node("Body").get_global_transform().origin, target.get_node("Body").get_global_transform().origin,false)
 	print("has path to ",target)
-	for a in path:
+	for point in path:
 		var visual_path = preload ("res://media/sprites/particles/bullet_impact.xml").instance()
-		visual_path.lifetime = 100
-#		b.set_flag(FLAG_ONTOP,true)
-		visual_path.set_translation(a)
+		visual_path.lifetime = DEFF_ACTION_TIMER
+		visual_path.set_translation(point)
 		get_node("../").add_child(visual_path)
 	print(path[0])
 

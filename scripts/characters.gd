@@ -77,6 +77,9 @@ func check_passive_readyness(node):
 			return true
 func aquire_target(target_list):
 	var index = 0
+	if target_list == []:
+		print("you won")
+		get_tree().quit()
 	for a in target_list:
 		return a #todo, make this shit more comlicated, and include shitload of possible simple actions
 
@@ -86,15 +89,15 @@ func update_children_list():
 	enemy_chars = []
 	for child in get_children():
 		if child.is_in_group("char"):
-			chars.append(child)
-			if child.ally:
-				if child.stats.hp_cur <= 0:
+			if child.stats.hp_cur <= 0: #is ded?
+				if child.ally:
 					ally_down.append(child.stats)
-					child.queue_free()
-				else:
-					ally_chars.append(child)
-				
+				child.queue_free()
 			else:
-				enemy_chars.append(child)
+				if child.ally:
+					ally_chars.append(child)
+				else:
+					enemy_chars.append(child)
+				chars.append(child)
 		elif child.is_in_group("destroy"):
 			child.queue_free()

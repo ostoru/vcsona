@@ -49,20 +49,20 @@ func _ready():
 		if child extends MeshInstance:
 			models.append(child)
 	if ally:
-		get_node("icon/highlight").set_modulate(Color("#93efff")) #blue
+		get_node("Yaw/icon/highlight").set_modulate(Color("#93efff")) #blue
 	else:
-		get_node("icon/highlight").set_modulate(Color("ff7070")) #red
+		get_node("Yaw/icon/highlight").set_modulate(Color("ff7070")) #red
 	get_node("Yaw/metarig/Skeleton").rotate_y(deg2rad(180))
 	get_node("gui").hide()
 
 #select charater using mouse clicks
 func _mouse_enter():
 	if ally:
-		get_node("icon/highlight").set_scale(Vector3(1,1,1) * 1.5)
-		get_node("icon").play("default")
+		get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1) * 1.5)
+		get_node("Yaw/icon").play("default")
 func _mouse_exit():
-	get_node("icon/highlight").set_scale(Vector3(1,1,1))
-	get_node("icon").stop()
+	get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1))
+	get_node("Yaw/icon").stop()
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	if event.is_action("attack"):
 		if ally:
@@ -81,7 +81,7 @@ func action_start(active_node,current_target):
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
 	get_node("Yaw/metarig").show()
-	get_node("icon").hide()
+	get_node("Yaw/icon").hide()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	action_timer = DEFF_ACTION_TIMER
 	get_node("gui/enemy_health").set_max(action_timer)
@@ -110,7 +110,7 @@ func action_end():
 	active = false
 	ai_mode = false
 	get_node("Yaw/metarig").hide()
-	get_node("icon").show()
+	get_node("Yaw/icon").show()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	get_node("Yaw/metarig/Skeleton/gun/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -342,13 +342,13 @@ func start_active_action():
 	path = null
 	while typeof(path) != TYPE_VECTOR3_ARRAY:
 		path = navmesh.get_simple_path(get_node("Body").get_global_transform().origin, target.get_node("Body").get_global_transform().origin,false)
-	print("has path to ",target)
+#	print("has path to ",target)
 	for point in path:
 		var visual_path = preload ("res://media/sprites/particles/bullet_impact.xml").instance()
 		visual_path.lifetime = DEFF_ACTION_TIMER
 		visual_path.set_translation(point)
 		get_node("../").add_child(visual_path)
-	print(path[0])
+#	print(path[0])
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))

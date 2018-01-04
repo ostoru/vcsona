@@ -11,11 +11,15 @@ func _ready():
 	set_fixed_process(true)
 	update_children_list()
 
-func start_actions(target_node):
+func start_actions(target_node): #target_node is the node that started the action
 	update_children_list()
 	play_mode = ACTION_MODE
 	for a in chars:
-		a.action_start(target_node,aquire_target(ally_chars))
+		if a.ally:
+			a.action_start(target_node,aquire_target(enemy_chars))
+		else:
+			a.action_start(target_node,aquire_target(ally_chars))
+			
 
 var next_turn_ai = false
 var cooldown = 20
@@ -33,11 +37,14 @@ const DEFAULT_ACTION_COOLDOWN = 30
 var action_cooldown = DEFAULT_ACTION_COOLDOWN
 var passive_ready = 1
 func _fixed_process(delta):
+	get_node("../map_cam/fps").set_text(str(OS.get_frames_per_second()))
 	if play_mode == MAP_MODE:
 		if cooldown <= 0:
 			if next_turn_ai:
 				update_children_list()
-				start_actions(aquire_target(enemy_chars))
+				var starter = aquire_target(enemy_chars)
+				print(starter)
+				start_actions(starter)
 		else:
 			cooldown -= 1
 	elif play_mode == ACTION_MODE:
@@ -54,6 +61,7 @@ var ally_index = 0
 var enemy_target_index = 0
 var ally_target_index = 0
 func update_passive_characters():
+	update_children_list()
 	if ally_index < ally_chars.size():
 		if check_passive_readyness(ally_chars[ally_index]):
 			var target = aquire_target(enemy_chars)
@@ -71,17 +79,22 @@ func update_passive_characters():
 	else:
 		enemy_index = 0
 		pass
+
 func check_passive_readyness(node):
 	if !node.active:
 		if node.passive_ready:
 			return true
-func aquire_target(target_list):
+func aquire_target(target_list): #remember to update childrens first
 	var index = 0
-	if target_list == []:
-		print("you won")
-		get_tree().quit()
-	for a in target_list:
-		return a #todo, make this shit more comlicated, and include shitload of possible simple actions
+	if target_list.size() == 0:
+		pass
+	elif target_list.size() == 1:
+		return target_list[0]
+	else:
+		var random = randi() % (target_list.size() - 1)
+		print (random)
+		return (target_list[random])
+#		return a #todo, make this shit more comlicated, and include shitload of possible simple actions
 
 func update_children_list():
 	chars = []
@@ -89,10 +102,11 @@ func update_children_list():
 	enemy_chars = []
 	for child in get_children():
 		if child.is_in_group("char"):
-			if child.stats.hp_cur <= 0: #is ded?
+			if child.stats.hp_cur <= 0: #is dead?
 				if child.ally:
 					ally_down.append(child.stats)
-				child.queue_free()
+				if play_mode == MAP_MODE:
+					child.queue_free()
 			else:
 				if child.ally:
 					ally_chars.append(child)
@@ -100,4 +114,11 @@ func update_children_list():
 					enemy_chars.append(child)
 				chars.append(child)
 		elif child.is_in_group("destroy"):
-			child.queue_free()
+			if play_mode == MAP_MODE:
+				child.queue_free()
+	if enemy_chars == []:
+		print("you won")
+		get_tree().quit()
+	elif ally_chars == []:
+		print("you lose")
+		get_tree().quit()

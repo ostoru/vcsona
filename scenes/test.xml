@@ -2,12 +2,12 @@
 <resource_file type="PackedScene" subresource_count="7" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
 	<ext_resource path="res://scripts/main.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://scripts/characters.gd" type="Script" index="2"></ext_resource>
+	<ext_resource path="res://scripts/environment.gd" type="Script" index="1"></ext_resource>
 	<ext_resource path="res://media/models/world/test_level/navmesh test.xml" type="PackedScene" index="4"></ext_resource>
 	<ext_resource path="res://scenes/characters/character.xml" type="PackedScene" index="3"></ext_resource>
-	<ext_resource path="res://scripts/environment.gd" type="Script" index="1"></ext_resource>
 	<resource type="Environment" path="local://1">
 		<bool name="ambient_light/enabled"> True </bool>
-		<color name="ambient_light/color"> 0.2, 0.2, 0.2, 1 </color>
+		<color name="ambient_light/color"> 0.144531, 0.144531, 0.144531, 1 </color>
 		<real name="ambient_light/energy"> 1 </real>
 		<bool name="fxaa/enabled"> True </bool>
 		<int name="background/mode"> 2 </int>
@@ -62,7 +62,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="48">
+			<string_array  len="72">
 				<string> "World" </string>
 				<string> "_import_transform" </string>
 				<string> "script/script" </string>
@@ -96,7 +96,16 @@
 				<string> "characters" </string>
 				<string> "player" </string>
 				<string> "ally" </string>
-				<string> "player20" </string>
+				<string> "player1" </string>
+				<string> "player2" </string>
+				<string> "player3" </string>
+				<string> "player4" </string>
+				<string> "player5" </string>
+				<string> "player6" </string>
+				<string> "player7" </string>
+				<string> "player8" </string>
+				<string> "player9" </string>
+				<string> "player10" </string>
 				<string> "map_cam" </string>
 				<string> "projection" </string>
 				<string> "size" </string>
@@ -108,19 +117,34 @@
 				<string> "h_offset" </string>
 				<string> "v_offset" </string>
 				<string> "Camera" </string>
+				<string> "fps" </string>
+				<string> "rect/scale" </string>
+				<string> "focus/ignore_mouse" </string>
+				<string> "focus/stop_mouse" </string>
+				<string> "size_flags/horizontal" </string>
+				<string> "size_flags/vertical" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
+				<string> "text" </string>
+				<string> "percent_visible" </string>
+				<string> "lines_skipped" </string>
+				<string> "max_lines_visible" </string>
+				<string> "Label" </string>
 				<string> "Navigation" </string>
 				<string> "up_vector" </string>
 				<string> "navmesh test" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 9 </int>
+			<int> 19 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="159"> 				-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 8, 5, -1, 3, 1, 0, 6, 3, 7, 4, 0, 0, 0, 9, 9, -1, 22, 1, 0, 10, 5, 6, 3, 11, 6, 12, 7, 13, 3, 14, 8, 15, 9, 16, 10, 17, 10, 18, 7, 19, 11, 20, 12, 21, 11, 22, 13, 23, 9, 24, 14, 25, 8, 26, 15, 27, 16, 28, 17, 29, 18, 0, 0, 0, 4, 30, -1, 2, 1, 0, 2, 19, 0, 3, 0, 2147483647, 31, 20, 2, 10, 21, 32, 7, 0, 3, 0, 2147483647, 33, 20, 1, 10, 22, 0, 0, 0, 44, 34, -1, 12, 1, 0, 10, 23, 35, 6, 36, 24, 37, 25, 38, 26, 39, 6, 40, 7, 41, 27, 7, 14, 42, 11, 43, 11, 0, 0, 0, 45, 45, -1, 2, 1, 0, 46, 28, 0, 7, 0, 2147483647, 47, 29, 1, 10, 30, 0 </int_array>
+			<int_array  len="271"> 				-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 8, 5, -1, 3, 1, 0, 6, 3, 7, 4, 0, 0, 0, 9, 9, -1, 21, 1, 0, 10, 5, 11, 6, 12, 7, 13, 3, 14, 6, 15, 8, 16, 9, 17, 9, 18, 7, 19, 10, 20, 11, 21, 10, 22, 12, 23, 8, 24, 13, 25, 14, 26, 14, 27, 15, 28, 16, 29, 17, 0, 0, 0, 4, 30, -1, 2, 1, 0, 2, 18, 0, 3, 0, 2147483647, 31, 19, 2, 10, 20, 32, 7, 0, 3, 0, 2147483647, 33, 19, 1, 10, 21, 0, 3, 0, 2147483647, 34, 19, 1, 10, 22, 0, 3, 0, 2147483647, 35, 19, 1, 10, 23, 0, 3, 0, 2147483647, 36, 19, 1, 10, 24, 0, 3, 0, 2147483647, 37, 19, 1, 10, 25, 0, 3, 0, 2147483647, 38, 19, 1, 10, 26, 0, 3, 0, 2147483647, 39, 19, 1, 10, 27, 0, 3, 0, 2147483647, 40, 19, 1, 10, 28, 0, 3, 0, 2147483647, 41, 19, 1, 10, 29, 0, 3, 0, 2147483647, 42, 19, 1, 10, 30, 0, 0, 0, 53, 43, -1, 12, 1, 0, 10, 31, 44, 6, 45, 32, 46, 33, 47, 34, 48, 6, 49, 7, 50, 35, 7, 13, 51, 10, 52, 10, 0, 15, 0, 68, 54, -1, 13, 55, 36, 56, 7, 57, 7, 58, 37, 59, 14, 60, 38, 61, 39, 62, 40, 63, 41, 64, 42, 65, 8, 66, 14, 67, 43, 0, 0, 0, 69, 69, -1, 2, 1, 0, 70, 44, 0, 17, 0, 2147483647, 71, 45, 1, 10, 46, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="31" shared="false">
+			<array  len="47" shared="false">
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<resource  external="0">  </resource>
 				<dictionary  shared="false">
@@ -132,25 +156,41 @@
 				<transform> 0.81825, 0.306634, 0.486254, -0.081898, -0.775053, 0.626567, 0.568999, -0.552512, -0.609074, 15.6895, 10.8131, -13.9665 </transform>
 				<int> 1 </int>
 				<bool> True </bool>
-				<int> 0 </int>
 				<real> 1 </real>
 				<color> 1, 1, 1, 1 </color>
 				<real> 0 </real>
 				<real> 0.05 </real>
 				<real> 60 </real>
-				<resource name=""></resource>				<int> 3 </int>
+				<resource name=""></resource>				<int> 0 </int>
 				<real> 128 </real>
 				<real> 0.5 </real>
 				<real> 2 </real>
 				<resource  external="2">  </resource>
 				<resource  external="3">  </resource>
 				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 8.89602, 4.77608, -14.313 </transform>
-				<transform> -0.276697, 0, 0.960957, 0, 1, -2.22045e-16, -0.960957, 0, -0.276697, -4.13918, 5.73201, 16.9123 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 36.4571, 4.77608, -14.313 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 36.4571, 4.77608, -2.75184 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 36.4571, 4.77608, 16.2792 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 12.3579, 4.77608, 16.2792 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -12.7761, 4.77608, 16.2792 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -42.032, 4.77608, 16.2792 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -60.2424, 4.77608, 5.11925 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -60.2424, 4.77608, -26.5984 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -60.2424, 4.77608, -58.7997 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -24.572, 4.77608, -66.0154 </transform>
 				<transform> 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.489576, 183.629, 1.99188 </transform>
 				<real> 61.656509 </real>
 				<real> 0.1 </real>
 				<real> 200 </real>
 				<int> 1048575 </int>
+				<vector2> 3, 3 </vector2>
+				<int> 2 </int>
+				<real> 1089 </real>
+				<real> 653 </real>
+				<real> 1153 </real>
+				<real> 672 </real>
+				<string> "99" </string>
+				<int> -1 </int>
 				<vector3> 0, 1, 0 </vector3>
 				<resource  external="4">  </resource>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.9935, 0, 77.4801 </transform>

@@ -45,13 +45,16 @@ var ray_length = 10
 
 var models = []
 func _ready():
+	rotate_y(rand_range(0,2))
 	for child in get_node("Yaw/metarig/Skeleton").get_children():
 		if child extends MeshInstance:
 			models.append(child)
 	if ally:
 		get_node("Yaw/icon/highlight").set_modulate(Color("#93efff")) #blue
+		get_node("Yaw/icon/SpotLight").set_color(.5,Color("#93efff"))
 	else:
-		get_node("Yaw/icon/highlight").set_modulate(Color("ff7070")) #red
+		get_node("Yaw/icon/highlight").set_modulate(Color("#ff7070")) #red
+		get_node("Yaw/icon/SpotLight").set_color(.5,Color("#ff7070"))
 	get_node("Yaw/metarig/Skeleton").rotate_y(deg2rad(180))
 	get_node("gui").hide()
 
@@ -59,10 +62,14 @@ func _ready():
 func _mouse_enter():
 	if ally:
 		get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1) * 1.5)
-		get_node("Yaw/icon").play("default")
+#		get_node("Yaw/icon").play("default")
+	get_node("Yaw/icon/OmniLight").show()
+	get_node("Yaw/icon/SpotLight").show()
 func _mouse_exit():
 	get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1))
-	get_node("Yaw/icon").stop()
+	get_node("Yaw/icon/OmniLight").hide()
+	get_node("Yaw/icon/SpotLight").hide()
+#	get_node("Yaw/icon").stop()
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	if event.is_action("attack"):
 		if ally:
@@ -70,8 +77,6 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 			get_node("Sounds").play("jump")
 			if stats.hp_cur >= 0:
 				get_node("../").start_actions(self)
-			else:
-				queue_free()
 		else:
 			get_node("Sounds").play("fire")
 
@@ -117,8 +122,6 @@ func action_end():
 	set_fixed_process(false)
 	set_process_input(false)
 	get_node("gui").hide()
-	if stats.hp_cur <= 0:
-		queue_free()
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
@@ -155,28 +158,29 @@ func shoot():
 		else:
 			cooldown_shoot = 10 #todo change this value for weapon rate of fire
 
+#main loop
 func _fixed_process(delta):
-	update_gui()
-	cooldown_shoot -= 1
-	
-	if active:
-		action_timer -= 1
-		if action_timer <= 0:
-			get_node("../").end_actions(self) 
-		if ally:
-			if Input.is_action_pressed("attack"):
-				shoot()
-		else:
+	if stats.hp_cur > 0:
+		update_gui()
+		cooldown_shoot -= 1
+		if active:
+			action_timer -= 1
+			if action_timer <= 0:
+				get_node("../").end_actions(self) 
+			if ally:
+				if Input.is_action_pressed("attack"):
+					shoot()
+			else:
+				passive_look_at_target()
+				pass
+		else: #passive characters
 			passive_look_at_target()
-			pass
-	else: #passive characters
-		passive_look_at_target()
-		if remaining_passive_action > 0:
-			passive_ready = false
-			passive_action()
-		else:
-			end_passive_action()
-	is_moving = false
+			if remaining_passive_action > 0:
+				passive_ready = false
+				passive_action()
+			else:
+				end_passive_action()
+		is_moving = false
 
 func _integrate_forces(state):
 	# Default walk speed:
@@ -342,13 +346,11 @@ func start_active_action():
 	path = null
 	while typeof(path) != TYPE_VECTOR3_ARRAY:
 		path = navmesh.get_simple_path(get_node("Body").get_global_transform().origin, target.get_node("Body").get_global_transform().origin,false)
-#	print("has path to ",target)
 	for point in path:
 		var visual_path = preload ("res://media/sprites/particles/bullet_impact.xml").instance()
 		visual_path.lifetime = DEFF_ACTION_TIMER
 		visual_path.set_translation(point)
 		get_node("../").add_child(visual_path)
-#	print(path[0])
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))
@@ -362,7 +364,8 @@ func update_materials():
 	var mat_override = load("res://media/textures/other/passive_enemy.tres")
 	if active or !passive_ready:
 		if ally:
-			mat_override = load("res://media/textures/other/active_ally.tres")
+#			mat_override = load("res://media/textures/other/active_ally.tres")
+			mat_override = null
 		else:
 			mat_override = load("res://media/textures/other/active_enemy.tres")
 	else:

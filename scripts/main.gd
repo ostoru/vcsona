@@ -10,15 +10,13 @@ func _ready():
 	set_process_input(true)
 
 func get_all_the_children_in_node(node):
-#	print(node)
+
 	for a in node.get_children():
 		if a extends NavigationMeshInstance:
 			var nv = get_node("Navigation")
 			if a.get_parent() != get_node("Navigation"):
 				nv.navmesh_create(a.get_navigation_mesh(),a.get_global_transform())
 				a.queue_free()
-				print("    done    ")
-				
 		get_all_the_children_in_node(a)
 	
 func _input(event):

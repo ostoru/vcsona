@@ -62,7 +62,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="72">
+			<string_array  len="75">
 				<string> "World" </string>
 				<string> "_import_transform" </string>
 				<string> "script/script" </string>
@@ -94,6 +94,7 @@
 				<string> "shadow/split_weight" </string>
 				<string> "shadow/zoffset_scale" </string>
 				<string> "characters" </string>
+				<string> "editor/display_folded" </string>
 				<string> "player" </string>
 				<string> "ally" </string>
 				<string> "player1" </string>
@@ -128,23 +129,25 @@
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
 				<string> "text" </string>
+				<string> "align" </string>
 				<string> "percent_visible" </string>
 				<string> "lines_skipped" </string>
 				<string> "max_lines_visible" </string>
 				<string> "Label" </string>
+				<string> "list" </string>
 				<string> "Navigation" </string>
 				<string> "up_vector" </string>
 				<string> "navmesh test" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 19 </int>
+			<int> 20 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="271"> 				-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 8, 5, -1, 3, 1, 0, 6, 3, 7, 4, 0, 0, 0, 9, 9, -1, 21, 1, 0, 10, 5, 11, 6, 12, 7, 13, 3, 14, 6, 15, 8, 16, 9, 17, 9, 18, 7, 19, 10, 20, 11, 21, 10, 22, 12, 23, 8, 24, 13, 25, 14, 26, 14, 27, 15, 28, 16, 29, 17, 0, 0, 0, 4, 30, -1, 2, 1, 0, 2, 18, 0, 3, 0, 2147483647, 31, 19, 2, 10, 20, 32, 7, 0, 3, 0, 2147483647, 33, 19, 1, 10, 21, 0, 3, 0, 2147483647, 34, 19, 1, 10, 22, 0, 3, 0, 2147483647, 35, 19, 1, 10, 23, 0, 3, 0, 2147483647, 36, 19, 1, 10, 24, 0, 3, 0, 2147483647, 37, 19, 1, 10, 25, 0, 3, 0, 2147483647, 38, 19, 1, 10, 26, 0, 3, 0, 2147483647, 39, 19, 1, 10, 27, 0, 3, 0, 2147483647, 40, 19, 1, 10, 28, 0, 3, 0, 2147483647, 41, 19, 1, 10, 29, 0, 3, 0, 2147483647, 42, 19, 1, 10, 30, 0, 0, 0, 53, 43, -1, 12, 1, 0, 10, 31, 44, 6, 45, 32, 46, 33, 47, 34, 48, 6, 49, 7, 50, 35, 7, 13, 51, 10, 52, 10, 0, 15, 0, 68, 54, -1, 13, 55, 36, 56, 7, 57, 7, 58, 37, 59, 14, 60, 38, 61, 39, 62, 40, 63, 41, 64, 42, 65, 8, 66, 14, 67, 43, 0, 0, 0, 69, 69, -1, 2, 1, 0, 70, 44, 0, 17, 0, 2147483647, 71, 45, 1, 10, 46, 0 </int_array>
+			<int_array  len="310"> 				-1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0, 0, 0, 8, 5, -1, 3, 1, 0, 6, 3, 7, 4, 0, 0, 0, 9, 9, -1, 22, 1, 0, 10, 5, 6, 3, 11, 6, 12, 7, 13, 3, 14, 6, 15, 8, 16, 9, 17, 9, 18, 7, 19, 10, 20, 11, 21, 10, 22, 12, 23, 8, 24, 13, 25, 14, 26, 14, 27, 15, 28, 16, 29, 17, 0, 0, 0, 4, 30, -1, 3, 31, 7, 1, 0, 2, 18, 0, 3, 0, 2147483647, 32, 19, 2, 10, 20, 33, 7, 0, 3, 0, 2147483647, 34, 19, 1, 10, 21, 0, 3, 0, 2147483647, 35, 19, 1, 10, 22, 0, 3, 0, 2147483647, 36, 19, 1, 10, 23, 0, 3, 0, 2147483647, 37, 19, 1, 10, 24, 0, 3, 0, 2147483647, 38, 19, 1, 10, 25, 0, 3, 0, 2147483647, 39, 19, 1, 10, 26, 0, 3, 0, 2147483647, 40, 19, 1, 10, 27, 0, 3, 0, 2147483647, 41, 19, 1, 10, 28, 0, 3, 0, 2147483647, 42, 19, 1, 10, 29, 0, 3, 0, 2147483647, 43, 19, 1, 10, 30, 0, 0, 0, 54, 44, -1, 12, 1, 0, 10, 31, 45, 6, 46, 32, 47, 33, 48, 34, 49, 6, 50, 7, 51, 35, 7, 13, 52, 10, 53, 10, 0, 15, 0, 70, 55, -1, 14, 56, 36, 57, 7, 58, 7, 59, 37, 60, 14, 61, 38, 62, 39, 63, 40, 64, 41, 65, 42, 66, 37, 67, 8, 68, 14, 69, 43, 0, 15, 0, 70, 71, -1, 13, 56, 44, 57, 7, 58, 7, 59, 37, 60, 14, 61, 45, 62, 46, 63, 47, 64, 48, 65, 42, 67, 8, 68, 14, 69, 43, 0, 0, 0, 72, 72, -1, 2, 1, 0, 73, 49, 0, 18, 0, 2147483647, 74, 50, 1, 10, 51, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="47" shared="false">
+			<array  len="52" shared="false">
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<resource  external="0">  </resource>
 				<dictionary  shared="false">
@@ -183,14 +186,19 @@
 				<real> 0.1 </real>
 				<real> 200 </real>
 				<int> 1048575 </int>
-				<vector2> 3, 3 </vector2>
+				<vector2> 2, 2 </vector2>
 				<int> 2 </int>
-				<real> 1089 </real>
-				<real> 653 </real>
-				<real> 1153 </real>
-				<real> 672 </real>
+				<real> 1135 </real>
+				<real> 23 </real>
+				<real> 1199 </real>
+				<real> 42 </real>
 				<string> "99" </string>
 				<int> -1 </int>
+				<vector2> 3, 3 </vector2>
+				<real> 1083 </real>
+				<real> 656 </real>
+				<real> 1147 </real>
+				<real> 675 </real>
 				<vector3> 0, 1, 0 </vector3>
 				<resource  external="4">  </resource>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.9935, 0, 77.4801 </transform>

@@ -4,8 +4,8 @@ var ally_chars = []
 var ally_down = []
 var enemy_chars = []
 const MAP_MODE = 0
-const ACTION_MODE = 2
-var play_mode
+const ACTION_MODE = 1
+var play_mode = MAP_MODE
 
 func _ready():
 	set_fixed_process(true)
@@ -22,9 +22,10 @@ func start_actions(target_node): #target_node is the node that started the actio
 			
 
 var next_turn_ai = false
-var cooldown = 20
+var cooldown = DEFAULT_COUNTDOWN
+const DEFAULT_COUNTDOWN = 20
 func end_actions(node):
-	cooldown = 20
+	cooldown = DEFAULT_COUNTDOWN
 	play_mode = MAP_MODE
 	chars = []
 	next_turn_ai = node.ally
@@ -36,17 +37,38 @@ func end_actions(node):
 const DEFAULT_ACTION_COOLDOWN = 30
 var action_cooldown = DEFAULT_ACTION_COOLDOWN
 var passive_ready = 1
+onready var map_cam = get_node("../map_cam")
+var focus_char = 0
 func _fixed_process(delta):
-	get_node("../map_cam/fps").set_text(str(OS.get_frames_per_second()))
+	map_cam.get_node("fps").set_text(str(OS.get_frames_per_second()))
 	if play_mode == MAP_MODE:
+		cooldown -= 1
 		if cooldown <= 0:
 			if next_turn_ai:
 				update_children_list()
 				var starter = aquire_target(enemy_chars)
 				print(starter)
 				start_actions(starter)
-		else:
-			cooldown -= 1
+			else:
+				if Input.is_action_pressed("move_left"):
+					if focus_char > 0:
+						focus_char -= 1
+					else:
+						focus_char = chars.size() - 1
+					cooldown = DEFAULT_COUNTDOWN
+				elif Input.is_action_pressed("move_right"):
+					if focus_char < chars.size() - 1:
+						focus_char += 1
+					else:
+						focus_char = 0
+					cooldown = DEFAULT_COUNTDOWN
+				
+				var target_char = chars[focus_char].get_translation()
+				var origin_char = map_cam.get_translation()
+				var diference = origin_char.linear_interpolate(target_char,.9)
+				var proximity = 180
+				map_cam.set_translation(Vector3(diference.x,proximity,diference.z))
+			
 	elif play_mode == ACTION_MODE:
 		if action_cooldown <= 0:
 			if passive_ready > 0:

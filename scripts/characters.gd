@@ -41,6 +41,7 @@ onready var map_cam = get_node("../map_cam")
 var focus_char = 0
 func _fixed_process(delta):
 	map_cam.get_node("fps").set_text(str(OS.get_frames_per_second()))
+	
 	if play_mode == MAP_MODE:
 		cooldown -= 1
 		if cooldown <= 0:
@@ -63,11 +64,11 @@ func _fixed_process(delta):
 						focus_char = 0
 					cooldown = DEFAULT_COUNTDOWN
 				
-				var target_char = chars[focus_char].get_translation()
-				var origin_char = map_cam.get_translation()
-				var diference = origin_char.linear_interpolate(target_char,.9)
-				var proximity = 180
-				map_cam.set_translation(Vector3(diference.x,proximity,diference.z))
+		var target_char = chars[focus_char].get_global_transform().origin
+		var origin_char = map_cam.get_global_transform().origin
+		var diference = origin_char.linear_interpolate(target_char,.5)
+		var proximity = 180
+		map_cam.set_translation(Vector3(diference.x,proximity,diference.z))
 			
 	elif play_mode == ACTION_MODE:
 		if action_cooldown <= 0:
@@ -106,6 +107,7 @@ func check_passive_readyness(node):
 	if !node.active:
 		if node.passive_ready:
 			return true
+
 func aquire_target(target_list): #remember to update childrens first
 	var index = 0
 	if target_list.size() == 0:

@@ -82,6 +82,8 @@ func _input_event(camera, event, click_pos, click_normal, shape_idx):
 
 # called by parent node
 func action_start(active_node,current_target):
+	get_node("Body").get_shape().set_radius(.18)
+	get_node("Body").get_shape().set_height(1.5)
 	pitch = .5
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
@@ -109,6 +111,8 @@ func action_start(active_node,current_target):
 
 # called by parent node
 func action_end():
+	get_node("Body").get_shape().set_radius(1)
+	get_node("Body").get_shape().set_height(0)
 	pitch = .5
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
@@ -164,12 +168,12 @@ func _fixed_process(delta):
 		update_gui()
 		cooldown_shoot -= 1
 		if active:
-			action_timer -= 1
 			if action_timer <= 0:
 				get_node("../").end_actions(self) 
 			if ally:
 				if Input.is_action_pressed("attack"):
 					shoot()
+				action_timer -= 1
 			else:
 				passive_look_at_target()
 				pass

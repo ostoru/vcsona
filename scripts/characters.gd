@@ -39,35 +39,47 @@ var action_cooldown = DEFAULT_ACTION_COOLDOWN
 var passive_ready = 1
 onready var map_cam = get_node("../map_cam")
 var focus_char = 0
+const DEFAULT_PROXIMITY = 50
+const PROXIMITY_MAX = 80
+const PROXIMITY_MIN = 3
+var proximity = DEFAULT_PROXIMITY
+
+
 func _fixed_process(delta):
 	map_cam.get_node("fps").set_text(str(OS.get_frames_per_second()))
 	
 	if play_mode == MAP_MODE:
 		cooldown -= 1
-		if cooldown <= 0:
-			if next_turn_ai:
+		if next_turn_ai:
+			if cooldown <= 0:
 				update_children_list()
 				var starter = aquire_target(enemy_chars)
 				print(starter)
 				start_actions(starter)
-			else:
-				if Input.is_action_pressed("move_left"):
+		else:
+			if cooldown <= 0:
+				if Input.is_action_pressed("ui_focus_next"):
 					if focus_char > 0:
 						focus_char -= 1
 					else:
 						focus_char = chars.size() - 1
 					cooldown = DEFAULT_COUNTDOWN
-				elif Input.is_action_pressed("move_right"):
+				elif Input.is_action_pressed("ui_focus_prev"):
 					if focus_char < chars.size() - 1:
 						focus_char += 1
 					else:
 						focus_char = 0
 					cooldown = DEFAULT_COUNTDOWN
+				if Input.is_action_pressed("map_zoom_in"):
+					proximity = proximity * .9
+				elif Input.is_action_pressed("map_zoom_out"):
+					proximity = proximity * 1.1
 				
 		var target_char = chars[focus_char].get_global_transform().origin
+		target_char.y = target_char.y + proximity
 		var origin_char = map_cam.get_global_transform().origin
-		var diference = origin_char.linear_interpolate(target_char,.5)
-		var proximity = 180
+		var diference = origin_char.linear_interpolate(target_char,.2)
+		proximity = max(PROXIMITY_MIN,min(proximity,PROXIMITY_MAX))
 		map_cam.set_translation(Vector3(diference.x,proximity,diference.z))
 			
 	elif play_mode == ACTION_MODE:

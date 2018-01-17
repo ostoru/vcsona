@@ -49,8 +49,6 @@ func _ready():
 	for child in get_node("Yaw/metarig/Skeleton").get_children():
 		if child extends MeshInstance:
 			models.append(child)
-	get_node("Yaw/icon/SpotLight").hide()
-	get_node("Yaw/icon/OmniLight").hide()
 	if ally:
 		get_node("Yaw/icon/highlight").set_modulate(Color("#93efff")) #blue
 		get_node("Yaw/icon/SpotLight").set_color(.5,Color("#93efff"))
@@ -170,15 +168,15 @@ func _fixed_process(delta):
 		update_gui()
 		cooldown_shoot -= 1
 		if active:
-			if action_timer <= 0:
-				get_node("../").end_actions(self) 
 			if ally:
 				if Input.is_action_pressed("attack"):
 					shoot()
-				action_timer -= 1
 			else:
-				passive_look_at_target()
-				pass
+				action_timer -= 1
+				if action_timer <= 0:
+					get_node("../").end_actions(self) 
+				else:
+					passive_look_at_target()
 		else: #passive characters
 			passive_look_at_target()
 			if remaining_passive_action > 0:

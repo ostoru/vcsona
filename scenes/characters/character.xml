@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="18" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
-	<ext_resource path="res://scripts/player.gd" type="Script" index="0"></ext_resource>
+<resource_file type="PackedScene" subresource_count="17" version="2.1" version_name="Godot Engine v2.1.4.stable.official">
+	<ext_resource path="res://scripts/character.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://media/sprites/gui_icons/FSTART (by cyrus).png" type="Texture" index="6"></ext_resource>
 	<ext_resource path="res://media/sprites/gui_icons/MAP-T2 (by cyrus).png" type="Texture" index="5"></ext_resource>
-	<ext_resource path="res://media/models/guns/stg44/stg44.xml" type="PackedScene" index="2"></ext_resource>
 	<ext_resource path="res://media/sprites/fonts/roboto.fnt" type="BitmapFont" index="7"></ext_resource>
-	<ext_resource path="res://media/models/persons/AnimationPlayer.tscn" type="PackedScene" index="3"></ext_resource>
-	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="8"></ext_resource>
-	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="9"></ext_resource>
 	<ext_resource path="res://media/models/persons/def mesh.tscn" type="PackedScene" index="1"></ext_resource>
+	<ext_resource path="res://media/models/persons/AnimationPlayer.tscn" type="PackedScene" index="3"></ext_resource>
+	<ext_resource path="res://media/models/guns/stg44/stg44.xml" type="PackedScene" index="2"></ext_resource>
+	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="9"></ext_resource>
+	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="8"></ext_resource>
 	<ext_resource path="res://media/sprites/gui_icons/MAP-T1 (by cyrus).png" type="Texture" index="4"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 1 </real>
 		<real name="height"> 0 </real>
-
-	</resource>
-	<resource type="SphereShape" path="local://8">
-		<real name="radius"> 0.940606 </real>
 
 	</resource>
 	<resource type="RayShape" path="local://2">
@@ -95,7 +91,7 @@
 				<node_path> "Yaw/metarig" </node_path>
 			</array>
 			<string> "names" </string>
-			<string_array  len="184">
+			<string_array  len="180">
 				<string> "char" </string>
 				<string> "_import_transform" </string>
 				<string> "input/ray_pickable" </string>
@@ -107,9 +103,6 @@
 				<string> "shapes/1/shape" </string>
 				<string> "shapes/1/transform" </string>
 				<string> "shapes/1/trigger" </string>
-				<string> "shapes/2/shape" </string>
-				<string> "shapes/2/transform" </string>
-				<string> "shapes/2/trigger" </string>
 				<string> "collision/layers" </string>
 				<string> "collision/mask" </string>
 				<string> "mode" </string>
@@ -155,7 +148,6 @@
 				<string> "data" </string>
 				<string> "metarig" </string>
 				<string> "Skeleton" </string>
-				<string> "bones/30/bound_childs" </string>
 				<string> "def mesh" </string>
 				<string> "gun" </string>
 				<string> "Camera" </string>
@@ -282,26 +274,24 @@
 				<string> "SpatialSamplePlayer" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 22 </int>
+			<int> 21 </int>
 			<string> "node_paths" </string>
-			<array  len="0" shared="false">
+			<array  len="1" shared="false">
+				<node_path> "Yaw/metarig/Skeleton" </node_path>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="733"> 				-1, -1, 36, 0, -1, 35, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 2, 8, 6, 9, 7, 10, 2, 11, 8, 12, 9, 13, 2, 14, 10, 15, 10, 16, 11, 17, 12, 18, 13, 19, 13, 20, 14, 21, 1, 22, 2, 23, 15, 24, 1, 25, 2, 26, 2, 27, 16, 28, 17, 29, 17, 30, 18, 31, 18, 32, 19, 33, 20, 34, 2, 35, 2, 1, 0, 0, 0, 42, 37, -1, 5, 1, 0, 38, 5, 39, 4, 40, 2, 41, 16, 0, 0, 0, 42, 43, -1, 5, 1, 0, 38, 9, 39, 8, 40, 2, 41, 11, 0, 0, 0, 49, 44, -1, 5, 1, 0, 45, 1, 46, 21, 47, 10, 48, 22, 0, 0, 0, 51, 50, -1, 2, 1, 0, 38, 23, 0, 4, 0, 52, 52, -1, 4, 53, 10, 54, 24, 55, 25, 56, 26, 0, 4, 0, 2147483647, 57, 27, 0, 0, 6, -1, 2147483647, 58, -1, 1, 59, 28, 0, 7, 0, 2147483647, 61, 29, 1, 38, 30, 0, 8, 0, 62, 62, -1, 12, 1, 0, 38, 31, 63, 16, 64, 32, 65, 33, 66, 34, 67, 10, 68, 2, 69, 35, 70, 36, 71, 13, 72, 13, 0, 4, 0, 2147483647, 73, 37, 0, 0, 4, 0, 104, 74, -1, 31, 1, 0, 38, 38, 75, 10, 76, 1, 77, 36, 78, 10, 79, 1, 80, 13, 81, 13, 82, 13, 83, 1, 84, 1, 85, 2, 86, 2, 87, 2, 88, 16, 89, 1, 90, 39, 91, 2, 92, 2, 93, 40, 94, 14, 95, 41, 96, 11, 97, 1, 98, 2, 99, 1, 100, 2, 101, 16, 102, 42, 103, 43, 0, 11, 0, 112, 105, -1, 34, 1, 0, 75, 10, 76, 1, 77, 36, 78, 10, 79, 1, 80, 13, 81, 13, 82, 13, 83, 1, 84, 1, 85, 2, 86, 2, 87, 2, 88, 16, 89, 1, 90, 39, 91, 2, 92, 2, 93, 40, 94, 14, 95, 41, 96, 11, 97, 1, 98, 2, 99, 1, 100, 2, 101, 16, 106, 44, 107, 10, 108, 10, 109, 16, 110, 2, 111, 45, 0, 11, 0, 113, 113, -1, 22, 1, 0, 38, 46, 114, 2, 75, 10, 115, 1, 116, 2, 117, 16, 118, 14, 119, 40, 120, 40, 121, 2, 122, 13, 123, 47, 124, 13, 125, 48, 126, 14, 127, 36, 128, 16, 129, 49, 130, 14, 131, 50, 132, 14, 0, 11, 0, 133, 133, -1, 20, 1, 0, 38, 51, 114, 2, 75, 10, 115, 1, 116, 2, 117, 16, 118, 14, 119, 40, 120, 40, 121, 2, 122, 13, 123, 52, 124, 13, 125, 48, 126, 14, 127, 36, 128, 16, 129, 53, 130, 14, 0, 0, 0, 146, 134, -1, 11, 135, 1, 136, 10, 137, 10, 138, 2, 139, 1, 140, 11, 141, 11, 142, 13, 143, 13, 144, 13, 145, 13, 0, 15, 0, 154, 147, -1, 15, 136, 10, 138, 1, 139, 1, 140, 11, 141, 16, 142, 54, 143, 55, 144, 56, 145, 57, 148, 58, 149, 11, 150, 10, 151, 14, 152, 16, 153, 59, 0, 15, 0, 154, 155, -1, 18, 156, 3, 157, 11, 136, 3, 137, 10, 138, 1, 139, 1, 140, 11, 141, 16, 142, 60, 143, 61, 144, 62, 145, 63, 148, 58, 149, 11, 150, 10, 151, 14, 152, 16, 153, 59, 0, 15, 0, 169, 158, -1, 23, 156, 3, 157, 10, 136, 3, 137, 10, 138, 1, 139, 1, 140, 11, 141, 16, 142, 64, 143, 65, 144, 66, 145, 67, 159, 68, 160, 69, 148, 58, 161, 13, 162, 70, 163, 13, 164, 13, 165, 13, 166, 2, 167, 2, 168, 1, 0, 15, 0, 154, 170, -1, 19, 156, 3, 157, 3, 136, 3, 137, 3, 138, 1, 139, 1, 140, 11, 141, 16, 142, 71, 143, 72, 144, 73, 145, 74, 148, 58, 171, 75, 149, 10, 150, 10, 151, 14, 152, 16, 153, 59, 0, 15, 0, 169, 172, -1, 16, 138, 2, 139, 1, 140, 11, 141, 16, 142, 13, 143, 13, 144, 76, 145, 77, 161, 13, 162, 34, 163, 14, 164, 13, 165, 14, 166, 2, 167, 2, 168, 1, 0, 0, 0, 183, 173, -1, 10, 1, 0, 174, 78, 175, 14, 176, 14, 177, 34, 178, 14, 179, 79, 180, 80, 181, 10, 182, 81, 0 </int_array>
+			<int_array  len="714"> 				-1, -1, 33, 0, -1, 32, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 2, 8, 6, 9, 7, 10, 2, 11, 8, 12, 8, 13, 3, 14, 9, 15, 10, 16, 10, 17, 11, 18, 1, 19, 2, 20, 12, 21, 1, 22, 2, 23, 2, 24, 13, 25, 14, 26, 14, 27, 15, 28, 15, 29, 16, 30, 17, 31, 2, 32, 2, 1, 0, 0, 0, 39, 34, -1, 5, 1, 0, 35, 5, 36, 4, 37, 2, 38, 13, 0, 0, 0, 39, 40, -1, 5, 1, 0, 35, 7, 36, 6, 37, 2, 38, 8, 0, 0, 0, 46, 41, -1, 5, 1, 0, 42, 1, 43, 18, 44, 8, 45, 19, 0, 0, 0, 48, 47, -1, 2, 1, 0, 35, 20, 0, 4, 0, 49, 49, -1, 4, 50, 8, 51, 21, 52, 22, 53, 23, 0, 4, 0, 2147483647, 54, 24, 0, 0, 1073741824, 0, 2147483647, 57, 25, 1, 35, 26, 0, 7, 0, 58, 58, -1, 12, 1, 0, 35, 27, 59, 13, 60, 28, 61, 29, 62, 30, 63, 8, 64, 2, 65, 31, 66, 32, 67, 10, 68, 10, 0, 4, 0, 2147483647, 69, 33, 0, 0, 4, 0, 100, 70, -1, 31, 1, 0, 35, 34, 71, 8, 72, 1, 73, 32, 74, 8, 75, 1, 76, 10, 77, 10, 78, 10, 79, 1, 80, 1, 81, 2, 82, 2, 83, 2, 84, 13, 85, 1, 86, 35, 87, 2, 88, 2, 89, 36, 90, 11, 91, 37, 92, 3, 93, 1, 94, 2, 95, 1, 96, 2, 97, 13, 98, 38, 99, 39, 0, 10, 0, 108, 101, -1, 34, 1, 0, 71, 8, 72, 1, 73, 32, 74, 8, 75, 1, 76, 10, 77, 10, 78, 10, 79, 1, 80, 1, 81, 2, 82, 2, 83, 2, 84, 13, 85, 1, 86, 35, 87, 2, 88, 2, 89, 36, 90, 11, 91, 37, 92, 3, 93, 1, 94, 2, 95, 1, 96, 2, 97, 13, 102, 40, 103, 8, 104, 8, 105, 13, 106, 2, 107, 41, 0, 10, 0, 109, 109, -1, 21, 1, 0, 110, 2, 71, 8, 111, 1, 112, 2, 113, 13, 114, 11, 115, 36, 116, 36, 117, 2, 118, 10, 119, 42, 120, 10, 121, 43, 122, 11, 123, 32, 124, 13, 125, 44, 126, 11, 127, 45, 128, 11, 0, 10, 0, 129, 129, -1, 19, 1, 0, 110, 2, 71, 8, 111, 1, 112, 2, 113, 13, 114, 11, 115, 36, 116, 36, 117, 2, 118, 10, 119, 46, 120, 10, 121, 43, 122, 11, 123, 32, 124, 13, 125, 47, 126, 11, 0, 0, 0, 142, 130, -1, 11, 131, 1, 132, 8, 133, 8, 134, 2, 135, 1, 136, 3, 137, 3, 138, 10, 139, 10, 140, 10, 141, 10, 0, 14, 0, 150, 143, -1, 15, 132, 8, 134, 1, 135, 1, 136, 3, 137, 13, 138, 48, 139, 49, 140, 50, 141, 51, 144, 52, 145, 3, 146, 8, 147, 11, 148, 13, 149, 53, 0, 14, 0, 150, 151, -1, 18, 152, 54, 153, 3, 132, 54, 133, 8, 134, 1, 135, 1, 136, 3, 137, 13, 138, 55, 139, 56, 140, 57, 141, 58, 144, 52, 145, 3, 146, 8, 147, 11, 148, 13, 149, 53, 0, 14, 0, 165, 154, -1, 23, 152, 54, 153, 8, 132, 54, 133, 8, 134, 1, 135, 1, 136, 3, 137, 13, 138, 59, 139, 60, 140, 61, 141, 62, 155, 63, 156, 64, 144, 52, 157, 10, 158, 65, 159, 10, 160, 10, 161, 10, 162, 2, 163, 2, 164, 1, 0, 14, 0, 150, 166, -1, 19, 152, 54, 153, 54, 132, 54, 133, 54, 134, 1, 135, 1, 136, 3, 137, 13, 138, 66, 139, 67, 140, 68, 141, 69, 144, 52, 167, 70, 145, 8, 146, 8, 147, 11, 148, 13, 149, 53, 0, 14, 0, 165, 168, -1, 16, 134, 2, 135, 1, 136, 3, 137, 13, 138, 10, 139, 10, 140, 71, 141, 72, 157, 10, 158, 30, 159, 11, 160, 10, 161, 11, 162, 2, 163, 2, 164, 1, 0, 0, 0, 179, 169, -1, 10, 1, 0, 170, 73, 171, 11, 172, 11, 173, 30, 174, 11, 175, 74, 176, 75, 177, 8, 178, 76, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="82" shared="false">
+			<array  len="77" shared="false">
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<bool> True </bool>
 				<bool> False </bool>
-				<int> 3 </int>
+				<int> 2 </int>
 				<resource  resource_type="Shape" path="local://1">  </resource>
 				<transform> 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.941084, 0 </transform>
-				<resource  resource_type="Shape" path="local://8">  </resource>
-				<transform> 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 </transform>
 				<resource  resource_type="Shape" path="local://2">  </resource>
 				<transform> 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.189248, 0 </transform>
 				<int> 1 </int>
-				<int> 2 </int>
 				<real> 6.122449 </real>
 				<real> 0 </real>
 				<real> 1 </real>
@@ -382,19 +372,6 @@
 							<string> "timeseek" </string>
 						</dictionary>
 						<dictionary  shared="false">
-							<string> "filter" </string>
-							<array  len="0" shared="false">
-							</array>
-							<string> "from" </string>
-							<string> "aim_y" </string>
-							<string> "id" </string>
-							<string> "look" </string>
-							<string> "pos" </string>
-							<vector2> 54, 179 </vector2>
-							<string> "type" </string>
-							<string> "animation" </string>
-						</dictionary>
-						<dictionary  shared="false">
 							<string> "blend" </string>
 							<real> 1 </real>
 							<string> "filter" </string>
@@ -419,12 +396,22 @@
 							<string> "type" </string>
 							<string> "blend2" </string>
 						</dictionary>
+						<dictionary  shared="false">
+							<string> "filter" </string>
+							<array  len="0" shared="false">
+							</array>
+							<string> "from" </string>
+							<string> "aim_y" </string>
+							<string> "id" </string>
+							<string> "look" </string>
+							<string> "pos" </string>
+							<vector2> 54, 179 </vector2>
+							<string> "type" </string>
+							<string> "animation" </string>
+						</dictionary>
 					</array>
 				</dictionary>
 				<resource  external="1">  </resource>
-				<array  len="1" shared="false">
-					<node_path> "gun" </node_path>
-				</array>
 				<resource  external="2">  </resource>
 				<transform> -1, -4.54747e-13, -1.08798e-05, 1.08798e-05, 4.94756e-18, -1, 4.54747e-13, -1, 0, -0.05929, 1.35588, -0.278901 </transform>
 				<transform> 1, 0, 1.15514e-18, 0, 1, 0, 1.15514e-18, 0, 1, 0.402105, 0.21979, 0.983086 </transform>
@@ -433,7 +420,7 @@
 				<real> 100 </real>
 				<int> 1048575 </int>
 				<resource name=""></resource>				<resource  external="3">  </resource>
-				<transform> 2, -0, 0, 0, 2, -0, 0, 0, 2, 0, 100, 0 </transform>
+				<transform> 2, -0, 0, 0, 2, -0, 0, 0, 2, 0, 1, 0 </transform>
 				<vector2> 0, 0 </vector2>
 				<color> 1, 1, 1, 1 </color>
 				<real> 0.01 </real>
@@ -441,12 +428,10 @@
 				<string> "default" </string>
 				<resource  external="6">  </resource>
 				<rect2> 0, 0, 0, 0 </rect2>
-				<transform> 1, -0, 0, 0, 1, -0, 0, 0, 1, 0, -49.5, 0 </transform>
 				<real> 0.05 </real>
 				<real> 60 </real>
 				<real> 68.365845 </real>
 				<real> 81.66317 </real>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -49.4469, 0 </transform>
 				<real> 0.001 </real>
 				<real> 4.711864 </real>
 				<real> 1002 </real>
@@ -455,6 +440,7 @@
 				<real> 55 </real>
 				<resource  external="7">  </resource>
 				<int> -1 </int>
+				<int> 3 </int>
 				<real> 303 </real>
 				<real> 0.913889 </real>
 				<real> 35 </real>

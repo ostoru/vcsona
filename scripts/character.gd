@@ -91,7 +91,7 @@ func action_start(active_node,current_target):
 	get_node("Yaw/icon").hide()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	action_timer = DEFF_ACTION_TIMER
-	get_node("gui/enemy_health").set_max(action_timer)
+	get_node("gui/health_enemy").set_max(action_timer)
 	set_fixed_process(true)
 	if active_node == self:
 		active = true
@@ -358,10 +358,14 @@ func start_active_action():
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))
-	get_node("gui/Health").set_text(str(stats.hp_cur))
-	get_node("gui/Stamina").set_val(stats.stm_cur)
-	get_node("gui/Stamina").set_max(stats.stm_max)
-	get_node("gui/enemy_health").set_val(action_timer)
+	get_node("gui/health_self").set_val(stats.hp_cur)
+	get_node("gui/health_self").set_max(stats.hp_max)
+	get_node("gui/health_enemy").set_val(0)
+	get_node("gui/stamina").set_val(stats.stm_cur)
+	get_node("gui/stamina").set_max(stats.stm_max)
+	get_node("gui/bullets").set_val(action_timer)
+	get_node("gui/bullets").set_max(DEFF_ACTION_TIMER)
+	
 	pass
 
 func update_materials():

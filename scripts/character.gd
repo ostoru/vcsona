@@ -185,6 +185,8 @@ func _fixed_process(delta):
 			else:
 				end_passive_action()
 		is_moving = false
+	else:
+		update_materials()
 
 func _integrate_forces(state):
 	# Default walk speed:
@@ -360,25 +362,26 @@ func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))
 	get_node("gui/health_self").set_val(stats.hp_cur)
 	get_node("gui/health_self").set_max(stats.hp_max)
-	get_node("gui/health_enemy").set_val(0)
+	get_node("gui/health_enemy").set_val(stats.hp_cur)
+	get_node("gui/health_enemy").set_max(stats.hp_max)
 	get_node("gui/stamina").set_val(stats.stm_cur)
 	get_node("gui/stamina").set_max(stats.stm_max)
-	get_node("gui/bullets").set_val(action_timer)
-	get_node("gui/bullets").set_max(DEFF_ACTION_TIMER)
-	
+	get_node("gui/action").set_val(action_timer)
+	get_node("gui/action").set_max(DEFF_ACTION_TIMER)
 	pass
 
 func update_materials():
 	var mat_override = load("res://media/textures/other/passive_enemy.tres")
 	if active or !passive_ready:
 		if ally:
-#			mat_override = load("res://media/textures/other/active_ally.tres")
 			mat_override = null
 		else:
 			mat_override = load("res://media/textures/other/active_enemy.tres")
 	else:
 		if ally:
 			mat_override = load("res://media/textures/other/passive_ally.tres")
+	if stats.hp_cur <= 0:
+		mat_override = load("res://media/textures/other/active_ally.tres")
 	for mesh in models:
 			mesh.set_material_override(mat_override)
 	pass

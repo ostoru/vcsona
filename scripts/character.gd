@@ -18,6 +18,7 @@ onready var bullet_inst_scene = preload("res://media/sprites/particles/bullet_in
 onready var ani_tree = get_node("Yaw/AnimationTreePlayer")
 onready var ani_node = get_node("Yaw/AnimationPlayer")
 
+var name = ""
 var stats = {
 	active = false,
 	ally = false,
@@ -44,6 +45,7 @@ var ray_length = 10
 
 var models = []
 func _ready():
+	stats.name = get_name()
 	rotate_y(rand_range(0,2))
 	for child in get_node("Yaw/metarig/Skeleton").get_children():
 		if child extends MeshInstance:

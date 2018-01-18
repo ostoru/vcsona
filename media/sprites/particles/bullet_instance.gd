@@ -9,7 +9,7 @@ func _fixed_process(delta):
 	if lifetime <= 0:
 		queue_free()
 	else:
-		move(difference * delta * 50)
+		move(difference * delta * 200)
 		if is_colliding():
 			var body = get_collider()
 			if body.is_in_group("char"):

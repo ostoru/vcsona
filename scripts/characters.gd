@@ -5,6 +5,9 @@ var ally_down = []
 var enemy_chars = []
 const MAP_MODE = 0
 const ACTION_MODE = 1
+const LOSE_MODE = 2
+const WIN_MODE = 3
+
 var play_mode = MAP_MODE
 
 func _ready():
@@ -44,7 +47,7 @@ const PROXIMITY_MAX = 80
 const PROXIMITY_MIN = 3
 var proximity = DEFAULT_PROXIMITY
 
-
+var over_timer = 0
 func _fixed_process(delta):
 	map_cam.get_node("fps").set_text(str(OS.get_frames_per_second()))
 	
@@ -90,6 +93,17 @@ func _fixed_process(delta):
 			action_cooldown = DEFAULT_ACTION_COOLDOWN
 		else:
 			action_cooldown -= 1
+	elif play_mode == LOSE_MODE:
+		get_node("../").get_node("map_cam/gui/fail").show()
+		over_timer = min(over_timer,1)
+		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color(0,0,1,over_timer))
+		over_timer += .01
+	elif play_mode == WIN_MODE:
+		get_node("../").get_node("map_cam/gui/fail").show()
+		over_timer = min(over_timer,1)
+		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color(1,0,0,over_timer))
+		over_timer += .01
+		
 
 var enemy_index = 0
 var ally_index = 0
@@ -153,8 +167,10 @@ func update_children_list():
 			if play_mode == MAP_MODE:
 				child.queue_free()
 	if enemy_chars == []:
+		play_mode = WIN_MODE
 		print("you won")
-		get_tree().quit()
+#		get_tree().quit()
 	elif ally_chars == []:
+		play_mode = LOSE_MODE
 		print("you lose")
-		get_tree().quit()
+#		get_tree().quit()

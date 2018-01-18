@@ -381,7 +381,7 @@ func update_materials():
 		if ally:
 			mat_override = load("res://media/textures/other/passive_ally.tres")
 	if stats.hp_cur <= 0:
-		mat_override = load("res://media/textures/other/active_ally.tres")
+		mat_override = load("res://media/textures/other/dead.tres")
 	for mesh in models:
 			mesh.set_material_override(mat_override)
 	pass

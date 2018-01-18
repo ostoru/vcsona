@@ -23,8 +23,8 @@ var stats = {
 	ally = false,
 	hp_cur = 100,
 	hp_max = 100,
-	stm_max = 100,
-	stm_cur = 100
+	stm_max = 10000,
+	stm_cur = 10000
 	}
 
 var view_sensitivity = 0.25
@@ -40,7 +40,6 @@ var walk_speed
 var jump_speed
 
 var health = 100
-var stamina = 10000
 var ray_length = 10
 
 var models = []
@@ -195,10 +194,11 @@ func _integrate_forces(state):
 	jump_speed = 5
 	
 	# Cap stamina:
-	if stamina >= 10000:
-		stamina = 10000
-	if stamina <= 0:
-		stamina = 0
+	stats.stm_cur = max(0,min(stats.stm_cur,stats.stm_max))
+#	if stats.stm_cur >= 10000:
+#		stats.stm_cur = 10000
+#	if stats.stm_cur <= 0:
+#		stats.stm_cur = 0
 	
 	var aim = get_node("Yaw").get_global_transform().basis
 	
@@ -248,10 +248,10 @@ func _integrate_forces(state):
 	var ray = get_node("Ray")
 	
 	# Increase walk speed and jump height while running and decrement stamina:
-	if Input.is_action_pressed("run") and is_moving and ray.is_colliding() and stamina > 0:
+	if Input.is_action_pressed("run") and is_moving and ray.is_colliding() and stats.stm_cur > 0:
 		walk_speed *= 1.4
 		jump_speed *= 1.2
-		stamina -= 15
+		stats.stm_cur -= 15
 	
 	if ray.is_colliding():
 		var up = state.get_total_gravity().normalized()
@@ -285,13 +285,13 @@ func _integrate_forces(state):
 		apply_impulse(Vector3(), diff * get_mass())
 
 		# Regenerate stamina:
-		stamina += 5
+		stats.stm_cur += 5
 		if active:
-			if Input.is_action_pressed("jump") and stamina > 150:
+			if Input.is_action_pressed("jump") and stats.stm_cur > 150:
 				apply_impulse(Vector3(), normal * jump_speed * get_mass())
 				ani_tree.animation_node_set_animation("move",ani_node.get_animation("air -loop"))
 				get_node("Sounds").play("jump")
-				stamina -= 150
+				stats.stm_cur -= 150
 
 	else:
 		apply_impulse(Vector3(), direction * air_accel * get_mass())

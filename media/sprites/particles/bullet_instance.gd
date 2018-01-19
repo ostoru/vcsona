@@ -1,6 +1,7 @@
 extends KinematicBody
-export var lifetime = 80
+export var lifetime = 800
 var difference
+var speed = 200
 func _ready():
 	difference = get_node("Spatial").get_global_transform().origin - get_global_transform().origin
 	set_fixed_process(true)
@@ -9,7 +10,7 @@ func _fixed_process(delta):
 	if lifetime <= 0:
 		queue_free()
 	else:
-		move(difference * delta * 200)
+		move(difference * delta * speed)
 		if is_colliding():
 			var body = get_collider()
 			if body.is_in_group("char"):

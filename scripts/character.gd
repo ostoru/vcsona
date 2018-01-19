@@ -159,8 +159,10 @@ func shoot():
 		bullet_inst.add_to_group("destroy")
 		world.add_child(bullet_inst)
 		if active:
+			bullet_inst.speed = 1000
 			cooldown_shoot = 5 #todo change this value for weapon rate of fire
 		else:
+			bullet_inst.speed = 10
 			cooldown_shoot = 10 #todo change this value for weapon rate of fire
 
 #main loop

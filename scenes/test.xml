@@ -5,8 +5,8 @@
 	<ext_resource path="res://scripts/environment.gd" type="Script" index="1"></ext_resource>
 	<ext_resource path="res://media/sprites/gui_icons/fail2 by cyrus.png" type="Texture" index="5"></ext_resource>
 	<ext_resource path="res://media/sprites/gui_icons/fail by cyrus.png" type="Texture" index="4"></ext_resource>
-	<ext_resource path="res://scenes/characters/character.xml" type="PackedScene" index="3"></ext_resource>
 	<ext_resource path="res://media/models/world/test_level/navmesh test.xml" type="PackedScene" index="6"></ext_resource>
+	<ext_resource path="res://scenes/characters/character.xml" type="PackedScene" index="3"></ext_resource>
 	<resource type="Environment" path="local://1">
 		<bool name="ambient_light/enabled"> True </bool>
 		<color name="ambient_light/color"> 0.144531, 0.144531, 0.144531, 1 </color>
@@ -95,10 +95,10 @@
 				<string> "shadow/split_weight" </string>
 				<string> "shadow/zoffset_scale" </string>
 				<string> "characters" </string>
-				<string> "player" </string>
+				<string> "char" </string>
 				<string> "ally" </string>
-				<string> "player1" </string>
-				<string> "player2" </string>
+				<string> "char 2" </string>
+				<string> "char 3" </string>
 				<string> "map_cam" </string>
 				<string> "projection" </string>
 				<string> "fov" </string>
@@ -170,8 +170,8 @@
 				<real> 2 </real>
 				<resource  external="2">  </resource>
 				<resource  external="3">  </resource>
-				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 8.89602, 4.77608, -14.313 </transform>
-				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 36.4571, 4.77608, -14.313 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 0.16061, 1.25174, -24.3874 </transform>
+				<transform> 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 36.4571, 1.25174, -14.313 </transform>
 				<transform> 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.489576, 183.629, 1.99188 </transform>
 				<real> 65 </real>
 				<real> 0.1 </real>

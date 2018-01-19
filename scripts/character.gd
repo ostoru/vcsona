@@ -2,7 +2,7 @@
 # This source code form is governed by the MIT license.
 # See LICENSE.md for more information.
 
-extends RigidBody
+extends KinematicBody
 
 export var active = false
 export var ally = false
@@ -36,8 +36,8 @@ var is_moving = false
 const max_accel = 0.005
 const air_accel = 0.02
 
-# Walking speed and jumping height are defined later.
-var walk_speed
+	# Walking speed and jumping height are defined later.
+var walk_speed = 0
 var jump_speed
 
 var health = 100
@@ -59,18 +59,16 @@ func _ready():
 	get_node("Yaw/metarig/Skeleton").rotate_y(deg2rad(180))
 	get_node("gui").hide()
 
-#select charater using mouse clicks
+	#select charater using mouse clicks
 func _mouse_enter():
 	if ally:
 		get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1) * 1.5)
-#		get_node("Yaw/icon").play("default")
 	get_node("Yaw/icon/OmniLight").show()
 	get_node("Yaw/icon/SpotLight").show()
 func _mouse_exit():
 	get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1))
 	get_node("Yaw/icon/OmniLight").hide()
 	get_node("Yaw/icon/SpotLight").hide()
-#	get_node("Yaw/icon").stop()
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	if event.is_action("attack"):
 		if ally:
@@ -105,7 +103,8 @@ func action_start(active_node,current_target):
 		else:
 			ai_mode = true
 			start_active_action()
-		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
+#		get_node("Yaw/metarig/Skeleton/gun/Camera").make_current()
+		get_node("Yaw/pitch/Camera").make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		get_node("gui").show()
 	update_materials()
@@ -122,7 +121,7 @@ func action_end():
 	get_node("Yaw/metarig").hide()
 	get_node("Yaw/icon").show()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
-	get_node("Yaw/metarig/Skeleton/gun/Camera").clear_current()
+	get_node("Yaw/pitch/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	set_fixed_process(false)
 	set_process_input(false)
@@ -130,21 +129,21 @@ func action_end():
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
-		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
-		pitch = max(min(pitch - (event.relative_y * view_sensitivity * .01), 1), 0)
-		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
+		look_direction = event.relative_pos
+		Input.warp_mouse_pos(Vector2())
+#		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
 #		get_node("Yaw/Camera").set_rotation(Vector3(deg2rad(pitch), 0, 0))
 	
-	# Toggle mouse capture:
-	if Input.is_action_pressed("toggle_mouse_capture"):
-		if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			view_sensitivity = 0
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			view_sensitivity = 0.25
-
-	elif Input.is_action_pressed("char reload"):
+#	# Toggle mouse capture:
+#	if Input.is_action_pressed("toggle_mouse_capture"):
+#		if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
+#			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+#			view_sensitivity = 0
+#		else:
+#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#			view_sensitivity = 0.25
+	
+	if Input.is_action_pressed("char reload"):
 		get_node("../").end_actions(self)
 
 
@@ -166,12 +165,12 @@ func shoot():
 #main loop
 func _fixed_process(delta):
 	if stats.hp_cur > 0:
-		update_gui()
 		cooldown_shoot -= 1
 		if active:
 			if ally:
-				if Input.is_action_pressed("attack"):
-					shoot()
+				check_input()
+				apply_forces()
+				update_gui()
 			else:
 				action_timer -= 1
 				if action_timer <= 0:
@@ -187,118 +186,185 @@ func _fixed_process(delta):
 				end_passive_action()
 		is_moving = false
 	else:
+		
 		update_materials()
 
-func _integrate_forces(state):
-	# Default walk speed:
-	walk_speed = 3.5
-	# Default jump height:
-	jump_speed = 5
+
+var move_direction = Vector3()
+var anim_dir = Vector2()
+
+var look_direction = Vector2()
+func check_input():
 	
-	# Cap stamina:
-	stats.stm_cur = max(0,min(stats.stm_cur,stats.stm_max))
-#	if stats.stm_cur >= 10000:
-#		stats.stm_cur = 10000
-#	if stats.stm_cur <= 0:
-#		stats.stm_cur = 0
+	#movement
+	anim_dir = Vector2()
+	var rotation = get_node("Yaw").get_global_transform().basis
+	move_direction = Vector3()
+	if Input.is_action_pressed("move_forwards"):
+		print("mf")
+		move_direction -= rotation[2]
+		anim_dir.y += 1
+		is_moving = true
+	if Input.is_action_pressed("move_backwards"):
+		move_direction += rotation[2]
+		anim_dir.y -=1
+		is_moving = true
+	if Input.is_action_pressed("move_left"):
+		move_direction -= rotation[0]
+		anim_dir.x -= 1
+		is_moving = true
+	if Input.is_action_pressed("move_right"):
+		move_direction += rotation[0]
+		anim_dir.x += 1
+		is_moving = true
+	move_direction = move_direction.normalized()
+	#run
+	if Input.is_action_pressed("run"):
+		walk_speed += .1
+	else:
+		walk_speed -= .5
+	walk_speed = max(.1,min(1,walk_speed))
+	#shoot
+	if Input.is_action_pressed("attack"):
+		shoot()
 	
-	var aim = get_node("Yaw").get_global_transform().basis
 	
-	var direction = Vector3()
-	var ani_to_play = "mn -loop"
-	var anim_dir = Vector2()
-	
-	if active:
-		if ai_mode:
-			if path.size() > 0:
-				direction = path[0] - get_global_transform().origin
-				if direction.abs() < direction.normalized().abs():
-					path.remove(0)
-				else:
-					is_moving = true
+export var can_move = true
+export var can_look = true
+export var can_aim = true
+export var can_shoot = true
+export var can_jump = true
+var character_state
+
+func apply_forces():
+	var delta = get_fixed_process_delta_time()
+	if can_look:
+		get_node("Yaw").rotate_y(look_direction.x * delta * view_sensitivity)
+		get_node("Yaw/pitch").rotate_x(look_direction.y * delta * view_sensitivity)
+		look_direction = Vector2()
+
+	if can_move:
+		if is_colliding():
+			move_direction.y = 0
 		else:
-			if Input.is_action_pressed("move_forwards"):
-				direction -= aim[2]
-				anim_dir = Vector2(0,1)
-				is_moving = true
-			if Input.is_action_pressed("move_backwards"):
-				direction += aim[2]
-				anim_dir = Vector2(0,-1)
-				is_moving = true
-			if Input.is_action_pressed("move_left"):
-				direction -= aim[0]
-				anim_dir = Vector2(-1,0)
-				is_moving = true
-			if Input.is_action_pressed("move_right"):
-				direction += aim[0]
-				anim_dir = Vector2(1,0)
-				is_moving = true
-	
-	if anim_dir == Vector2(0,1):
-		ani_to_play = "mf -loop"
-	elif anim_dir == Vector2(0,-1):
-		ani_to_play = "mb -loop"
-	elif anim_dir == Vector2(-1,0):
-		ani_to_play = "ml -loop"
-	elif anim_dir == Vector2(1,0):
-		ani_to_play = "mr -loop"
-	else:
-		ani_to_play = "mn -loop"
-	ani_tree.timeseek_node_seek("seek",pitch)
-	ani_tree.animation_node_set_animation("move",ani_node.get_animation(ani_to_play))
-	direction = direction.normalized()
-	var ray = get_node("Ray")
-	
-	# Increase walk speed and jump height while running and decrement stamina:
-	if Input.is_action_pressed("run") and is_moving and ray.is_colliding() and stats.stm_cur > 0:
-		walk_speed *= 1.4
-		jump_speed *= 1.2
-		stats.stm_cur -= 15
-	
-	if ray.is_colliding():
-		var up = state.get_total_gravity().normalized()
-		var normal = ray.get_collision_normal()
-		var floor_velocity = Vector3()
-		var object = ray.get_collider()
+			move_direction.y -= .9
+		print (move_direction, walk_speed)
+		move(move_direction * delta * walk_speed * 350)
+	if can_aim:
+		get_node("Yaw/metarig/Skeleton/gun/Camera").look_at(get_node("Yaw/pitch/look").get_global_transform().origin,Vector3(0,1,0))
+		pass
+	pass
 
-		if object extends RigidBody or object extends StaticBody:
-			var point = ray.get_collision_point() - object.get_translation()
-			var floor_angular_vel = Vector3()
-			if object extends RigidBody:
-				floor_velocity = object.get_linear_velocity()
-				floor_angular_vel = object.get_angular_velocity()
-			elif object extends StaticBody:
-				floor_velocity = object.get_constant_linear_velocity()
-				floor_angular_vel = object.get_constant_angular_velocity()
-			# Surely there should be a function to convert Euler angles to a 3x3 matrix
-			var transform = Matrix3(Vector3(1, 0, 0), floor_angular_vel.x)
-			transform = transform.rotated(Vector3(0, 1, 0), floor_angular_vel.y)
-			transform = transform.rotated(Vector3(0, 0, 1), floor_angular_vel.z)
-			floor_velocity += transform.xform_inv(point) - point
-			yaw = fmod(yaw + rad2deg(floor_angular_vel.y) * state.get_step(), 360)
-			get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
-
-		var diff = floor_velocity + direction * walk_speed - state.get_linear_velocity()
-		var vertdiff = aim[1] * diff.dot(aim[1])
-		diff -= vertdiff
-		diff = diff.normalized() * clamp(diff.length(), 0, max_accel / state.get_step())
-		diff += vertdiff
-
-		apply_impulse(Vector3(), diff * get_mass())
-
-		# Regenerate stamina:
-		stats.stm_cur += 5
-		if active:
-			if Input.is_action_pressed("jump") and stats.stm_cur > 150:
-				apply_impulse(Vector3(), normal * jump_speed * get_mass())
-				ani_tree.animation_node_set_animation("move",ani_node.get_animation("air -loop"))
-				get_node("Sounds").play("jump")
-				stats.stm_cur -= 150
-
-	else:
-		apply_impulse(Vector3(), direction * air_accel * get_mass())
-
-	state.integrate_forces()
+#func _integrate_forces(state):
+#	# Default walk speed:
+#	walk_speed = 3.5
+#	# Default jump height:
+#	jump_speed = 5
+#	
+#	# Cap stamina:
+#	stats.stm_cur = max(0,min(stats.stm_cur,stats.stm_max))
+#	#	if stats.stm_cur >= 10000:
+#	#		stats.stm_cur = 10000
+#	#	if stats.stm_cur <= 0:
+#	#		stats.stm_cur = 0
+#	
+#	var aim = get_node("Yaw").get_global_transform().basis
+#	
+#	var direction = Vector3()
+#	var ani_to_play = "mn -loop"
+#	var anim_dir = Vector2()
+#	
+#	if active:
+#		if ai_mode:
+#			if path.size() > 0:
+#				direction = path[0] - get_global_transform().origin
+#				if direction.abs() < direction.normalized().abs():
+#					path.remove(0)
+#				else:
+#					is_moving = true
+#		else:
+#			if Input.is_action_pressed("move_forwards"):
+#				direction -= aim[2]
+#				anim_dir = Vector2(0,1)
+#				is_moving = true
+#			if Input.is_action_pressed("move_backwards"):
+#				direction += aim[2]
+#				anim_dir = Vector2(0,-1)
+#				is_moving = true
+#			if Input.is_action_pressed("move_left"):
+#				direction -= aim[0]
+#				anim_dir = Vector2(-1,0)
+#				is_moving = true
+#			if Input.is_action_pressed("move_right"):
+#				direction += aim[0]
+#				anim_dir = Vector2(1,0)
+#				is_moving = true
+#	
+#	if anim_dir == Vector2(0,1):
+#		ani_to_play = "mf -loop"
+#	elif anim_dir == Vector2(0,-1):
+#		ani_to_play = "mb -loop"
+#	elif anim_dir == Vector2(-1,0):
+#		ani_to_play = "ml -loop"
+#	elif anim_dir == Vector2(1,0):
+#		ani_to_play = "mr -loop"
+#	else:
+#		ani_to_play = "mn -loop"
+#	ani_tree.timeseek_node_seek("seek",pitch)
+#	ani_tree.animation_node_set_animation("move",ani_node.get_animation(ani_to_play))
+#	direction = direction.normalized()
+#	var ray = get_node("Ray")
+#	
+#	# Increase walk speed and jump height while running and decrement stamina:
+#	if Input.is_action_pressed("run") and is_moving and ray.is_colliding() and stats.stm_cur > 0:
+#		walk_speed *= 1.4
+#		jump_speed *= 1.2
+#		stats.stm_cur -= 15
+#	
+#	if ray.is_colliding():
+#		var up = state.get_total_gravity().normalized()
+#		var normal = ray.get_collision_normal()
+#		var floor_velocity = Vector3()
+#		var object = ray.get_collider()
+#
+#		if object extends RigidBody or object extends StaticBody:
+#			var point = ray.get_collision_point() - object.get_translation()
+#			var floor_angular_vel = Vector3()
+#			if object extends RigidBody:
+#				floor_velocity = object.get_linear_velocity()
+#				floor_angular_vel = object.get_angular_velocity()
+#			elif object extends StaticBody:
+#				floor_velocity = object.get_constant_linear_velocity()
+#				floor_angular_vel = object.get_constant_angular_velocity()
+#			# Surely there should be a function to convert Euler angles to a 3x3 matrix
+#			var transform = Matrix3(Vector3(1, 0, 0), floor_angular_vel.x)
+#			transform = transform.rotated(Vector3(0, 1, 0), floor_angular_vel.y)
+#			transform = transform.rotated(Vector3(0, 0, 1), floor_angular_vel.z)
+#			floor_velocity += transform.xform_inv(point) - point
+#			yaw = fmod(yaw + rad2deg(floor_angular_vel.y) * state.get_step(), 360)
+#			get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
+#
+#		var diff = floor_velocity + direction * walk_speed - state.get_linear_velocity()
+#		var vertdiff = aim[1] * diff.dot(aim[1])
+#		diff -= vertdiff
+#		diff = diff.normalized() * clamp(diff.length(), 0, max_accel / state.get_step())
+#		diff += vertdiff
+#
+#		apply_impulse(Vector3(), diff * get_mass())
+#
+#		# Regenerate stamina:
+#		stats.stm_cur += 5
+#		if active:
+#			if Input.is_action_pressed("jump") and stats.stm_cur > 150:
+#				apply_impulse(Vector3(), normal * jump_speed * get_mass())
+#				ani_tree.animation_node_set_animation("move",ani_node.get_animation("air -loop"))
+#				get_node("Sounds").play("jump")
+#				stats.stm_cur -= 150
+#
+#	else:
+#		apply_impulse(Vector3(), direction * air_accel * get_mass())
+#
+#	state.integrate_forces()
 
 func _exit_scene():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -322,18 +388,21 @@ var remaining_passive_action = 5
 var cooldown_shoot = 20
 
 func passive_look_at_target():
-	var yaw = get_node("Yaw")
-	var look = (target.get_node("Body").get_global_transform().origin)
-	look.y = self.get_translation().y
-	yaw.look_at(look,Vector3(0,1,0))
-#	rotate_y(deg2rad(182))
-	var a = get_node("Body").get_global_transform().origin
-	var b = target.get_node("Body").get_global_transform().origin
-	a = Vector2(0,a.y)
-	b = Vector2(0,b.y) / get_translation().distance_to(target.get_translation())
-	get_node("Yaw/metarig/Skeleton/gun/origin").look_at(target.get_node("Body").get_global_transform().origin,Vector3(0,1,0))
-	pitch = (a.angle_to(b)/2) + .5
-	ani_tree.timeseek_node_seek("seek",pitch)
+	if target != null:
+		var yaw = get_node("Yaw")
+		var look = (target.get_node("Body").get_global_transform().origin)
+		look.y = self.get_translation().y
+		yaw.look_at(look,Vector3(0,1,0))
+	#	rotate_y(deg2rad(182))
+		var a = get_node("Body").get_global_transform().origin
+		var b = target.get_node("Body").get_global_transform().origin
+		a = Vector2(0,a.y)
+		b = Vector2(0,b.y) / get_translation().distance_to(target.get_translation())
+		get_node("Yaw/metarig/Skeleton/gun/origin").look_at(target.get_node("Body").get_global_transform().origin,Vector3(0,1,0))
+		pitch = (a.angle_to(b)/2) + .5
+		ani_tree.timeseek_node_seek("seek",pitch)
+	else:
+		target = self
 
 func passive_action():
 	remaining_passive_action -= .1

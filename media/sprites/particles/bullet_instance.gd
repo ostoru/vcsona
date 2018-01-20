@@ -1,6 +1,6 @@
 extends KinematicBody
-export var lifetime = 800
 var difference
+var lifetime = 800
 var speed = 200
 func _ready():
 	difference = get_node("Spatial").get_global_transform().origin - get_global_transform().origin

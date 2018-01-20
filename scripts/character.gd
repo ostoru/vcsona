@@ -18,14 +18,43 @@ onready var bullet_inst_scene = preload("res://media/sprites/particles/bullet_in
 onready var ani_tree = get_node("Yaw/AnimationTreePlayer")
 onready var ani_node = get_node("Yaw/AnimationPlayer")
 
-var name = ""
 var stats = {
+	#unit info
+	name = "", #for now, just node name
 	active = false,
 	ally = false,
-	hp_cur = 100,
+	
+	#base stats
+	hp_cur = 100, #increases towards maximum at turn start
 	hp_max = 100,
-	stm_max = 10000,
-	stm_cur = 10000
+	stm_cur = 1000, #resets between actions, uses action_count to determine maximum
+	stm_max = 1000,
+	action_count = 0 #used for buff/debuff while reusing a character in the same turn
+	}
+
+var weapon = {
+	#weapon type
+	weapon_name = "riffle",
+	
+	magazine_max = 30,
+	magazine_cur = 30,
+#	magazine_type = RELOAD_SINGLE,
+	bullet_max = 120,
+	bullet_cur = 120, #resets: between turns, at bases;
+	
+	bullet_gain = 0, #additional bullets at turn start, capped by maximum
+	
+	
+#	reload_start = 30, #frames the animation needs to play before the new bullets get added
+#	reload_units = -1, #frames between new bullets once the starting animation has been played
+#	reload_end = 5, #wait frames when there are no chambered bullets
+	
+	reload_wait_max = 30, #wait framse the reloading takes
+	reload_wait_cur = 0, #any value higher than 1 the character is reloading
+#	chamber_max = 1,
+#	chamber_cur = 0, #resets to zero on turn start
+	
+	#weapon stats
 	}
 
 var view_sensitivity = 0.25
@@ -144,42 +173,56 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			view_sensitivity = 0.25
 
-	elif Input.is_action_pressed("char reload"):
-		get_node("../").end_actions(self)
-
-
-
 func shoot():
-	if cooldown_shoot <= 0: #normally i wouldn't put this here, but is going to be called from so many places i might as well
-		get_node("Sounds").play("rifle")
-		var bullet_inst = bullet_inst_scene.instance()
-		var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
-		bullet_inst.set_transform(origin)
-		var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
-		bullet_inst.add_to_group("destroy")
-		world.add_child(bullet_inst)
-		if active:
-			bullet_inst.speed = 1000
-			cooldown_shoot = 5 #todo change this value for weapon rate of fire
+	if weapon_cooldown <= 0: #normally i wouldn't put this here, but is going to be called from so many places i might as well
+		if weapon.magazine_cur > 0:
+			get_node("Sounds").play("rifle")
+			var bullet_inst = bullet_inst_scene.instance()
+			var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
+			bullet_inst.set_transform(origin)
+			var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
+			bullet_inst.add_to_group("destroy")
+			world.add_child(bullet_inst)
+			
+			weapon.magazine_cur -= 1
+			
+			if active:
+				bullet_inst.speed = 1000
+				bullet_inst.lifetime = 80
+				weapon_cooldown = 5 #todo change this value for weapon rate of fire
+			else:
+				bullet_inst.speed = 100
+				bullet_inst.lifetime = 800
+				weapon_cooldown = 10 #todo change this value for weapon rate of fire
 		else:
-			bullet_inst.speed = 10
-			cooldown_shoot = 10 #todo change this value for weapon rate of fire
+			reload()
+
+func reload():
+	weapon.reload_wait_cur = weapon.reload_wait_max
+	weapon_cooldown = weapon.reload_wait_max
+	
 
 #main loop
 func _fixed_process(delta):
 	if stats.hp_cur > 0:
 		update_gui()
-		cooldown_shoot -= 1
+		weapon_cooldown -= 1
+		action_timer -= 1
+		if action_timer <= 0:
+			get_node("../").end_actions(self) 
 		if active:
+			weapon.reload_wait_cur -= 1
+			if weapon.reload_wait_cur == 0:
+				weapon.bullet_cur += (weapon.magazine_cur - weapon.magazine_max)
+				weapon.magazine_cur = weapon.magazine_max
 			if ally:
-				if Input.is_action_pressed("attack"):
-					shoot()
+				if weapon_cooldown <= 0:
+					if Input.is_action_pressed("attack"):
+						shoot()
+					if Input.is_action_pressed("char reload"):
+						reload()
 			else:
-				action_timer -= 1
-				if action_timer <= 0:
-					get_node("../").end_actions(self) 
-				else:
-					passive_look_at_target()
+				passive_look_at_target() #todo: change for active look at characters
 		else: #passive characters
 			passive_look_at_target()
 			if remaining_passive_action > 0:
@@ -321,7 +364,7 @@ func start_passive_action(node):
 	update_materials()
 
 var remaining_passive_action = 5
-var cooldown_shoot = 20
+var weapon_cooldown = 20
 
 func passive_look_at_target():
 	var yaw = get_node("Yaw")
@@ -340,7 +383,7 @@ func passive_look_at_target():
 func passive_action():
 	remaining_passive_action -= .1
 	if target != self:
-		if cooldown_shoot <= 0:
+		if weapon_cooldown <= 0:
 			shoot()
 	update_materials()
 
@@ -364,14 +407,20 @@ func start_active_action():
 
 func update_gui():
 	get_node("gui/FPS").set_text(str(OS.get_frames_per_second()))
-	get_node("gui/health_self").set_val(stats.hp_cur)
 	get_node("gui/health_self").set_max(stats.hp_max)
-	get_node("gui/health_enemy").set_val(stats.hp_cur)
-	get_node("gui/health_enemy").set_max(stats.hp_max)
-	get_node("gui/stamina").set_val(stats.stm_cur)
+	get_node("gui/health_self").set_val(stats.hp_cur)
+	if weapon.reload_wait_cur >= 0:
+		get_node("gui/health_enemy").set_max(weapon.reload_wait_max)
+		get_node("gui/health_enemy").set_val(weapon.reload_wait_max - weapon.reload_wait_cur)
+	else:
+		get_node("gui/bullets").set_text(str(weapon.magazine_cur) + "/" + str(weapon.bullet_cur))
+		get_node("gui/health_enemy").set_max(weapon.magazine_max)
+		get_node("gui/health_enemy").set_val(weapon.magazine_cur)
+		
 	get_node("gui/stamina").set_max(stats.stm_max)
-	get_node("gui/action").set_val(action_timer)
+	get_node("gui/stamina").set_val(stats.stm_cur)
 	get_node("gui/action").set_max(DEFF_ACTION_TIMER)
+	get_node("gui/action").set_val(action_timer)
 	pass
 
 func update_materials():

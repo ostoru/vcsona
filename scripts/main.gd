@@ -5,7 +5,6 @@
 extends Spatial
 
 func _ready():
-	
 	get_all_the_children_in_node(get_tree().get_root())
 	set_process_input(true)
 

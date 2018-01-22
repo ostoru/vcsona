@@ -42,12 +42,17 @@ var action_cooldown = DEFAULT_ACTION_COOLDOWN
 var passive_ready = 1
 onready var map_cam = get_node("../map_cam")
 var focus_char = 0
+var focus_ally = 0
+var focus_enemy = 0
 const DEFAULT_PROXIMITY = 50
 const PROXIMITY_MAX = 80
 const PROXIMITY_MIN = 3
 var proximity = DEFAULT_PROXIMITY
-
+var diference = Vector3()
 var over_timer = 0
+var focus = true
+var cam_speed = 0
+var max_cam_speed = 10
 func _fixed_process(delta):
 	map_cam.get_node("fps").set_text(str(OS.get_frames_per_second()))
 	
@@ -59,30 +64,53 @@ func _fixed_process(delta):
 				var starter = aquire_target(enemy_chars)
 				start_actions(starter)
 		else:
+			diference = Vector3()
 			if cooldown <= 0:
 				if Input.is_action_pressed("ui_focus_next"):
+					focus = true
 					if focus_char > 0:
 						focus_char -= 1
 					else:
 						focus_char = chars.size() - 1
 					cooldown = DEFAULT_COUNTDOWN
 				elif Input.is_action_pressed("ui_focus_prev"):
+					focus = true
 					if focus_char < chars.size() - 1:
 						focus_char += 1
 					else:
 						focus_char = 0
 					cooldown = DEFAULT_COUNTDOWN
-				if Input.is_action_pressed("map_zoom_in"):
+				if Input.is_action_pressed("map_zoom_in") or Input.is_mouse_button_pressed(BUTTON_WHEEL_UP):
 					proximity = proximity * .9
-				elif Input.is_action_pressed("map_zoom_out"):
+				elif Input.is_action_pressed("map_zoom_out") or Input.is_mouse_button_pressed(BUTTON_WHEEL_DOWN):
 					proximity = proximity * 1.1
 				
-		var target_char = chars[focus_char].get_global_transform().origin
-		target_char.y = target_char.y + proximity
-		var origin_char = map_cam.get_global_transform().origin
-		var diference = origin_char.linear_interpolate(target_char,.2)
-		proximity = max(PROXIMITY_MIN,min(proximity,PROXIMITY_MAX))
-		map_cam.set_translation(Vector3(diference.x,proximity,diference.z))
+				if Input.is_action_pressed("move_left"):
+					focus = false
+					diference.x = -1
+				elif Input.is_action_pressed("move_right"):
+					focus = false
+					diference.x = 1
+				else:
+					diference.x = 0
+				if Input.is_action_pressed("move_forwards"):
+					focus = false
+					diference.z = -1
+				elif Input.is_action_pressed("move_backwards"):
+					focus = false
+					diference.z = 1
+				else:
+					diference.z = 0
+			var origin_char = map_cam.get_global_transform().origin
+			if focus:
+				var target_char = chars[focus_char].get_global_transform().origin
+				target_char.y = target_char.y + proximity
+				diference = target_char.linear_interpolate(origin_char,.2)
+			else:
+				diference = origin_char + (diference.normalized() * (proximity/50))
+			
+			proximity = max(PROXIMITY_MIN,min(proximity,PROXIMITY_MAX))
+			map_cam.set_translation(Vector3(diference.x,proximity,diference.z))
 			
 	elif play_mode == ACTION_MODE:
 		if action_cooldown <= 0:

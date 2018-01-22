@@ -25,10 +25,10 @@ func start_actions(target_node): #target_node is the node that started the actio
 			
 
 var next_turn_ai = false
-var cooldown = DEFAULT_COUNTDOWN
-const DEFAULT_COUNTDOWN = 20
+var ui_cooldown = DEFAULT_COUNTDOWN
+const DEFAULT_COUNTDOWN = 15
 func end_actions(node):
-	cooldown = DEFAULT_COUNTDOWN
+	ui_cooldown = DEFAULT_COUNTDOWN
 	play_mode = MAP_MODE
 	chars = []
 	next_turn_ai = node.ally
@@ -57,61 +57,62 @@ func _fixed_process(delta):
 	map_cam.get_node("fps").set_text(str(OS.get_frames_per_second()))
 	
 	if play_mode == MAP_MODE:
-		cooldown -= 1
+		ui_cooldown -= 1
 		if next_turn_ai:
-			if cooldown <= 0:
+			if ui_cooldown <= 0:
 				update_children_list()
 				var starter = aquire_target(enemy_chars)
 				start_actions(starter)
 		else:
 			diference = Vector3()
-			if cooldown <= 0:
+			if Input.is_action_pressed("move_left"):
+				focus = false
+				diference.x = -1
+			elif Input.is_action_pressed("move_right"):
+				focus = false
+				diference.x = 1
+			else:
+				diference.x = 0
+			if Input.is_action_pressed("move_forwards"):
+				focus = false
+				diference.z = -1
+			elif Input.is_action_pressed("move_backwards"):
+				focus = false
+				diference.z = 1
+			else:
+				diference.z = 0
+			
+			if ui_cooldown <= 0:
 				if Input.is_action_pressed("ui_focus_next"):
 					focus = true
 					if focus_char > 0:
 						focus_char -= 1
 					else:
 						focus_char = chars.size() - 1
-					cooldown = DEFAULT_COUNTDOWN
+					ui_cooldown = DEFAULT_COUNTDOWN
 				elif Input.is_action_pressed("ui_focus_prev"):
 					focus = true
 					if focus_char < chars.size() - 1:
 						focus_char += 1
 					else:
 						focus_char = 0
-					cooldown = DEFAULT_COUNTDOWN
-				if Input.is_action_pressed("map_zoom_in") or Input.is_mouse_button_pressed(BUTTON_WHEEL_UP):
-					proximity = proximity * .9
-				elif Input.is_action_pressed("map_zoom_out") or Input.is_mouse_button_pressed(BUTTON_WHEEL_DOWN):
-					proximity = proximity * 1.1
-				
-				if Input.is_action_pressed("move_left"):
-					focus = false
-					diference.x = -1
-				elif Input.is_action_pressed("move_right"):
-					focus = false
-					diference.x = 1
-				else:
-					diference.x = 0
-				if Input.is_action_pressed("move_forwards"):
-					focus = false
-					diference.z = -1
-				elif Input.is_action_pressed("move_backwards"):
-					focus = false
-					diference.z = 1
-				else:
-					diference.z = 0
+					ui_cooldown = DEFAULT_COUNTDOWN
+			if Input.is_action_pressed("map_zoom_in") or Input.is_mouse_button_pressed(BUTTON_WHEEL_UP):
+				proximity = proximity * .9
+			elif Input.is_action_pressed("map_zoom_out") or Input.is_mouse_button_pressed(BUTTON_WHEEL_DOWN):
+				proximity = proximity * 1.1
+			
 			var origin_char = map_cam.get_global_transform().origin
 			if focus:
 				var target_char = chars[focus_char].get_global_transform().origin
 				target_char.y = target_char.y + proximity
-				diference = target_char.linear_interpolate(origin_char,.2)
+				diference = target_char.linear_interpolate(origin_char,.1)
 			else:
 				diference = origin_char + (diference.normalized() * (proximity/50))
 			
 			proximity = max(PROXIMITY_MIN,min(proximity,PROXIMITY_MAX))
 			map_cam.set_translation(Vector3(diference.x,proximity,diference.z))
-			
+	
 	elif play_mode == ACTION_MODE:
 		if action_cooldown <= 0:
 			if passive_ready > 0:
@@ -130,31 +131,11 @@ func _fixed_process(delta):
 		over_timer = min(over_timer,1)
 		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color(1,0,0,over_timer))
 		over_timer += .01
-		
 
 var enemy_index = 0
 var ally_index = 0
 var enemy_target_index = 0
 var ally_target_index = 0
-#func update_passive_characters():
-#	update_children_list()
-#	if ally_index < ally_chars.size():
-#		if check_passive_readyness(ally_chars[ally_index]):
-#			var target = aquire_target(enemy_chars)
-#			ally_chars[ally_index].start_passive_action()
-#			pass
-#		ally_index += 1
-#	else:
-#		ally_index = 0
-#	if enemy_index < enemy_chars.size():
-#		if check_passive_readyness(enemy_chars[enemy_index]):
-#			var target = aquire_target(ally_chars)
-#			enemy_chars[enemy_index].start_passive_action()
-#			pass
-#		enemy_index += 1
-#	else:
-#		enemy_index = 0
-#		pass
 
 func check_passive_readyness(node):
 	if !node.active:

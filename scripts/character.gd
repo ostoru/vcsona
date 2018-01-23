@@ -39,30 +39,34 @@ var weapon = {
 	reloading = 0,
 	cooldown = 0,
 	
-	active_magazine_max = 30,
-	active_magazine_cur = 0,
-	active_reserve_max = 150,
-	active_reserve_cur = 150,
-	active_reload_speed = 30,
-	active_rate_of_fire = 5,
-	active_projectile_speed = 200,
-	
-	passive_magazine_max = 5,
-	passive_magazine_cur = 0,
-	passive_reserve_max = -1,
-	passive_reserve_cur = -1,
-	passive_reload_speed = 30,
-	passive_rate_of_fire = 3,
-	passive_projectile_speed = 100,
-	
 	#weapon stats
-	current_magazine_max = 0,
-	current_magazine_cur = 0,
-	current_reserve_max = 0,
-	current_reserve_cur = 0,
-	current_reload_speed = 0,
-	current_rate_of_fire = 0,
-	current_projectile_speed = 0,
+	active = {
+		magazine_max = 30,
+		magazine_cur = 0,
+		reserve_max = 150,
+		reserve_cur = 150,
+		reload_speed = 30,
+		rate_of_fire = 15,
+		projectile_speed = 200,
+		},
+	passive = {
+		magazine_max = 5,
+		magazine_cur = 0,
+		reserve_max = -1,
+		reserve_cur = -1,
+		reload_speed = 30,
+		rate_of_fire = 3,
+		projectile_speed = 100,
+		},
+	current = {
+		magazine_max = 0,
+		magazine_cur = 0,
+		reserve_max = 0,
+		reserve_cur = 0,
+		reload_speed = 0,
+		rate_of_fire = 0,
+		projectile_speed = 0,
+		},
 	}
 
 var view_sensitivity = 0.25
@@ -76,9 +80,6 @@ const air_accel = 0.02
 # Walking speed and jumping height are defined later.
 var walk_speed
 var jump_speed
-
-var health = 100
-var ray_length = 10
 
 var models = []
 func _ready():
@@ -100,14 +101,12 @@ func _ready():
 func _mouse_enter():
 	if ally:
 		get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1) * 1.5)
-#		get_node("Yaw/icon").play("default")
 	get_node("Yaw/icon/OmniLight").show()
 	get_node("Yaw/icon/SpotLight").show()
 func _mouse_exit():
 	get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1))
 	get_node("Yaw/icon/OmniLight").hide()
 	get_node("Yaw/icon/SpotLight").hide()
-#	get_node("Yaw/icon").stop()
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	if event.is_action("attack"):
 		if ally:
@@ -137,13 +136,7 @@ func action_start(active_node,current_target):
 	else:
 		target = active_node
 	if active: #for some reason doesn't work in the "active_node == self" check:
-		weapon.current_magazine_max = weapon.active_magazine_max
-		weapon.current_magazine_cur = weapon.active_magazine_cur
-		weapon.current_reserve_max = weapon.active_reserve_max
-		weapon.current_reserve_cur = weapon.active_reserve_cur
-		weapon.current_reload_speed = weapon.active_reload_speed
-		weapon.current_rate_of_fire = weapon.active_rate_of_fire
-		weapon.current_projectile_speed = weapon.active_projectile_speed
+		weapon.current = weapon.active
 		if ally:
 			set_process_input(true)
 			
@@ -154,13 +147,7 @@ func action_start(active_node,current_target):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		get_node("gui").show()
 	else:
-		weapon.current_magazine_max = weapon.passive_magazine_max
-		weapon.current_magazine_cur = weapon.passive_magazine_cur
-		weapon.current_reserve_max = weapon.passive_reserve_max
-		weapon.current_reserve_cur = weapon.passive_reserve_cur
-		weapon.current_reload_speed = weapon.passive_reload_speed
-		weapon.current_rate_of_fire = weapon.passive_rate_of_fire
-		weapon.current_projectile_speed = weapon.passive_projectile_speed
+		weapon.current = weapon.passive
 	update_materials()
 
 # called by parent node
@@ -170,24 +157,13 @@ func action_end():
 	pitch = .5
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
+	
 	if active:
-		weapon.active_magazine_max = weapon.current_magazine_max
-		weapon.active_magazine_cur = weapon.current_magazine_cur
-		weapon.active_reserve_max = weapon.current_reserve_max
-		weapon.active_reserve_cur = weapon.current_reserve_cur
-		weapon.active_reload_speed = weapon.current_reload_speed
-		weapon.active_rate_of_fire = weapon.current_rate_of_fire
-		weapon.active_projectile_speed = weapon.current_projectile_speed
+		weapon.active = weapon.current
 		active = false
+		ai_mode = false
 	else:
-		weapon.passive_magazine_max = weapon.current_magazine_max
-		weapon.passive_magazine_cur = weapon.current_magazine_cur
-		weapon.passive_reserve_max = weapon.current_reserve_max
-		weapon.passive_reserve_cur = weapon.current_reserve_cur
-		weapon.passive_reload_speed = weapon.current_reload_speed
-		weapon.passive_rate_of_fire = weapon.current_rate_of_fire
-		weapon.passive_projectile_speed = weapon.current_projectile_speed
-	ai_mode = false
+		weapon.passive = weapon.current
 	get_node("Yaw/metarig").hide()
 	get_node("Yaw/icon").show()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
@@ -215,7 +191,7 @@ func _input(event):
 
 func shoot():
 	if weapon.cooldown <= 0: #normally i wouldn't put this here, but is going to be called from so many places i might as well
-		if weapon.current_magazine_cur > 0:
+		if weapon.current.magazine_cur > 0:
 			get_node("Sounds").play("rifle")
 			var bullet_inst = bullet_inst_scene.instance()
 			var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
@@ -223,15 +199,15 @@ func shoot():
 			var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
 			bullet_inst.add_to_group("destroy")
 			world.add_child(bullet_inst)
-			weapon.current_magazine_cur -= 1
-			bullet_inst.speed = weapon.current_projectile_speed
-			bullet_inst.lifetime = 2000 * 60 /weapon.current_projectile_speed
-			weapon.cooldown = 1*60/weapon.current_rate_of_fire
+			weapon.current.magazine_cur -= 1
+			bullet_inst.speed = weapon.current.projectile_speed
+			bullet_inst.lifetime = 2000 * 60 /weapon.current.projectile_speed
+			weapon.cooldown = 1*60/weapon.current.rate_of_fire
 		else:
 			reload()
 
 func reload():
-	weapon.reloading = weapon.current_reload_speed
+	weapon.reloading = weapon.current.reload_speed
 	weapon.cooldown = weapon.reloading
 
 #main loop
@@ -241,21 +217,15 @@ func _fixed_process(delta):
 		weapon.cooldown -= 1
 		weapon.reloading -= 1
 		if weapon.reloading == 0:
-			var mag_diff = weapon.current_magazine_max - weapon.current_magazine_cur
-			if weapon.current_reserve_cur == -1:
-				if active:
-					print("inf",self.get_name())
-				weapon.current_magazine_cur = weapon.current_magazine_max
-			elif mag_diff < weapon.current_reserve_cur:
-				if active:
-					print("more",self.get_name())
-				weapon.current_magazine_cur += mag_diff
-				weapon.current_reserve_cur -= mag_diff
+			var mag_diff = weapon.current.magazine_max - weapon.current.magazine_cur
+			if weapon.current.reserve_cur == -1:
+				weapon.current.magazine_cur = weapon.current.magazine_max
+			elif mag_diff < weapon.current.reserve_cur:
+				weapon.current.magazine_cur += mag_diff
+				weapon.current.reserve_cur -= mag_diff
 			else:
-				if active:
-					print("last",self.get_name())
-				weapon.current_magazine_cur += weapon.current_reserve_cur
-				weapon.current_reserve_cur = 0
+				weapon.current.magazine_cur += weapon.current.reserve_cur
+				weapon.current.reserve_cur = 0
 		update_gui()
 		if action_timer <= 0:
 			get_node("../").end_actions(self)
@@ -282,7 +252,7 @@ func _fixed_process(delta):
 
 func _integrate_forces(state):
 	# Default walk speed:
-	walk_speed = 7
+	walk_speed = 4
 	# Default jump height:
 	jump_speed = 5
 	
@@ -342,15 +312,15 @@ func _integrate_forces(state):
 	
 	# Increase walk speed and jump height while running and decrement stamina:
 	if Input.is_action_pressed("run") and is_moving and ray.is_colliding() and stats.stm_cur > 0:
-		walk_speed *= 1.4
-		jump_speed *= 1.2
-		stats.stm_cur -= 8
+		walk_speed *= 2
+		jump_speed *= 2
+		stats.stm_cur -= 7
 	if ray.is_colliding():
 		var up = state.get_total_gravity().normalized()
 		var normal = ray.get_collision_normal()
 		var floor_velocity = Vector3()
 		var object = ray.get_collider()
-
+		
 		if object extends RigidBody or object extends StaticBody:
 			var point = ray.get_collision_point() - object.get_translation()
 			var floor_angular_vel = Vector3()
@@ -431,8 +401,8 @@ func update_gui():
 	get_node("gui/health_self").set_max(stats.hp_max)
 	get_node("gui/health_self").set_val(stats.hp_cur)
 	if weapon.reloading >= 0:
-		get_node("gui/health_enemy").set_max(weapon.current_reload_speed)
-		get_node("gui/health_enemy").set_val(weapon.current_reload_speed - weapon.reloading)
+		get_node("gui/health_enemy").set_max(weapon.current.reload_speed)
+		get_node("gui/health_enemy").set_val(weapon.current.reload_speed - weapon.reloading)
 	else:
 		var reserve_cur
 		var magazine
@@ -440,9 +410,9 @@ func update_gui():
 			pass
 		else:
 			pass
-		get_node("gui/bullets").set_text(str(weapon.current_magazine_cur) + "/" + str(weapon.current_reserve_cur))
-		get_node("gui/health_enemy").set_max(weapon.current_magazine_max)
-		get_node("gui/health_enemy").set_val(weapon.current_magazine_cur)
+		get_node("gui/bullets").set_text(str(weapon.current.magazine_cur) + "/" + str(weapon.current.reserve_cur))
+		get_node("gui/health_enemy").set_max(weapon.current.magazine_max)
+		get_node("gui/health_enemy").set_val(weapon.current.magazine_cur)
 		
 	get_node("gui/stamina").set_max(stats.stm_max)
 	get_node("gui/stamina").set_val(stats.stm_cur)

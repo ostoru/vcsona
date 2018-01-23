@@ -1,14 +1,15 @@
 extends Spatial
 var chars = []
 var ally_chars = []
-var ally_down = []
 var enemy_chars = []
+var ally_down = []
+
 const MAP_MODE = 0
 const ACTION_MODE = 1
 const LOSE_MODE = 2
 const WIN_MODE = 3
-
 var play_mode = MAP_MODE
+
 
 func _ready():
 	set_fixed_process(true)
@@ -44,6 +45,7 @@ onready var map_cam = get_node("../map_cam")
 var focus_char = 0
 var focus_ally = 0
 var focus_enemy = 0
+
 const DEFAULT_PROXIMITY = 50
 const PROXIMITY_MAX = 80
 const PROXIMITY_MIN = 3

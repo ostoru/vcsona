@@ -14,7 +14,7 @@ func _fixed_process(delta):
 		if is_colliding():
 			var body = get_collider()
 			if body.is_in_group("char"):
-				body.stats.hp_cur -= 30
+				body.stats.hp_cur -= 20
 			self_destruct()
 
 func self_destruct():

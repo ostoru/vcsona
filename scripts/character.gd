@@ -35,7 +35,7 @@ var stats = {
 
 var weapon = {
 	#weapon type
-	weapon_name = "riffle",
+	weapon_name = "generic riffle",
 	reloading = 0,
 	cooldown = 0,
 	
@@ -50,12 +50,12 @@ var weapon = {
 		projectile_speed = 200,
 		},
 	passive = {
-		magazine_max = 5,
+		magazine_max = 10,
 		magazine_cur = 0,
 		reserve_max = -1,
 		reserve_cur = -1,
 		reload_speed = 30,
-		rate_of_fire = 3,
+		rate_of_fire = 5,
 		projectile_speed = 100,
 		},
 	current = {
@@ -96,6 +96,7 @@ func _ready():
 		get_node("Yaw/icon/SpotLight").set_color(.5,Color("#ff7070"))
 	get_node("Yaw/metarig/Skeleton").rotate_y(deg2rad(180))
 	get_node("gui").hide()
+	dogtag.hide()
 
 #select charater using mouse clicks
 func _mouse_enter():
@@ -103,19 +104,37 @@ func _mouse_enter():
 		get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1) * 1.5)
 	get_node("Yaw/icon/OmniLight").show()
 	get_node("Yaw/icon/SpotLight").show()
+	dogtag.show()
+	update_dogtag()
 func _mouse_exit():
 	get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1))
 	get_node("Yaw/icon/OmniLight").hide()
 	get_node("Yaw/icon/SpotLight").hide()
+	dogtag.hide()
 func _input_event(camera, event, click_pos, click_normal, shape_idx):
 	if event.is_action("attack"):
 		if ally:
 			active = true
 			get_node("Sounds").play("jump")
+			dogtag.hide()
 			if stats.hp_cur >= 0:
 				get_node("../").start_actions(self)
 		else:
 			get_node("Sounds").play("fire")
+onready var dogtag = get_node("dogtag")
+func update_dogtag():
+	dogtag.get_node("weapon name").set_text(weapon.weapon_name)
+	dogtag.get_node("name").set_text(self.get_name())
+	dogtag.get_node("hp").set_max(stats.hp_max)
+	dogtag.get_node("hp").set_val(stats.hp_max)
+	dogtag.get_node("hp/label").set_text(str(stats.hp_cur) + "/" + str(stats.hp_max))
+	dogtag.get_node("stamina").set_max(stats.stm_max)
+	dogtag.get_node("stamina").set_val(stats.stm_cur)
+	dogtag.get_node("stamina/label").set_text(str(stats.stm_cur) + "/" + str(stats.stm_max))
+	dogtag.get_node("bullets").set_max(weapon.active.magazine_max)
+	dogtag.get_node("bullets").set_val(weapon.active.magazine_cur)
+	dogtag.get_node("bullets/label").set_text(str(weapon.active.magazine_cur) + "/" + str(weapon.active.magazine_max))
+
 
 # called by parent node
 func action_start(active_node,current_target):

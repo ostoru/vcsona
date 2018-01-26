@@ -31,7 +31,7 @@ var stats = {
 	stm_cur = 1000, #resets between actions, uses action_count to determine maximum
 	stm_max = 1000,
 	
-	speed_max = 0,
+	speed_max = 5,
 	speed_min = 1,
 	speed_cur = 1,
 	
@@ -284,7 +284,11 @@ func check_player_input():
 	
 	if is_moving:
 		if Input.is_action_pressed("run"):
-			stats.speed_cur = min(stats.speed_cur + 0.1, 5)
+			stats.speed_cur = min(stats.speed_cur + 0.1, stats.speed_max)
+		else:
+			stats.speed_cur = max(stats.speed_cur - 0.2, stats.speed_min)
+	else:
+		stats.speed_cur = max(0, stats.speed_cur - .1)
 	
 	if Input.is_action_pressed("aim"):
 		if can_aim:
@@ -308,7 +312,7 @@ func check_player_input():
 onready var rotation = get_node("Yaw").get_global_transform().basis
 func _integrate_forces(state):
 	# Default walk speed:
-	stats.speed_cur = 4
+#	stats.speed_cur = 4
 	# Default jump height:
 	jump_speed = 5
 	

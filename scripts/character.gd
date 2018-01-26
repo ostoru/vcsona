@@ -30,6 +30,11 @@ var stats = {
 	hp_max = 100,
 	stm_cur = 1000, #resets between actions, uses action_count to determine maximum
 	stm_max = 1000,
+	
+	speed_max = 0,
+	speed_min = 1,
+	speed_cur = 1,
+	
 	action_count = 0 #used for buff/debuff while reusing a character in the same turn
 	}
 
@@ -69,16 +74,15 @@ var weapon = {
 		},
 	}
 
-var view_sensitivity = 0.25
+var view_sensitivity = .15
+#var view_sensitivity = .01
+
 var yaw = 0
 var pitch = 0.5
-var is_moving = false
 
 const max_accel = 0.005
 const air_accel = 0.02
 
-# Walking speed and jumping height are defined later.
-var walk_speed
 var jump_speed
 
 var models = []
@@ -222,39 +226,77 @@ func _fixed_process(delta):
 				pass
 			else:
 				passive_action()
-		is_moving = false
 	else:
 		if self.active:
 			get_node("../").end_actions(self)
 		update_materials()
 
-var status = { 
-	#timers: all these are timers and are used to blend animations
-	is_fullbody = 0, #full body animations
-	is_moving = false,
-	is_running = 0, #min_max function (0,1), acts as speed multiplier
-	is_aiming = 0, #min_max function (0,1), animation blend, zoom/pos modifier
-	is_airborne = 0, #count up
-	is_crouching = 0, #min max function
-	
-	#tracking
-	move_direction = Vector2(),
-	input_direction = Vector2(),
-	can_move = true,
-	can_jump = 1, #decreses each time, always 1 over ground
-	can_evade = 2, # consecutive evades
-	}
+#timers: all these are timers and are used to blend animations
+var is_fullbody = 0 #full body animations
+var is_running = 0 #min_max function (0,1), acts as speed multiplier
+var is_aiming = 0 #min_max function (0,1), animation blend, zoom/pos modifier
+var is_crouching = 0 #min max function
+
+#tracking
+var is_airborne = false
+var is_moving = false
+var is_grounded = true
+
+export var can_cancel = 0 #countdown, check if it is <= 0. following options only apply when can_cancel is true
+export var can_aim = true
+export var can_move = true #being true doesn't mean that animations play
+export var is_looking = true #is looking at camera's direction?
+export var can_jump = 1 #decreses each time, always 1 over ground
+export var can_evade = 2 # consecutive evades
+
+var move_direction = Vector3()
+var anim_dir = Vector2()
+var input_direction = Vector2()
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
 		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
 		pitch = max(min(pitch - (event.relative_y * view_sensitivity * .01), 1), 0)
 		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
-#		get_node("Yaw/Camera").set_rotation(Vector3(deg2rad(pitch), 0, 0))
+
 
 func check_player_input():
+	#movement
+	move_direction = Vector3()
+	is_moving = false
+	rotation = get_node("Yaw").get_global_transform().basis
+	if Input.is_action_pressed("move_forwards"):
+		move_direction -= rotation[2]
+		anim_dir = Vector2(0,1)
+		is_moving = true
 	if Input.is_action_pressed("move_backwards"):
-		pass
+		move_direction += rotation[2]
+		anim_dir = Vector2(0,-1)
+		is_moving = true
+	if Input.is_action_pressed("move_left"):
+		move_direction -= rotation[0]
+		anim_dir = Vector2(-1,0)
+		is_moving = true
+	if Input.is_action_pressed("move_right"):
+		move_direction += rotation[0]
+		anim_dir = Vector2(1,0)
+		is_moving = true
+	
+	if is_moving:
+		if Input.is_action_pressed("run"):
+			stats.speed_cur = min(stats.speed_cur + 0.1, 5)
+	
+	if Input.is_action_pressed("aim"):
+		if can_aim:
+			is_aiming = min (1, is_aiming + 0.1)
+		else:
+			is_aiming = 0
+	else:
+		is_aiming = max(is_aiming - .1, 0)
+	get_node("Yaw/metarig/Skeleton/gun/Camera").set_perspective(95 - (65 * is_aiming), .1,1000)
+	view_sensitivity = 0.15 - (0.1 * is_aiming)
+	
+	
 	if weapon.cooldown <= 0:
 		if Input.is_action_pressed("attack"):
 			shoot()
@@ -263,51 +305,28 @@ func check_player_input():
 		pass
 	pass
 
+onready var rotation = get_node("Yaw").get_global_transform().basis
 func _integrate_forces(state):
 	# Default walk speed:
-	walk_speed = 4
+	stats.speed_cur = 4
 	# Default jump height:
 	jump_speed = 5
 	
 	# Cap stamina:
 	stats.stm_cur = max(0,min(stats.stm_cur,stats.stm_max))
-#	if stats.stm_cur >= 10000:
-#		stats.stm_cur = 10000
-#	if stats.stm_cur <= 0:
-#		stats.stm_cur = 0
 	
-	var aim = get_node("Yaw").get_global_transform().basis
-	
-	var direction = Vector3()
-	var ani_to_play = "mn -loop"
-	var anim_dir = Vector2()
 	
 	if active:
 		if ai_mode:
+			move_direction = Vector3()
 			if path.size() > 0:
-				direction = path[0] - get_global_transform().origin
-				if direction.abs() < direction.normalized().abs():
+				move_direction = path[0] - get_global_transform().origin
+				if move_direction.abs() < move_direction.normalized().abs():
 					path.remove(0)
 				else:
 					is_moving = true
-		else:
-			if Input.is_action_pressed("move_forwards"):
-				direction -= aim[2]
-				anim_dir = Vector2(0,1)
-				is_moving = true
-			if Input.is_action_pressed("move_backwards"):
-				direction += aim[2]
-				anim_dir = Vector2(0,-1)
-				is_moving = true
-			if Input.is_action_pressed("move_left"):
-				direction -= aim[0]
-				anim_dir = Vector2(-1,0)
-				is_moving = true
-			if Input.is_action_pressed("move_right"):
-				direction += aim[0]
-				anim_dir = Vector2(1,0)
-				is_moving = true
 	
+	var ani_to_play = "mn -loop"
 	if anim_dir == Vector2(0,1):
 		ani_to_play = "mf -loop"
 	elif anim_dir == Vector2(0,-1):
@@ -320,12 +339,13 @@ func _integrate_forces(state):
 		ani_to_play = "mn -loop"
 	ani_tree.timeseek_node_seek("seek",pitch)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation(ani_to_play))
-	direction = direction.normalized()
+	move_direction = move_direction.normalized()
+	
 	var ray = get_node("Ray")
 	
 	# Increase walk speed and jump height while running and decrement stamina:
 	if Input.is_action_pressed("run") and is_moving and ray.is_colliding() and stats.stm_cur > 0:
-		walk_speed *= 2
+		stats.speed_cur *= 2
 		jump_speed *= 2
 		stats.stm_cur -= 7
 	if ray.is_colliding():
@@ -350,8 +370,8 @@ func _integrate_forces(state):
 			floor_velocity += transform.xform_inv(point) - point
 			yaw = fmod(yaw + rad2deg(floor_angular_vel.y) * state.get_step(), 360)
 			get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
-		var diff = floor_velocity + direction * walk_speed - state.get_linear_velocity()
-		var vertdiff = aim[1] * diff.dot(aim[1])
+		var diff = floor_velocity + move_direction * stats.speed_cur - state.get_linear_velocity()
+		var vertdiff = rotation[1] * diff.dot(rotation[1])
 		diff -= vertdiff
 		diff = diff.normalized() * clamp(diff.length(), 0, max_accel / state.get_step())
 		diff += vertdiff
@@ -364,7 +384,7 @@ func _integrate_forces(state):
 				get_node("Sounds").play("jump")
 				stats.stm_cur -= 30
 	else:
-		apply_impulse(Vector3(), direction * air_accel * get_mass())
+		apply_impulse(Vector3(), move_direction * air_accel * get_mass())
 	stats.stm_cur += 5
 	state.integrate_forces()
 
@@ -374,8 +394,7 @@ func shoot():
 			get_node("Sounds").play("rifle")
 			var bullet_inst = bullet_inst_scene.instance()
 			var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
-			bullet_inst.set_transform(origin)
-			var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
+			bullet_inst.set_transform(origin) #todo: add bullet spraying
 			bullet_inst.add_to_group("destroy")
 			world.add_child(bullet_inst)
 			weapon.current.magazine_cur -= 1

@@ -192,43 +192,6 @@ func action_end():
 	set_process_input(false)
 	get_node("gui").hide()
 
-func _input(event):
-	if event.type == InputEvent.MOUSE_MOTION:
-		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
-		pitch = max(min(pitch - (event.relative_y * view_sensitivity * .01), 1), 0)
-		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
-#		get_node("Yaw/Camera").set_rotation(Vector3(deg2rad(pitch), 0, 0))
-	
-	# Toggle mouse capture:
-	if Input.is_action_pressed("toggle_mouse_capture"):
-		if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			view_sensitivity = 0
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			view_sensitivity = 0.25
-
-func shoot():
-	if weapon.cooldown <= 0: #normally i wouldn't put this here, but is going to be called from so many places i might as well
-		if weapon.current.magazine_cur > 0:
-			get_node("Sounds").play("rifle")
-			var bullet_inst = bullet_inst_scene.instance()
-			var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
-			bullet_inst.set_transform(origin)
-			var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
-			bullet_inst.add_to_group("destroy")
-			world.add_child(bullet_inst)
-			weapon.current.magazine_cur -= 1
-			bullet_inst.speed = weapon.current.projectile_speed
-			bullet_inst.lifetime = 2000 * 60 /weapon.current.projectile_speed
-			weapon.cooldown = 1*60/weapon.current.rate_of_fire
-		else:
-			reload()
-
-func reload():
-	weapon.reloading = weapon.current.reload_speed
-	weapon.cooldown = weapon.reloading
-
 #main loop
 func _fixed_process(delta):
 	if stats.hp_cur > 0:
@@ -250,11 +213,7 @@ func _fixed_process(delta):
 			get_node("../").end_actions(self)
 		if active:
 			if ally:
-				if weapon.cooldown <= 0:
-					if Input.is_action_pressed("attack"):
-						shoot()
-					if Input.is_action_pressed("char reload"):
-						reload()
+				check_player_input()
 			else:
 				passive_look_at_target() #todo: change for active look at characters
 		else: #passive characters
@@ -268,6 +227,41 @@ func _fixed_process(delta):
 		if self.active:
 			get_node("../").end_actions(self)
 		update_materials()
+
+var status = { 
+	#timers: all these are timers and are used to blend animations
+	is_fullbody = 0, #full body animations
+	is_moving = false,
+	is_running = 0, #min_max function (0,1), acts as speed multiplier
+	is_aiming = 0, #min_max function (0,1), animation blend, zoom/pos modifier
+	is_airborne = 0, #count up
+	is_crouching = 0, #min max function
+	
+	#tracking
+	move_direction = Vector2(),
+	input_direction = Vector2(),
+	can_move = true,
+	can_jump = 1, #decreses each time, always 1 over ground
+	can_evade = 2, # consecutive evades
+	}
+
+func _input(event):
+	if event.type == InputEvent.MOUSE_MOTION:
+		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
+		pitch = max(min(pitch - (event.relative_y * view_sensitivity * .01), 1), 0)
+		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
+#		get_node("Yaw/Camera").set_rotation(Vector3(deg2rad(pitch), 0, 0))
+
+func check_player_input():
+	if Input.is_action_pressed("move_backwards"):
+		pass
+	if weapon.cooldown <= 0:
+		if Input.is_action_pressed("attack"):
+			shoot()
+		if Input.is_action_pressed("char reload"):
+			reload()
+		pass
+	pass
 
 func _integrate_forces(state):
 	# Default walk speed:
@@ -373,6 +367,27 @@ func _integrate_forces(state):
 		apply_impulse(Vector3(), direction * air_accel * get_mass())
 	stats.stm_cur += 5
 	state.integrate_forces()
+
+func shoot():
+	if weapon.cooldown <= 0: #normally i wouldn't put this here, but is going to be called from so many places i might as well
+		if weapon.current.magazine_cur > 0:
+			get_node("Sounds").play("rifle")
+			var bullet_inst = bullet_inst_scene.instance()
+			var origin = get_node("Yaw/metarig/Skeleton/gun/origin").get_global_transform()
+			bullet_inst.set_transform(origin)
+			var direction = get_node("Yaw/metarig/Skeleton/gun/origin/direction").get_global_transform() #todo: add bullet spraying
+			bullet_inst.add_to_group("destroy")
+			world.add_child(bullet_inst)
+			weapon.current.magazine_cur -= 1
+			bullet_inst.speed = weapon.current.projectile_speed
+			bullet_inst.lifetime = 2000 * 60 /weapon.current.projectile_speed
+			weapon.cooldown = 1*60/weapon.current.rate_of_fire
+		else:
+			reload()
+
+func reload():
+	weapon.reloading = weapon.current.reload_speed
+	weapon.cooldown = weapon.reloading
 
 func _exit_scene():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -52,7 +52,7 @@ var weapon = {
 		reserve_cur = 150,
 		reload_speed = 30,
 		rate_of_fire = 15,
-		projectile_speed = 200,
+		projectile_speed = 400,
 		},
 	passive = {
 		magazine_max = 10,
@@ -61,7 +61,7 @@ var weapon = {
 		reserve_cur = -1,
 		reload_speed = 30,
 		rate_of_fire = 5,
-		projectile_speed = 100,
+		projectile_speed = 200,
 		},
 	current = {
 		magazine_max = 0,
@@ -92,39 +92,12 @@ func _ready():
 	for child in get_node("Yaw/metarig/Skeleton").get_children():
 		if child extends MeshInstance:
 			models.append(child)
-	if ally:
-		get_node("Yaw/icon/highlight").set_modulate(Color("#93efff")) #blue
-		get_node("Yaw/icon/SpotLight").set_color(.5,Color("#93efff"))
-	else:
-		get_node("Yaw/icon/highlight").set_modulate(Color("#ff7070")) #red
-		get_node("Yaw/icon/SpotLight").set_color(.5,Color("#ff7070"))
 	get_node("Yaw/metarig/Skeleton").rotate_y(deg2rad(180))
 	get_node("gui").hide()
 	dogtag.hide()
 
 #select charater using mouse clicks
-func _mouse_enter():
-	if ally:
-		get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1) * 1.5)
-	get_node("Yaw/icon/OmniLight").show()
-	get_node("Yaw/icon/SpotLight").show()
-	dogtag.show()
-	update_dogtag()
-func _mouse_exit():
-	get_node("Yaw/icon/highlight").set_scale(Vector3(1,1,1))
-	get_node("Yaw/icon/OmniLight").hide()
-	get_node("Yaw/icon/SpotLight").hide()
-	dogtag.hide()
-func _input_event(camera, event, click_pos, click_normal, shape_idx):
-	if event.is_action("attack"):
-		if ally:
-			active = true
-			get_node("Sounds").play("jump")
-			dogtag.hide()
-			if stats.hp_cur >= 0:
-				get_node("../").start_actions(self)
-		else:
-			get_node("Sounds").play("fire")
+
 onready var dogtag = get_node("dogtag")
 func update_dogtag():
 	dogtag.get_node("weapon name").set_text(weapon.weapon_name)
@@ -148,7 +121,7 @@ func action_start(active_node,current_target):
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
 	get_node("Yaw/metarig").show()
-	get_node("Yaw/icon").hide()
+	get_node("icon").hide()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	action_timer = DEFF_ACTION_TIMER
 	get_node("gui/health_enemy").set_max(action_timer)
@@ -175,7 +148,7 @@ func action_start(active_node,current_target):
 
 # called by parent node
 func action_end():
-	get_node("Body").get_shape().set_radius(1)
+	get_node("Body").get_shape().set_radius(0)
 	get_node("Body").get_shape().set_height(0)
 	pitch = .5
 	ani_tree.timeseek_node_seek("seek",.5)
@@ -188,7 +161,7 @@ func action_end():
 	else:
 		weapon.passive = weapon.current
 	get_node("Yaw/metarig").hide()
-	get_node("Yaw/icon").show()
+	get_node("icon").show()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
 	get_node("Yaw/metarig/Skeleton/gun/Camera").clear_current()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

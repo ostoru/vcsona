@@ -226,14 +226,28 @@ var move_direction = Vector3()
 var anim_dir = Vector2()
 var input_direction = Vector2()
 
+var relative_mouse_motion = Vector2()
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
-		yaw = fmod(yaw - event.relative_x * view_sensitivity, 360)
-		pitch = max(min(pitch - (event.relative_y * view_sensitivity * .01), 1), 0)
-		get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
-
+		relative_mouse_motion += event.relative_pos
 
 func check_player_input():
+	#cam_look
+	yaw = fmod(yaw - relative_mouse_motion.x * view_sensitivity, 360)
+	pitch = max(min(pitch - (relative_mouse_motion.y * view_sensitivity * .01), 1), 0)
+	get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
+	relative_mouse_motion = Vector2()
+	
+	if Input.is_action_pressed("aim"):
+		if can_aim:
+			is_aiming = min (1, is_aiming + 0.1)
+		else:
+			is_aiming = 0
+	else:
+		is_aiming = max(is_aiming - .1, 0)
+	get_node("Yaw/metarig/Skeleton/gun/Camera").set_perspective(95 - (65 * is_aiming), .1,1000)
+	view_sensitivity = 0.15 - (0.1 * is_aiming)
+	
 	#movement
 	move_direction = Vector3()
 	is_moving = false
@@ -262,16 +276,6 @@ func check_player_input():
 			stats.speed_cur = max(stats.speed_cur - 0.2, stats.speed_min)
 	else:
 		stats.speed_cur = max(0, stats.speed_cur - .1)
-	
-	if Input.is_action_pressed("aim"):
-		if can_aim:
-			is_aiming = min (1, is_aiming + 0.1)
-		else:
-			is_aiming = 0
-	else:
-		is_aiming = max(is_aiming - .1, 0)
-	get_node("Yaw/metarig/Skeleton/gun/Camera").set_perspective(95 - (65 * is_aiming), .1,1000)
-	view_sensitivity = 0.15 - (0.1 * is_aiming)
 	
 	
 	if weapon.cooldown <= 0:

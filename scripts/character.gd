@@ -74,9 +74,7 @@ var weapon = {
 		},
 	}
 
-var view_sensitivity = .15
-#var view_sensitivity = .01
-
+onready var options = get_node("../../../").options
 var yaw = 0
 var pitch = 0.5
 
@@ -233,8 +231,8 @@ func _input(event):
 
 func check_player_input():
 	#cam_look
-	yaw = fmod(yaw - relative_mouse_motion.x * view_sensitivity, 360)
-	pitch = max(min(pitch - (relative_mouse_motion.y * view_sensitivity * .01), 1), 0)
+	yaw = fmod(yaw - relative_mouse_motion.x * options.view_sensitivity, 360)
+	pitch = max(min(pitch - (relative_mouse_motion.y * options.view_sensitivity * .01), 1), 0)
 	get_node("Yaw").set_rotation(Vector3(0, deg2rad(yaw), 0))
 	relative_mouse_motion = Vector2()
 	
@@ -246,7 +244,7 @@ func check_player_input():
 	else:
 		is_aiming = max(is_aiming - .1, 0)
 	get_node("Yaw/metarig/Skeleton/gun/Camera").set_perspective(95 - (65 * is_aiming), .1,1000)
-	view_sensitivity = 0.15 - (0.1 * is_aiming)
+	options.view_sensitivity = 0.15 - (0.1 * is_aiming)
 	
 	#movement
 	move_direction = Vector3()

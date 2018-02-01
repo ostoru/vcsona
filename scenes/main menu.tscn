@@ -1,0 +1,81 @@
+[gd_scene format=1]
+
+[node name="main menu" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="vs_ai" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 48.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "VS AI (pathfinding is broken)"
+flat = false
+
+[node name="vs_human" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 64.0
+margin/right = 320.0
+margin/bottom = 112.0
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "VS Human (hot seat)"
+flat = false
+
+[node name="options" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 128.0
+margin/right = 320.0
+margin/bottom = 176.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "options"
+flat = false
+
+[node name="quit" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 192.0
+margin/right = 320.0
+margin/bottom = 240.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "quit"
+flat = false
+
+

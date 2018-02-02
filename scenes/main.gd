@@ -16,14 +16,18 @@ func _process(delta):
 		get_node(".").add_child(inst)
 		get_node("main menu").queue_free()
 		set_process(false)
-		print(options.view_sensitivity)
 	if get_node("main menu/vs_human").is_pressed():
 		var inst = load("res://scenes/hot seat deathmatch test.tscn").instance()
 		inst.options = options
 		get_node(".").add_child(inst)
 		get_node("main menu").queue_free()
 		set_process(false)
-		print(options.view_sensitivity)
+	if get_node("main menu/vs_human1").is_pressed():
+		var inst = load("res://scenes/hot seat deathmatch test1.tscn").instance()
+		inst.options = options
+		get_node(".").add_child(inst)
+		get_node("main menu").queue_free()
+		set_process(false)
 	if get_node("main menu/quit").is_pressed():
 		get_tree().quit()
 		pass

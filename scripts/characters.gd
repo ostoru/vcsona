@@ -135,14 +135,12 @@ func _fixed_process(delta):
 			action_cooldown -= 1
 	elif play_mode == LOSE_MODE:
 		get_node("../").get_node("map_cam/gui/fail").show()
-		over_timer = min(over_timer,1)
-		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color(0,0,1,over_timer))
-		over_timer += .01
+		get_node("../").get_node("map_cam/gui/fail/fail1").show()
+		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color("#ff7070"))
 	elif play_mode == WIN_MODE:
 		get_node("../").get_node("map_cam/gui/fail").show()
-		over_timer = min(over_timer,1)
-		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color(1,0,0,over_timer))
-		over_timer += .01
+		get_node("../").get_node("map_cam/gui/fail/fail1").show()
+		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color("#93efff"))
 
 func update_characters_icons():
 	for char in chars:

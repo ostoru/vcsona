@@ -99,21 +99,66 @@ hot_seat = true
 
 [node name="player" parent="players" instance=ExtResource( 4 )]
 
-transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, -87.3684, 0.0210996, 7.05499 )
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, -87.3684, 0.0210996, -154.945 )
 ally = true
 
 [node name="player1" parent="players" instance=ExtResource( 4 )]
 
-transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, -87.961, 0.0210996, 7.05499 )
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, -63.961, 0.0210996, -154.945 )
 ally = true
+
+[node name="player4" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, -23.961, 0.0210996, -154.945 )
+ally = true
+
+[node name="player5" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, 13.039, 0.0210996, -154.945 )
+ally = true
+
+[node name="player6" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, 45.039, 0.0210996, -154.945 )
+ally = true
+
+[node name="player7" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, 86.039, 0.0210996, -154.945 )
+ally = true
+
+[node name="player8" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, 118.039, 0.0210996, -154.945 )
+ally = true
+
+[node name="player2 2" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 1.74846e-07, 0, 1, -2.22045e-16, -1.74846e-07, 0, 1, 118.039, 0.0210996, 130.055 )
 
 [node name="player2" parent="players" instance=ExtResource( 4 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -87.961, 0.0210996, 19.2399 )
+transform/local = Transform( 1, 0, 1.74846e-07, 0, 1, -2.22045e-16, -1.74846e-07, 0, 1, 94.6316, 0.0210996, 130.055 )
 
-[node name="player3" parent="players" instance=ExtResource( 4 )]
+[node name="player9 2" parent="players" instance=ExtResource( 4 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -87.3314, 0.0210996, 19.2399 )
+transform/local = Transform( 1, 0, 1.74846e-07, 0, 1, -2.22045e-16, -1.74846e-07, 0, 1, 54.6316, 0.0210996, 130.055 )
+
+[node name="player9 5" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 1.74846e-07, 0, 1, -2.22045e-16, -1.74846e-07, 0, 1, 17.6316, 0.0210996, 130.055 )
+
+[node name="player9 4" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 1.74846e-07, 0, 1, -2.22045e-16, -1.74846e-07, 0, 1, -14.3684, 0.0210996, 130.055 )
+
+[node name="player9" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 1.74846e-07, 0, 1, -2.22045e-16, -1.74846e-07, 0, 1, -55.3684, 0.0210996, 130.055 )
+
+[node name="player9 3" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 1.74846e-07, 0, 1, -2.22045e-16, -1.74846e-07, 0, 1, -87.3684, 0.0210996, 130.055 )
 
 [node name="map_cam" type="Camera" parent="."]
 
@@ -197,6 +242,6 @@ up_vector = Vector3( 0, 1, 0 )
 
 [node name="navmesh test" parent="Navigation" instance=ExtResource( 7 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.9935, 0, 77.4801 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -83.9935, 0, 88.4801 )
 
 

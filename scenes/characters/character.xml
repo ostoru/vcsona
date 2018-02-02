@@ -321,18 +321,18 @@
 							<real> 1 </real>
 							<string> "filter" </string>
 							<array  len="12" shared="false">
-								<node_path> "metarig/Skeleton:shin.L" </node_path>
 								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
 								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
-								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
 								<node_path> "metarig/Skeleton:thigh.L" </node_path>
-								<node_path> "metarig/Skeleton:foot.R" </node_path>
-								<node_path> "metarig/Skeleton:toe.R" </node_path>
-								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
 								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
-								<node_path> "metarig/Skeleton:shin.R" </node_path>
-								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
 								<node_path> "metarig/Skeleton:foot.L" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
 							</array>
 							<string> "id" </string>
 							<string> "look blend" </string>

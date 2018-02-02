@@ -42,7 +42,23 @@ margin/bottom = 112.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "VS Human (hot seat)"
+text = "VS Human 2v2 (hot seat)"
+flat = false
+
+[node name="vs_human1" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 336.0
+margin/top = 64.0
+margin/right = 656.0
+margin/bottom = 112.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "VS Human 8v8 (hot seat)"
 flat = false
 
 [node name="options" type="Button" parent="."]

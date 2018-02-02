@@ -86,7 +86,6 @@ var jump_speed
 var models = []
 func _ready():
 	stats.name = get_name()
-	rotate_y(rand_range(0,2))
 	for child in get_node("Yaw/metarig/Skeleton").get_children():
 		if child extends MeshInstance:
 			models.append(child)

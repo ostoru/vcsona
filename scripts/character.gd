@@ -114,6 +114,7 @@ func update_dogtag():
 func action_start(active_node,current_target):
 	get_node("Body").get_shape().set_radius(.18)
 	get_node("Body").get_shape().set_height(1.5)
+	set_sleeping(false)
 	pitch = .5
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
@@ -145,8 +146,9 @@ func action_start(active_node,current_target):
 
 # called by parent node
 func action_end():
-	get_node("Body").get_shape().set_radius(0)
-	get_node("Body").get_shape().set_height(0)
+	get_node("Body").get_shape().set_radius(.18)
+	get_node("Body").get_shape().set_height(1.5)
+	set_sleeping(true)
 	pitch = .5
 	ani_tree.timeseek_node_seek("seek",.5)
 	ani_tree.animation_node_set_animation("move",ani_node.get_animation("mn -loop"))
@@ -157,6 +159,7 @@ func action_end():
 		ai_mode = false
 	else:
 		weapon.passive = weapon.current
+	
 	get_node("Yaw/metarig").hide()
 	get_node("icon").show()
 	get_node("Yaw/metarig/Skeleton/gun/origin").set_rotation(Vector3(0,0,0))
@@ -280,6 +283,7 @@ func check_player_input():
 			shoot()
 		if Input.is_action_pressed("char reload"):
 			reload()
+			action_timer = min(weapon.current.reload_speed + 5, action_timer)
 		pass
 	pass
 

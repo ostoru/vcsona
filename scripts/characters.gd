@@ -17,14 +17,16 @@ func _ready():
 	update_children_list()
 
 func start_actions(target_node): #target_node is the node that started the action
-	update_children_list()
-	play_mode = ACTION_MODE
-	for a in chars:
-		if a.ally:
-			a.action_start(target_node,aquire_target(enemy_chars))
-		else:
-			a.action_start(target_node,aquire_target(ally_chars))
-			
+	if ui_cooldown > 0:
+		ui_cooldown -= 1
+	else:
+		update_children_list()
+		play_mode = ACTION_MODE
+		for a in chars:
+			if a.ally:
+				a.action_start(target_node,aquire_target(enemy_chars))
+			else:
+				a.action_start(target_node,aquire_target(ally_chars))
 
 var next_turn_ai = false
 var ui_cooldown = DEFAULT_COUNTDOWN

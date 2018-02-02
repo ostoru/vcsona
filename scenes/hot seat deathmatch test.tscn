@@ -99,21 +99,21 @@ hot_seat = true
 
 [node name="player" parent="players" instance=ExtResource( 4 )]
 
-transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, -87.3684, 0.0210996, 7.05499 )
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, 29.6316, 0.0210996, -28.945 )
 ally = true
 
 [node name="player1" parent="players" instance=ExtResource( 4 )]
 
-transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, -87.961, 0.0210996, 7.05499 )
+transform/local = Transform( -1, 0, -8.74228e-08, 0, 1, -2.22045e-16, 8.74228e-08, 0, -1, 29.039, 0.0210996, -28.945 )
 ally = true
 
 [node name="player2" parent="players" instance=ExtResource( 4 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -87.961, 0.0210996, 19.2399 )
+transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 29.039, 0.0210996, -16.7601 )
 
 [node name="player3" parent="players" instance=ExtResource( 4 )]
 
-transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -87.3314, 0.0210996, 19.2399 )
+transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, 29.6686, 0.0210996, -16.7601 )
 
 [node name="map_cam" type="Camera" parent="."]
 

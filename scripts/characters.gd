@@ -31,9 +31,11 @@ func start_actions(target_node): #target_node is the node that started the actio
 var next_turn_ai = false
 var ui_cooldown = DEFAULT_COUNTDOWN
 const DEFAULT_COUNTDOWN = 15
+var action_starters = []
 func end_actions(node):
 	ui_cooldown = DEFAULT_COUNTDOWN
 	play_mode = MAP_MODE
+	action_starters = []
 	chars = []
 	if hot_seat:
 		pass
@@ -70,6 +72,16 @@ func _fixed_process(delta):
 	map_cam.get_node("fps").set_text(str(OS.get_frames_per_second()))
 	
 	if play_mode == MAP_MODE:
+		if Input.is_action_pressed("ui_cancel"):
+			get_tree().quit()
+		if action_starters != []:
+			var diff = 0
+			var starter
+			for as in action_starters:
+				if as[1] > diff:
+					starter = as[0]
+					diff = as[1]
+			start_actions(starter)
 		ui_cooldown -= 1
 		update_characters_icons()
 		if next_turn_ai:
@@ -139,10 +151,14 @@ func _fixed_process(delta):
 		get_node("../").get_node("map_cam/gui/fail").show()
 		get_node("../").get_node("map_cam/gui/fail/fail1").show()
 		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color("#ff7070"))
+		if Input.is_action_pressed("ui_cancel"):
+			get_tree().quit()
 	elif play_mode == WIN_MODE:
 		get_node("../").get_node("map_cam/gui/fail").show()
 		get_node("../").get_node("map_cam/gui/fail/fail1").show()
 		get_node("../").get_node("map_cam/gui/fail/fail1").set_modulate(Color("#93efff"))
+		if Input.is_action_pressed("ui_cancel"):
+			get_tree().quit()
 
 func update_characters_icons():
 	for char in chars:

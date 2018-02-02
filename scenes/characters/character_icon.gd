@@ -14,4 +14,5 @@ func _mouse_exit():
 func _input_event(viewport, event, shape_idx):
 	if event.is_action("attack"):
 		if get_parent().ally:
-			get_node("../../").start_actions(get_parent())
+			var distance = (get_viewport().get_mouse_pos() - get_pos()).length()
+			get_node("../../").action_starters.append([get_parent(),distance])

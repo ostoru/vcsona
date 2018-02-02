@@ -6,7 +6,6 @@ extends Spatial
 var options = {}
 func _ready():
 	get_all_the_children_in_node(get_tree().get_root())
-	set_process_input(true)
 	if options.global_light == true:
 		get_node("global light").show()
 		if options.global_shadows == true:
@@ -25,8 +24,3 @@ func get_all_the_children_in_node(node):
 				nv.navmesh_create(a.get_navigation_mesh(),a.get_global_transform())
 				a.queue_free()
 		get_all_the_children_in_node(a)
-	
-func _input(event):
-	if event.is_action("ui_cancel"):
-		get_tree().quit()
-	pass

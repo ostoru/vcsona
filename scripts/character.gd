@@ -283,6 +283,7 @@ func check_player_input():
 			shoot()
 		if Input.is_action_pressed("char reload"):
 			reload()
+		if Input.is_action_pressed("ui_cancel"):
 			action_timer = min(weapon.current.reload_speed + 5, action_timer)
 		pass
 	pass

@@ -286,9 +286,6 @@ func check_player_input():
 
 onready var rotation = get_node("Yaw").get_global_transform().basis
 func _integrate_forces(state):
-	# Default walk speed:
-#	stats.speed_cur = 4
-	# Default jump height:
 	jump_speed = 5
 	
 	# Cap stamina:

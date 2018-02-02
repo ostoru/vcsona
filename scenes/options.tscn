@@ -53,7 +53,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 16.0
 margin/top = 16.0
-margin/right = 96.0
+margin/right = 160.0
 margin/bottom = 48.0
 text = "sensitivity"
 align = 1
@@ -68,9 +68,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 112.0
+margin/left = 160.0
 margin/top = 0.0
-margin/right = 560.0
+margin/right = 608.0
 margin/bottom = 32.0
 range/min = 0.01
 range/max = 1.0
@@ -99,5 +99,90 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="global light" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 48.0
+margin/right = 160.0
+margin/bottom = 80.0
+text = "global ilumination"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="slider" type="CheckButton" parent="global light"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 208.0
+margin/top = 0.0
+margin/right = 284.0
+margin/bottom = 32.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="global shadows" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 32.0
+margin/top = 80.0
+margin/right = 176.0
+margin/bottom = 112.0
+text = "global shadows"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="slider" type="CheckButton" parent="global shadows"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 192.0
+margin/top = 0.0
+margin/right = 268.0
+margin/bottom = 32.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="slider1" type="CheckButton" parent="global shadows"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 192.0
+margin/top = 0.0
+margin/right = 268.0
+margin/bottom = 32.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
 
 

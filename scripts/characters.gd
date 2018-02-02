@@ -1,4 +1,5 @@
 extends Spatial
+export var hot_seat = false
 var chars = []
 var ally_chars = []
 var enemy_chars = []
@@ -32,10 +33,18 @@ func end_actions(node):
 	ui_cooldown = DEFAULT_COUNTDOWN
 	play_mode = MAP_MODE
 	chars = []
-	next_turn_ai = node.ally
+	if hot_seat:
+		pass
+	else:
+		next_turn_ai = node.ally
 	update_children_list()
 	for char in chars:
 		char.action_end()
+		if hot_seat:
+			if char.ally:
+				char.ally = false
+			else:
+				char.ally = true
 	get_node("../map_cam").make_current() #must be done after char.action_end()
 
 const DEFAULT_ACTION_COOLDOWN = 30

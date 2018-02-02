@@ -1,0 +1,202 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scripts/world.gd" type="Script" id=1]
+[ext_resource path="res://scripts/environment.gd" type="Script" id=2]
+[ext_resource path="res://scripts/characters.gd" type="Script" id=3]
+[ext_resource path="res://scenes/characters/character.xml" type="PackedScene" id=4]
+[ext_resource path="res://media/sprites/gui_icons/fail by cyrus.png" type="Texture" id=5]
+[ext_resource path="res://media/sprites/gui_icons/fail2 by cyrus.png" type="Texture" id=6]
+[ext_resource path="res://media/models/world/test_level/navmesh test.xml" type="PackedScene" id=7]
+
+[sub_resource type="Environment" id=1]
+
+ambient_light/enabled = true
+ambient_light/color = Color( 0.144531, 0.144531, 0.144531, 1 )
+ambient_light/energy = 1.0
+fxaa/enabled = true
+background/mode = 2
+background/color = Color( 0.6, 0.666667, 0.733333, 1 )
+background/energy = 1.0
+background/scale = 1.0
+background/glow = 0.0
+background/canvas_max_layer = null
+glow/enabled = true
+glow/blur_passes = 1
+glow/blur_scale = 1.0
+glow/blur_strength = 1.0
+glow/blur_blend_mode = 0
+glow/bloom = 0.0
+glow/bloom_treshold = 0.5
+dof_blur/enabled = false
+dof_blur/blur_passes = 3
+dof_blur/begin = 50.0
+dof_blur/range = 10.0
+hdr/enabled = false
+hdr/tonemapper = 0.0
+hdr/exposure = 0.4
+hdr/white = 1.0
+hdr/glow_treshold = 0.95
+hdr/glow_scale = 0.2
+hdr/min_luminance = 0.4
+hdr/max_luminance = 8.0
+hdr/exposure_adj_speed = 0.5
+fog/enabled = false
+fog/begin = 1.0
+fog/begin_color = Color( 0, 0, 0, 1 )
+fog/end_color = Color( 0.6, 0.666667, 0.733333, 1 )
+fog/attenuation = 1.0
+fog/bg = true
+bcs/enabled = false
+bcs/brightness = 1.0
+bcs/contrast = 1.0
+bcs/saturation = 1.0
+srgb/enabled = false
+script/script = ExtResource( 2 )
+
+[node name="World" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script/script = ExtResource( 1 )
+__meta__ = {
+"__editor_plugin_screen__": "Script"
+}
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+visibility/visible = false
+environment = SubResource( 1 )
+
+[node name="global light" type="DirectionalLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.81825, 0.306634, 0.486254, -0.081898, -0.775053, 0.626567, 0.568999, -0.552512, -0.609074, 15.6895, 10.8131, -13.9665 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 1
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = true
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 128.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
+
+[node name="players" type="Spatial" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script/script = ExtResource( 3 )
+hot_seat = true
+
+[node name="player" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -87.961, 0.0210996, 7.05499 )
+ally = true
+
+[node name="player1" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -87.3684, 0.0210996, 7.05499 )
+ally = true
+
+[node name="player2" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -87.961, 0.0210996, 19.2399 )
+
+[node name="player3" parent="players" instance=ExtResource( 4 )]
+
+transform/local = Transform( 1, 0, 0, 0, 1, -2.22045e-16, 0, 0, 1, -87.3314, 0.0210996, 19.2399 )
+
+[node name="map_cam" type="Camera" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.489576, 183.629, 1.99188 )
+projection = 0
+fov = 65.0
+near = 0.1
+far = 200.0
+keep_aspect = 1
+current = true
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+
+[node name="fps" type="Label" parent="map_cam"]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1135.0
+margin/top = 23.0
+margin/right = 1199.0
+margin/bottom = 42.0
+text = "99"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="list" type="Label" parent="map_cam"]
+
+visibility/visible = false
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1083.0
+margin/top = 656.0
+margin/right = 1147.0
+margin/bottom = 675.0
+text = "99"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="gui" type="Control" parent="map_cam"]
+
+editor/display_folded = true
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = -8.0
+
+[node name="fail" type="Sprite" parent="map_cam/gui"]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( 640, 360 )
+texture = ExtResource( 5 )
+
+[node name="fail1" type="Sprite" parent="map_cam/gui/fail"]
+
+visibility/visible = false
+texture = ExtResource( 6 )
+
+[node name="Navigation" type="Navigation" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+up_vector = Vector3( 0, 1, 0 )
+
+[node name="navmesh test" parent="Navigation" instance=ExtResource( 7 )]
+
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.9935, 0, 77.4801 )
+
+

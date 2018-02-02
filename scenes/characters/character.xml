@@ -3,17 +3,17 @@
 	<ext_resource path="res://media/models/persons/def mesh.tscn" type="PackedScene" index="1"></ext_resource>
 	<ext_resource path="res://scripts/character.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://icon.png" type="Texture" index="10"></ext_resource>
-	<ext_resource path="res://media/models/persons/AnimationPlayer.tscn" type="PackedScene" index="3"></ext_resource>
-	<ext_resource path="res://media/sprites/gui_icons/hp self.png" type="Texture" index="8"></ext_resource>
-	<ext_resource path="res://media/sprites/gui_icons/bullets.png" type="Texture" index="6"></ext_resource>
-	<ext_resource path="res://media/sprites/fonts/roboto.fnt" type="BitmapFont" index="4"></ext_resource>
-	<ext_resource path="res://media/sprites/gui_icons/hp other.png" type="Texture" index="7"></ext_resource>
-	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="12"></ext_resource>
 	<ext_resource path="res://media/sounds/jump.smp" type="Sample" index="11"></ext_resource>
-	<ext_resource path="res://media/sprites/gui_icons/stamina.png" type="Texture" index="9"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/hp other.png" type="Texture" index="7"></ext_resource>
 	<ext_resource path="res://media/sprites/gui_icons/cross.png" type="Texture" index="5"></ext_resource>
+	<ext_resource path="res://media/sounds/rifle.smp" type="Sample" index="12"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/stamina.png" type="Texture" index="9"></ext_resource>
+	<ext_resource path="res://media/sprites/fonts/roboto.fnt" type="BitmapFont" index="4"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/bullets.png" type="Texture" index="6"></ext_resource>
 	<ext_resource path="res://media/models/guns/stg44/stg44.xml" type="PackedScene" index="2"></ext_resource>
+	<ext_resource path="res://media/sprites/gui_icons/hp self.png" type="Texture" index="8"></ext_resource>
 	<ext_resource path="res://scenes/characters/character_icon.tscn" type="PackedScene" index="13"></ext_resource>
+	<ext_resource path="res://media/models/persons/AnimationPlayer.tscn" type="PackedScene" index="3"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 1 </real>
 		<real name="height"> 0 </real>
@@ -265,15 +265,15 @@
 						<string> "look blend" </string>
 						<string> "out" </string>
 						<int> 0 </int>
+						<string> "move" </string>
+						<string> "seek 2" </string>
+						<int> 0 </int>
 						<string> "seek 2" </string>
 						<string> "look blend" </string>
 						<int> 0 </int>
 						<string> "seek" </string>
 						<string> "look blend" </string>
 						<int> 1 </int>
-						<string> "move" </string>
-						<string> "seek 2" </string>
-						<int> 0 </int>
 					</array>
 					<string> "master" </string>
 					<node_path> "../AnimationPlayer" </node_path>
@@ -309,6 +309,39 @@
 							<string> "output" </string>
 						</dictionary>
 						<dictionary  shared="false">
+							<string> "id" </string>
+							<string> "seek 2" </string>
+							<string> "pos" </string>
+							<vector2> 185, 72 </vector2>
+							<string> "type" </string>
+							<string> "timeseek" </string>
+						</dictionary>
+						<dictionary  shared="false">
+							<string> "blend" </string>
+							<real> 1 </real>
+							<string> "filter" </string>
+							<array  len="12" shared="false">
+								<node_path> "metarig/Skeleton:shin.L" </node_path>
+								<node_path> "metarig/Skeleton:thigh.R" </node_path>
+								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
+								<node_path> "metarig/Skeleton:thigh.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.R" </node_path>
+								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
+								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
+								<node_path> "metarig/Skeleton:shin.R" </node_path>
+								<node_path> "metarig/Skeleton:toe.L" </node_path>
+								<node_path> "metarig/Skeleton:foot.L" </node_path>
+							</array>
+							<string> "id" </string>
+							<string> "look blend" </string>
+							<string> "pos" </string>
+							<vector2> 342, 105 </vector2>
+							<string> "type" </string>
+							<string> "blend2" </string>
+						</dictionary>
+						<dictionary  shared="false">
 							<string> "filter" </string>
 							<array  len="0" shared="false">
 							</array>
@@ -320,39 +353,6 @@
 							<vector2> 54, 179 </vector2>
 							<string> "type" </string>
 							<string> "animation" </string>
-						</dictionary>
-						<dictionary  shared="false">
-							<string> "blend" </string>
-							<real> 1 </real>
-							<string> "filter" </string>
-							<array  len="12" shared="false">
-								<node_path> "metarig/Skeleton:thigh.R" </node_path>
-								<node_path> "metarig/Skeleton:shin.L" </node_path>
-								<node_path> "metarig/Skeleton:upper_arm.L" </node_path>
-								<node_path> "metarig/Skeleton:thigh.L" </node_path>
-								<node_path> "metarig/Skeleton:heel.02.R" </node_path>
-								<node_path> "metarig/Skeleton:heel.02.L" </node_path>
-								<node_path> "metarig/Skeleton:shoulder.L" </node_path>
-								<node_path> "metarig/Skeleton:toe.R" </node_path>
-								<node_path> "metarig/Skeleton:foot.R" </node_path>
-								<node_path> "metarig/Skeleton:foot.L" </node_path>
-								<node_path> "metarig/Skeleton:toe.L" </node_path>
-								<node_path> "metarig/Skeleton:shin.R" </node_path>
-							</array>
-							<string> "id" </string>
-							<string> "look blend" </string>
-							<string> "pos" </string>
-							<vector2> 342, 105 </vector2>
-							<string> "type" </string>
-							<string> "blend2" </string>
-						</dictionary>
-						<dictionary  shared="false">
-							<string> "id" </string>
-							<string> "seek 2" </string>
-							<string> "pos" </string>
-							<vector2> 185, 72 </vector2>
-							<string> "type" </string>
-							<string> "timeseek" </string>
 						</dictionary>
 					</array>
 				</dictionary>

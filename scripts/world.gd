@@ -3,10 +3,18 @@
 # See LICENSE.md for more information.
 
 extends Spatial
-
+var options = {}
 func _ready():
 	get_all_the_children_in_node(get_tree().get_root())
 	set_process_input(true)
+	if options.global_light == true:
+		get_node("global light").show()
+		if options.global_shadows == true:
+			get_node("global light").set_project_shadows(true)
+		else:
+			get_node("global light").set_project_shadows(false)
+	else:
+		get_node("global light").hide()
 
 func get_all_the_children_in_node(node):
 
